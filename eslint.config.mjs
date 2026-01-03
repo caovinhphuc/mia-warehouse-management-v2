@@ -1,0 +1,83 @@
+import js from '@eslint/js';
+import babelParser from '@babel/eslint-parser';
+
+export default [
+  js.configs.recommended,
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      parser: babelParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        requireConfigFile: false,
+        babelOptions: {
+          presets: ['@babel/preset-react'],
+        },
+      },
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+        console: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        fetch: 'readonly',
+        alert: 'readonly',
+        process: 'readonly',
+        navigator: 'readonly',
+        performance: 'readonly',
+        sessionStorage: 'readonly',
+        localStorage: 'readonly',
+        atob: 'readonly',
+        btoa: 'readonly',
+        Image: 'readonly',
+        React: 'readonly',
+        test: 'readonly',
+        expect: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        jest: 'readonly',
+        FileReader: 'readonly',
+        File: 'readonly',
+        Blob: 'readonly',
+        URL: 'readonly',
+        PerformanceObserver: 'readonly',
+        TextEncoder: 'readonly',
+      },
+    },
+    rules: {
+      'no-console': 'warn',
+      'no-unused-vars': 'warn',
+      'prefer-const': 'warn',
+      'no-var': 'error',
+      semi: ['error', 'always'],
+      quotes: 'off', // Tắt rule quotes để tránh conflict
+      'comma-dangle': 'off', // Tắt rule comma-dangle
+      'object-curly-spacing': 'off',
+      'array-bracket-spacing': 'off',
+      'space-before-function-paren': 'off',
+      'keyword-spacing': 'off',
+      'space-infix-ops': 'off',
+      'no-trailing-spaces': 'off',
+      'eol-last': 'off',
+      'no-case-declarations': 'off',
+    },
+  },
+  {
+    ignores: [
+      'node_modules/',
+      'build/',
+      'dist/',
+      'coverage/',
+      '*.config.js',
+      '*.config.ts',
+      'lighthouserc.js',
+    ],
+  },
+];

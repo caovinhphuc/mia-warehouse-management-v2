@@ -1,0 +1,28 @@
+{
+  "page_url": "https://one.tga.com.vn/so/",
+  "page_title": "Hệ thống quản lý MIA RETAIL | Đăng nhập",
+  "selects": [],
+  "buttons": [
+    {
+      "index": 0,
+      "tag": "button",
+      "id": "",
+      "class": "btn solid",
+      "type": "submit",
+      "text": "ĐĂNG NHẬP",
+      "onclick": ""
+    },
+    {
+      "index": 1,
+      "tag": "button",
+      "id": "",
+      "class": "close",
+      "type": "button",
+      "text": "",
+      "onclick": ""
+    }
+  ],
+  "inputs": [],
+  "tabs": [],
+  "all_clickable": []
+}

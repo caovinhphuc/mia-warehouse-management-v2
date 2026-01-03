@@ -1,0 +1,835 @@
+﻿order_id,order_date,status,region,order_value,confirm_hours,delivery_hours,is_confirmed_ontime,is_delivered_ontime,customer_type,product_category,customer_name,shipping_method,platform
+SO30112025:1028369,2025-12-01 06:25:37.996513,confirmed,Khác,599000,23,54,True,True,Regular,Electronics,Chị Dung,VN Post,Livestream
+SO30112025:1028365,2025-12-01 06:25:37.996541,confirmed,Hà Nội,1529000,4,51,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028363,2025-12-01 06:25:37.996549,confirmed,TP.HCM,1089000,18,51,True,False,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028367,2025-12-01 06:25:37.996555,confirmed,Hà Nội,929000,1,45,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028368,2025-12-01 06:25:37.996560,confirmed,Hà Nội,829000,13,13,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028362,2025-12-01 06:25:37.996566,confirmed,TP.HCM,1659000,8,13,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028361,2025-12-01 06:25:37.996571,confirmed,TP.HCM,1799000,6,45,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028364,2025-12-01 06:25:37.996577,confirmed,Hà Nội,829000,18,46,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028344,2025-12-01 06:25:37.996582,confirmed,Hà Nội,829000,3,46,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028345,2025-12-01 06:25:37.996588,confirmed,Hà Nội,849000,9,69,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028360,2025-12-01 06:25:37.996593,confirmed,TP.HCM,139000,16,59,True,True,Regular,Electronics,Shopee,S - SPX Express,Shopee
+SO30112025:1028352,2025-12-01 06:25:37.996598,confirmed,TP.HCM,1799000,18,60,False,True,Regular,Books,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028359,2025-12-01 06:25:37.996604,confirmed,Hà Nội,1179000,23,24,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028346,2025-12-01 06:25:37.996609,confirmed,Hà Nội,849000,18,19,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028337,2025-12-01 06:25:37.996614,confirmed,Khác,599000,8,65,True,True,Regular,Sports,Hồng Thúy Bùi,VN Post,Livestream
+SO30112025:1028351,2025-12-01 06:25:37.996623,confirmed,TP.HCM,249000,9,12,False,False,Regular,Home,Shopee,S - SPX Express,Shopee
+SO30112025:1028347,2025-12-01 06:25:37.996628,confirmed,Hà Nội,1179000,11,17,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028354,2025-12-01 06:25:37.996634,confirmed,TP.HCM,119000,21,31,True,True,Regular,Fashion,Shopee,S - SPX Express,Shopee
+SO30112025:1028353,2025-12-01 06:25:37.996639,confirmed,TP.HCM,1099000,1,64,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028355,2025-12-01 06:25:37.996645,confirmed,TP.HCM,249000,8,33,True,True,Regular,Beauty,Shopee,S - SPX Express,Shopee
+SO30112025:1028348,2025-12-01 06:25:37.996650,confirmed,Hà Nội,1179000,20,34,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028349,2025-12-01 06:25:37.996655,confirmed,Hà Nội,939000,6,23,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028350,2025-12-01 06:25:37.996661,confirmed,Hà Nội,829000,7,47,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028358,2025-12-01 06:25:37.996666,confirmed,Hà Nội,1179000,16,66,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028357,2025-12-01 06:25:37.996671,confirmed,Hà Nội,649000,14,44,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028356,2025-12-01 06:25:37.996677,confirmed,Hà Nội,609000,2,15,False,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028342,2025-12-01 06:25:37.996682,confirmed,TP.HCM,799000,1,16,True,True,Regular,Sports,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028320,2025-12-01 06:25:37.996688,confirmed,TP.HCM,799000,6,48,True,True,VIP,Fashion,Chị Tịnh,VN Post,MIA.vn website
+SO30112025:1028341,2025-12-01 06:25:37.996693,confirmed,TP.HCM,345100,13,46,True,False,Regular,Fashion,Shopee,S - SPX Express,Shopee
+SO30112025:1028338,2025-12-01 06:25:37.996698,confirmed,TP.HCM,2689000,5,29,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028321,2025-12-01 06:25:37.996704,confirmed,Hà Nội,2179000,22,51,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028343,2025-12-01 06:25:37.996709,confirmed,TP.HCM,116620,21,14,True,True,Regular,Home,Shopee,S - SPX Express,Shopee
+SO30112025:1028340,2025-12-01 06:25:37.996714,confirmed,TP.HCM,899000,21,67,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028322,2025-12-01 06:25:37.996719,confirmed,Hà Nội,1079000,18,46,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028323,2025-12-01 06:25:37.996724,confirmed,Hà Nội,1279000,21,14,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028324,2025-12-01 06:25:37.996730,confirmed,Hà Nội,2220000,7,59,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028325,2025-12-01 06:25:37.996737,confirmed,Hà Nội,1129000,2,14,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028317,2025-12-01 06:25:37.996742,confirmed,TP.HCM,2059000,15,33,True,False,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028316,2025-12-01 06:25:37.996748,confirmed,TP.HCM,849000,15,55,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028310,2025-12-01 06:25:37.996753,confirmed,Khác,0,12,26,True,False,Regular,Books,Chú Muôn,Đơn vị khác,Đơn 0 đồng
+SO30112025:1028315,2025-12-01 06:25:37.996758,confirmed,TP.HCM,989000,4,24,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028314,2025-12-01 06:25:37.996763,confirmed,TP.HCM,119000,11,20,True,True,Regular,Home,Shopee,S - SPX Express,Shopee
+SO30112025:1028313,2025-12-01 06:25:37.996769,confirmed,TP.HCM,898000,6,61,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028311,2025-12-01 06:25:37.996774,confirmed,TP.HCM,158049,17,12,True,False,Regular,Beauty,Shopee,S - SPX Express,Shopee
+SO30112025:1028333,2025-12-01 06:25:37.996779,confirmed,Hà Nội,1690000,12,26,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028312,2025-12-01 06:25:37.996784,confirmed,TP.HCM,3790000,6,50,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028332,2025-12-01 06:25:37.996790,confirmed,Hà Nội,604868,22,26,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028331,2025-12-01 06:25:37.996795,confirmed,Hà Nội,1079000,17,61,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028330,2025-12-01 06:25:37.996800,confirmed,Hà Nội,2179000,1,28,False,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028329,2025-12-01 06:25:37.996805,confirmed,Hà Nội,929000,21,34,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028328,2025-12-01 06:25:37.996852,confirmed,Hà Nội,1279000,23,58,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028327,2025-12-01 06:25:37.996858,confirmed,Hà Nội,772628,14,44,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028319,2025-12-01 06:25:37.996864,confirmed,TP.HCM,849000,3,46,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028326,2025-12-01 06:25:37.996869,confirmed,Hà Nội,1529000,12,63,True,False,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028318,2025-12-01 06:25:37.996875,confirmed,TP.HCM,99000,21,19,True,True,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO30112025:1028302,2025-12-01 06:25:37.996880,confirmed,Hà Nội,604868,21,13,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028303,2025-12-01 06:25:37.996885,confirmed,Hà Nội,1179000,17,30,True,False,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028304,2025-12-01 06:25:37.996893,confirmed,Hà Nội,1890000,15,44,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028301,2025-12-01 06:25:37.996898,confirmed,Hà Nội,929000,15,20,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028300,2025-12-01 06:25:37.996904,confirmed,Hà Nội,829000,23,62,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028299,2025-12-01 06:25:37.996909,confirmed,Hà Nội,2110000,15,58,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028293,2025-12-01 06:25:37.996914,confirmed,TP.HCM,829000,16,61,True,False,VIP,Electronics,Nguyễn Minh Châu,VN Post,MIA.vn website
+SO30112025:1028292,2025-12-01 06:25:37.996919,confirmed,Khác,849000,21,37,True,True,Regular,Home,Vũ Thủy,VN Post,Livestream
+SO30112025:1028305,2025-12-01 06:25:37.996924,confirmed,TP.HCM,1599000,16,17,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028291,2025-12-01 06:25:37.996929,confirmed,TP.HCM,3598000,13,50,False,True,VIP,Fashion,Hoàng Lương Hiếu,VN Post,MIA.vn website
+SO30112025:1028298,2025-12-01 06:25:37.996934,confirmed,Hà Nội,1688000,1,50,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028296,2025-12-01 06:25:37.996939,confirmed,TP.HCM,1299000,7,46,True,False,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028294,2025-12-01 06:25:37.996945,confirmed,TP.HCM,2690000,2,63,True,True,Regular,Home,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028284,2025-12-01 06:25:37.996950,confirmed,Khác,849000,6,21,True,False,Regular,Sports,Ngô Phú Hải,VN Post,Livestream
+SO30112025:1028290,2025-12-01 06:25:37.996955,confirmed,Hà Nội,1890000,19,61,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028289,2025-12-01 06:25:37.996960,confirmed,Hà Nội,749000,8,25,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028295,2025-12-01 06:25:37.996965,confirmed,TP.HCM,1299000,16,49,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028288,2025-12-01 06:25:37.996971,confirmed,Hà Nội,159000,8,18,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028287,2025-12-01 06:25:37.996976,confirmed,Hà Nội,1690000,19,37,True,False,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028286,2025-12-01 06:25:37.996981,confirmed,Hà Nội,2090000,1,18,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028276,2025-12-01 06:25:37.996986,confirmed,Hà Nội,2090000,23,67,True,False,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028277,2025-12-01 06:25:37.996992,confirmed,Hà Nội,939000,18,53,True,True,New,Fashion,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028278,2025-12-01 06:25:37.997003,confirmed,Hà Nội,2090000,21,16,True,False,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028283,2025-12-01 06:25:37.997010,confirmed,TP.HCM,149499,6,45,True,True,Regular,Electronics,Shopee,S - SPX Express,Shopee
+SO30112025:1028269,2025-12-01 06:25:37.997015,confirmed,TP.HCM,1710000,5,57,True,True,VIP,Books,Phan Nghĩa,VN Post,MIA.vn website
+SO30112025:1028279,2025-12-01 06:25:37.997020,confirmed,Hà Nội,1690000,9,41,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028270,2025-12-01 06:25:37.997025,confirmed,TP.HCM,1199000,21,69,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028272,2025-12-01 06:25:37.997031,confirmed,TP.HCM,5890000,3,14,True,True,Regular,Fashion,Shopee,S - AhaMove,Shopee
+SO30112025:1028280,2025-12-01 06:25:37.997036,confirmed,Hà Nội,2090000,4,36,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028268,2025-12-01 06:25:37.997041,confirmed,TP.HCM,649000,11,43,True,True,VIP,Electronics,Đặng Châu Trúc,VN Post,MIA.vn website
+SO30112025:1028281,2025-12-01 06:25:37.997046,confirmed,Hà Nội,749000,18,71,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028273,2025-12-01 06:25:37.997051,confirmed,TP.HCM,1599000,6,49,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028271,2025-12-01 06:25:37.997057,confirmed,TP.HCM,999000,2,34,True,False,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028282,2025-12-01 06:25:37.997062,confirmed,Hà Nội,929000,17,15,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028274,2025-12-01 06:25:37.997067,confirmed,TP.HCM,699000,13,59,True,True,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028263,2025-12-01 06:25:37.997073,confirmed,Hà Nội,604868,4,58,True,True,New,Fashion,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028245,2025-12-01 06:25:37.997078,confirmed,TP.HCM,829000,19,60,True,True,VIP,Electronics,Anh Nam,VN Post,MIA.vn website
+SO30112025:1028262,2025-12-01 06:25:37.997083,confirmed,Hà Nội,1179000,1,42,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028275,2025-12-01 06:25:37.997091,confirmed,TP.HCM,799000,18,27,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028264,2025-12-01 06:25:37.997097,confirmed,TP.HCM,1799000,3,33,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028246,2025-12-01 06:25:37.997102,confirmed,TP.HCM,799000,22,50,True,False,Regular,Beauty,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028244,2025-12-01 06:25:37.997107,confirmed,Khác,1710000,5,46,True,True,Regular,Sports,Chị Vân,VN Post,Livestream
+SO30112025:1028260,2025-12-01 06:25:37.997112,confirmed,Hà Nội,1690000,18,54,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028261,2025-12-01 06:25:37.997117,confirmed,Hà Nội,1690000,4,66,False,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028250,2025-12-01 06:25:37.997124,confirmed,TP.HCM,1399000,1,59,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028254,2025-12-01 06:25:37.997159,confirmed,Hà Nội,1710000,3,71,True,False,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028256,2025-12-01 06:25:37.997165,confirmed,Hà Nội,899000,22,26,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028248,2025-12-01 06:25:37.997170,confirmed,TP.HCM,1299000,8,13,True,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028247,2025-12-01 06:25:37.997175,confirmed,TP.HCM,255600,6,22,True,True,Regular,Books,Shopee,S - SPX Express,Shopee
+SO30112025:1028249,2025-12-01 06:25:37.997181,confirmed,TP.HCM,699000,14,19,True,True,Regular,Home,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028259,2025-12-01 06:25:37.997186,confirmed,Hà Nội,604868,18,22,False,True,New,Fashion,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028266,2025-12-01 06:25:37.997191,confirmed,Hà Nội,1279000,14,31,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028257,2025-12-01 06:25:37.997197,confirmed,Hà Nội,1279000,10,22,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028258,2025-12-01 06:25:37.997202,confirmed,Hà Nội,158000,18,33,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028265,2025-12-01 06:25:37.997212,confirmed,Hà Nội,829000,13,61,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028238,2025-12-01 06:25:37.997218,confirmed,Khác,1048000,10,48,True,True,Regular,Electronics,Lê Thị DiễM Trinh,VN Post,Livestream
+SO30112025:1028255,2025-12-01 06:25:37.997222,confirmed,Hà Nội,1279000,16,53,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028253,2025-12-01 06:25:37.997229,confirmed,TP.HCM,1599000,4,45,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028267,2025-12-01 06:25:37.997235,confirmed,Hà Nội,1279000,18,35,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028240,2025-12-01 06:25:37.997240,confirmed,Hà Nội,749000,14,12,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028243,2025-12-01 06:25:37.997245,confirmed,Hà Nội,829000,4,51,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028241,2025-12-01 06:25:37.997251,confirmed,Hà Nội,1529000,6,52,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028242,2025-12-01 06:25:37.997257,confirmed,Hà Nội,1529000,8,44,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028237,2025-12-01 06:25:37.997262,confirmed,Khác,599000,5,47,False,False,Regular,Beauty,Trịnh Thị Tuyết Chi,VN Post,Livestream
+SO30112025:1028239,2025-12-01 06:25:37.997267,confirmed,Hà Nội,604868,12,12,True,True,New,Beauty,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028251,2025-12-01 06:25:37.997275,confirmed,TP.HCM,799000,13,48,True,False,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028252,2025-12-01 06:25:37.997280,confirmed,TP.HCM,168000,2,30,True,False,Regular,Books,Shopee,S - SPX Express,Shopee
+SO30112025:1028234,2025-12-01 06:25:37.997285,confirmed,TP.HCM,1599000,23,21,True,False,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028223,2025-12-01 06:25:37.997291,confirmed,TP.HCM,3498000,20,44,True,False,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028231,2025-12-01 06:25:37.997296,confirmed,Hà Nội,769312,1,21,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028227,2025-12-01 06:25:37.997301,confirmed,TP.HCM,109000,16,17,True,False,Regular,Electronics,Shopee,S - SPX Express,Shopee
+SO30112025:1028235,2025-12-01 06:25:37.997306,confirmed,TP.HCM,1099000,21,55,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028226,2025-12-01 06:25:37.997312,confirmed,TP.HCM,1599000,13,57,False,False,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028233,2025-12-01 06:25:37.997317,confirmed,Hà Nội,1179000,22,28,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028230,2025-12-01 06:25:37.997323,confirmed,Hà Nội,1079000,10,63,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028232,2025-12-01 06:25:37.997329,confirmed,Hà Nội,1890000,7,27,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028224,2025-12-01 06:25:37.997334,confirmed,TP.HCM,119000,3,61,True,True,Regular,Home,Shopee,S - SPX Express,Shopee
+SO30112025:1028229,2025-12-01 06:25:37.997340,confirmed,Hà Nội,699000,21,60,True,True,New,Fashion,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028225,2025-12-01 06:25:37.997345,confirmed,TP.HCM,898000,2,68,True,False,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028221,2025-12-01 06:25:37.997350,confirmed,TP.HCM,159000,2,28,True,True,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO30112025:1028222,2025-12-01 06:25:37.997355,confirmed,TP.HCM,159000,21,25,True,False,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO30112025:1028207,2025-12-01 06:25:37.997361,confirmed,Hà Nội,769312,2,31,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028210,2025-12-01 06:25:37.997366,confirmed,Hà Nội,929000,20,15,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028190,2025-12-01 06:25:37.997371,confirmed,TP.HCM,1398000,13,27,True,False,Regular,Home,Shopee,S - SPX Express,Shopee
+SO30112025:1028220,2025-12-01 06:25:37.997376,confirmed,Hà Nội,879000,20,62,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028218,2025-12-01 06:25:37.997382,confirmed,Hà Nội,1910000,8,59,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028191,2025-12-01 06:25:37.997389,confirmed,TP.HCM,1099000,11,49,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028208,2025-12-01 06:25:37.997394,confirmed,Hà Nội,772628,5,40,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028211,2025-12-01 06:25:37.997399,confirmed,Hà Nội,939000,10,60,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028212,2025-12-01 06:25:37.997404,confirmed,Hà Nội,829000,22,28,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028192,2025-12-01 06:25:37.997410,confirmed,TP.HCM,1859000,4,43,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028193,2025-12-01 06:25:37.997415,confirmed,TP.HCM,799000,23,41,True,True,Regular,Books,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028201,2025-12-01 06:25:37.997422,confirmed,Hà Nội,939000,1,22,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028194,2025-12-01 06:25:37.997427,confirmed,TP.HCM,116620,7,39,True,True,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO30112025:1028203,2025-12-01 06:25:37.997436,confirmed,Hà Nội,1279000,7,36,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028186,2025-12-01 06:25:37.997466,confirmed,TP.HCM,1710000,2,41,True,True,VIP,Home,Chị Vy,VN Post,MIA.vn website
+SO30112025:1028217,2025-12-01 06:25:37.997472,confirmed,Hà Nội,1179000,8,31,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028219,2025-12-01 06:25:37.997477,confirmed,Hà Nội,1179000,20,27,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028200,2025-12-01 06:25:37.997483,confirmed,Hà Nội,604868,3,38,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028187,2025-12-01 06:25:37.997488,confirmed,TP.HCM,999000,3,20,True,True,Regular,Beauty,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028204,2025-12-01 06:25:37.997493,confirmed,Hà Nội,2179000,13,27,False,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028215,2025-12-01 06:25:37.997498,confirmed,Hà Nội,829000,3,15,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028205,2025-12-01 06:25:37.997504,confirmed,Hà Nội,1690000,18,19,True,False,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028188,2025-12-01 06:25:37.997509,confirmed,TP.HCM,1198000,19,26,True,False,Regular,Sports,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028198,2025-12-01 06:25:37.997514,confirmed,Hà Nội,749000,14,48,False,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028216,2025-12-01 06:25:37.997519,confirmed,Hà Nội,699000,22,61,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028183,2025-12-01 06:25:37.997525,confirmed,TP.HCM,1089000,8,13,False,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028197,2025-12-01 06:25:37.997532,confirmed,Hà Nội,699000,21,43,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028199,2025-12-01 06:25:37.997537,confirmed,Hà Nội,3590000,19,46,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028184,2025-12-01 06:25:37.997544,confirmed,TP.HCM,1349000,19,18,False,False,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028176,2025-12-01 06:25:37.997549,confirmed,TP.HCM,1199000,14,28,True,True,VIP,Electronics,Dung Robert,VN Post,MIA.vn website
+SO30112025:1028209,2025-12-01 06:25:37.997554,confirmed,Hà Nội,1179000,12,59,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028174,2025-12-01 06:25:37.997559,confirmed,TP.HCM,629000,12,42,True,True,VIP,Beauty,Hoàng Duyên,VN Post,MIA.vn website
+SO30112025:1028202,2025-12-01 06:25:37.997564,confirmed,Hà Nội,649000,2,33,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028173,2025-12-01 06:25:37.997569,confirmed,Khác,799000,3,45,True,False,Regular,Electronics,Anh Cường,VN Post,Hotline
+SO30112025:1028206,2025-12-01 06:25:37.997574,confirmed,Hà Nội,1279000,12,69,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028213,2025-12-01 06:25:37.997579,confirmed,Hà Nội,649000,8,30,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028172,2025-12-01 06:25:37.997584,confirmed,Khác,1428000,12,69,True,True,Regular,Home,Cô Cầm,VN Post,Facebook
+SO30112025:1028181,2025-12-01 06:25:37.997594,confirmed,TP.HCM,226100,7,27,True,True,Regular,Beauty,Shopee,S - SPX Express,Shopee
+SO30112025:1028196,2025-12-01 06:25:37.997600,confirmed,Hà Nội,604868,1,30,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028182,2025-12-01 06:25:37.997605,confirmed,TP.HCM,99000,16,66,True,True,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO30112025:1028180,2025-12-01 06:25:37.997610,confirmed,Hà Nội,1199000,8,48,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028179,2025-12-01 06:25:37.997616,confirmed,Hà Nội,1399000,13,23,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028178,2025-12-01 06:25:37.997621,confirmed,Hà Nội,604868,9,45,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028165,2025-12-01 06:25:37.997626,confirmed,Khác,1199000,17,37,True,False,Regular,Beauty,anh Bảo,VN Post,Facebook
+SO30112025:1028164,2025-12-01 06:25:37.997631,confirmed,Hà Nội,119000,23,59,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028157,2025-12-01 06:25:37.997636,confirmed,TP.HCM,1099000,22,43,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028167,2025-12-01 06:25:37.997643,confirmed,TP.HCM,999000,12,37,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028161,2025-12-01 06:25:37.997650,confirmed,Hà Nội,1529000,12,38,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028162,2025-12-01 06:25:37.997655,confirmed,Hà Nội,430000,5,27,True,True,New,Beauty,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028163,2025-12-01 06:25:37.997660,confirmed,Hà Nội,1379000,7,13,True,True,New,Home,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028152,2025-12-01 06:25:37.997665,confirmed,Khác,829000,23,44,True,False,Regular,Books,Nguyễn Thị Mầu,VN Post,Facebook
+SO30112025:1028133,2025-12-01 06:25:37.997670,confirmed,Khác,2398000,8,43,True,True,Regular,Fashion,Chị Hồng,VN Post,Facebook
+SO30112025:1028159,2025-12-01 06:25:37.997675,confirmed,Hà Nội,604868,9,27,True,False,New,Sports,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028158,2025-12-01 06:25:37.997680,confirmed,Hà Nội,1690000,20,43,True,False,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028166,2025-12-01 06:25:37.997685,confirmed,TP.HCM,799000,20,12,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028138,2025-12-01 06:25:37.997691,confirmed,Hà Nội,1079000,13,71,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028168,2025-12-01 06:25:37.997696,confirmed,TP.HCM,899000,13,66,True,True,Regular,Home,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028139,2025-12-01 06:25:37.997701,confirmed,Hà Nội,829000,3,53,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028141,2025-12-01 06:25:37.997707,confirmed,Hà Nội,1179000,1,70,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028121,2025-12-01 06:25:37.997716,confirmed,TP.HCM,1911000,12,48,True,True,VIP,Books,Chị Thu,VN Post,MIA.vn website
+SO30112025:1028140,2025-12-01 06:25:37.997720,confirmed,Hà Nội,1179000,8,65,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028142,2025-12-01 06:25:37.997726,confirmed,Hà Nội,604868,20,40,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028122,2025-12-01 06:25:37.997731,confirmed,TP.HCM,999000,23,14,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028143,2025-12-01 06:25:37.997736,confirmed,Hà Nội,749000,6,45,True,True,New,Electronics,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028144,2025-12-01 06:25:37.997768,confirmed,Hà Nội,1079000,11,60,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028155,2025-12-01 06:25:37.997778,confirmed,Hà Nội,604868,15,44,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028156,2025-12-01 06:25:37.997784,confirmed,Hà Nội,1179000,6,46,True,False,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028120,2025-12-01 06:25:37.997789,confirmed,TP.HCM,1710000,19,27,True,True,VIP,Beauty,Trần Thị Thùy Linh,VN Post,MIA.vn website
+SO30112025:1028119,2025-12-01 06:25:37.997796,confirmed,TP.HCM,2110000,18,27,True,True,VIP,Sports,NGUYỄN VŨ THANH PHƯỢNG,VN Post,MIA.vn website
+SO30112025:1028154,2025-12-01 06:25:37.997801,confirmed,Hà Nội,140000,7,14,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028153,2025-12-01 06:25:37.997806,confirmed,Hà Nội,1179000,2,29,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028118,2025-12-01 06:25:37.997811,confirmed,TP.HCM,629000,22,57,True,True,VIP,Electronics,Chị Hoa,VN Post,MIA.vn website
+SO30112025:1028117,2025-12-01 06:25:37.997816,confirmed,Khác,599000,3,15,True,True,Regular,Books,Tuyet Le,VN Post,Livestream
+SO30112025:1028137,2025-12-01 06:25:37.997821,confirmed,Hà Nội,1199000,7,14,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028136,2025-12-01 06:25:37.997826,confirmed,Hà Nội,1730000,13,63,True,True,New,Home,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1028135,2025-12-01 06:25:37.997831,confirmed,Hà Nội,829000,22,67,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028127,2025-12-01 06:25:37.997837,confirmed,TP.HCM,989000,12,29,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028134,2025-12-01 06:25:37.997842,confirmed,Hà Nội,829000,13,69,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028124,2025-12-01 06:25:37.997847,confirmed,TP.HCM,3790000,23,27,False,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028132,2025-12-01 06:25:37.997853,confirmed,Hà Nội,1690000,7,50,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028131,2025-12-01 06:25:37.997858,confirmed,Hà Nội,829000,22,33,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028128,2025-12-01 06:25:37.997863,confirmed,TP.HCM,999000,7,51,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028150,2025-12-01 06:25:37.997870,confirmed,Hà Nội,1129000,12,15,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028145,2025-12-01 06:25:37.997875,confirmed,Hà Nội,1179000,18,65,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028146,2025-12-01 06:25:37.997881,confirmed,Hà Nội,604868,1,68,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028147,2025-12-01 06:25:37.997886,confirmed,Hà Nội,1079000,22,40,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028130,2025-12-01 06:25:37.997891,confirmed,TP.HCM,598000,22,50,True,False,Regular,Beauty,Shopee,S - SPX Instant,Shopee
+SO30112025:1028129,2025-12-01 06:25:37.997897,confirmed,TP.HCM,1599000,23,22,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028125,2025-12-01 06:25:37.997902,confirmed,TP.HCM,1599000,10,12,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028148,2025-12-01 06:25:37.997909,confirmed,Hà Nội,1179000,4,66,False,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028149,2025-12-01 06:25:37.997914,confirmed,Hà Nội,1079000,10,33,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028151,2025-12-01 06:25:37.997920,confirmed,Hà Nội,1079000,22,39,False,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028109,2025-12-01 06:25:37.997925,confirmed,TP.HCM,302100,2,45,True,True,VIP,Home,La Tôn Kỳ,VN Post,MIA.vn website
+SO30112025:1028094,2025-12-01 06:25:37.997930,confirmed,TP.HCM,2398000,21,54,True,True,VIP,Fashion,Nguyễn Cường,VN Post,MIA.vn website
+SO30112025:1028123,2025-12-01 06:25:37.997934,confirmed,TP.HCM,999000,22,14,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028092,2025-12-01 06:25:37.997940,confirmed,TP.HCM,2110000,22,25,True,True,VIP,Home,Chị Thanh Giang,VN Post,MIA.vn website
+SO30112025:1028105,2025-12-01 06:25:37.997945,confirmed,Hà Nội,829000,6,51,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028106,2025-12-01 06:25:37.997954,confirmed,Hà Nội,829000,3,63,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028093,2025-12-01 06:25:37.997959,confirmed,TP.HCM,598000,5,13,False,True,Regular,Fashion,Shopee,S - SPX Instant,Shopee
+SO30112025:1028107,2025-12-01 06:25:37.997965,confirmed,Hà Nội,929000,12,21,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028108,2025-12-01 06:25:37.997972,confirmed,Hà Nội,604868,18,13,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028082,2025-12-01 06:25:37.997977,confirmed,Khác,1490000,19,63,True,True,Regular,Books,anh Huy,VN Post,Livestream
+SO30112025:1028090,2025-12-01 06:25:37.997982,confirmed,TP.HCM,1659000,23,69,True,False,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028104,2025-12-01 06:25:37.997987,confirmed,Hà Nội,1179000,16,57,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028089,2025-12-01 06:25:37.997992,confirmed,TP.HCM,799000,21,37,True,False,Regular,Sports,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028088,2025-12-01 06:25:37.997998,confirmed,TP.HCM,799000,19,55,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028103,2025-12-01 06:25:37.998003,confirmed,Hà Nội,749000,5,17,False,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028102,2025-12-01 06:25:37.998008,confirmed,Hà Nội,929000,16,57,False,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028086,2025-12-01 06:25:37.998013,confirmed,TP.HCM,999000,18,28,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028101,2025-12-01 06:25:37.998019,confirmed,Hà Nội,749000,17,59,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028100,2025-12-01 06:25:37.998025,confirmed,Hà Nội,89000,6,67,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028099,2025-12-01 06:25:37.998031,confirmed,Hà Nội,749000,3,64,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028098,2025-12-01 06:25:37.998036,confirmed,Hà Nội,1179000,4,24,True,False,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028097,2025-12-01 06:25:37.998041,confirmed,Hà Nội,1970000,9,31,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028087,2025-12-01 06:25:37.998070,confirmed,TP.HCM,849000,8,23,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028074,2025-12-01 06:25:37.998076,confirmed,TP.HCM,629000,8,52,True,True,VIP,Beauty,Chị Hoàng An,VN Post,MIA.vn website
+SO30112025:1028096,2025-12-01 06:25:37.998081,confirmed,Hà Nội,1179000,13,59,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028084,2025-12-01 06:25:37.998088,confirmed,TP.HCM,1199000,21,67,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028081,2025-12-01 06:25:37.998093,confirmed,TP.HCM,1599000,20,38,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028073,2025-12-01 06:25:37.998098,confirmed,TP.HCM,1199000,17,57,True,True,VIP,Sports,Lâm Thiếu Liên,VN Post,MIA.vn website
+SO30112025:1028095,2025-12-01 06:25:37.998103,confirmed,Hà Nội,139000,12,33,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028110,2025-12-01 06:25:37.998109,confirmed,Hà Nội,749000,13,50,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028075,2025-12-01 06:25:37.998114,confirmed,TP.HCM,1449000,16,52,True,False,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028077,2025-12-01 06:25:37.998120,confirmed,TP.HCM,1099000,8,12,True,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1028111,2025-12-01 06:25:37.998125,confirmed,Hà Nội,1279000,3,26,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028076,2025-12-01 06:25:37.998130,confirmed,TP.HCM,159000,8,41,False,False,Regular,Beauty,Shopee,S - SPX Express,Shopee
+SO30112025:1028080,2025-12-01 06:25:37.998136,confirmed,TP.HCM,799000,20,27,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028070,2025-12-01 06:25:37.998141,confirmed,Khác,3840000,11,12,True,True,Regular,Sports,chị Ly,VN Post,Facebook
+SO30112025:1028078,2025-12-01 06:25:37.998146,confirmed,TP.HCM,989000,9,25,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028066,2025-12-01 06:25:37.998151,confirmed,TP.HCM,899000,12,12,True,True,Regular,Fashion,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028065,2025-12-01 06:25:37.998156,confirmed,Khác,899000,3,69,True,True,Regular,Beauty,Chị Yến,VN Post,Facebook
+SO30112025:1028067,2025-12-01 06:25:37.998163,confirmed,TP.HCM,39000,7,59,True,True,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO30112025:1028064,2025-12-01 06:25:37.998168,confirmed,TP.HCM,267000,21,47,True,True,VIP,Books,Hoàng Hà,VN Post,MIA.vn website
+SO30112025:1028063,2025-12-01 06:25:37.998173,confirmed,Khác,649000,1,67,True,False,Regular,Home,Nguyễn Hạnh,VN Post,Facebook
+SO30112025:1028062,2025-12-01 06:25:37.998178,confirmed,Khác,629000,11,65,True,True,Regular,Home,chị Ánh Bảo,VN Post,Facebook
+SO30112025:1028060,2025-12-01 06:25:37.998184,confirmed,Hà Nội,699000,6,34,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028061,2025-12-01 06:25:37.998190,confirmed,TP.HCM,1098000,12,34,False,True,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028051,2025-12-01 06:25:37.998195,confirmed,TP.HCM,629000,2,68,True,False,VIP,Fashion,Thu Hằng,VN Post,MIA.vn website
+SO30112025:1028056,2025-12-01 06:25:37.998200,confirmed,Hà Nội,829000,17,49,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028050,2025-12-01 06:25:37.998205,confirmed,Khác,1490000,21,56,True,False,Regular,Books,Trang Lam,VN Post,Livestream
+SO30112025:1028049,2025-12-01 06:25:37.998210,confirmed,TP.HCM,1490000,1,19,False,True,VIP,Books,Trương Thị Phượng,VN Post,MIA.vn website
+SO30112025:1028055,2025-12-01 06:25:37.998215,confirmed,Hà Nội,2170000,15,60,False,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028058,2025-12-01 06:25:37.998220,confirmed,TP.HCM,226100,20,12,True,True,Regular,Home,Shopee,S - SPX Express,Shopee
+SO30112025:1028047,2025-12-01 06:25:37.998225,confirmed,TP.HCM,799000,22,42,True,True,VIP,Sports,Trương Diễm Quỳnh,VN Post,MIA.vn website
+SO30112025:1028046,2025-12-01 06:25:37.998230,confirmed,Khác,0,4,63,True,True,Regular,Books,Hang Vu,VN Post,Đơn 0 đồng
+SO30112025:1028054,2025-12-01 06:25:37.998235,confirmed,Hà Nội,604868,7,60,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028044,2025-12-01 06:25:37.998241,confirmed,Khác,599000,20,23,True,True,Regular,Fashion,Lê Phương Hồng,VN Post,Facebook
+SO30112025:1028057,2025-12-01 06:25:37.998245,confirmed,TP.HCM,849000,23,22,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028043,2025-12-01 06:25:37.998251,confirmed,TP.HCM,1348000,15,51,True,False,VIP,Fashion,Chị Tú,VN Post,MIA.vn website
+SO30112025:1028042,2025-12-01 06:25:37.998256,confirmed,TP.HCM,0,21,56,True,True,VIP,Sports,An Hy,VN Post,MIA.vn website
+SO30112025:1028068,2025-12-01 06:25:37.998261,confirmed,Hà Nội,1730000,23,41,False,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028052,2025-12-01 06:25:37.998266,confirmed,Hà Nội,1890000,2,48,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028041,2025-12-01 06:25:37.998273,confirmed,Hà Nội,1910000,9,31,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028034,2025-12-01 06:25:37.998278,confirmed,Khác,629000,9,33,True,True,Regular,Fashion,Hoàng Nam,VN Post,Hotline
+SO30112025:1028028,2025-12-01 06:25:37.998283,confirmed,Khác,0,6,53,True,True,Regular,Home,Tăng Thanh Vân,VN Post,Đơn 0 đồng
+SO30112025:1028038,2025-12-01 06:25:37.998289,confirmed,Hà Nội,604868,14,19,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028027,2025-12-01 06:25:37.998295,confirmed,TP.HCM,0,15,31,True,True,VIP,Electronics,Nguyễn Nhật Hào,VN Post,MIA.vn website
+SO30112025:1028039,2025-12-01 06:25:37.998300,confirmed,TP.HCM,799000,5,69,True,True,Regular,Beauty,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028037,2025-12-01 06:25:37.998305,confirmed,Hà Nội,1710000,4,40,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028029,2025-12-01 06:25:37.998310,confirmed,Hà Nội,1179000,12,64,False,False,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028015,2025-12-01 06:25:37.998316,confirmed,TP.HCM,1179000,4,68,True,True,VIP,Home,Chị Ngọc Đô,VN Post,MIA.vn website
+SO30112025:1028030,2025-12-01 06:25:37.998321,confirmed,Hà Nội,1179000,9,64,True,False,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028001,2025-12-01 06:25:37.998326,confirmed,Khác,1489000,6,70,False,False,Regular,Sports,Ly Nguyen,VN Post,Hotline
+SO30112025:1028031,2025-12-01 06:25:37.998331,confirmed,Hà Nội,1188000,10,46,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027993,2025-12-01 06:25:37.998359,confirmed,Khác,599000,10,70,False,False,Regular,Sports,Hoàng Xuân,VN Post,Livestream
+SO30112025:1028032,2025-12-01 06:25:37.998364,confirmed,Hà Nội,2379000,23,24,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028040,2025-12-01 06:25:37.998370,confirmed,TP.HCM,1838000,10,71,True,False,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028033,2025-12-01 06:25:37.998375,confirmed,Hà Nội,89000,10,15,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028035,2025-12-01 06:25:37.998380,confirmed,TP.HCM,1949000,15,22,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028002,2025-12-01 06:25:37.998386,confirmed,Hà Nội,1179000,7,71,True,False,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028036,2025-12-01 06:25:37.998391,confirmed,TP.HCM,799000,2,65,True,True,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028003,2025-12-01 06:25:37.998396,confirmed,Hà Nội,2090000,21,40,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028004,2025-12-01 06:25:37.998403,confirmed,Hà Nội,791268,14,53,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028006,2025-12-01 06:25:37.998421,confirmed,Hà Nội,604868,13,12,False,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027996,2025-12-01 06:25:37.998426,confirmed,TP.HCM,1099000,5,28,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028005,2025-12-01 06:25:37.998432,confirmed,Hà Nội,968000,7,31,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028007,2025-12-01 06:25:37.998437,confirmed,Hà Nội,2028000,5,29,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028008,2025-12-01 06:25:37.998442,confirmed,Hà Nội,939000,8,28,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028009,2025-12-01 06:25:37.998447,confirmed,Hà Nội,829000,10,47,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027978,2025-12-01 06:25:37.998453,confirmed,Khác,1299000,9,35,True,True,Regular,Fashion,Thuỷ RT,VN Post,Livestream
+SO30112025:1028011,2025-12-01 06:25:37.998457,confirmed,Hà Nội,1279000,6,61,False,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028017,2025-12-01 06:25:37.998463,confirmed,Hà Nội,2579000,6,24,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028018,2025-12-01 06:25:37.998468,confirmed,Hà Nội,1688000,10,41,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027995,2025-12-01 06:25:37.998473,confirmed,TP.HCM,899000,10,50,True,True,Regular,Home,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028019,2025-12-01 06:25:37.998479,confirmed,Hà Nội,699000,19,15,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027975,2025-12-01 06:25:37.998485,confirmed,Khác,849000,6,64,True,True,Regular,Sports,Hoa Phan,VN Post,Livestream
+SO30112025:1027974,2025-12-01 06:25:37.998490,confirmed,TP.HCM,1710000,3,45,True,True,VIP,Beauty,Phan xuân sơn,VN Post,MIA.vn website
+SO30112025:1027973,2025-12-01 06:25:37.998495,confirmed,Hà Nội,2090000,15,19,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027972,2025-12-01 06:25:37.998500,confirmed,Khác,599000,17,23,True,False,Regular,Home,Chị ThảO,VN Post,Livestream
+SO30112025:1027971,2025-12-01 06:25:37.998505,confirmed,TP.HCM,1428000,22,18,True,True,VIP,Fashion,Nguyễn Thị Lê,VN Post,MIA.vn website
+SO30112025:1027970,2025-12-01 06:25:37.998510,confirmed,Khác,1710000,22,50,True,True,Regular,Home,Ngoc Mai,VN Post,Livestream
+SO30112025:1027998,2025-12-01 06:25:37.998516,confirmed,TP.HCM,258000,5,61,True,True,Regular,Fashion,Shopee,S - SPX Express,Shopee
+SO30112025:1027968,2025-12-01 06:25:37.998521,confirmed,Khác,599000,20,21,True,True,Regular,Electronics,Antoine Hee,VN Post,Livestream
+SO30112025:1027997,2025-12-01 06:25:37.998526,confirmed,TP.HCM,1098000,5,70,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028000,2025-12-01 06:25:37.998533,confirmed,TP.HCM,249000,18,19,True,True,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO30112025:1027999,2025-12-01 06:25:37.998539,confirmed,TP.HCM,1299000,2,52,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027983,2025-12-01 06:25:37.998544,confirmed,TP.HCM,799000,6,18,True,True,Regular,Beauty,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027982,2025-12-01 06:25:37.998549,confirmed,TP.HCM,598000,7,39,True,False,Regular,Books,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027966,2025-12-01 06:25:37.998555,confirmed,Khác,2346000,14,24,True,True,Regular,Sports,Nguyễn Tú Uyên,VN Post,Livestream
+SO30112025:1027965,2025-12-01 06:25:37.998559,confirmed,TP.HCM,1910000,13,60,True,True,VIP,Home,Trương Thị Khanh,VN Post,MIA.vn website
+SO30112025:1027964,2025-12-01 06:25:37.998564,confirmed,TP.HCM,629000,3,44,True,False,VIP,Sports,Trang Lê,VN Post,MIA.vn website
+SO30112025:1027963,2025-12-01 06:25:37.998569,confirmed,Khác,649000,7,22,True,True,Regular,Fashion,Mạnh Hùng Btn Tour,VN Post,Facebook
+SO30112025:1027962,2025-12-01 06:25:37.998574,confirmed,TP.HCM,869000,14,70,True,True,VIP,Electronics,Chị Trà,VN Post,MIA.vn website
+SO30112025:1027961,2025-12-01 06:25:37.998579,confirmed,Khác,708000,3,32,True,False,Regular,Beauty,Uyen Le,VN Post,Livestream
+SO30112025:1028020,2025-12-01 06:25:37.998584,confirmed,Hà Nội,3660000,2,59,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027960,2025-12-01 06:25:37.998589,confirmed,Khác,599000,5,40,True,False,Regular,Beauty,Hoa Hồng,VN Post,Livestream
+SO30112025:1028021,2025-12-01 06:25:37.998594,confirmed,Hà Nội,749000,13,12,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028022,2025-12-01 06:25:37.998599,confirmed,Hà Nội,1690000,1,45,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027985,2025-12-01 06:25:37.998605,confirmed,TP.HCM,599000,17,25,True,True,Regular,Fashion,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027958,2025-12-01 06:25:37.998611,confirmed,Khác,599000,18,19,True,True,Regular,Fashion,Meigui Huang,VN Post,Livestream
+SO30112025:1027957,2025-12-01 06:25:37.998617,confirmed,Khác,599000,14,18,False,True,Regular,Beauty,Nguyễn Thị Thu Thuỷ,VN Post,Livestream
+SO30112025:1027956,2025-12-01 06:25:37.998622,confirmed,TP.HCM,649000,15,62,True,True,VIP,Home,Đinh Trang,VN Post,MIA.vn website
+SO30112025:1028024,2025-12-01 06:25:37.998627,confirmed,Hà Nội,119000,23,42,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028025,2025-12-01 06:25:37.998632,confirmed,Hà Nội,949000,4,15,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1028026,2025-12-01 06:25:37.998661,confirmed,Hà Nội,939000,10,38,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027954,2025-12-01 06:25:37.998669,confirmed,TP.HCM,1468000,17,28,True,True,VIP,Home,TrAN THI LY LAN,VN Post,MIA.vn website
+SO30112025:1027953,2025-12-01 06:25:37.998674,confirmed,Khác,599000,7,25,True,True,Regular,Fashion,Chị Hương,VN Post,Livestream
+SO30112025:1027952,2025-12-01 06:25:37.998683,confirmed,TP.HCM,1258000,21,41,True,True,VIP,Sports,Phượng nguyễn,VN Post,MIA.vn website
+SO30112025:1028012,2025-12-01 06:25:37.998688,confirmed,Hà Nội,879000,22,12,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027984,2025-12-01 06:25:37.998693,confirmed,TP.HCM,2399000,16,23,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027986,2025-12-01 06:25:37.998699,confirmed,TP.HCM,849000,3,39,True,False,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1028013,2025-12-01 06:25:37.998704,confirmed,Hà Nội,1279000,20,12,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027951,2025-12-01 06:25:37.998709,confirmed,TP.HCM,1399000,6,36,True,False,VIP,Beauty,Trần Thị Phương Anh,VN Post,MIA.vn website
+SO30112025:1027987,2025-12-01 06:25:37.998714,confirmed,TP.HCM,1099000,2,15,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027945,2025-12-01 06:25:37.998720,confirmed,Hà Nội,829000,19,46,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027941,2025-12-01 06:25:37.998725,confirmed,TP.HCM,1199000,23,33,True,True,VIP,Books,Phan Xuân,VN Post,MIA.vn website
+SO30112025:1027946,2025-12-01 06:25:37.998730,confirmed,Hà Nội,1179000,10,42,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027940,2025-12-01 06:25:37.998735,confirmed,Khác,849000,3,66,True,False,Regular,Books,Mai Do,VN Post,Livestream
+SO30112025:1027948,2025-12-01 06:25:37.998740,confirmed,Hà Nội,2428000,17,34,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027947,2025-12-01 06:25:37.998747,confirmed,Hà Nội,1338000,22,38,True,False,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027949,2025-12-01 06:25:37.998752,confirmed,Hà Nội,1279000,16,15,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027942,2025-12-01 06:25:37.998758,confirmed,TP.HCM,579000,4,14,True,False,Regular,Home,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027944,2025-12-01 06:25:37.998763,confirmed,TP.HCM,848000,4,46,True,True,Regular,Home,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1028236,2025-12-01 06:25:37.998768,confirmed,TP.HCM,1099000,6,57,False,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO30112025:1027929,2025-12-01 06:25:37.998774,confirmed,Khác,1490000,11,68,True,True,Regular,Beauty,Xuân Hồng,VN Post,Livestream
+SO30112025:1027928,2025-12-01 06:25:37.998779,confirmed,TP.HCM,649000,23,57,True,False,VIP,Fashion,Phương,VN Post,MIA.vn website
+SO30112025:1027950,2025-12-01 06:25:37.998785,confirmed,Hà Nội,1279000,2,49,False,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027901,2025-12-01 06:25:37.998790,confirmed,TP.HCM,1710000,1,57,True,True,VIP,Books,Giang Ngọc Linh,VN Post,MIA.vn website
+SO30112025:1027900,2025-12-01 06:25:37.998795,confirmed,TP.HCM,2110000,11,51,True,True,VIP,Electronics,Trần văn Đấu,VN Post,MIA.vn website
+SO30112025:1027916,2025-12-01 06:25:37.998800,confirmed,Hà Nội,772628,18,35,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027899,2025-12-01 06:25:37.998805,confirmed,TP.HCM,649000,8,47,True,False,VIP,Home,Huỳnh Việt Thảo,VN Post,MIA.vn website
+SO30112025:1027917,2025-12-01 06:25:37.998810,confirmed,Hà Nội,1179000,22,17,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027898,2025-12-01 06:25:37.998816,confirmed,Khác,599000,16,68,True,True,Regular,Beauty,Cô Hiền,Đơn vị khác,Hotline
+SO30112025:1027918,2025-12-01 06:25:37.998821,confirmed,Hà Nội,1299000,22,51,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027912,2025-12-01 06:25:37.998826,confirmed,TP.HCM,849000,6,60,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027919,2025-12-01 06:25:37.998831,confirmed,Hà Nội,829000,7,44,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027902,2025-12-01 06:25:37.998837,confirmed,Hà Nội,939000,16,27,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027914,2025-12-01 06:25:37.998844,confirmed,TP.HCM,1399000,20,46,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027903,2025-12-01 06:25:37.998849,confirmed,Hà Nội,1279000,7,32,True,False,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027904,2025-12-01 06:25:37.998854,confirmed,Hà Nội,879000,1,59,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027905,2025-12-01 06:25:37.998860,confirmed,Hà Nội,699000,17,68,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027906,2025-12-01 06:25:37.998865,confirmed,Hà Nội,939000,2,58,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027921,2025-12-01 06:25:37.998870,confirmed,TP.HCM,1399000,18,65,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027908,2025-12-01 06:25:37.998876,confirmed,Hà Nội,939000,3,46,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027891,2025-12-01 06:25:37.998881,confirmed,Khác,1710000,3,64,True,True,Regular,Sports,Chị Luận,VN Post,Livestream
+SO30112025:1027923,2025-12-01 06:25:37.998886,confirmed,TP.HCM,1399000,10,71,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027910,2025-12-01 06:25:37.998891,confirmed,Hà Nội,1179000,15,45,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027909,2025-12-01 06:25:37.998898,confirmed,Hà Nội,1690000,9,60,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027930,2025-12-01 06:25:37.998903,confirmed,TP.HCM,898000,4,41,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027911,2025-12-01 06:25:37.998909,confirmed,Hà Nội,318000,4,62,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027920,2025-12-01 06:25:37.998914,confirmed,Hà Nội,159000,16,29,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027892,2025-12-01 06:25:37.998919,confirmed,Hà Nội,2090000,17,25,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027895,2025-12-01 06:25:37.998924,confirmed,Hà Nội,929000,6,13,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027893,2025-12-01 06:25:37.998930,confirmed,Hà Nội,1179000,5,31,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027885,2025-12-01 06:25:37.998958,confirmed,Khác,999000,7,63,True,True,Regular,Electronics,Nguyễn Thị Hương Giang,VN Post,Livestream
+SO30112025:1027886,2025-12-01 06:25:37.998966,confirmed,Hà Nội,1779000,10,30,False,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027887,2025-12-01 06:25:37.998971,confirmed,Hà Nội,1179000,9,43,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027888,2025-12-01 06:25:37.998976,confirmed,Hà Nội,604868,5,56,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027889,2025-12-01 06:25:37.998982,confirmed,Hà Nội,879000,18,67,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027924,2025-12-01 06:25:37.998987,confirmed,TP.HCM,1299000,3,42,True,False,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027884,2025-12-01 06:25:37.998992,confirmed,Khác,1710000,12,37,True,True,Regular,Fashion,Huệ Nguyễn,VN Post,Livestream
+SO30112025:1027927,2025-12-01 06:25:37.998997,confirmed,TP.HCM,999000,20,65,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027890,2025-12-01 06:25:37.999002,confirmed,Hà Nội,929000,1,37,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027931,2025-12-01 06:25:37.999008,confirmed,TP.HCM,1599000,6,71,True,False,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027933,2025-12-01 06:25:37.999013,confirmed,TP.HCM,849000,12,15,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027881,2025-12-01 06:25:37.999018,confirmed,Hà Nội,604868,23,46,False,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027882,2025-12-01 06:25:37.999024,confirmed,Hà Nội,1338000,10,35,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027876,2025-12-01 06:25:37.999029,confirmed,TP.HCM,1379000,4,15,True,True,VIP,Electronics,Trang,MIAship,MIA.vn website
+SO30112025:1027883,2025-12-01 06:25:37.999036,confirmed,Hà Nội,769312,3,62,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027872,2025-12-01 06:25:37.999041,confirmed,Hà Nội,829000,22,44,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027874,2025-12-01 06:25:37.999047,confirmed,Hà Nội,772628,17,49,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027878,2025-12-01 06:25:37.999052,confirmed,Hà Nội,604868,18,39,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027854,2025-12-01 06:25:37.999060,confirmed,Hà Nội,109000,7,15,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027855,2025-12-01 06:25:37.999066,confirmed,Hà Nội,604868,22,69,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027868,2025-12-01 06:25:37.999071,confirmed,TP.HCM,579000,4,54,True,True,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027856,2025-12-01 06:25:37.999076,confirmed,Hà Nội,829000,4,44,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027880,2025-12-01 06:25:37.999082,confirmed,Hà Nội,2090000,8,67,False,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027857,2025-12-01 06:25:37.999087,confirmed,Hà Nội,1179000,10,64,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027858,2025-12-01 06:25:37.999092,confirmed,Hà Nội,1179000,11,17,True,False,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027847,2025-12-01 06:25:37.999098,confirmed,TP.HCM,829000,6,14,False,False,VIP,Beauty,Thao Nhi,VN Post,MIA.vn website
+SO30112025:1027846,2025-12-01 06:25:37.999103,confirmed,TP.HCM,3969000,12,35,True,True,VIP,Home,Chị Duyên,VN Post,MIA.vn website
+SO30112025:1027859,2025-12-01 06:25:37.999108,confirmed,Hà Nội,1616000,16,56,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027845,2025-12-01 06:25:37.999113,confirmed,TP.HCM,829000,16,63,False,True,VIP,Fashion,Chị Hương,VN Post,MIA.vn website
+SO30112025:1027860,2025-12-01 06:25:37.999118,confirmed,Hà Nội,1529000,16,40,True,False,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027861,2025-12-01 06:25:37.999123,confirmed,Hà Nội,699000,17,61,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027862,2025-12-01 06:25:37.999128,confirmed,Hà Nội,1199000,19,26,True,False,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027864,2025-12-01 06:25:37.999134,confirmed,Hà Nội,1279000,18,39,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027830,2025-12-01 06:25:37.999139,confirmed,Hà Nội,1710000,22,14,False,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027831,2025-12-01 06:25:37.999144,confirmed,Hà Nội,604868,9,38,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028059,2025-12-01 06:25:37.999152,confirmed,TP.HCM,698000,14,65,True,True,Regular,Fashion,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027812,2025-12-01 06:25:37.999158,confirmed,TP.HCM,799000,15,63,True,False,Regular,Beauty,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027815,2025-12-01 06:25:37.999164,confirmed,Hà Nội,918000,7,16,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027828,2025-12-01 06:25:37.999169,confirmed,TP.HCM,598000,4,32,True,False,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027829,2025-12-01 06:25:37.999174,confirmed,TP.HCM,579000,22,52,True,True,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027817,2025-12-01 06:25:37.999180,confirmed,Hà Nội,879000,12,64,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027838,2025-12-01 06:25:37.999185,confirmed,TP.HCM,159500,14,50,True,False,Regular,Fashion,Shopee,S - SPX Instant,Shopee
+SO30112025:1027819,2025-12-01 06:25:37.999190,confirmed,Hà Nội,1710000,23,56,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027820,2025-12-01 06:25:37.999196,confirmed,Hà Nội,879000,7,26,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027821,2025-12-01 06:25:37.999201,confirmed,Hà Nội,2170000,10,67,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027822,2025-12-01 06:25:37.999207,confirmed,Hà Nội,949000,1,61,False,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027802,2025-12-01 06:25:37.999212,confirmed,Khác,1899000,20,26,True,False,Regular,Electronics,anh Khắc Đạt,VN Post,Facebook
+SO30112025:1027823,2025-12-01 06:25:37.999217,confirmed,Hà Nội,699000,18,71,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027832,2025-12-01 06:25:37.999222,confirmed,Hà Nội,1429000,13,32,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027834,2025-12-01 06:25:37.999227,confirmed,Hà Nội,879000,11,46,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027835,2025-12-01 06:25:37.999258,confirmed,Hà Nội,699000,6,18,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027836,2025-12-01 06:25:37.999263,confirmed,Hà Nội,769312,13,50,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027789,2025-12-01 06:25:37.999269,confirmed,Hà Nội,899000,10,40,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027780,2025-12-01 06:25:37.999276,confirmed,TP.HCM,829000,1,25,True,True,VIP,Electronics,Chị Nguyệt,VN Post,MIA.vn website
+SO30112025:1027848,2025-12-01 06:25:37.999281,confirmed,TP.HCM,599000,19,39,True,True,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027790,2025-12-01 06:25:37.999286,confirmed,Hà Nội,2090000,12,20,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027779,2025-12-01 06:25:37.999293,confirmed,TP.HCM,799000,5,62,True,True,VIP,Books,Ngô Văn Thạch,VN Post,MIA.vn website
+SO30112025:1027791,2025-12-01 06:25:37.999302,confirmed,Hà Nội,1690000,12,49,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027778,2025-12-01 06:25:37.999308,confirmed,TP.HCM,849000,13,32,True,True,VIP,Beauty,Anh Cường,VN Post,MIA.vn website
+SO30112025:1027792,2025-12-01 06:25:37.999313,confirmed,Hà Nội,1079000,13,16,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027777,2025-12-01 06:25:37.999318,confirmed,TP.HCM,1199000,5,53,True,True,VIP,Beauty,Tài,VN Post,MIA.vn website
+SO30112025:1027794,2025-12-01 06:25:37.999323,confirmed,Hà Nội,1279000,14,18,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027775,2025-12-01 06:25:37.999328,confirmed,TP.HCM,629000,23,38,True,True,VIP,Electronics,Thu Tuyết,VN Post,MIA.vn website
+SO30112025:1027803,2025-12-01 06:25:37.999333,confirmed,Hà Nội,604868,12,61,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027774,2025-12-01 06:25:37.999338,confirmed,TP.HCM,649000,17,31,True,True,VIP,Beauty,Nguyễn Việt Chính,VN Post,MIA.vn website
+SO30112025:1027773,2025-12-01 06:25:37.999343,confirmed,TP.HCM,1199000,19,60,True,False,VIP,Sports,Trần Yến Nhi,VN Post,MIA.vn website
+SO30112025:1027776,2025-12-01 06:25:37.999348,confirmed,Đà Nẵng,258000,14,28,True,False,Regular,Home,Lazada,Lazada Express,Lazada
+SO30112025:1027772,2025-12-01 06:25:37.999353,confirmed,TP.HCM,1490000,8,22,True,True,VIP,Electronics,Chị Như,VN Post,MIA.vn website
+SO30112025:1027770,2025-12-01 06:25:37.999358,confirmed,Khác,899000,10,24,True,True,Regular,Electronics,Khanhsa Nguyen,VN Post,Facebook
+SO30112025:1027769,2025-12-01 06:25:37.999363,confirmed,TP.HCM,649000,11,30,True,False,VIP,Sports,Khách hàng mới,VN Post,MIA.vn website
+SO30112025:1027804,2025-12-01 06:25:37.999367,confirmed,Hà Nội,879000,14,27,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027805,2025-12-01 06:25:37.999373,confirmed,Hà Nội,604868,17,64,False,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027807,2025-12-01 06:25:37.999378,confirmed,Hà Nội,3920000,8,40,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027795,2025-12-01 06:25:37.999385,confirmed,TP.HCM,899000,8,35,True,False,Regular,Electronics,Shopee,S - SPX Instant,Shopee
+SO30112025:1028169,2025-12-01 06:25:37.999391,confirmed,TP.HCM,1039000,1,28,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027763,2025-12-01 06:25:37.999396,confirmed,Khác,799000,15,68,True,True,Regular,Books,Sakura AnAn,VN Post,Facebook
+SO30112025:1027809,2025-12-01 06:25:37.999401,confirmed,Hà Nội,769312,9,35,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027810,2025-12-01 06:25:37.999408,confirmed,Hà Nội,1079000,22,32,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027760,2025-12-01 06:25:37.999413,confirmed,TP.HCM,649000,6,20,True,True,VIP,Home,Nguyễn thị tám,VN Post,MIA.vn website
+SO30112025:1027759,2025-12-01 06:25:37.999418,confirmed,TP.HCM,629000,1,55,True,True,VIP,Beauty,Chị Hạnh,VN Post,MIA.vn website
+SO30112025:1027990,2025-12-01 06:25:37.999423,confirmed,TP.HCM,1039000,14,68,True,False,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027758,2025-12-01 06:25:37.999428,confirmed,TP.HCM,1008000,11,56,True,True,VIP,Fashion,Chị Khánh,VN Post,MIA.vn website
+SO30112025:1027761,2025-12-01 06:25:37.999433,confirmed,Hà Nội,1179000,22,65,True,False,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027757,2025-12-01 06:25:37.999438,confirmed,Khác,899000,17,24,True,True,Regular,Books,Tường Vi,VN Post,Facebook
+SO30112025:1027755,2025-12-01 06:25:37.999443,confirmed,TP.HCM,1192500,20,25,True,True,VIP,Fashion,Chị Hoài,VN Post,MIA.vn website
+SO30112025:1027752,2025-12-01 06:25:37.999448,confirmed,TP.HCM,629000,1,67,True,True,VIP,Home,Chị Nga,VN Post,MIA.vn website
+SO30112025:1027762,2025-12-01 06:25:37.999453,confirmed,Hà Nội,1179000,20,69,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027751,2025-12-01 06:25:37.999459,confirmed,TP.HCM,829000,2,44,True,True,VIP,Fashion,Quốc Trung,VN Post,MIA.vn website
+SO30112025:1027750,2025-12-01 06:25:37.999463,confirmed,TP.HCM,629000,8,49,True,True,VIP,Beauty,Khanh,VN Post,MIA.vn website
+SO30112025:1027749,2025-12-01 06:25:37.999468,confirmed,TP.HCM,629000,16,22,True,True,VIP,Beauty,Trần Yến,VN Post,MIA.vn website
+SO30112025:1027748,2025-12-01 06:25:37.999473,confirmed,TP.HCM,1349000,11,67,False,True,VIP,Fashion,Đỗ Thị Thu Hà,MIAship,MIA.vn website
+SO30112025:1027747,2025-12-01 06:25:37.999478,confirmed,TP.HCM,649000,4,65,True,False,VIP,Books,Liêm,VN Post,MIA.vn website
+SO30112025:1027746,2025-12-01 06:25:37.999484,confirmed,TP.HCM,649000,22,14,True,True,VIP,Fashion,Chị Thành,VN Post,MIA.vn website
+SO30112025:1027745,2025-12-01 06:25:37.999489,confirmed,TP.HCM,649000,17,54,True,True,VIP,Home,Chị Thúy,VN Post,MIA.vn website
+SO30112025:1027736,2025-12-01 06:25:37.999494,confirmed,TP.HCM,1499000,12,15,True,True,VIP,Sports,Hường Trần,VN Post,MIA.vn website
+SO30112025:1027725,2025-12-01 06:25:37.999499,confirmed,Hà Nội,1279000,14,24,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027722,2025-12-01 06:25:37.999504,confirmed,TP.HCM,1099000,4,48,True,False,VIP,Sports,Lê Thị Mai Vinh,VN Post,MIA.vn website
+SO30112025:1027721,2025-12-01 06:25:37.999509,confirmed,TP.HCM,1199000,20,63,True,True,VIP,Beauty,Lê Thị Mai Vinh,VN Post,MIA.vn website
+SO30112025:1027727,2025-12-01 06:25:37.999515,confirmed,Hà Nội,769312,7,58,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027989,2025-12-01 06:25:37.999521,confirmed,TP.HCM,939000,11,68,True,False,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027713,2025-12-01 06:25:37.999550,confirmed,TP.HCM,829000,1,40,True,True,VIP,Sports,Chị Giang,VN Post,MIA.vn website
+SO30112025:1027712,2025-12-01 06:25:37.999555,confirmed,TP.HCM,629000,6,32,True,True,VIP,Books,Chị Giang,VN Post,MIA.vn website
+SO30112025:1027711,2025-12-01 06:25:37.999560,confirmed,TP.HCM,649000,5,26,True,True,VIP,Sports,Phạm chí ân,VN Post,MIA.vn website
+SO30112025:1027710,2025-12-01 06:25:37.999565,confirmed,Khác,599000,17,20,True,True,Regular,Home,Mong Dung,VN Post,Livestream
+SO30112025:1027709,2025-12-01 06:25:37.999569,confirmed,TP.HCM,1099000,15,17,True,True,VIP,Home,Lê Thị Ngọc Thảo,VN Post,MIA.vn website
+SO30112025:1027991,2025-12-01 06:25:37.999574,confirmed,TP.HCM,739000,6,17,True,True,Regular,Beauty,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027708,2025-12-01 06:25:37.999580,confirmed,TP.HCM,1910000,10,65,True,False,VIP,Books,Nguyễn Thị Minh Hằng,VN Post,MIA.vn website
+SO30112025:1027714,2025-12-01 06:25:37.999585,confirmed,TP.HCM,599000,6,47,True,False,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027729,2025-12-01 06:25:37.999590,confirmed,Hà Nội,1279000,21,27,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027730,2025-12-01 06:25:37.999596,confirmed,Hà Nội,879000,21,62,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027733,2025-12-01 06:25:37.999601,confirmed,Hà Nội,749000,3,43,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027734,2025-12-01 06:25:37.999606,confirmed,Hà Nội,298000,1,60,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027737,2025-12-01 06:25:37.999613,confirmed,Hà Nội,749000,21,60,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027738,2025-12-01 06:25:37.999622,confirmed,Hà Nội,769312,15,63,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027739,2025-12-01 06:25:37.999627,confirmed,Hà Nội,2090000,19,24,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027740,2025-12-01 06:25:37.999632,confirmed,Hà Nội,604868,17,26,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027741,2025-12-01 06:25:37.999637,confirmed,Hà Nội,939000,13,14,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027693,2025-12-01 06:25:37.999643,confirmed,Khác,999000,13,18,True,False,Regular,Books,Đinh Huế,VN Post,Livestream
+SO30112025:1027705,2025-12-01 06:25:37.999648,confirmed,TP.HCM,739000,6,54,True,True,Regular,Fashion,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027697,2025-12-01 06:25:37.999655,confirmed,TP.HCM,719000,16,68,True,False,Regular,Beauty,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027743,2025-12-01 06:25:37.999660,confirmed,Hà Nội,769312,10,25,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027768,2025-12-01 06:25:37.999666,confirmed,Hà Nội,3590000,9,14,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027744,2025-12-01 06:25:37.999671,confirmed,Hà Nội,769312,20,29,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027702,2025-12-01 06:25:37.999676,confirmed,Hà Nội,949000,14,32,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027701,2025-12-01 06:25:37.999682,confirmed,Hà Nội,1179000,23,55,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027699,2025-12-01 06:25:37.999688,confirmed,Hà Nội,1179000,1,55,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027631,2025-12-01 06:25:37.999694,confirmed,Hà Nội,749000,7,58,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027635,2025-12-01 06:25:37.999699,confirmed,Hà Nội,2379000,23,16,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027597,2025-12-01 06:25:37.999704,confirmed,Khác,708000,7,23,False,True,Regular,Beauty,Nguyễn Vân,VN Post,Livestream
+SO30112025:1027637,2025-12-01 06:25:37.999709,confirmed,Hà Nội,4090000,20,41,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027641,2025-12-01 06:25:37.999716,confirmed,Hà Nội,1099000,3,28,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027644,2025-12-01 06:25:37.999721,confirmed,Hà Nội,1799000,7,19,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027646,2025-12-01 06:25:37.999726,confirmed,Hà Nội,1079000,17,70,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027648,2025-12-01 06:25:37.999732,confirmed,Hà Nội,604868,12,56,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027650,2025-12-01 06:25:37.999737,confirmed,Hà Nội,604868,17,59,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027502,2025-12-01 06:25:37.999742,confirmed,Khác,2965500,11,41,True,True,Regular,Books,Phúc nguyễn,VN Post,Livestream
+SO30112025:1027656,2025-12-01 06:25:37.999747,confirmed,Hà Nội,1779000,20,43,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027658,2025-12-01 06:25:37.999753,confirmed,Hà Nội,4090000,22,19,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027659,2025-12-01 06:25:37.999758,confirmed,Hà Nội,604868,12,18,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027660,2025-12-01 06:25:37.999763,confirmed,Hà Nội,769312,17,18,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027661,2025-12-01 06:25:37.999770,confirmed,Hà Nội,862112,10,36,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027663,2025-12-01 06:25:37.999776,confirmed,Hà Nội,1279000,4,44,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027664,2025-12-01 06:25:37.999781,confirmed,Hà Nội,1079000,16,34,False,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027665,2025-12-01 06:25:37.999786,confirmed,Hà Nội,862112,17,34,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027538,2025-12-01 06:25:37.999792,confirmed,Hà Nội,2897000,23,36,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027541,2025-12-01 06:25:37.999797,confirmed,Hà Nội,178000,12,69,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027542,2025-12-01 06:25:37.999802,confirmed,Hà Nội,769312,7,44,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027544,2025-12-01 06:25:37.999809,confirmed,Hà Nội,604868,19,44,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027546,2025-12-01 06:25:37.999814,confirmed,Hà Nội,699000,20,35,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027547,2025-12-01 06:25:37.999819,confirmed,Hà Nội,749000,8,23,True,True,New,Electronics,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1027548,2025-12-01 06:25:37.999847,confirmed,Hà Nội,430000,6,16,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027549,2025-12-01 06:25:37.999853,confirmed,Hà Nội,2779000,23,48,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027550,2025-12-01 06:25:37.999858,confirmed,Hà Nội,939000,23,31,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027551,2025-12-01 06:25:37.999864,confirmed,Hà Nội,879000,9,55,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027552,2025-12-01 06:25:37.999869,confirmed,Hà Nội,929000,3,68,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027554,2025-12-01 06:25:37.999874,confirmed,Hà Nội,1890000,8,27,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027555,2025-12-01 06:25:37.999880,confirmed,Hà Nội,1279000,3,66,False,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027556,2025-12-01 06:25:37.999885,confirmed,Hà Nội,769312,13,24,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027557,2025-12-01 06:25:37.999890,confirmed,Hà Nội,699000,15,34,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027558,2025-12-01 06:25:37.999896,confirmed,Hà Nội,189000,17,31,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027559,2025-12-01 06:25:37.999901,confirmed,Hà Nội,1710000,18,29,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027560,2025-12-01 06:25:37.999908,confirmed,Hà Nội,2090000,2,33,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027561,2025-12-01 06:25:37.999914,confirmed,Hà Nội,159000,15,23,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027564,2025-12-01 06:25:37.999919,confirmed,Hà Nội,699000,3,35,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027565,2025-12-01 06:25:37.999925,confirmed,Hà Nội,1279000,2,27,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027567,2025-12-01 06:25:37.999931,confirmed,Hà Nội,1529000,12,56,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027570,2025-12-01 06:25:37.999936,confirmed,Hà Nội,604868,15,61,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027571,2025-12-01 06:25:37.999941,confirmed,Hà Nội,1928000,21,27,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027573,2025-12-01 06:25:37.999947,confirmed,Hà Nội,2779000,22,52,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027574,2025-12-01 06:25:37.999952,confirmed,Hà Nội,1688000,23,34,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027575,2025-12-01 06:25:37.999957,confirmed,Hà Nội,1979000,9,67,False,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027576,2025-12-01 06:25:37.999963,confirmed,Hà Nội,89000,15,64,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027577,2025-12-01 06:25:37.999968,confirmed,Hà Nội,1890000,9,56,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027578,2025-12-01 06:25:37.999974,confirmed,Hà Nội,1890000,13,49,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027579,2025-12-01 06:25:37.999979,confirmed,Hà Nội,1279000,8,39,True,False,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027580,2025-12-01 06:25:37.999984,confirmed,Hà Nội,769312,8,52,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027581,2025-12-01 06:25:37.999990,confirmed,Hà Nội,604868,17,39,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027582,2025-12-01 06:25:37.999995,confirmed,Hà Nội,769312,8,24,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027444,,confirmed,TP.HCM,799000,2,29,True,True,Regular,Electronics,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO30112025:1027583,2025-12-01 06:25:38.000006,confirmed,Hà Nội,2090000,12,59,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027586,2025-12-01 06:25:38.000011,confirmed,Hà Nội,1890000,11,43,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027587,2025-12-01 06:25:38.000039,confirmed,Hà Nội,2110000,22,69,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027504,2025-12-01 06:25:38.000046,confirmed,Hà Nội,159000,20,27,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027506,2025-12-01 06:25:38.000051,confirmed,Hà Nội,1890000,1,47,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027507,2025-12-01 06:25:38.000056,confirmed,Hà Nội,800814,21,23,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027508,2025-12-01 06:25:38.000062,confirmed,Hà Nội,2378000,15,36,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027509,2025-12-01 06:25:38.000067,confirmed,Hà Nội,1690000,17,12,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027510,2025-12-01 06:25:38.000072,confirmed,Hà Nội,1690000,8,23,True,True,New,Fashion,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027511,2025-12-01 06:25:38.000078,confirmed,Hà Nội,1690000,3,45,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027512,2025-12-01 06:25:38.000083,confirmed,Hà Nội,1690000,2,52,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027922,2025-12-01 06:25:38.000088,confirmed,Hà Nội,879000,6,57,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027514,2025-12-01 06:25:38.000094,confirmed,Hà Nội,988000,7,34,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027516,2025-12-01 06:25:38.000099,confirmed,Hà Nội,879000,20,59,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027515,2025-12-01 06:25:38.000110,confirmed,Hà Nội,1218000,6,31,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028285,2025-12-01 06:25:38.000115,confirmed,Hà Nội,769312,15,41,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027518,2025-12-01 06:25:38.000121,confirmed,Hà Nội,1890000,3,64,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027520,2025-12-01 06:25:38.000126,confirmed,Hà Nội,604868,14,71,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027522,2025-12-01 06:25:38.000132,confirmed,Hà Nội,1421836,12,51,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027525,2025-12-01 06:25:38.000138,confirmed,Hà Nội,1678000,14,70,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027526,2025-12-01 06:25:38.000144,confirmed,Hà Nội,298000,23,50,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027528,2025-12-01 06:25:38.000172,confirmed,Hà Nội,899000,20,44,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027435,2025-12-01 06:25:38.000177,confirmed,TP.HCM,599000,10,12,True,False,Regular,Home,Shopee,S - SPX Instant,Shopee
+SO30112025:1027530,2025-12-01 06:25:38.000183,confirmed,Hà Nội,929000,12,43,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027532,2025-12-01 06:25:38.000190,confirmed,Hà Nội,879000,7,26,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027531,2025-12-01 06:25:38.000195,confirmed,Hà Nội,1690000,7,43,True,True,New,Electronics,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027533,2025-12-01 06:25:38.000201,confirmed,Hà Nội,769312,14,62,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027534,2025-12-01 06:25:38.000206,confirmed,Hà Nội,2170000,7,24,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027536,2025-12-01 06:25:38.000212,confirmed,Hà Nội,2090000,16,41,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027537,2025-12-01 06:25:38.000217,confirmed,Hà Nội,699000,18,34,True,True,New,Home,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1027666,2025-12-01 06:25:38.000222,confirmed,Hà Nội,604868,7,50,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1028170,2025-12-01 06:25:38.000228,confirmed,TP.HCM,1099000,14,33,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO30112025:1027668,2025-12-01 06:25:38.000233,confirmed,Hà Nội,879000,1,38,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027669,2025-12-01 06:25:38.000238,confirmed,Hà Nội,604868,23,68,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027670,2025-12-01 06:25:38.000244,confirmed,Hà Nội,769312,19,36,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027671,2025-12-01 06:25:38.000249,confirmed,Hà Nội,769312,20,35,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027672,2025-12-01 06:25:38.000256,confirmed,Hà Nội,1279000,8,30,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027674,2025-12-01 06:25:38.000262,confirmed,Hà Nội,604868,13,29,False,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027675,2025-12-01 06:25:38.000267,confirmed,Hà Nội,879000,5,37,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027678,2025-12-01 06:25:38.000272,confirmed,Hà Nội,1379000,6,35,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027677,2025-12-01 06:25:38.000278,confirmed,Hà Nội,604868,3,27,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027679,2025-12-01 06:25:38.000283,confirmed,Hà Nội,1890000,11,42,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027680,2025-12-01 06:25:38.000288,confirmed,Hà Nội,769312,6,66,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027682,2025-12-01 06:25:38.000294,confirmed,Hà Nội,769312,6,42,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027684,2025-12-01 06:25:38.000299,confirmed,Hà Nội,604868,12,30,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027687,2025-12-01 06:25:38.000309,confirmed,Hà Nội,879000,11,46,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027688,2025-12-01 06:25:38.000314,confirmed,Hà Nội,862112,3,57,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027689,2025-12-01 06:25:38.000319,confirmed,Hà Nội,879000,12,29,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027690,2025-12-01 06:25:38.000325,confirmed,Hà Nội,2090000,11,26,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027691,2025-12-01 06:25:38.000330,confirmed,Hà Nội,1690000,8,56,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027692,2025-12-01 06:25:38.000335,confirmed,Hà Nội,1690000,14,46,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO30112025:1027610,2025-12-01 06:25:38.000341,confirmed,Hà Nội,769312,4,34,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027611,2025-12-01 06:25:38.000346,confirmed,Hà Nội,787872,20,38,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027612,2025-12-01 06:25:38.000353,confirmed,Hà Nội,604868,6,20,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027613,2025-12-01 06:25:38.000358,confirmed,Hà Nội,3240000,23,55,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027614,2025-12-01 06:25:38.000364,confirmed,Hà Nội,879000,21,19,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027615,2025-12-01 06:25:38.000369,confirmed,Hà Nội,769312,16,44,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027620,2025-12-01 06:25:38.000374,confirmed,Hà Nội,769312,15,37,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027621,2025-12-01 06:25:38.000380,confirmed,Hà Nội,769312,10,70,False,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027624,2025-12-01 06:25:38.000385,confirmed,Hà Nội,769312,21,31,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027625,2025-12-01 06:25:38.000390,confirmed,Hà Nội,929000,16,16,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027626,2025-12-01 06:25:38.000396,confirmed,Hà Nội,769312,2,50,False,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027627,2025-12-01 06:25:38.000401,confirmed,Hà Nội,879000,13,64,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027629,2025-12-01 06:25:38.000406,confirmed,Hà Nội,1129000,19,21,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027634,2025-12-01 06:25:38.000418,confirmed,Hà Nội,769312,16,26,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027638,2025-12-01 06:25:38.000424,confirmed,Hà Nội,769312,4,12,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027642,2025-12-01 06:25:38.000432,confirmed,Hà Nội,604868,18,35,True,True,New,Books,TIktok,Tiktok - BeDelivery,Tiktok
+SO30112025:1027643,2025-12-01 06:25:38.000438,confirmed,Hà Nội,1650000,2,64,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027647,2025-12-01 06:25:38.000443,confirmed,Hà Nội,769312,9,66,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027426,2025-12-01 06:25:38.000449,confirmed,Hà Nội,769312,11,57,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027427,2025-12-01 06:25:38.000455,confirmed,Hà Nội,604868,16,16,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027428,2025-12-01 06:25:38.000485,confirmed,Hà Nội,604868,5,42,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027405,2025-12-01 06:25:38.000490,confirmed,TP.HCM,649000,21,34,True,True,VIP,Beauty,Lê Xuân Phượng,VN Post,MIA.vn website
+SO29112025:1027404,2025-12-01 06:25:38.000495,confirmed,Khác,829000,9,17,True,False,Regular,Sports,Lê Giang,VN Post,Facebook
+SO29112025:1027425,2025-12-01 06:25:38.000500,confirmed,Hà Nội,769312,19,69,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027403,2025-12-01 06:25:38.000506,confirmed,TP.HCM,869000,16,45,True,True,VIP,Home,Chị Kim Dinh,VN Post,MIA.vn website
+SO29112025:1027402,2025-12-01 06:25:38.000510,confirmed,TP.HCM,3990000,15,64,True,True,VIP,Fashion,Nguyễn Thái,VN Post,MIA.vn website
+SO29112025:1027401,2025-12-01 06:25:38.000515,confirmed,Khác,599000,9,51,True,True,Regular,Beauty,Nguyễn Quyên,VN Post,Livestream
+SO29112025:1027423,2025-12-01 06:25:38.000520,confirmed,Hà Nội,2120000,6,47,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027399,2025-12-01 06:25:38.000525,confirmed,TP.HCM,629000,6,31,True,True,VIP,Fashion,Tâm,VN Post,MIA.vn website
+SO29112025:1027398,2025-12-01 06:25:38.000530,confirmed,Khác,2150000,13,29,True,True,Regular,Fashion,Giang Khoa,VN Post,Livestream
+SO29112025:1027422,2025-12-01 06:25:38.000535,confirmed,Hà Nội,604868,5,18,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027396,2025-12-01 06:25:38.000541,confirmed,TP.HCM,219000,12,15,True,True,VIP,Electronics,Vy Nguyen,VN Post,MIA.vn website
+SO29112025:1027415,2025-12-01 06:25:38.000545,confirmed,Hà Nội,769312,23,41,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027395,2025-12-01 06:25:38.000551,confirmed,TP.HCM,629000,19,19,True,True,VIP,Beauty,Nguyễn Phương Vy,VN Post,MIA.vn website
+SO29112025:1027416,2025-12-01 06:25:38.000556,confirmed,Hà Nội,929000,19,13,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027394,2025-12-01 06:25:38.000561,confirmed,TP.HCM,629000,22,53,False,True,VIP,Books,Đặng Ái Nhi,VN Post,MIA.vn website
+SO29112025:1027418,2025-12-01 06:25:38.000567,confirmed,Hà Nội,1299000,13,69,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027393,2025-12-01 06:25:38.000573,confirmed,Khác,1710000,13,17,True,True,Regular,Home,Nguyễn Bích Thuỷ,VN Post,Livestream
+SO29112025:1027420,2025-12-01 06:25:38.000577,confirmed,Hà Nội,430000,1,28,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027382,2025-12-01 06:25:38.000584,confirmed,TP.HCM,2068000,20,26,True,True,VIP,Fashion,Trương Thiện Ân,VN Post,MIA.vn website
+SO29112025:1027381,2025-12-01 06:25:38.000589,confirmed,TP.HCM,829000,14,51,True,True,VIP,Electronics,Phạm Thị Xuân Lan,VN Post,MIA.vn website
+SO29112025:1027385,2025-12-01 06:25:38.000594,confirmed,Hà Nội,1129000,17,55,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027380,2025-12-01 06:25:38.000599,confirmed,TP.HCM,829000,14,29,True,True,VIP,Beauty,Hồng Lợi,VN Post,MIA.vn website
+SO29112025:1027379,2025-12-01 06:25:38.000605,confirmed,TP.HCM,829000,2,35,False,True,VIP,Books,Hồng Lợi,VN Post,MIA.vn website
+SO29112025:1027386,2025-12-01 06:25:38.000610,confirmed,Hà Nội,699000,15,17,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027377,2025-12-01 06:25:38.000615,confirmed,TP.HCM,829000,9,58,True,True,VIP,Fashion,lưu duyên,VN Post,MIA.vn website
+SO29112025:1027376,2025-12-01 06:25:38.000620,confirmed,TP.HCM,629000,4,69,True,False,VIP,Fashion,Hồng Hà,VN Post,MIA.vn website
+SO29112025:1027375,2025-12-01 06:25:38.000625,confirmed,TP.HCM,899000,6,49,True,True,VIP,Sports,Dung Nguyen,VN Post,MIA.vn website
+SO29112025:1027389,2025-12-01 06:25:38.000629,confirmed,Hà Nội,769312,12,15,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027373,2025-12-01 06:25:38.000635,confirmed,Hà Nội,959000,17,22,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027372,2025-12-01 06:25:38.000640,confirmed,Hà Nội,604868,10,57,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027371,2025-12-01 06:25:38.000646,confirmed,Hà Nội,939000,10,25,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027362,2025-12-01 06:25:38.000651,confirmed,TP.HCM,1710000,23,54,True,False,VIP,Fashion,Nguyễn thành đăng,VN Post,MIA.vn website
+SO29112025:1027358,2025-12-01 06:25:38.000656,confirmed,TP.HCM,629000,8,28,True,True,VIP,Home,Lê Mai,VN Post,MIA.vn website
+SO29112025:1027359,2025-12-01 06:25:38.000661,confirmed,Hà Nội,604868,21,15,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027357,2025-12-01 06:25:38.000666,confirmed,TP.HCM,1439100,21,70,False,False,VIP,Fashion,Anh Út,VN Post,MIA.vn website
+SO29112025:1027360,2025-12-01 06:25:38.000671,confirmed,Hà Nội,604868,6,69,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027361,2025-12-01 06:25:38.000678,confirmed,Hà Nội,769312,20,46,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027353,2025-12-01 06:25:38.000685,confirmed,Hà Nội,1979000,16,28,True,True,New,Books,TIktok,Tiktok - BEST Express,Tiktok
+SO29112025:1027344,2025-12-01 06:25:38.000690,confirmed,TP.HCM,1199000,11,20,True,True,VIP,Books,Nguyễn Công Nghị,VN Post,MIA.vn website
+SO29112025:1027343,2025-12-01 06:25:38.000695,confirmed,Khác,3869000,5,58,True,True,Regular,Sports,Nương Trang,VN Post,Livestream
+SO29112025:1027342,2025-12-01 06:25:38.000700,confirmed,TP.HCM,799000,9,45,True,True,VIP,Beauty,NGUYỄN THỊ VIỆT ĐỨC,VN Post,MIA.vn website
+SO29112025:1027341,2025-12-01 06:25:38.000705,confirmed,Khác,849000,9,37,True,True,Regular,Fashion,Trần Thị Thuý,VN Post,Livestream
+SO29112025:1027339,2025-12-01 06:25:38.000709,confirmed,TP.HCM,640000,8,66,True,False,VIP,Books,Trần Thị Thu Nga,VN Post,MIA.vn website
+SO29112025:1027356,2025-12-01 06:25:38.000714,confirmed,Hà Nội,769312,13,59,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027723,2025-12-01 06:25:38.000720,confirmed,Đà Nẵng,98010,23,42,True,True,Regular,Electronics,Lazada,Lazada Express,Lazada
+SO29112025:1027350,2025-12-01 06:25:38.000725,confirmed,Hà Nội,829000,13,45,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027338,2025-12-01 06:25:38.000730,confirmed,TP.HCM,1910000,19,57,True,False,VIP,Electronics,Thanh Thảo,VN Post,MIA.vn website
+SO29112025:1027355,2025-12-01 06:25:38.000735,confirmed,Hà Nội,604868,23,64,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027337,2025-12-01 06:25:38.000740,confirmed,Khác,829000,21,32,True,False,Regular,Electronics,Chị Ngọc,VN Post,Facebook
+SO29112025:1027351,2025-12-01 06:25:38.000767,confirmed,Hà Nội,604868,15,44,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027352,2025-12-01 06:25:38.000773,confirmed,Hà Nội,769312,13,18,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027333,2025-12-01 06:25:38.000778,confirmed,Khác,1599000,12,26,True,True,Regular,Books,Trần Văn Sang,VN Post,Facebook
+SO29112025:1027354,2025-12-01 06:25:38.000783,confirmed,Hà Nội,829000,3,26,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027319,2025-12-01 06:25:38.000789,confirmed,TP.HCM,799000,11,60,True,True,VIP,Sports,Chị Phương,VN Post,MIA.vn website
+SO29112025:1027320,2025-12-01 06:25:38.000794,confirmed,Hà Nội,604868,1,33,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027321,2025-12-01 06:25:38.000799,confirmed,Hà Nội,769312,21,56,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027322,2025-12-01 06:25:38.000806,confirmed,Hà Nội,787872,19,55,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027323,2025-12-01 06:25:38.000813,confirmed,Hà Nội,879000,16,37,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027324,2025-12-01 06:25:38.000818,confirmed,Hà Nội,769312,9,59,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027306,2025-12-01 06:25:38.000823,confirmed,TP.HCM,3190000,22,59,True,False,VIP,Home,Tôn Nữ Nguyệt Nhung,VN Post,MIA.vn website
+SO29112025:1027305,2025-12-01 06:25:38.000828,confirmed,Khác,999000,16,58,True,True,Regular,Electronics,Hanh Doan,VN Post,Livestream
+SO29112025:1027300,2025-12-01 06:25:38.000833,confirmed,TP.HCM,629000,9,64,True,True,VIP,Fashion,Chị Ánh,VN Post,MIA.vn website
+SO29112025:1027326,2025-12-01 06:25:38.000838,confirmed,Hà Nội,929000,23,42,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027327,2025-12-01 06:25:38.000843,confirmed,Hà Nội,1129000,13,64,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027297,2025-12-01 06:25:38.000849,confirmed,Hà Nội,1979000,8,49,True,True,New,Beauty,TIktok,Tiktok - BEST Express,Tiktok
+SO29112025:1027298,2025-12-01 06:25:38.000854,confirmed,Hà Nội,1870000,10,14,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027317,2025-12-01 06:25:38.000859,confirmed,Hà Nội,829000,18,14,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027318,2025-12-01 06:25:38.000865,confirmed,Hà Nội,1279000,9,33,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027280,2025-12-01 06:25:38.000870,confirmed,Khác,0,15,57,False,True,Regular,Books,Ngọc Huyền,VN Post,Đơn 0 đồng
+SO29112025:1027277,2025-12-01 06:25:38.000875,confirmed,TP.HCM,2440000,8,62,True,False,VIP,Sports,Chị Quyên,VN Post,MIA.vn website
+SO29112025:1027276,2025-12-01 06:25:38.000880,confirmed,TP.HCM,649000,16,16,True,False,VIP,Books,Kim Chi,VN Post,MIA.vn website
+SO29112025:1027312,2025-12-01 06:25:38.000885,confirmed,Hà Nội,769312,11,51,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027311,2025-12-01 06:25:38.000890,confirmed,Hà Nội,604868,14,41,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027309,2025-12-01 06:25:38.000895,confirmed,Hà Nội,379000,6,20,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027308,2025-12-01 06:25:38.000902,confirmed,Hà Nội,159000,11,62,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027267,2025-12-01 06:25:38.000908,confirmed,Hà Nội,769312,23,70,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027265,2025-12-01 06:25:38.000913,confirmed,Hà Nội,879000,1,46,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027264,2025-12-01 06:25:38.000918,confirmed,Hà Nội,89000,4,20,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027258,2025-12-01 06:25:38.000925,confirmed,Khác,1258000,19,14,True,True,Regular,Electronics,Phạm Nhàng,VN Post,Facebook
+SO29112025:1027262,2025-12-01 06:25:38.000931,confirmed,Hà Nội,1398000,3,24,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027268,2025-12-01 06:25:38.000937,confirmed,Hà Nội,1079000,9,43,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027270,2025-12-01 06:25:38.000942,confirmed,Hà Nội,769312,16,57,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027257,2025-12-01 06:25:38.000947,confirmed,Khác,1599000,12,24,True,False,Regular,Home,chị Phương,VN Post,Facebook
+SO29112025:1027250,2025-12-01 06:25:38.000952,confirmed,Khác,629000,23,58,True,False,Regular,Fashion,Chị Tuyền,VN Post,Facebook
+SO29112025:1027272,2025-12-01 06:25:38.000957,confirmed,Hà Nội,1209736,1,62,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027274,2025-12-01 06:25:38.000962,confirmed,Hà Nội,959000,13,68,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027255,2025-12-01 06:25:38.000968,confirmed,Hà Nội,899000,7,17,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027248,2025-12-01 06:25:38.000973,confirmed,Hà Nội,1379000,14,69,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027233,2025-12-01 06:25:38.000979,confirmed,TP.HCM,1710000,4,55,True,True,VIP,Electronics,Anh Tú,VN Post,MIA.vn website
+SO29112025:1027245,2025-12-01 06:25:38.000984,confirmed,Hà Nội,749000,10,66,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027219,2025-12-01 06:25:38.000989,confirmed,Hà Nội,749000,14,60,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027218,2025-12-01 06:25:38.000994,confirmed,Hà Nội,604868,14,51,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027211,2025-12-01 06:25:38.001001,confirmed,TP.HCM,629000,17,39,True,True,VIP,Home,Hoài An,VN Post,MIA.vn website
+SO29112025:1027217,2025-12-01 06:25:38.001006,confirmed,Hà Nội,1650000,8,60,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027210,2025-12-01 06:25:38.001011,confirmed,TP.HCM,629000,5,34,True,False,VIP,Electronics,Nguyễn Văn Bắc,VN Post,MIA.vn website
+SO29112025:1027209,2025-12-01 06:25:38.001016,confirmed,TP.HCM,1298000,10,68,True,False,VIP,Beauty,Lê thị Hiền,VN Post,MIA.vn website
+SO29112025:1027208,2025-12-01 06:25:38.001021,confirmed,TP.HCM,1468000,2,65,True,True,VIP,Sports,Phương Uyên,VN Post,MIA.vn website
+SO30112025:1028091,2025-12-01 06:25:38.001026,confirmed,TP.HCM,1899000,4,20,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO29112025:1027215,2025-12-01 06:25:38.001031,confirmed,Hà Nội,178000,3,63,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027201,2025-12-01 06:25:38.001060,confirmed,TP.HCM,899000,10,23,False,True,VIP,Beauty,Nguyễn thị hương,VN Post,MIA.vn website
+SO29112025:1027200,2025-12-01 06:25:38.001065,confirmed,Hà Nội,929000,21,49,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027184,2025-12-01 06:25:38.001071,confirmed,Hà Nội,149000,1,28,False,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027244,2025-12-01 06:25:38.001076,confirmed,Hà Nội,929000,13,56,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027185,2025-12-01 06:25:38.001081,confirmed,Hà Nội,159000,2,29,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027186,2025-12-01 06:25:38.001087,confirmed,Hà Nội,604868,4,54,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027168,2025-12-01 06:25:38.001092,confirmed,Khác,799000,10,48,True,True,Regular,Books,chị Hằng,VN Post,Livestream
+SO29112025:1027176,2025-12-01 06:25:38.001097,confirmed,TP.HCM,1348000,21,40,False,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO29112025:1027167,2025-12-01 06:25:38.001102,confirmed,Khác,629000,17,64,True,True,Regular,Fashion,Maianh Tran,VN Post,Facebook
+SO29112025:1027188,2025-12-01 06:25:38.001107,confirmed,Hà Nội,149000,14,49,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027304,2025-12-01 06:25:38.001112,confirmed,Đà Nẵng,672010,6,16,True,True,Regular,Beauty,Lazada,Lazada Express,Lazada
+SO29112025:1027189,2025-12-01 06:25:38.001123,confirmed,Hà Nội,604868,14,51,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027190,2025-12-01 06:25:38.001130,confirmed,Hà Nội,159000,3,60,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027191,2025-12-01 06:25:38.001135,confirmed,Hà Nội,699000,2,49,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027203,2025-12-01 06:25:38.001140,confirmed,Hà Nội,604868,20,47,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027198,2025-12-01 06:25:38.001146,confirmed,Hà Nội,604868,20,70,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027197,2025-12-01 06:25:38.001151,confirmed,Hà Nội,604868,20,42,False,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027196,2025-12-01 06:25:38.001156,confirmed,Hà Nội,1870000,17,60,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027195,2025-12-01 06:25:38.001162,confirmed,Hà Nội,1870000,2,54,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027151,2025-12-01 06:25:38.001167,confirmed,Hà Nội,604868,1,53,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027124,2025-12-01 06:25:38.001172,confirmed,TP.HCM,4343000,15,29,True,False,VIP,Sports,Lê Thị Lộc,VN Post,MIA.vn website
+SO29112025:1027153,2025-12-01 06:25:38.001179,confirmed,Hà Nội,447000,18,33,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027154,2025-12-01 06:25:38.001184,confirmed,Hà Nội,139000,7,50,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027155,2025-12-01 06:25:38.001190,confirmed,Hà Nội,769312,21,70,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027156,2025-12-01 06:25:38.001195,confirmed,Hà Nội,1377000,20,67,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027157,2025-12-01 06:25:38.001200,confirmed,Hà Nội,604868,23,27,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027123,2025-12-01 06:25:38.001206,confirmed,TP.HCM,1710000,12,44,True,True,VIP,Electronics,Chị Lan,VN Post,MIA.vn website
+SO29112025:1027158,2025-12-01 06:25:38.001211,confirmed,Hà Nội,604868,10,67,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027166,2025-12-01 06:25:38.001216,confirmed,Hà Nội,829000,19,25,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027121,2025-12-01 06:25:38.001223,confirmed,TP.HCM,1199000,23,45,True,True,VIP,Sports,Chị Hương,VN Post,MIA.vn website
+SO29112025:1027164,2025-12-01 06:25:38.001227,confirmed,Hà Nội,1870000,11,44,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027120,2025-12-01 06:25:38.001233,confirmed,Khác,1199000,13,23,True,True,Regular,Beauty,Chị Trinh,VN Post,Facebook
+SO29112025:1027163,2025-12-01 06:25:38.001238,confirmed,Hà Nội,2090000,21,53,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027119,2025-12-01 06:25:38.001243,confirmed,TP.HCM,598000,1,60,True,True,Regular,Home,Shopee,S - SPX Instant,Shopee
+SO29112025:1027118,2025-12-01 06:25:38.001248,confirmed,TP.HCM,629000,17,64,True,True,VIP,Beauty,Trần Thị Thu Thảo,VN Post,MIA.vn website
+SO29112025:1027117,2025-12-01 06:25:38.001253,confirmed,Khác,999000,12,18,True,True,Regular,Electronics,Chung Tran,VN Post,Livestream
+SO29112025:1027160,2025-12-01 06:25:38.001258,confirmed,Hà Nội,1279000,20,32,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027161,2025-12-01 06:25:38.001264,confirmed,Hà Nội,2090000,11,67,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027116,2025-12-01 06:25:38.001269,confirmed,TP.HCM,921000,1,62,True,True,VIP,Fashion,Nguyễn Tất Thắng,VN Post,MIA.vn website
+SO29112025:1027159,2025-12-01 06:25:38.001274,confirmed,Hà Nội,829000,8,51,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027114,2025-12-01 06:25:38.001279,confirmed,Hà Nội,609000,2,51,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027111,2025-12-01 06:25:38.001284,confirmed,Hà Nội,99000,9,18,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027108,2025-12-01 06:25:38.001291,confirmed,Hà Nội,829000,13,30,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027098,2025-12-01 06:25:38.001297,confirmed,Khác,599000,21,42,True,True,Regular,Books,Hảo Trần,VN Post,Livestream
+SO29112025:1027104,2025-12-01 06:25:38.001301,confirmed,Hà Nội,918000,2,61,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027099,2025-12-01 06:25:38.001307,confirmed,Hà Nội,879000,5,18,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027105,2025-12-01 06:25:38.001312,confirmed,Hà Nội,1079000,7,57,False,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027100,2025-12-01 06:25:38.001317,confirmed,Hà Nội,1129000,22,19,False,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO30112025:1027466,2025-12-01 06:25:38.001324,confirmed,TP.HCM,579000,4,71,False,True,Regular,Electronics,Shopee,S - SPX Instant,Shopee
+SO29112025:1027020,2025-12-01 06:25:38.001330,confirmed,TP.HCM,698000,18,41,True,True,Regular,Books,Shopee,S - VTP - Hàng Cồng Kềnh,Shopee
+SO29112025:1027366,2025-12-01 06:25:38.001357,confirmed,TP.HCM,1399000,15,57,True,True,Regular,Electronics,Shopee,S - BEST Express,Shopee
+SO30112025:1027657,2025-12-01 06:25:38.001362,confirmed,Hà Nội,829000,22,57,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1027109,2025-12-01 06:25:38.001368,confirmed,Hà Nội,4040000,13,42,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO29112025:1026526,2025-12-01 06:25:38.001373,confirmed,Khác,599000,3,64,True,True,Regular,Electronics,Chị Tuoi Pham,VN Post,Livestream
+SO28112025:1026174,2025-12-01 06:25:38.001378,confirmed,TP.HCM,999000,19,33,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO28112025:1026078,2025-12-01 06:25:38.001384,confirmed,Hà Nội,749000,1,26,True,True,New,Electronics,TIktok,Tiktok - BeDelivery,Tiktok
+SO28112025:1025948,2025-12-01 06:25:38.001389,confirmed,Hà Nội,699000,6,15,True,True,New,Sports,TIktok,Tiktok - BeDelivery,Tiktok
+SO28112025:1025701,2025-12-01 06:25:38.001394,confirmed,Hà Nội,629530,13,39,True,False,New,Electronics,TIktok,Tiktok - BeDelivery,Tiktok
+SO28112025:1025668,2025-12-01 06:25:38.001400,confirmed,TP.HCM,799000,14,44,True,False,Regular,Sports,Shopee,S - SPX Instant,Shopee
+SO27112025:1025104,2025-12-01 06:25:38.001405,confirmed,Khác,599000,21,21,True,True,Regular,Sports,Chị Hằng,VN Post,Livestream
+SO27112025:1024878,2025-12-01 06:25:38.001410,confirmed,TP.HCM,1979000,22,20,True,True,VIP,Sports,Chị Hiền,MIAship,MIA.vn website
+SO27112025:1024898,2025-12-01 06:25:38.001415,confirmed,TP.HCM,1199000,22,14,True,False,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO27112025:1024736,2025-12-01 06:25:38.001421,confirmed,Khác,1848000,2,22,True,True,Regular,Books,Ngô Thị Mai Thi,MIAship,Facebook
+SO26112025:1024287,2025-12-01 06:25:38.001428,confirmed,Khác,512823,6,18,False,True,Regular,Home,Chị Thùy Linh,Đơn vị khác,B2B
+SO26112025:1024231,2025-12-01 06:25:38.001433,confirmed,Khác,11457945,10,13,True,True,Regular,Fashion,CÔNG TY TNHH QUẢNG CÁO BẢO ĐĂNG,Đơn vị khác,B2B
+SO26112025:1024219,2025-12-01 06:25:38.001437,confirmed,TP.HCM,549500,6,49,True,True,Regular,Sports,Shopee,S - SPX Instant,Shopee
+SO26112025:1024070,2025-12-01 06:25:38.001445,confirmed,TP.HCM,3240000,23,69,True,True,Regular,Sports,Shopee,S - SPX Instant,Shopee
+SO26112025:1024077,2025-12-01 06:25:38.001450,confirmed,Hà Nội,629000,9,62,True,True,New,Books,TIktok,Tiktok - BeDelivery,Tiktok
+SO26112025:1023950,2025-12-01 06:25:38.001456,confirmed,TP.HCM,679150,4,24,True,True,VIP,Fashion,Anh Dâu,Đơn vị khác,MIA.vn website
+SO25112025:1023415,2025-12-01 06:25:38.001460,confirmed,TP.HCM,106819,22,42,True,True,Regular,Home,Shopee,S - SPX Instant,Shopee
+SO25112025:1023373,2025-12-01 06:25:38.001466,confirmed,Hà Nội,1449000,13,29,True,True,New,Electronics,TIktok,Đơn vị khác,Tiktok
+SO25112025:1023325,2025-12-01 06:25:38.001471,confirmed,TP.HCM,2063100,10,17,False,True,Regular,Books,Shopee,Đơn vị khác,Shopee
+SO25112025:1023297,2025-12-01 06:25:38.001476,confirmed,TP.HCM,1615100,11,47,True,True,Regular,Sports,Shopee,Đơn vị khác,Shopee
+SO21112025:1020769,2025-12-01 06:25:38.001481,confirmed,Khác,0,12,58,False,False,Regular,Sports,Bùi Ngọc Khánh Vy,MIAship,Đơn 0 đồng
+SO21112025:1020631,2025-12-01 06:25:38.001486,confirmed,Khác,5526400,20,32,False,True,Regular,Electronics,CÔNG TY TNHH MỘT THÀNH VIÊN DREAM MEKONG,Đơn vị khác,B2B
+SO21112025:1020629,2025-12-01 06:25:38.001491,confirmed,Khác,7796800,16,24,True,True,Regular,Beauty,CÔNG TY TNHH DREAM AN GIANG,Đơn vị khác,B2B
+SO21112025:1020627,2025-12-01 06:25:38.001496,confirmed,Khác,5324000,8,32,True,True,Regular,Electronics,CÔNG TY TNHH MỘT THÀNH VIÊN J Y VINA,Đơn vị khác,B2B
+SO21112025:1020626,2025-12-01 06:25:38.001501,confirmed,Khác,21067200,22,41,True,True,Regular,Electronics,CÔNG TY TNHH MỘT THÀNH VIÊN DREAM MEKONG,Đơn vị khác,B2B
+SO19112025:1019539,2025-12-01 06:25:38.001505,confirmed,Hà Nội,634000,23,59,True,False,New,Books,TIktok,Tiktok - BeDelivery,Tiktok
+SO17112025:1018464,2025-12-01 06:25:38.001511,confirmed,Khác,20970000,23,32,True,True,Regular,Beauty,CÔNG TY TNHH SẢN XUẤT THƯƠNG MẠI DỊCH VỤ HOÀNG TÂM,Đơn vị khác,B2B
+SO12112025:1015288,2025-12-01 06:25:38.001531,confirmed,Khác,61520000,6,63,True,True,Regular,Beauty,CÔNG ĐOÀN TỔNG CÔNG TY XD SỐ 1-CTCP,Đơn vị khác,B2B
+SO11112025:1012843,2025-12-01 06:25:38.001543,confirmed,Khác,279600000,4,50,True,True,Regular,Beauty,CÔNG TY TNHH SẢN XUẤT THƯƠNG MẠI DỊCH VỤ HOÀNG TÂM,Đơn vị khác,B2B
+SO22092025:0984337,2025-12-01 06:25:38.001549,confirmed,Khác,497000,23,21,True,True,Regular,Electronics,Công Ty Cổ Phần Oem,Đơn vị khác,B2B
+SO18062025:0905252,2025-12-01 06:25:38.001554,confirmed,Khác,10558600,7,44,True,False,Regular,Fashion,CÔNG TY TNHH SX TM DV FTS,Đơn vị khác,B2B

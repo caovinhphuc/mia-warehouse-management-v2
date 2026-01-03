@@ -1,0 +1,1782 @@
+{
+  "timestamp": "2025-12-01T06:47:35.002Z",
+  "logDir": "logs",
+  "files": [
+    {
+      "file": "ai-service.log",
+      "totalLines": 1,
+      "errors": [
+        {
+          "line": 1,
+          "content": "ERROR:    Error loading ASGI app. Could not import module \"ai_service.main\"."
+        }
+      ],
+      "warnings": [],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 1,
+      "warningCount": 0,
+      "infoCount": 0,
+      "patterns": {}
+    },
+    {
+      "file": "backend.log",
+      "totalLines": 11,
+      "errors": [],
+      "warnings": [
+        {
+          "line": 3,
+          "content": "⚠️ Email service not configured"
+        }
+      ],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 0,
+      "warningCount": 1,
+      "infoCount": 0,
+      "patterns": {
+        "api": 1
+      }
+    },
+    {
+      "file": "frontend.log",
+      "totalLines": 1,
+      "errors": [],
+      "warnings": [],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "infoCount": 0,
+      "patterns": {}
+    },
+    {
+      "file": "google-backend.log",
+      "totalLines": 5,
+      "errors": [],
+      "warnings": [],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "infoCount": 0,
+      "patterns": {}
+    },
+    {
+      "file": "google-frontend.log",
+      "totalLines": 264,
+      "errors": [
+        {
+          "line": 15,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/classnames/index.js'"
+        },
+        {
+          "line": 16,
+          "content": "ERROR in ../node_modules/classnames/index.js"
+        },
+        {
+          "line": 18,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/classnames/index.js'"
+        },
+        {
+          "line": 19,
+          "content": "webpack compiled with 1 error"
+        },
+        {
+          "line": 21,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 22,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 24,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 25,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 27,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 28,
+          "content": "ERROR in ../node_modules/fast-deep-equal/index.js"
+        },
+        {
+          "line": 30,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/fast-deep-equal/index.js'"
+        },
+        {
+          "line": 31,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 33,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 34,
+          "content": "ERROR in ../node_modules/react/index.js"
+        },
+        {
+          "line": 36,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/index.js'"
+        },
+        {
+          "line": 37,
+          "content": "ERROR in ../node_modules/react/jsx-runtime.js"
+        },
+        {
+          "line": 39,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/jsx-runtime.js'"
+        },
+        {
+          "line": 40,
+          "content": "webpack compiled with 6 errors"
+        },
+        {
+          "line": 42,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 43,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 45,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 46,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 48,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 49,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 51,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 52,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 54,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 55,
+          "content": "ERROR in ../node_modules/react/index.js"
+        },
+        {
+          "line": 57,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/index.js'"
+        },
+        {
+          "line": 58,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 60,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 61,
+          "content": "ERROR in ../node_modules/react-grid-layout/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-grid-layout/css/styles.css)"
+        },
+        {
+          "line": 63,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/css/styles.css'"
+        },
+        {
+          "line": 64,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 66,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 67,
+          "content": "ERROR in ../node_modules/clsx/dist/clsx.mjs"
+        },
+        {
+          "line": 69,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/clsx/dist/clsx.mjs'"
+        },
+        {
+          "line": 70,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 72,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 73,
+          "content": "ERROR in ../node_modules/react-dnd/dist/index.js"
+        },
+        {
+          "line": 75,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/index.js'"
+        },
+        {
+          "line": 76,
+          "content": "webpack compiled with 11 errors"
+        },
+        {
+          "line": 78,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 79,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 81,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 82,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 84,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 85,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 87,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 88,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 90,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 91,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 93,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 94,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 96,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 97,
+          "content": "ERROR in ../node_modules/web-vitals/dist/web-vitals.js"
+        },
+        {
+          "line": 99,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/web-vitals/dist/web-vitals.js'"
+        },
+        {
+          "line": 100,
+          "content": "ERROR in ../node_modules/react-grid-layout/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-grid-layout/css/styles.css)"
+        },
+        {
+          "line": 102,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/css/styles.css'"
+        },
+        {
+          "line": 103,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 105,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 106,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 108,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 109,
+          "content": "ERROR in ../node_modules/react-dnd/dist/index.js"
+        },
+        {
+          "line": 111,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/index.js'"
+        },
+        {
+          "line": 112,
+          "content": "webpack compiled with 11 errors"
+        },
+        {
+          "line": 114,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 115,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 117,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 118,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 120,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 121,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 123,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 124,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 126,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 127,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 129,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 130,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 132,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 133,
+          "content": "ERROR in ../node_modules/web-vitals/dist/web-vitals.js"
+        },
+        {
+          "line": 135,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/web-vitals/dist/web-vitals.js'"
+        },
+        {
+          "line": 136,
+          "content": "ERROR in ../node_modules/react-grid-layout/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-grid-layout/css/styles.css)"
+        },
+        {
+          "line": 138,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/css/styles.css'"
+        },
+        {
+          "line": 139,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 141,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 142,
+          "content": "ERROR in ../node_modules/engine.io-client/build/esm/index.js"
+        },
+        {
+          "line": 144,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/engine.io-client/build/esm/index.js'"
+        },
+        {
+          "line": 145,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 147,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 148,
+          "content": "ERROR in ../node_modules/react-dnd/dist/index.js"
+        },
+        {
+          "line": 150,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/index.js'"
+        },
+        {
+          "line": 151,
+          "content": "webpack compiled with 12 errors"
+        },
+        {
+          "line": 153,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 154,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 156,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 157,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 159,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 160,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 162,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 163,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 165,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 166,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 168,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 169,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 171,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 172,
+          "content": "ERROR in ../node_modules/redux-persist/lib/storage/index.js"
+        },
+        {
+          "line": 174,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/lib/storage/index.js'"
+        },
+        {
+          "line": 175,
+          "content": "ERROR in ../node_modules/web-vitals/dist/web-vitals.js"
+        },
+        {
+          "line": 177,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/web-vitals/dist/web-vitals.js'"
+        },
+        {
+          "line": 178,
+          "content": "ERROR in ../node_modules/react-grid-layout/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-grid-layout/css/styles.css)"
+        },
+        {
+          "line": 180,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/css/styles.css'"
+        },
+        {
+          "line": 181,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 183,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 184,
+          "content": "ERROR in ../node_modules/engine.io-client/build/esm/index.js"
+        },
+        {
+          "line": 186,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/engine.io-client/build/esm/index.js'"
+        },
+        {
+          "line": 187,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 189,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 190,
+          "content": "ERROR in ../node_modules/react-dnd/dist/index.js"
+        },
+        {
+          "line": 192,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/index.js'"
+        },
+        {
+          "line": 193,
+          "content": "webpack compiled with 13 errors"
+        },
+        {
+          "line": 195,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 196,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 198,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 199,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 201,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 202,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 204,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 205,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 207,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 208,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 210,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 211,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 213,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 214,
+          "content": "ERROR in ../node_modules/redux-persist/lib/storage/index.js"
+        },
+        {
+          "line": 216,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/lib/storage/index.js'"
+        },
+        {
+          "line": 217,
+          "content": "ERROR in ../node_modules/web-vitals/dist/web-vitals.js"
+        },
+        {
+          "line": 219,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/web-vitals/dist/web-vitals.js'"
+        },
+        {
+          "line": 220,
+          "content": "ERROR in ../node_modules/react-grid-layout/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-grid-layout/css/styles.css)"
+        },
+        {
+          "line": 222,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/css/styles.css'"
+        },
+        {
+          "line": 223,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 225,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 226,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 228,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 229,
+          "content": "ERROR in ../node_modules/react-dnd/dist/index.js"
+        },
+        {
+          "line": 231,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/index.js'"
+        },
+        {
+          "line": 232,
+          "content": "ERROR in ../node_modules/socket.io-client/build/esm/index.js"
+        },
+        {
+          "line": 234,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/socket.io-client/build/esm/index.js'"
+        },
+        {
+          "line": 235,
+          "content": "webpack compiled with 13 errors"
+        },
+        {
+          "line": 239,
+          "content": "Error: Cannot find module './runtime/api'"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 3,
+          "content": "(node:3017) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
+        },
+        {
+          "line": 4,
+          "content": "(Use `node --trace-deprecation ...` to show where the warning was created)"
+        },
+        {
+          "line": 5,
+          "content": "(node:3017) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
+        }
+      ],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 149,
+      "warningCount": 3,
+      "infoCount": 0,
+      "patterns": {
+        "failed": 74,
+        "api": 1
+      }
+    },
+    {
+      "file": "google-sheets-backend.log",
+      "totalLines": 5,
+      "errors": [],
+      "warnings": [],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "infoCount": 0,
+      "patterns": {}
+    },
+    {
+      "file": "google-sheets-frontend.log",
+      "totalLines": 400,
+      "errors": [
+        {
+          "line": 15,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/copy-to-clipboard/index.js'"
+        },
+        {
+          "line": 16,
+          "content": "ERROR in ../node_modules/copy-to-clipboard/index.js"
+        },
+        {
+          "line": 18,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/copy-to-clipboard/index.js'"
+        },
+        {
+          "line": 19,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 21,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 22,
+          "content": "ERROR in ../node_modules/classnames/index.js"
+        },
+        {
+          "line": 24,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/classnames/index.js'"
+        },
+        {
+          "line": 25,
+          "content": "webpack compiled with 3 errors"
+        },
+        {
+          "line": 27,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 28,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 30,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 31,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 33,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 34,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 36,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 37,
+          "content": "ERROR in ../node_modules/fast-deep-equal/index.js"
+        },
+        {
+          "line": 39,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/fast-deep-equal/index.js'"
+        },
+        {
+          "line": 40,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 42,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 43,
+          "content": "ERROR in ../node_modules/react/index.js"
+        },
+        {
+          "line": 45,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/index.js'"
+        },
+        {
+          "line": 46,
+          "content": "ERROR in ../node_modules/react/jsx-runtime.js"
+        },
+        {
+          "line": 48,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/jsx-runtime.js'"
+        },
+        {
+          "line": 49,
+          "content": "webpack compiled with 7 errors"
+        },
+        {
+          "line": 51,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 52,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 54,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 55,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 57,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 58,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 60,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 61,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 63,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 64,
+          "content": "ERROR in ../node_modules/fast-deep-equal/index.js"
+        },
+        {
+          "line": 66,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/fast-deep-equal/index.js'"
+        },
+        {
+          "line": 67,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 69,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 70,
+          "content": "ERROR in ../node_modules/react/index.js"
+        },
+        {
+          "line": 72,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/index.js'"
+        },
+        {
+          "line": 73,
+          "content": "ERROR in ../node_modules/react/jsx-runtime.js"
+        },
+        {
+          "line": 75,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/jsx-runtime.js'"
+        },
+        {
+          "line": 76,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 78,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 79,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 81,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 82,
+          "content": "ERROR in ../node_modules/@react-dnd/invariant/dist/index.js"
+        },
+        {
+          "line": 84,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@react-dnd/invariant/dist/index.js'"
+        },
+        {
+          "line": 85,
+          "content": "ERROR in ../node_modules/@react-dnd/shallowequal/dist/index.js"
+        },
+        {
+          "line": 87,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@react-dnd/shallowequal/dist/index.js'"
+        },
+        {
+          "line": 88,
+          "content": "ERROR in ../node_modules/dnd-core/dist/index.js"
+        },
+        {
+          "line": 90,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dnd-core/dist/index.js'"
+        },
+        {
+          "line": 91,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/NativeTypes.js"
+        },
+        {
+          "line": 93,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/NativeTypes.js'"
+        },
+        {
+          "line": 94,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/OffsetUtils.js"
+        },
+        {
+          "line": 96,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/OffsetUtils.js'"
+        },
+        {
+          "line": 97,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/OptionsReader.js"
+        },
+        {
+          "line": 99,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/OptionsReader.js'"
+        },
+        {
+          "line": 100,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/getEmptyImage.js"
+        },
+        {
+          "line": 102,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/getEmptyImage.js'"
+        },
+        {
+          "line": 103,
+          "content": "webpack compiled with 17 errors"
+        },
+        {
+          "line": 105,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 106,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 108,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 109,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 111,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 112,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 114,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 115,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 117,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 118,
+          "content": "ERROR in ../node_modules/fast-deep-equal/index.js"
+        },
+        {
+          "line": 120,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/fast-deep-equal/index.js'"
+        },
+        {
+          "line": 121,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 123,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 124,
+          "content": "ERROR in ../node_modules/react/index.js"
+        },
+        {
+          "line": 126,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/index.js'"
+        },
+        {
+          "line": 127,
+          "content": "ERROR in ../node_modules/react/jsx-runtime.js"
+        },
+        {
+          "line": 129,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react/jsx-runtime.js'"
+        },
+        {
+          "line": 130,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 132,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 133,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 135,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 136,
+          "content": "ERROR in ../node_modules/@react-dnd/invariant/dist/index.js"
+        },
+        {
+          "line": 138,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@react-dnd/invariant/dist/index.js'"
+        },
+        {
+          "line": 139,
+          "content": "ERROR in ../node_modules/@react-dnd/shallowequal/dist/index.js"
+        },
+        {
+          "line": 141,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@react-dnd/shallowequal/dist/index.js'"
+        },
+        {
+          "line": 142,
+          "content": "ERROR in ../node_modules/dnd-core/dist/index.js"
+        },
+        {
+          "line": 144,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dnd-core/dist/index.js'"
+        },
+        {
+          "line": 145,
+          "content": "ERROR in ../node_modules/engine.io-client/build/esm/transport.js"
+        },
+        {
+          "line": 147,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/engine.io-client/build/esm/transport.js'"
+        },
+        {
+          "line": 148,
+          "content": "ERROR in ../node_modules/engine.io-client/build/esm/util.js"
+        },
+        {
+          "line": 150,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/engine.io-client/build/esm/util.js'"
+        },
+        {
+          "line": 151,
+          "content": "ERROR in ../node_modules/engine.io-parser/build/esm/index.js"
+        },
+        {
+          "line": 153,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/engine.io-parser/build/esm/index.js'"
+        },
+        {
+          "line": 154,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/NativeTypes.js"
+        },
+        {
+          "line": 156,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/NativeTypes.js'"
+        },
+        {
+          "line": 157,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/OffsetUtils.js"
+        },
+        {
+          "line": 159,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/OffsetUtils.js'"
+        },
+        {
+          "line": 160,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/OptionsReader.js"
+        },
+        {
+          "line": 162,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/OptionsReader.js'"
+        },
+        {
+          "line": 163,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/getEmptyImage.js"
+        },
+        {
+          "line": 165,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/getEmptyImage.js'"
+        },
+        {
+          "line": 166,
+          "content": "webpack compiled with 20 errors"
+        },
+        {
+          "line": 168,
+          "content": "Attempted import error: 'DndProvider' is not exported from 'react-dnd' (imported as 'DndProvider')."
+        },
+        {
+          "line": 169,
+          "content": "ERROR in ./src/components/analytics/AdvancedAnalyticsDashboard.jsx 291:30-41"
+        },
+        {
+          "line": 171,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 173,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 174,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 176,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 177,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 179,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 180,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 182,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 183,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 185,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 186,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 188,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 189,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 191,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 192,
+          "content": "ERROR in ../node_modules/engine.io-client/build/esm/transport.js"
+        },
+        {
+          "line": 194,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/engine.io-client/build/esm/transport.js'"
+        },
+        {
+          "line": 195,
+          "content": "ERROR in ../node_modules/engine.io-client/build/esm/util.js"
+        },
+        {
+          "line": 197,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/engine.io-client/build/esm/util.js'"
+        },
+        {
+          "line": 198,
+          "content": "ERROR in ../node_modules/engine.io-parser/build/esm/index.js"
+        },
+        {
+          "line": 200,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/engine.io-parser/build/esm/index.js'"
+        },
+        {
+          "line": 201,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/NativeDragSources/index.js"
+        },
+        {
+          "line": 203,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/NativeDragSources/index.js'"
+        },
+        {
+          "line": 204,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/NativeTypes.js"
+        },
+        {
+          "line": 206,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/NativeTypes.js'"
+        },
+        {
+          "line": 207,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/OffsetUtils.js"
+        },
+        {
+          "line": 209,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/OffsetUtils.js'"
+        },
+        {
+          "line": 210,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/OptionsReader.js"
+        },
+        {
+          "line": 212,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/OptionsReader.js'"
+        },
+        {
+          "line": 213,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/getEmptyImage.js"
+        },
+        {
+          "line": 215,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/getEmptyImage.js'"
+        },
+        {
+          "line": 216,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/utils/js_utils.js"
+        },
+        {
+          "line": 218,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/utils/js_utils.js'"
+        },
+        {
+          "line": 219,
+          "content": "ERROR in ../node_modules/react-dnd/dist/core/index.js"
+        },
+        {
+          "line": 221,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/core/index.js'"
+        },
+        {
+          "line": 222,
+          "content": "ERROR in ../node_modules/react-dnd/dist/hooks/index.js"
+        },
+        {
+          "line": 224,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/hooks/index.js'"
+        },
+        {
+          "line": 225,
+          "content": "ERROR in ../node_modules/react-dnd/dist/types/index.js"
+        },
+        {
+          "line": 227,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/types/index.js'"
+        },
+        {
+          "line": 228,
+          "content": "webpack compiled with 20 errors"
+        },
+        {
+          "line": 230,
+          "content": "Attempted import error: 'DndProvider' is not exported from 'react-dnd' (imported as 'DndProvider')."
+        },
+        {
+          "line": 231,
+          "content": "ERROR in ./src/components/analytics/AdvancedAnalyticsDashboard.jsx 291:30-41"
+        },
+        {
+          "line": 233,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 235,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 236,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 238,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 239,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 241,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 242,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 244,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 245,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 247,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 248,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 250,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 251,
+          "content": "ERROR in ../node_modules/redux-persist/lib/storage/index.js"
+        },
+        {
+          "line": 253,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/lib/storage/index.js'"
+        },
+        {
+          "line": 254,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 256,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 257,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 259,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 260,
+          "content": "ERROR in ../node_modules/react-dnd/dist/core/index.js"
+        },
+        {
+          "line": 262,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/core/index.js'"
+        },
+        {
+          "line": 263,
+          "content": "ERROR in ../node_modules/react-dnd/dist/hooks/index.js"
+        },
+        {
+          "line": 265,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/hooks/index.js'"
+        },
+        {
+          "line": 266,
+          "content": "ERROR in ../node_modules/react-dnd/dist/types/index.js"
+        },
+        {
+          "line": 268,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/types/index.js'"
+        },
+        {
+          "line": 269,
+          "content": "ERROR in ../node_modules/socket.io-client/build/esm/index.js"
+        },
+        {
+          "line": 271,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/socket.io-client/build/esm/index.js'"
+        },
+        {
+          "line": 272,
+          "content": "webpack compiled with 14 errors"
+        },
+        {
+          "line": 274,
+          "content": "Attempted import error: 'DndProvider' is not exported from 'react-dnd' (imported as 'DndProvider')."
+        },
+        {
+          "line": 275,
+          "content": "ERROR in ./src/components/analytics/AdvancedAnalyticsDashboard.jsx 291:30-41"
+        },
+        {
+          "line": 277,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 279,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 280,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 282,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 283,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 285,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 286,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 288,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 289,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 291,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 292,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 294,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 295,
+          "content": "ERROR in ../node_modules/redux-persist/lib/storage/index.js"
+        },
+        {
+          "line": 297,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/lib/storage/index.js'"
+        },
+        {
+          "line": 298,
+          "content": "ERROR in ../node_modules/react-grid-layout/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-grid-layout/css/styles.css)"
+        },
+        {
+          "line": 300,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/css/styles.css'"
+        },
+        {
+          "line": 301,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 303,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 304,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 306,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 307,
+          "content": "ERROR in ../node_modules/react-dnd/dist/core/index.js"
+        },
+        {
+          "line": 309,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/core/index.js'"
+        },
+        {
+          "line": 310,
+          "content": "ERROR in ../node_modules/react-dnd/dist/hooks/index.js"
+        },
+        {
+          "line": 312,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/hooks/index.js'"
+        },
+        {
+          "line": 313,
+          "content": "ERROR in ../node_modules/react-dnd/dist/types/index.js"
+        },
+        {
+          "line": 315,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/types/index.js'"
+        },
+        {
+          "line": 316,
+          "content": "ERROR in ../node_modules/socket.io-client/build/esm/index.js"
+        },
+        {
+          "line": 318,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/socket.io-client/build/esm/index.js'"
+        },
+        {
+          "line": 319,
+          "content": "webpack compiled with 15 errors"
+        },
+        {
+          "line": 321,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 322,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 324,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 325,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 327,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 328,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 330,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 331,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 333,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 334,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 336,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 337,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 339,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 340,
+          "content": "ERROR in ../node_modules/redux-persist/lib/storage/index.js"
+        },
+        {
+          "line": 342,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/lib/storage/index.js'"
+        },
+        {
+          "line": 343,
+          "content": "ERROR in ../node_modules/react-grid-layout/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-grid-layout/css/styles.css)"
+        },
+        {
+          "line": 345,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/css/styles.css'"
+        },
+        {
+          "line": 346,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 348,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 349,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 351,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 352,
+          "content": "ERROR in ../node_modules/react-dnd/dist/index.js"
+        },
+        {
+          "line": 354,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/index.js'"
+        },
+        {
+          "line": 355,
+          "content": "ERROR in ../node_modules/socket.io-client/build/esm/index.js"
+        },
+        {
+          "line": 357,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/socket.io-client/build/esm/index.js'"
+        },
+        {
+          "line": 358,
+          "content": "webpack compiled with 12 errors"
+        },
+        {
+          "line": 360,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 361,
+          "content": "ERROR in ../node_modules/@ant-design/icons/es/index.js"
+        },
+        {
+          "line": 363,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/@ant-design/icons/es/index.js'"
+        },
+        {
+          "line": 364,
+          "content": "ERROR in ../node_modules/antd/es/index.js"
+        },
+        {
+          "line": 366,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/es/index.js'"
+        },
+        {
+          "line": 367,
+          "content": "ERROR in ../node_modules/antd/locale/vi_VN.js"
+        },
+        {
+          "line": 369,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/antd/locale/vi_VN.js'"
+        },
+        {
+          "line": 370,
+          "content": "ERROR in ../node_modules/dayjs/dayjs.min.js"
+        },
+        {
+          "line": 372,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/dayjs/dayjs.min.js'"
+        },
+        {
+          "line": 373,
+          "content": "ERROR in ../node_modules/react-grid-layout/index.js"
+        },
+        {
+          "line": 375,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/index.js'"
+        },
+        {
+          "line": 376,
+          "content": "ERROR in ../node_modules/redux-persist/es/index.js"
+        },
+        {
+          "line": 378,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/es/index.js'"
+        },
+        {
+          "line": 379,
+          "content": "ERROR in ../node_modules/redux-persist/lib/storage/index.js"
+        },
+        {
+          "line": 381,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/redux-persist/lib/storage/index.js'"
+        },
+        {
+          "line": 382,
+          "content": "ERROR in ../node_modules/web-vitals/dist/web-vitals.js"
+        },
+        {
+          "line": 384,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/web-vitals/dist/web-vitals.js'"
+        },
+        {
+          "line": 385,
+          "content": "ERROR in ../node_modules/react-grid-layout/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-grid-layout/css/styles.css)"
+        },
+        {
+          "line": 387,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-grid-layout/css/styles.css'"
+        },
+        {
+          "line": 388,
+          "content": "ERROR in ../node_modules/react-resizable/css/styles.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!../node_modules/react-resizable/css/styles.css)"
+        },
+        {
+          "line": 390,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-resizable/css/styles.css'"
+        },
+        {
+          "line": 391,
+          "content": "ERROR in ../node_modules/react-dnd-html5-backend/dist/index.js"
+        },
+        {
+          "line": 393,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd-html5-backend/dist/index.js'"
+        },
+        {
+          "line": 394,
+          "content": "ERROR in ../node_modules/react-dnd/dist/index.js"
+        },
+        {
+          "line": 396,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/react-dnd/dist/index.js'"
+        },
+        {
+          "line": 397,
+          "content": "ERROR in ../node_modules/socket.io-client/build/esm/index.js"
+        },
+        {
+          "line": 399,
+          "content": "Error: ENOENT: no such file or directory, open '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules/socket.io-client/build/esm/index.js'"
+        },
+        {
+          "line": 400,
+          "content": "webpack compiled with 13 errors"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 3,
+          "content": "(node:45168) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
+        },
+        {
+          "line": 4,
+          "content": "(Use `node --trace-deprecation ...` to show where the warning was created)"
+        },
+        {
+          "line": 5,
+          "content": "(node:45168) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option."
+        }
+      ],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 257,
+      "warningCount": 3,
+      "infoCount": 0,
+      "patterns": {
+        "failed": 127
+      }
+    },
+    {
+      "file": "main-frontend.log",
+      "totalLines": 19,
+      "errors": [
+        {
+          "line": 6,
+          "content": "Error: Cannot find module 'typescript' from '/Users/phuccao/MIA.vn-Google-Integration-Platform/node_modules'"
+        }
+      ],
+      "warnings": [],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 1,
+      "warningCount": 0,
+      "infoCount": 0,
+      "patterns": {}
+    }
+  ],
+  "summary": {
+    "totalFiles": 8,
+    "totalLines": 706,
+    "totalErrors": 408,
+    "totalWarnings": 7
+  }
+}

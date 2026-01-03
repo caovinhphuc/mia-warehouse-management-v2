@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="MIA.vn Google Integration Platform - Comprehensive automation and data management system"
+    />
+    <meta
+      name="keywords"
+      content="react, google-sheets, google-drive, automation, mia-vn"
+    />
+    <meta name="author" content="MIA.vn Team" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MIA.vn Google Integration Platform" />
+    <meta
+      property="og:description"
+      content="Comprehensive automation and data management system"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="MIA.vn Google Integration Platform"
+    />
+    <meta
+      property="twitter:description"
+      content="Comprehensive automation and data management system"
+    />
+
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Ant Design Icons CSS (optional for better loading) -->
+    <style>
+      /* Loading spinner styles */
+      .loading-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+          "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #1890ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <title>MIA.vn Google Integration Platform</title>
+  </head>
+  <body>
+    <noscript>
+      <div
+        style="
+          text-align: center;
+          padding: 50px;
+          font-family: Arial, sans-serif;
+        "
+      >
+        <h2>JavaScript is Required</h2>
+        <p>You need to enable JavaScript to run this application.</p>
+        <p>
+          Please enable JavaScript in your browser settings and reload the page.
+        </p>
+      </div>
+    </noscript>
+
+    <div id="root">
+      <!-- Loading fallback while React app loads -->
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+
+    <!-- Vite will inject the main script here -->
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
+</html>

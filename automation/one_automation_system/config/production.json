@@ -1,0 +1,211 @@
+{
+  "system": {
+    "name": "ONE Automation System",
+    "version": "1.0.0",
+    "environment": "production",
+    "debug": false,
+    "log_level": "INFO"
+  },
+  "automation": {
+    "enabled": true,
+    "schedule_interval": 30,
+    "max_concurrent_jobs": 3,
+    "retry_attempts": 3,
+    "retry_delay": 60,
+    "timeout": 300,
+    "batch_size": 50
+  },
+  "browser": {
+    "headless": true,
+    "disable_images": true,
+    "disable_javascript": false,
+    "disable_css": false,
+    "disable_plugins": true,
+    "disable_extensions": true,
+    "window_size": "1920,1080",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "page_load_timeout": 30,
+    "implicit_wait": 10,
+    "explicit_wait": 20
+  },
+  "performance": {
+    "memory_limit": "2G",
+    "cpu_limit": "1.0",
+    "disk_quota": "10G",
+    "max_log_size": "100MB",
+    "max_log_files": 10,
+    "cleanup_interval": 24,
+    "backup_retention_days": 30
+  },
+  "security": {
+    "encrypt_logs": true,
+    "encrypt_data": true,
+    "secure_cookies": true,
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 60,
+      "burst_size": 10
+    },
+    "access_control": {
+      "enabled": true,
+      "allowed_ips": [],
+      "blocked_ips": []
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "health_check_interval": 30,
+    "metrics_collection": true,
+    "alerting": {
+      "enabled": true,
+      "email_alerts": true,
+      "slack_alerts": false,
+      "webhook_alerts": false
+    },
+    "dashboard": {
+      "enabled": true,
+      "port": 8000,
+      "auto_refresh": 30
+    }
+  },
+  "data": {
+    "export_formats": ["csv", "json", "xlsx"],
+    "compression": true,
+    "encryption": true,
+    "backup_frequency": "daily",
+    "retention_policy": {
+      "raw_data": 90,
+      "processed_data": 365,
+      "logs": 30,
+      "reports": 180
+    }
+  },
+  "notifications": {
+    "email": {
+      "enabled": true,
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "use_tls": true,
+      "from_address": "",
+      "to_addresses": [],
+      "subject_prefix": "[ONE Automation]"
+    },
+    "slack": {
+      "enabled": false,
+      "webhook_url": "",
+      "channel": "#automation",
+      "username": "ONE Automation Bot"
+    },
+    "webhook": {
+      "enabled": false,
+      "url": "",
+      "timeout": 30,
+      "retry_attempts": 3
+    }
+  },
+  "sla": {
+    "enabled": true,
+    "rules": [
+      {
+        "id": "default",
+        "name": "Default SLA",
+        "description": "Default SLA rule for all operations",
+        "warning_threshold": 80,
+        "critical_threshold": 95,
+        "enabled": true
+      },
+      {
+        "id": "urgent",
+        "name": "Urgent Orders",
+        "description": "SLA rule for urgent orders",
+        "warning_threshold": 60,
+        "critical_threshold": 80,
+        "enabled": true
+      }
+    ],
+    "alerting": {
+      "warning_emails": true,
+      "critical_emails": true,
+      "escalation_time": 15
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "file_rotation": {
+      "enabled": true,
+      "max_bytes": 10485760,
+      "backup_count": 10
+    },
+    "console_output": false,
+    "structured_logging": true,
+    "log_retention_days": 30
+  },
+  "api": {
+    "enabled": true,
+    "port": 8000,
+    "host": "0.0.0.0",
+    "cors_enabled": true,
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 100
+    },
+    "authentication": {
+      "enabled": false,
+      "api_key_required": false
+    }
+  },
+  "database": {
+    "type": "sqlite",
+    "path": "data/automation.db",
+    "backup_enabled": true,
+    "backup_frequency": "daily",
+    "connection_pool_size": 10
+  },
+  "cache": {
+    "enabled": true,
+    "type": "memory",
+    "max_size": "256MB",
+    "ttl": 3600,
+    "redis": {
+      "enabled": false,
+      "host": "localhost",
+      "port": 6379,
+      "db": 0,
+      "password": ""
+    }
+  },
+  "features": {
+    "web_interface": true,
+    "api_endpoints": true,
+    "dashboard": true,
+    "reports": true,
+    "backup": true,
+    "monitoring": true,
+    "alerting": true,
+    "scheduling": true,
+    "data_export": true,
+    "performance_metrics": true
+  },
+  "google_sheets": {
+    "enabled": true,
+    "spreadsheet_id": "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As",
+    "credentials_path": "/Users/phuccao/Service Account/react-integration-469009-25ca7002a525.json",
+    "config_sheet": "Config",
+    "sla_sheet": "SLA_Rules",
+    "logs_sheet": "Automation_Logs"
+  },
+  "google_drive": {
+    "enabled": true,
+    "folder_id": "1OpCHA1Qnf3AHYZqzRjzeiMxODoAeV4_V",
+    "credentials_path": "/Users/phuccao/Service Account/react-integration-469009-25ca7002a525.json",
+    "upload_enabled": true,
+    "auto_upload": true
+  },
+  "export": {
+    "format": "csv",
+    "output_directory": "data/inventory",
+    "compression": true,
+    "upload_to_drive": true
+  }
+}

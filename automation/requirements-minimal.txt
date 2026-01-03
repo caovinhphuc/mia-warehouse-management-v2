@@ -1,0 +1,21 @@
+# 🚀 MINIMAL REQUIREMENTS - Chỉ cần thiết để chạy automation
+# Cài nhanh: pip install -r requirements-minimal.txt
+
+# Core automation
+selenium==4.15.2
+webdriver-manager==4.0.1
+
+# Data processing
+pandas==2.3.0
+openpyxl==3.1.5
+
+# Utils
+python-dotenv==1.0.0
+requests==2.31.0
+
+# Optional nhưng recommended
+beautifulsoup4==4.12.2
+lxml==6.0.0
+colorlog==6.9.0
+
+# Tổng: 9 packages thay vì 136!

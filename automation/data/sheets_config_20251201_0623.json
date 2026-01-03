@@ -1,0 +1,95 @@
+{
+  "system": {
+    "one_url": "https://one.tga.com.vn",
+    "orders_url": "https://one.tga.com.vn/so/",
+    "inventory_url": "https://one.tga.com.vn/bi_inventory",
+    "inventory_sale_url": "https://one.tga.com.vn/bi_inventory/sale/",
+    "implicit_wait": 3,
+    "page_load_timeout": 15,
+    "login_timeout": 8,
+    "use_javascript_optimization": true,
+    "session_timeout": 3600,
+    "download_timeout": 60,
+    "headless": false
+  },
+  "credentials": {
+    "username": "${ONE_USERNAME}",
+    "password": "${ONE_PASSWORD}"
+  },
+  "logging": {
+    "level": "INFO",
+    "file_logging": true,
+    "console_logging": true,
+    "log_rotation": true,
+    "max_log_files": 30
+  },
+  "data_processing": {
+    "max_rows_for_testing": 2000,
+    "enable_fast_mode": false,
+    "product_details_batch_size": 50,
+    "export_formats": "['json', 'excel', 'csv']",
+    "data_validation": true,
+    "deduplication": true
+  },
+  "inventory": {
+    "enabled": true,
+    "download_excel": true,
+    "upload_to_drive": true,
+    "create_date_folders": true,
+    "folder_name_format": "Inventory_{date}",
+    "auto_refresh": true,
+    "wait_after_refresh": 10,
+    "export_button_selectors": [
+      "button:contains('Xuất file Excel')",
+      "a:contains('Xuất file Excel')",
+      "button:contains('Export Excel')",
+      "a:contains('Export Excel')"
+    ]
+  },
+  "notifications": {
+    "email": "{'enabled': True, 'smtp_server': 'smtp.gmail.com', 'smtp_port': 587, 'sender_email': '${EMAIL_ADDRESS}', 'sender_password': '${EMAIL_PASSWORD}', 'recipients': ['Phuc.cao@mia.vn', 'caovinhphuc.ios@gmail.com'], 'send_on_success': True, 'send_on_failure': True}",
+    "telegram": "{'enabled': False, 'bot_token': '${TELEGRAM_BOT_TOKEN}', 'chat_id': '${TELEGRAM_CHAT_ID}'}",
+    "slack": "{'enabled': False, 'webhook_url': '${SLACK_WEBHOOK_URL}'}"
+  },
+  "scheduling": {
+    "enabled": false,
+    "interval_hours": 2,
+    "inventory_schedule": "{'enabled': False, 'time': '08:00', 'timezone': 'Asia/Ho_Chi_Minh'}"
+  },
+  "google_sheets": {
+    "enabled": true,
+    "spreadsheet_id": "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As",
+    "credentials_file": "${GOOGLE_SERVICE_ACCOUNT_KEY_PATH}",
+    "auto_sync": true,
+    "worksheets": "{'config': 'Config', 'sla_rules': 'SLA_Rules', 'automation_logs': 'Automation_Logs', 'inventory_logs': 'Inventory_Logs'}",
+    "rate_limit": "{'enabled': True, 'requests_per_minute': 60}"
+  },
+  "google_drive": {
+    "enabled": true,
+    "credentials_file": "${GOOGLE_SERVICE_ACCOUNT_KEY_PATH}",
+    "upload_folder": "Automation_Exports",
+    "create_date_folders": true,
+    "share_with_emails": "['Phuc.cao@mia.vn']",
+    "permissions": "reader"
+  },
+  "automation": {
+    "target_records": 23452,
+    "batch_size": 10,
+    "retry_count": 3,
+    "page_wait_time": 5,
+    "session_strategy": "fresh_per_page",
+    "product_extraction": true
+  },
+  "api_server": {
+    "port": 8000,
+    "host": "0.0.0.0",
+    "debug": false,
+    "cors_enabled": true
+  },
+  "health_check": {
+    "enabled": true,
+    "interval_seconds": 300,
+    "check_dependencies": true,
+    "check_google_services": true
+  }
+}

@@ -1,0 +1,18 @@
+# Redirect old documentation URLs to GitHub
+/README.md https://github.com/caovinhphuc/react-google-integration/blob/main/README.md 301!
+/QUICK_SETUP.md https://github.com/caovinhphuc/react-google-integration/blob/main/docs/setup/QUICK_SETUP.md 301!
+/PROJECT_SUMMARY.md https://github.com/caovinhphuc/react-google-integration/blob/main/docs/project/PROJECT_SUMMARY.md 301!
+/PROJECT_COMPLETE.md https://github.com/caovinhphuc/react-google-integration/blob/main/docs/project/PROJECT_COMPLETE.md 301!
+/DEPLOYMENT.md https://github.com/caovinhphuc/react-google-integration/blob/main/docs/guides/DEPLOYMENT.md 301!
+/GOOGLE_IDS_SETUP.md https://github.com/caovinhphuc/react-google-integration/blob/main/docs/setup/GOOGLE_IDS_SETUP.md 301!
+/GITHUB_SETUP.md https://github.com/caovinhphuc/react-google-integration/blob/main/docs/setup/GITHUB_SETUP.md 301!
+/FILE_LIST.md https://github.com/caovinhphuc/react-google-integration/blob/main/docs/project/FILE_LIST.md 301!
+
+# Redirect new docs structure URLs to GitHub  
+/docs/README.md https://github.com/caovinhphuc/react-google-integration/blob/main/docs/README.md 301!
+/docs/setup/* https://github.com/caovinhphuc/react-google-integration/blob/main/docs/setup/:splat 301!
+/docs/guides/* https://github.com/caovinhphuc/react-google-integration/blob/main/docs/guides/:splat 301!
+/docs/project/* https://github.com/caovinhphuc/react-google-integration/blob/main/docs/project/:splat 301!
+
+# SPA fallback - all other routes go to React app
+/* /index.html 200

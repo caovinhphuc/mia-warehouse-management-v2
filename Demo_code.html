@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ONE System Dashboard - Demo</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/antd@5.8.0/dist/reset.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/antd@5.8.0/dist/antd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/recharts@2.7.0/umd/Recharts.js"></script>
+    <script src="https://unpkg.com/dayjs@1.11.0/dayjs.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+      }
+
+      .dashboard-container {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 260px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar.collapsed {
+        width: 80px;
+      }
+
+      .sidebar-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+      }
+
+      .sidebar-header h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .sidebar-menu {
+        list-style: none;
+        padding: 20px 0;
+      }
+
+      .sidebar-menu li {
+        margin-bottom: 5px;
+      }
+
+      .sidebar-menu a {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+      }
+
+      .sidebar-menu a:hover,
+      .sidebar-menu a.active {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-left-color: #fff;
+      }
+
+      .sidebar-menu i {
+        margin-right: 12px;
+        width: 20px;
+        text-align: center;
+      }
+
+      .main-content {
+        flex: 1;
+        margin-left: 260px;
+        padding: 0;
+        transition: margin-left 0.3s ease;
+      }
+
+      .main-content.expanded {
+        margin-left: 80px;
+      }
+
+      .header {
+        background: white;
+        padding: 0 30px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
+      }
+
+      .header-toggle {
+        background: none;
+        border: none;
+        font-size: 20px;
+        margin-right: 20px;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .header-toggle:hover {
+        background: #f0f0f0;
+      }
+
+      .header-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        background: #f0f0f0;
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+      }
+
+      .content {
+        padding: 30px;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 1px solid #f0f0f0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-card h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .stat-card p {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+      }
+
+      .stat-card .trend {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.85rem;
+      }
+
+      .trend.up {
+        color: #52c41a;
+      }
+
+      .trend.down {
+        color: #f5222d;
+      }
+
+      .chart-container {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .chart-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .realtime-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f6ffed;
+        color: #52c41a;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        border: 1px solid #b7eb8f;
+      }
+
+      .realtime-dot {
+        width: 8px;
+        height: 8px;
+        background: #52c41a;
+        border-radius: 50%;
+        animation: pulse 1s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .file-upload-area {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        text-align: center;
+        border: 2px dashed #d9d9d9;
+        transition: all 0.3s ease;
+      }
+
+      .file-upload-area:hover {
+        border-color: #1890ff;
+        background: #f0f9ff;
+      }
+
+      .file-upload-area.dragover {
+        border-color: #1890ff;
+        background: #e6f7ff;
+      }
+
+      .upload-icon {
+        font-size: 48px;
+        color: #1890ff;
+        margin-bottom: 20px;
+      }
+
+      .upload-text {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .upload-hint {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .action-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .action-card:hover {
+        transform: translateY(-3px);
+        border-color: #1890ff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .action-icon {
+        font-size: 32px;
+        margin-bottom: 15px;
+        color: #1890ff;
+      }
+
+      .action-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .action-desc {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .notification-panel {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-height: 400px;
+        overflow-y: auto;
+      }
+
+      .notification-item {
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .notification-item:last-child {
+        border-bottom: none;
+      }
+
+      .notification-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+      }
+
+      .notification-icon.info {
+        background: #1890ff;
+      }
+
+      .notification-icon.success {
+        background: #52c41a;
+      }
+
+      .notification-icon.warning {
+        background: #faad14;
+      }
+
+      .notification-icon.error {
+        background: #f5222d;
+      }
+
+      .notification-content {
+        flex: 1;
+      }
+
+      .notification-title {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      .notification-message {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+      }
+
+      .notification-time {
+        color: #999;
+        font-size: 0.8rem;
+      }
+
+      .auth-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+      }
+
+      .auth-form {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        width: 400px;
+        max-width: 90vw;
+      }
+
+      .auth-title {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 30px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #333;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #d9d9d9;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: #1890ff;
+      }
+
+      .google-signin-btn {
+        width: 100%;
+        padding: 12px;
+        background: #4285f4;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .google-signin-btn:hover {
+        background: #3367d6;
+      }
+
+      .dark-theme {
+        background: #1a1a1a;
+        color: #fff;
+      }
+
+      .dark-theme .header {
+        background: #2d2d2d;
+        color: #fff;
+      }
+
+      .dark-theme .stat-card,
+      .dark-theme .chart-container,
+      .dark-theme .file-upload-area,
+      .dark-theme .action-card,
+      .dark-theme .notification-panel {
+        background: #2d2d2d;
+        color: #fff;
+        border-color: #404040;
+      }
+
+      .dark-theme .form-input {
+        background: #2d2d2d;
+        color: #fff;
+        border-color: #404040;
+      }
+
+      @media (max-width: 768px) {
+        .sidebar {
+          width: 100%;
+          transform: translateX(-100%);
+          position: fixed;
+        }
+
+        .sidebar.mobile-open {
+          transform: translateX(0);
+        }
+
+        .main-content {
+          margin-left: 0;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .quick-actions {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .content {
+          padding: 20px 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .quick-actions {
+          grid-template-columns: 1fr;
+        }
+
+        .auth-form {
+          padding: 30px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { useState, useEffect, useCallback, useRef } = React;
+
+      // Mock data
+      const mockData = {
+        stats: [
+          {
+            title: "Tổng Đơn Hàng",
+            value: "2,345",
+            trend: "+12%",
+            type: "up",
+            color: "#1890ff",
+          },
+          {
+            title: "Tồn Kho",
+            value: "98,765",
+            trend: "-5%",
+            type: "down",
+            color: "#52c41a",
+          },
+          {
+            title: "Nhân Viên",
+            value: "156",
+            trend: "+8%",
+            type: "up",
+            color: "#faad14",
+          },
+          {
+            title: "Doanh Thu",
+            value: "₫12.5M",
+            trend: "+25%",
+            type: "up",
+            color: "#f5222d",
+          },
+        ],
+        notifications: [
+          {
+            id: 1,
+            type: "info",
+            title: "Cập nhật hệ thống",
+            message: "Phiên bản mới đã được cập nhật",
+            time: "2 phút trước",
+          },
+          {
+            id: 2,
+            type: "warning",
+            title: "Cảnh báo tồn kho",
+            message: "Sản phẩm ABC sắp hết hàng",
+            time: "15 phút trước",
+          },
+          {
+            id: 3,
+            type: "success",
+            title: "Đơn hàng mới",
+            message: "Có 5 đơn hàng mới cần xử lý",
+            time: "30 phút trước",
+          },
+          {
+            id: 4,
+            type: "error",
+            title: "Lỗi kết nối",
+            message: "Không thể kết nối tới ONE System",
+            time: "1 giờ trước",
+          },
+        ],
+        chartData: [
+          { name: "T1", orders: 400, revenue: 2400 },
+          { name: "T2", orders: 300, revenue: 1398 },
+          { name: "T3", orders: 200, revenue: 9800 },
+          { name: "T4", orders: 278, revenue: 3908 },
+          { name: "T5", orders: 189, revenue: 4800 },
+          { name: "T6", orders: 239, revenue: 3800 },
+          { name: "T7", orders: 349, revenue: 4300 },
+        ],
+      };
+
+      // Components
+      const AuthModal = ({ isOpen, onClose, onLogin }) => {
+        const [email, setEmail] = useState("");
+        const [password, setPassword] = useState("");
+
+        const handleGoogleLogin = () => {
+          // Giả lập đăng nhập Google thành công
+          onLogin({
+            name: "Nguyễn Văn A",
+            email: "admin@onesystem.com",
+            avatar: "A",
+          });
+          onClose();
+        };
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          if (email && password) {
+            onLogin({ name: "Nguyễn Văn A", email: email, avatar: "A" });
+            onClose();
+          }
+        };
+
+        if (!isOpen) return null;
+
+        return (
+          <div className="auth-modal">
+            <form className="auth-form" onSubmit={handleSubmit}>
+              <h2 className="auth-title">Đăng nhập ONE System</h2>
+
+              <div className="form-group">
+                <label className="form-label">Email</label>
+                <input
+                  type="email"
+                  className="form-input"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Nhập email của bạn"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Mật khẩu</label>
+                <input
+                  type="password"
+                  className="form-input"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Nhập mật khẩu"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="google-signin-btn"
+                style={{ marginBottom: "15px" }}
+              >
+                <i className="fas fa-sign-in-alt"></i>
+                Đăng nhập
+              </button>
+
+              <button
+                type="button"
+                className="google-signin-btn"
+                onClick={handleGoogleLogin}
+              >
+                <i className="fab fa-google"></i>
+                Đăng nhập với Google
+              </button>
+            </form>
+          </div>
+        );
+      };
+
+      const FileUpload = ({ onUpload }) => {
+        const [isDragOver, setIsDragOver] = useState(false);
+        const fileInputRef = useRef(null);
+
+        const handleDragOver = (e) => {
+          e.preventDefault();
+          setIsDragOver(true);
+        };
+
+        const handleDragLeave = (e) => {
+          e.preventDefault();
+          setIsDragOver(false);
+        };
+
+        const handleDrop = (e) => {
+          e.preventDefault();
+          setIsDragOver(false);
+          const files = Array.from(e.dataTransfer.files);
+          onUpload(files);
+        };
+
+        const handleFileSelect = (e) => {
+          const files = Array.from(e.target.files);
+          onUpload(files);
+        };
+
+        const handleClick = () => {
+          fileInputRef.current.click();
+        };
+
+        return (
+          <div
+            className={`file-upload-area ${isDragOver ? "dragover" : ""}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onClick={handleClick}
+          >
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileSelect}
+              multiple
+              style={{ display: "none" }}
+            />
+            <div className="upload-icon">
+              <i className="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div className="upload-text">
+              Kéo thả file vào đây hoặc click để chọn
+            </div>
+            <div className="upload-hint">
+              Hỗ trợ: CSV, XLSX, JSON, PDF, ZIP (Tối đa 100MB)
+            </div>
+          </div>
+        );
+      };
+
+      const Dashboard = () => {
+        const [user, setUser] = useState(null);
+        const [showAuthModal, setShowAuthModal] = useState(false);
+        const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+        const [darkTheme, setDarkTheme] = useState(false);
+        const [activeMenu, setActiveMenu] = useState("dashboard");
+        const [realtimeData, setRealtimeData] = useState(mockData.chartData);
+        const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+        // Giả lập real-time data updates
+        useEffect(() => {
+          const interval = setInterval(() => {
+            setRealtimeData((prevData) => {
+              return prevData.map((item) => ({
+                ...item,
+                orders: Math.max(
+                  0,
+                  item.orders + Math.floor(Math.random() * 20) - 10
+                ),
+                revenue: Math.max(
+                  0,
+                  item.revenue + Math.floor(Math.random() * 1000) - 500
+                ),
+              }));
+            });
+          }, 3000);
+
+          return () => clearInterval(interval);
+        }, []);
+
+        // Kiểm tra xác thực
+        useEffect(() => {
+          const savedUser = localStorage.getItem("oneSystemUser");
+          if (savedUser) {
+            setUser(JSON.parse(savedUser));
+          } else {
+            setShowAuthModal(true);
+          }
+        }, []);
+
+        const handleLogin = (userData) => {
+          setUser(userData);
+          localStorage.setItem("oneSystemUser", JSON.stringify(userData));
+        };
+
+        const handleLogout = () => {
+          setUser(null);
+          localStorage.removeItem("oneSystemUser");
+          setShowAuthModal(true);
+        };
+
+        const handleFileUpload = (files) => {
+          console.log("Files uploaded:", files);
+          // Giả lập upload process
+          alert(`Đã tải lên ${files.length} file thành công!`);
+        };
+
+        const menuItems = [
+          {
+            id: "dashboard",
+            icon: "fas fa-tachometer-alt",
+            label: "Dashboard",
+          },
+          { id: "orders", icon: "fas fa-shopping-cart", label: "Đơn hàng" },
+          { id: "inventory", icon: "fas fa-boxes", label: "Tồn kho" },
+          { id: "employees", icon: "fas fa-users", label: "Nhân viên" },
+          { id: "reports", icon: "fas fa-chart-line", label: "Báo cáo" },
+          { id: "files", icon: "fas fa-folder", label: "Quản lý File" },
+          { id: "settings", icon: "fas fa-cog", label: "Cài đặt" },
+        ];
+
+        const quickActions = [
+          {
+            id: "new-order",
+            icon: "fas fa-plus-circle",
+            title: "Tạo đơn hàng",
+            desc: "Thêm đơn hàng mới",
+          },
+          {
+            id: "sync-data",
+            icon: "fas fa-sync",
+            title: "Đồng bộ dữ liệu",
+            desc: "Cập nhật từ ONE System",
+          },
+          {
+            id: "export-report",
+            icon: "fas fa-download",
+            title: "Xuất báo cáo",
+            desc: "Tải báo cáo Excel/PDF",
+          },
+          {
+            id: "send-notification",
+            icon: "fas fa-bell",
+            title: "Gửi thông báo",
+            desc: "Email/Telegram/Zalo",
+          },
+        ];
+
+        if (!user) {
+          return (
+            <AuthModal
+              isOpen={showAuthModal}
+              onClose={() => setShowAuthModal(false)}
+              onLogin={handleLogin}
+            />
+          );
+        }
+
+        return (
+          <div
+            className={`dashboard-container ${darkTheme ? "dark-theme" : ""}`}
+          >
+            {/* Sidebar */}
+            <nav
+              className={`sidebar ${sidebarCollapsed ? "collapsed" : ""} ${
+                mobileMenuOpen ? "mobile-open" : ""
+              }`}
+            >
+              <div className="sidebar-header">
+                <h2>{sidebarCollapsed ? "ONE" : "ONE System"}</h2>
+                <p style={{ fontSize: "0.8rem", opacity: 0.8 }}>
+                  {sidebarCollapsed ? "v2.0" : "Dashboard v2.0"}
+                </p>
+              </div>
+              <ul className="sidebar-menu">
+                {menuItems.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href="#"
+                      className={activeMenu === item.id ? "active" : ""}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setActiveMenu(item.id);
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <i className={item.icon}></i>
+                      <span>{item.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Main Content */}
+            <main
+              className={`main-content ${sidebarCollapsed ? "expanded" : ""}`}
+            >
+              {/* Header */}
+              <header className="header">
+                <div className="header-left">
+                  <button
+                    className="header-toggle"
+                    onClick={() => {
+                      if (window.innerWidth <= 768) {
+                        setMobileMenuOpen(!mobileMenuOpen);
+                      } else {
+                        setSidebarCollapsed(!sidebarCollapsed);
+                      }
+                    }}
+                  >
+                    <i className="fas fa-bars"></i>
+                  </button>
+                  <h1 className="header-title">
+                    {menuItems.find((item) => item.id === activeMenu)?.label ||
+                      "Dashboard"}
+                  </h1>
+                </div>
+                <div className="header-right">
+                  <span className="realtime-indicator">
+                    <span className="realtime-dot"></span>
+                    Real-time
+                  </span>
+                  <button
+                    className="theme-toggle"
+                    onClick={() => setDarkTheme(!darkTheme)}
+                  >
+                    <i className={darkTheme ? "fas fa-sun" : "fas fa-moon"}></i>
+                  </button>
+                  <div className="user-profile">
+                    <div className="user-avatar">{user.avatar}</div>
+                    <div>
+                      <div style={{ fontWeight: "600" }}>{user.name}</div>
+                      <div style={{ fontSize: "0.8rem", color: "#666" }}>
+                        {user.email}
+                      </div>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        padding: "5px",
+                        marginLeft: "10px",
+                      }}
+                    >
+                      <i className="fas fa-sign-out-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </header>
+
+              {/* Content */}
+              <div className="content">
+                {activeMenu === "dashboard" && (
+                  <>
+                    {/* Stats Grid */}
+                    <div className="stats-grid">
+                      {mockData.stats.map((stat, index) => (
+                        <div key={index} className="stat-card">
+                          <h3 style={{ color: stat.color }}>{stat.value}</h3>
+                          <p>{stat.title}</p>
+                          <div className={`trend ${stat.type}`}>
+                            <i
+                              className={`fas fa-arrow-${
+                                stat.type === "up" ? "up" : "down"
+                              }`}
+                            ></i>
+                            {stat.trend} so với tháng trước
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Real-time Chart */}
+                    <div className="chart-container">
+                      <h3 className="chart-title">Biểu đồ thời gian thực</h3>
+                      <div style={{ width: "100%", height: "300px" }}>
+                        <p
+                          style={{
+                            textAlign: "center",
+                            color: "#666",
+                            padding: "50px",
+                          }}
+                        >
+                          📊 Biểu đồ real-time sẽ được hiển thị ở đây
+                          <br />
+                          (Sử dụng Recharts hoặc Chart.js)
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Quick Actions */}
+                    <div className="quick-actions">
+                      {quickActions.map((action) => (
+                        <div key={action.id} className="action-card">
+                          <div className="action-icon">
+                            <i className={action.icon}></i>
+                          </div>
+                          <div className="action-title">{action.title}</div>
+                          <div className="action-desc">{action.desc}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Notifications */}
+                    <div className="notification-panel">
+                      <h3 style={{ marginBottom: "20px" }}>
+                        Thông báo gần đây
+                      </h3>
+                      {mockData.notifications.map((notification) => (
+                        <div
+                          key={notification.id}
+                          className="notification-item"
+                        >
+                          <div
+                            className={`notification-icon ${notification.type}`}
+                          >
+                            <i
+                              className={`fas fa-${
+                                notification.type === "info"
+                                  ? "info-circle"
+                                  : notification.type === "success"
+                                  ? "check-circle"
+                                  : notification.type === "warning"
+                                  ? "exclamation-triangle"
+                                  : "times-circle"
+                              }`}
+                            ></i>
+                          </div>
+                          <div className="notification-content">
+                            <div className="notification-title">
+                              {notification.title}
+                            </div>
+                            <div className="notification-message">
+                              {notification.message}
+                            </div>
+                            <div className="notification-time">
+                              {notification.time}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {activeMenu === "files" && (
+                  <>
+                    <FileUpload onUpload={handleFileUpload} />
+                    <div className="chart-container">
+                      <h3 className="chart-title">Quản lý File</h3>
+                      <p>Tính năng upload/download file với hỗ trợ:</p>
+                      <ul style={{ marginTop: "15px", paddingLeft: "20px" }}>
+                        <li>✅ Drag & Drop interface</li>
+                        <li>✅ Chunked upload cho file lớn</li>
+                        <li>
+                          ✅ Hỗ trợ nhiều định dạng: CSV, XLSX, JSON, PDF, ZIP
+                        </li>
+                        <li>✅ Progress tracking real-time</li>
+                        <li>✅ Integration với Google Drive/AWS S3</li>
+                        <li>✅ File preview và metadata</li>
+                      </ul>
+                    </div>
+                  </>
+                )}
+
+                {activeMenu !== "dashboard" && activeMenu !== "files" && (
+                  <div className="chart-container">
+                    <h3 className="chart-title">
+                      {menuItems.find((item) => item.id === activeMenu)?.label}
+                    </h3>
+                    <p>Trang này đang được phát triển...</p>
+                    <div
+                      style={{
+                        padding: "40px",
+                        textAlign: "center",
+                        color: "#666",
+                      }}
+                    >
+                      <i
+                        className={
+                          menuItems.find((item) => item.id === activeMenu)?.icon
+                        }
+                        style={{ fontSize: "64px", marginBottom: "20px" }}
+                      ></i>
+                      <p>
+                        Module sẽ bao gồm các tính năng chính của hệ thống ONE
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </main>
+          </div>
+        );
+      };
+
+      // Render App
+      ReactDOM.render(<Dashboard />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

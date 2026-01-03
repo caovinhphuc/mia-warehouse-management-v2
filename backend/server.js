@@ -1,0 +1,698 @@
+/* eslint-disable */
+/**
+ * Backend Server - Express API Server with WebSocket
+ * Port: 3001 (hoặc từ process.env.PORT)
+ */
+
+const express = require("express");
+const http = require("http");
+const cors = require("cors");
+const path = require("path");
+require("dotenv").config({ path: path.join(__dirname, "../.env") });
+const { formatVietnameseDateTime } = require("./utils/dateUtils");
+
+const app = express();
+const server = http.createServer(app);
+const PORT = process.env.PORT || 3001;
+
+// Cleanup expired sessions periodically (every hour)
+const authService = require("./services/authService");
+setInterval(() => {
+  try {
+    const cleanedCount = authService.cleanupExpiredSessions();
+    if (cleanedCount > 0) {
+      console.log(`🧹 Cleaned up ${cleanedCount} expired sessions`);
+    }
+  } catch (error) {
+    console.error("Error cleaning up expired sessions:", error);
+  }
+}, 60 * 60 * 1000); // Every hour
+
+// Initialize Socket.io
+const socketService = require("./services/socketService");
+const io = socketService.init(server);
+
+// Initialize Native WebSocket (WS) for testing
+const wsService = require("./services/wsService");
+wsService.init(server);
+
+// Rate limiting (simple in-memory)
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+const RATE_LIMIT_MAX = 100; // 100 requests per minute
+
+const rateLimit = (req, res, next) => {
+  const ip = req.ip || req.connection.remoteAddress;
+  const now = Date.now();
+
+  if (!rateLimitMap.has(ip)) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return next();
+  }
+
+  const limit = rateLimitMap.get(ip);
+
+  if (now > limit.resetTime) {
+    limit.count = 1;
+    limit.resetTime = now + RATE_LIMIT_WINDOW;
+    return next();
+  }
+
+  if (limit.count >= RATE_LIMIT_MAX) {
+    return res.status(429).json({
+      success: false,
+      error: "Too many requests. Please try again later.",
+    });
+  }
+
+  limit.count++;
+  next();
+};
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Apply rate limiting to AI routes
+app.use("/api/ai", rateLimit);
+
+// Routes
+const aiRoutes = require("./routes/aiRoutes");
+const sheetsRoutes = require("./routes/sheetsRoutes");
+const driveRoutes = require("./routes/driveRoutes");
+const alertRoutes = require("./routes/alertRoutes");
+const scriptRoutes = require("./routes/scriptRoutes");
+const automationRoutes = require("./routes/automationRoutes");
+const customMetricsRoutes = require("./routes/custom-metrics");
+const retailMetricsRoutes = require("./routes/retail-metrics");
+const authRoutes = require("./routes/authRoutes");
+const auditRoutes = require("./routes/auditRoutes");
+const webhookRoutes = require("./routes/webhookRoutes");
+
+// API Routes
+app.use("/api/auth", authRoutes); // Authentication routes (MFA, SSO, RBAC)
+app.use("/api/audit", auditRoutes); // Audit logging routes
+app.use("/api/ai", aiRoutes);
+app.use("/api/ml", aiRoutes); // ML endpoints use same routes as AI
+app.use("/api/sheets", sheetsRoutes);
+app.use("/api/drive", driveRoutes);
+app.use("/api/alerts", alertRoutes);
+app.use("/api/script", scriptRoutes); // Google Apps Script routes
+app.use("/api/automation", automationRoutes); // Automation routes
+app.use("/api/webhook", webhookRoutes); // Webhook routes
+app.use("/api/custom", customMetricsRoutes); // Custom business metrics
+app.use("/api/retail", retailMetricsRoutes); // MIA Retail specific metrics
+
+// Health check with actual service verification
+app.get("/health", async (req, res) => {
+  const now = new Date();
+  const healthStatus = {
+    status: "healthy",
+    timestamp: now.toISOString(),
+    timestampFormatted: formatVietnameseDateTime(now),
+    version: "1.0.0",
+    services: {},
+    errors: [],
+  };
+
+  try {
+    // Check Google Sheets - Comprehensive Health Check
+    try {
+      const sheetsService = require("./services/googleSheetsService");
+      await sheetsService.initialize();
+      const sheetId =
+        process.env.GOOGLE_SHEET_ID ||
+        process.env.VITE_GOOGLE_SHEETS_SPREADSHEET_ID;
+
+      if (sheetId) {
+        const sheetsHealth = {
+          status: "healthy",
+          message: "Connected",
+          functions: {},
+          metadata: {},
+        };
+
+        // Test 1: Get Metadata (includes total sheets count)
+        try {
+          const metadata = await sheetsService.getSheetMetadata(sheetId);
+          sheetsHealth.metadata = {
+            title: metadata.title,
+            totalSheets: metadata.sheets.length,
+            sheets: metadata.sheets.map((s) => ({
+              title: s.title,
+              sheetId: s.sheetId,
+              rows: s.gridProperties?.rowCount || 0,
+              cols: s.gridProperties?.columnCount || 0,
+            })),
+          };
+          sheetsHealth.functions.getMetadata = {
+            status: "ok",
+            message: "Working",
+          };
+        } catch (error) {
+          sheetsHealth.functions.getMetadata = {
+            status: "error",
+            message: error.message,
+          };
+          sheetsHealth.status = "degraded";
+        }
+
+        // Test 2: Read Sheet
+        try {
+          await sheetsService.readSheet("A1:A1", sheetId);
+          sheetsHealth.functions.readSheet = {
+            status: "ok",
+            message: "Working",
+          };
+        } catch (error) {
+          sheetsHealth.functions.readSheet = {
+            status: "error",
+            message: error.message,
+          };
+          sheetsHealth.status = "degraded";
+        }
+
+        // Test 3: Write Sheet (test write to a safe range)
+        try {
+          const testRange = "ZZ999:ZZ999"; // Safe test range
+          await sheetsService.writeSheet(
+            testRange,
+            [["Health Check Test"]],
+            sheetId
+          );
+          // Clean up test data
+          await sheetsService.clearSheet(testRange, sheetId);
+          sheetsHealth.functions.writeSheet = {
+            status: "ok",
+            message: "Working",
+          };
+        } catch (error) {
+          sheetsHealth.functions.writeSheet = {
+            status: "error",
+            message: error.message,
+          };
+          sheetsHealth.status = "degraded";
+        }
+
+        // Test 4: Append Sheet
+        try {
+          const testRange = "Sheet1!A:Z"; // Use first sheet
+          await sheetsService.appendToSheet(
+            testRange,
+            [["Health Check Append Test"]],
+            sheetId
+          );
+          sheetsHealth.functions.appendToSheet = {
+            status: "ok",
+            message: "Working",
+          };
+        } catch (error) {
+          sheetsHealth.functions.appendToSheet = {
+            status: "error",
+            message: error.message,
+          };
+          sheetsHealth.status = "degraded";
+        }
+
+        // Test 5: Clear Sheet
+        try {
+          const testRange = "ZZ998:ZZ998"; // Safe test range
+          await sheetsService.clearSheet(testRange, sheetId);
+          sheetsHealth.functions.clearSheet = {
+            status: "ok",
+            message: "Working",
+          };
+        } catch (error) {
+          sheetsHealth.functions.clearSheet = {
+            status: "error",
+            message: error.message,
+          };
+          sheetsHealth.status = "degraded";
+        }
+
+        // Test 6: Add Sheet (create test sheet, then we can delete it if needed)
+        try {
+          const testSheetName = `HealthCheck_${Date.now()}`;
+          const newSheet = await sheetsService.addSheet(testSheetName, sheetId);
+          sheetsHealth.functions.addSheet = {
+            status: "ok",
+            message: "Working",
+            testSheetCreated: {
+              sheetId: newSheet.sheetId,
+              title: newSheet.title,
+            },
+          };
+        } catch (error) {
+          sheetsHealth.functions.addSheet = {
+            status: "error",
+            message: error.message,
+          };
+          sheetsHealth.status = "degraded";
+        }
+
+        // Count successful functions
+        const successfulFunctions = Object.values(
+          sheetsHealth.functions
+        ).filter((f) => f.status === "ok").length;
+        const totalFunctions = Object.keys(sheetsHealth.functions).length;
+
+        sheetsHealth.functionsSummary = {
+          total: totalFunctions,
+          working: successfulFunctions,
+          failed: totalFunctions - successfulFunctions,
+        };
+
+        healthStatus.services.googleSheets = sheetsHealth;
+      } else {
+        healthStatus.services.googleSheets = {
+          status: "warning",
+          message: "No sheet ID configured",
+        };
+        healthStatus.warnings.push("Google Sheets: No sheet ID configured");
+        healthStatus.status = "degraded";
+      }
+    } catch (error) {
+      healthStatus.services.googleSheets = {
+        status: "unhealthy",
+        message: error.message,
+      };
+      healthStatus.errors.push(`Google Sheets: ${error.message}`);
+      healthStatus.status = "degraded";
+    }
+
+    // Check Google Drive - Comprehensive Health Check
+    try {
+      const driveService = require("./services/googleDriveService");
+      await driveService.initialize();
+
+      const driveHealth = {
+        status: "healthy",
+        message: "Connected",
+        functions: {},
+        info: {},
+      };
+
+      // Test 1: About (get Drive info)
+      try {
+        const aboutData = await driveService.about();
+        driveHealth.info = {
+          user: aboutData.user?.displayName || "Service Account",
+          email: aboutData.user?.emailAddress || "N/A",
+          storageQuota: aboutData.storageQuota || {},
+        };
+        driveHealth.functions.about = { status: "ok", message: "Working" };
+      } catch (error) {
+        driveHealth.functions.about = {
+          status: "error",
+          message: error.message,
+        };
+        driveHealth.status = "degraded";
+      }
+
+      // Test 2: List Files
+      try {
+        const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+        const filesList = await driveService.listFiles(folderId, 5);
+        driveHealth.functions.listFiles = {
+          status: "ok",
+          message: "Working",
+          filesCount: filesList.files?.length || 0,
+        };
+      } catch (error) {
+        driveHealth.functions.listFiles = {
+          status: "error",
+          message: error.message,
+        };
+        driveHealth.status = "degraded";
+      }
+
+      // Test 3: Create Folder (test folder, can be cleaned up later)
+      try {
+        const testFolderName = `HealthCheck_${Date.now()}`;
+        const newFolder = await driveService.createFolder(testFolderName);
+        driveHealth.functions.createFolder = {
+          status: "ok",
+          message: "Working",
+          testFolderCreated: {
+            id: newFolder.id,
+            name: newFolder.name,
+          },
+        };
+      } catch (error) {
+        driveHealth.functions.createFolder = {
+          status: "error",
+          message: error.message,
+        };
+        driveHealth.status = "degraded";
+      }
+
+      // Test 4: Get File Metadata (if folder ID exists)
+      try {
+        const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+        if (folderId) {
+          const metadata = await driveService.getFileMetadata(folderId);
+          driveHealth.functions.getFileMetadata = {
+            status: "ok",
+            message: "Working",
+            testFile: {
+              id: metadata.id,
+              name: metadata.name,
+              mimeType: metadata.mimeType,
+            },
+          };
+        } else {
+          driveHealth.functions.getFileMetadata = {
+            status: "skipped",
+            message: "No folder ID configured for test",
+          };
+        }
+      } catch (error) {
+        driveHealth.functions.getFileMetadata = {
+          status: "error",
+          message: error.message,
+        };
+        driveHealth.status = "degraded";
+      }
+
+      // Test 5: Share with Email (test with a safe email if configured)
+      try {
+        const testEmail = process.env.HEALTH_CHECK_TEST_EMAIL;
+        const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+        if (testEmail && folderId) {
+          // Try to share (may fail if permission exists, that's ok)
+          try {
+            await driveService.shareWithEmail(folderId, testEmail, "reader");
+            driveHealth.functions.shareWithEmail = {
+              status: "ok",
+              message: "Working",
+            };
+          } catch (shareError) {
+            // If permission already exists, that's also ok
+            if (shareError.message.includes("already exists")) {
+              driveHealth.functions.shareWithEmail = {
+                status: "ok",
+                message: "Working (permission may already exist)",
+              };
+            } else {
+              throw shareError;
+            }
+          }
+        } else {
+          driveHealth.functions.shareWithEmail = {
+            status: "skipped",
+            message: "Test email or folder ID not configured",
+          };
+        }
+      } catch (error) {
+        driveHealth.functions.shareWithEmail = {
+          status: "error",
+          message: error.message,
+        };
+        driveHealth.status = "degraded";
+      }
+
+      // Test 6: Rename File (skip if no test file available)
+      try {
+        // This test is optional - we'll skip it to avoid modifying real files
+        driveHealth.functions.renameFile = {
+          status: "skipped",
+          message: "Skipped to avoid modifying real files",
+        };
+      } catch (error) {
+        driveHealth.functions.renameFile = {
+          status: "error",
+          message: error.message,
+        };
+      }
+
+      // Test 7: Download File (skip if no test file available)
+      try {
+        // This test is optional - we'll skip it to avoid downloading large files
+        driveHealth.functions.downloadFile = {
+          status: "skipped",
+          message: "Skipped to avoid downloading large files",
+        };
+      } catch (error) {
+        driveHealth.functions.downloadFile = {
+          status: "error",
+          message: error.message,
+        };
+      }
+
+      // Count successful functions
+      const successfulFunctions = Object.values(driveHealth.functions).filter(
+        (f) => f.status === "ok"
+      ).length;
+      const totalFunctions = Object.keys(driveHealth.functions).length;
+
+      driveHealth.functionsSummary = {
+        total: totalFunctions,
+        working: successfulFunctions,
+        failed: totalFunctions - successfulFunctions,
+        skipped: Object.values(driveHealth.functions).filter(
+          (f) => f.status === "skipped"
+        ).length,
+      };
+
+      healthStatus.services.googleDrive = driveHealth;
+    } catch (error) {
+      healthStatus.services.googleDrive = {
+        status: "unhealthy",
+        message: error.message,
+      };
+      healthStatus.errors.push(`Google Drive: ${error.message}`);
+      healthStatus.status = "degraded";
+    }
+
+    // Check Email Service
+    try {
+      const alertService = require("./services/alertService");
+      const emailService = new alertService.AlertService();
+      const emailInitialized = await emailService.initializeEmail();
+      if (emailInitialized) {
+        healthStatus.services.email = {
+          status: "healthy",
+          message: "Configured",
+        };
+      } else {
+        healthStatus.services.email = {
+          status: "warning",
+          message: "Not configured (optional)",
+        };
+      }
+    } catch (error) {
+      healthStatus.services.email = {
+        status: "warning",
+        message: "Not configured",
+      };
+    }
+
+    // Check Telegram Service
+    try {
+      const alertService = require("./services/alertService");
+      const telegramService = new alertService.AlertService();
+      if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
+        // Test Telegram connection
+        const axios = require("axios");
+        const response = await axios.get(
+          `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/getMe`,
+          { timeout: 5000 }
+        );
+        if (response.data.ok) {
+          healthStatus.services.telegram = {
+            status: "healthy",
+            message: "Connected",
+          };
+        } else {
+          healthStatus.services.telegram = {
+            status: "unhealthy",
+            message: "Invalid token",
+          };
+          healthStatus.status = "degraded";
+        }
+      } else {
+        healthStatus.services.telegram = {
+          status: "warning",
+          message: "Not configured (optional)",
+        };
+      }
+    } catch (error) {
+      healthStatus.services.telegram = {
+        status: "warning",
+        message: "Not configured or connection failed",
+      };
+    }
+
+    // Check Google Apps Script
+    try {
+      if (process.env.VITE_GOOGLE_APPS_SCRIPT_URL) {
+        const axios = require("axios");
+        const response = await axios.get(
+          process.env.VITE_GOOGLE_APPS_SCRIPT_URL,
+          { timeout: 5000 }
+        );
+
+        // Check if backup script exists
+        const fs = require("fs");
+        const path = require("path");
+        const backupScriptPath = path.join(
+          __dirname,
+          "../google-apps-script/backup-script.gs"
+        );
+        const hasBackupScript = fs.existsSync(backupScriptPath);
+
+        healthStatus.services.googleAppsScript = {
+          status: "healthy",
+          message: hasBackupScript
+            ? "URL configured (Backup script available)"
+            : "URL configured",
+        };
+
+        if (hasBackupScript) {
+          healthStatus.services.googleAppsScript.backupScript = "available";
+        }
+      } else {
+        healthStatus.services.googleAppsScript = {
+          status: "warning",
+          message: "Not configured (optional)",
+        };
+      }
+    } catch (error) {
+      healthStatus.services.googleAppsScript = {
+        status: "warning",
+        message: "Not configured or connection failed",
+      };
+    }
+
+    // Other services (always available)
+    healthStatus.services.auth = { status: "healthy", message: "Available" };
+    healthStatus.services.audit = { status: "healthy", message: "Available" };
+    healthStatus.services.ai = { status: "healthy", message: "Available" };
+    healthStatus.services.alerts = { status: "healthy", message: "Available" };
+    healthStatus.services.script = { status: "healthy", message: "Available" };
+    healthStatus.services.automation = {
+      status: "healthy",
+      message: "Available",
+    };
+    healthStatus.services.customMetrics = {
+      status: "healthy",
+      message: "Available",
+    };
+    healthStatus.services.retailMetrics = {
+      status: "healthy",
+      message: "Available",
+    };
+
+    // Set HTTP status code
+    const statusCode =
+      healthStatus.status === "healthy"
+        ? 200
+        : healthStatus.status === "degraded"
+        ? 200
+        : 503;
+    res.status(statusCode).json(healthStatus);
+  } catch (error) {
+    healthStatus.status = "unhealthy";
+    healthStatus.errors.push(`Health check failed: ${error.message}`);
+    res.status(503).json(healthStatus);
+  }
+});
+
+// Root endpoint
+app.get("/", (req, res) => {
+  const now = new Date();
+  res.json({
+    message: "🚀 Backend API Server",
+    version: "1.0.0",
+    status: "running",
+    timestamp: now.toISOString(),
+    timestampFormatted: formatVietnameseDateTime(now),
+    endpoints: {
+      health: "/health",
+      auth: "/api/auth/*",
+      audit: "/api/audit/*",
+      ai: "/api/ai/*",
+      ml: "/api/ml/*",
+      sheets: "/api/sheets/*",
+      drive: "/api/drive/*",
+      alerts: "/api/alerts/*",
+      script: "/api/script/*",
+      automation: "/api/automation/*",
+      custom: "/api/custom/*",
+      retail: "/api/retail/*",
+    },
+  });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err);
+  res.status(err.status || 500).json({
+    success: false,
+    error: err.message || "Internal server error",
+    details: process.env.NODE_ENV === "development" ? err.stack : undefined,
+  });
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    error: "Route not found",
+    path: req.path,
+  });
+});
+
+// Initialize demo accounts on startup
+const initializeDemoAccounts = async () => {
+  try {
+    // Check if demo accounts already exist
+    const adminUser = authService
+      .getAllUsers()
+      .find((u) => u.email === "admin@mia.vn");
+    const regularUser = authService
+      .getAllUsers()
+      .find((u) => u.email === "user@mia.vn");
+
+    if (!adminUser) {
+      await authService.createUser("admin@mia.vn", "admin123", "admin");
+      console.log("✅ Demo admin account created: admin@mia.vn / admin123");
+    }
+
+    if (!regularUser) {
+      await authService.createUser("user@mia.vn", "user123", "user");
+      console.log("✅ Demo user account created: user@mia.vn / user123");
+    }
+  } catch (error) {
+    console.error("Error initializing demo accounts:", error);
+  }
+};
+
+// Start server with WebSocket support
+server.listen(PORT, async () => {
+  console.log(`🚀 Backend server running on port ${PORT}`);
+  console.log(`📊 Health check: http://localhost:${PORT}/health`);
+  console.log(`🤖 AI endpoints: http://localhost:${PORT}/api/ai/*`);
+  console.log(`🔌 Socket.io WebSocket ready on port ${PORT}`);
+  console.log(`🔌 Native WebSocket (WS) ready on ws://localhost:${PORT}/ws`);
+  console.log(`🌐 Environment: ${process.env.NODE_ENV || "development"}`);
+
+  // Initialize demo accounts
+  await initializeDemoAccounts();
+});
+
+// Periodic metrics broadcasting (example)
+if (process.env.NODE_ENV !== "test") {
+  setInterval(() => {
+    // Example: Broadcast sample metrics every 5 seconds
+    socketService.emitMetrics({
+      cpu: Math.random() * 100,
+      memory: Math.random() * 100,
+      activeUsers: socketService.getConnectedCount(),
+      timestamp: new Date().toISOString(),
+    });
+  }, 5000);
+}
+
+module.exports = { app, server, io };

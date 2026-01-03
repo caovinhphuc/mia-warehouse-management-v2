@@ -1,0 +1,159 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# =============================================================================
+# Dependencies
+# =============================================================================
+/node_modules
+/.pnp
+.pnp.js
+package-lock.json.backup
+yarn.lock
+
+# =============================================================================
+# Testing
+# =============================================================================
+/coverage
+/coverage/*
+!coverage/.gitkeep
+.nyc_output
+*.lcov
+
+# =============================================================================
+# Production Build
+# =============================================================================
+/build
+/dist
+*.tsbuildinfo
+
+# =============================================================================
+# Environment Variables
+# =============================================================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# =============================================================================
+# IDE & Editors
+# =============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# =============================================================================
+# OS Files
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# =============================================================================
+# Logs
+# =============================================================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# =============================================================================
+# Runtime & Cache
+# =============================================================================
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.turbo/
+.vercel/
+.netlify/
+.serverless/
+.fusebox/
+.dynamodb/
+
+# =============================================================================
+# Credentials & Secrets
+# =============================================================================
+src/config/*.json
+*.pem
+*.key
+*.p12
+*.p8
+*.cer
+credentials.json
+service-account*.json
+google-credentials.json
+**/google-credentials.json
+**/service-account*.json
+
+# =============================================================================
+# Temporary Files
+# =============================================================================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+
+# =============================================================================
+# Analysis & Reports
+# =============================================================================
+bundle-report.html
+bundle-stats.json
+analyze-report.html
+*.prof
+*.profile
+
+# =============================================================================
+# Python (if any)
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# =============================================================================
+# Other
+# =============================================================================
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+.vercel
+
+# Secrets (CRITICAL)
+**/service_account.json
+**/*credentials*.json
+.env
+.env.local
+.env.*.local
+
+# Secrets (CRITICAL)
+**/service_account.json
+**/*credentials*.json
+.env
+.env.local
+.env.*.local

@@ -1,0 +1,67 @@
+{
+  "analysis_time": "2025-12-01T06:15:29.348950",
+  "total_orders": 3,
+  "shopee": {
+    "total_orders": 1,
+    "after_cutoff": 1,
+    "need_confirm": 1,
+    "need_handover": 1,
+    "overdue_confirm": 0,
+    "overdue_handover": 0,
+    "sla_status": [
+      {
+        "order_id": "503313",
+        "platform": "shopee",
+        "created_time": "2025-11-30T20:15:29.348952",
+        "needs_confirm": true,
+        "needs_handover": true,
+        "confirm_overdue": false,
+        "handover_overdue": false,
+        "time_to_confirm": 2.741847513888889,
+        "time_to_handover": 5.741847513888889
+      }
+    ],
+    "cutoff_time": "2025-11-30T18:00:00",
+    "confirm_deadline": "2025-12-01T09:00:00",
+    "handover_deadline": "2025-12-01T12:00:00"
+  },
+  "tiktok": {
+    "total_orders": 1,
+    "after_cutoff": 1,
+    "need_handover": 1,
+    "overdue_handover": 0,
+    "sla_status": [
+      {
+        "order_id": "503314",
+        "platform": "tiktok",
+        "created_time": "2025-11-30T22:15:29.348956",
+        "needs_confirm": false,
+        "needs_handover": true,
+        "confirm_overdue": false,
+        "handover_overdue": false,
+        "time_to_confirm": null,
+        "time_to_handover": 38.741847513888885
+      }
+    ],
+    "cutoff_time": "2025-11-30T14:00:00",
+    "handover_deadline": "2025-12-02T21:00:00"
+  },
+  "other_platforms": {
+    "total_orders": 1,
+    "today_orders": 1,
+    "platforms": {
+      "other": {
+        "total_orders": 1,
+        "orders": [
+          {
+            "id": "503315",
+            "platform": "Other",
+            "created_datetime": "2025-12-01 04:15:29.348957",
+            "platform_clean": "other"
+          }
+        ]
+      }
+    }
+  },
+  "alerts": []
+}

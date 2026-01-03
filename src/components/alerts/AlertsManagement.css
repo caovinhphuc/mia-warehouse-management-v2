@@ -1,0 +1,12 @@
+.alerts-management {
+  padding: 24px;
+}
+
+.alerts-management .ant-statistic-title {
+  font-size: 14px;
+  color: #666;
+}
+
+.alerts-management .ant-table {
+  margin-top: 16px;
+}

@@ -1,0 +1,14 @@
+{
+  "shopee": {
+    "cutoff_time": "18:00",
+    "confirm_hours": 24,
+    "handover_hours": 48
+  },
+  "tiktok": {
+    "cutoff_time": "14:00",
+    "handover_hours": 24
+  },
+  "lazada": {
+    "confirm_hours": 24
+  }
+}

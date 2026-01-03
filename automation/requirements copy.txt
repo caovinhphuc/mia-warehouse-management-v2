@@ -1,0 +1,135 @@
+# 🏭 Warehouse Automation System - Complete Requirements
+# All dependencies with exact versions (verified working)
+# Last updated: 2025-01-07
+
+# ===== CORE AUTOMATION DEPENDENCIES =====
+selenium==4.15.2
+webdriver-manager==4.0.1
+pandas==2.3.0
+numpy==2.3.1
+requests==2.31.0
+python-dotenv==1.0.0
+urllib3==2.4.0
+websocket-client==1.8.0
+
+# ===== ENHANCED WEB AUTOMATION =====
+selenium-wire==5.1.0  # Advanced selenium with request interception
+undetected-chromedriver==3.5.5  # Bypass bot detection (compatible version)
+# pyppeteer==2.1.0  # Alternative browser automation (optional)
+# playwright==1.51.0  # Modern automation framework (optional)
+
+# ===== DATA PROCESSING & UTILITIES =====
+openpyxl==3.1.5
+schedule==1.2.0
+setuptools>=40.0.0
+
+# ===== RETRY & ERROR HANDLING =====
+retrying==1.3.4
+# tenacity already installed via streamlit
+backoff==2.2.1
+
+# ===== ELEMENT DETECTION & WAITING =====
+waiting==1.5.0
+polling2==0.5.0
+
+# ===== VISUALIZATION & REPORTING =====
+matplotlib==3.10.3
+seaborn==0.13.2
+plotly==6.2.0
+
+# ===== WEB SCRAPING & PARSING =====
+beautifulsoup4==4.12.2
+lxml==6.0.0
+html5lib==1.1  # Better HTML parsing
+pyquery==2.0.1  # jQuery-like selection
+
+# ===== DEBUGGING & LOGGING =====
+colorlog==6.9.0  # Latest available version
+rich==13.9.4  # Beautiful terminal output (latest stable)
+loguru==0.7.3  # Better logging
+
+# ===== EXPORT FEATURES =====
+xlsxwriter==3.2.5
+
+# ===== WEB DASHBOARD =====
+streamlit==1.46.1
+Flask==3.1.1
+flask-cors==6.0.1
+Flask-Compress==1.17
+
+# ===== SYSTEM & MONITORING =====
+watchdog==6.0.0
+
+# ===== PERFORMANCE & OPTIMIZATION =====
+# cachetools already installed via streamlit
+diskcache==5.6.3
+
+# ===== NEW DEPENDENCIES (2025-01-07) =====
+
+# Type Checking & Code Quality
+mypy==1.13.0  # Static type checker
+types-requests==2.32.0.20240602
+types-python-dateutil==2.9.0.20241206
+black==25.1.0  # Code formatter
+ruff==0.8.4  # Fast Python linter
+isort==5.13.2  # Import sorting
+
+# Testing & QA
+pytest==8.3.4  # Testing framework
+pytest-asyncio==0.25.2  # Async test support
+pytest-cov==6.0.0  # Code coverage
+pytest-mock==3.14.0  # Mocking support
+pytest-timeout==2.3.1  # Test timeout management
+faker==37.4.0  # Test data generation
+
+# Performance & Async
+aiohttp==3.11.11  # Async HTTP client
+aiofiles==24.1.0  # Async file operations
+httpx==0.28.1  # Modern HTTP client
+uvloop==0.21.0  # Fast event loop (Unix only)
+orjson==3.10.14  # Fast JSON parser
+
+# Database & Caching
+redis==5.2.1  # Redis client for caching
+pymongo==4.10.1  # MongoDB client (optional)
+sqlalchemy==2.0.36  # SQL toolkit
+alembic==1.14.0  # Database migrations
+
+# API & Validation
+pydantic==2.10.5  # Data validation
+fastapi==0.115.6  # Modern API framework (alternative to Flask)
+uvicorn==0.34.0  # ASGI server
+
+# Monitoring & Metrics
+prometheus-client==0.21.1  # Metrics collection
+sentry-sdk==2.20.0  # Error tracking
+structlog==25.1.0  # Structured logging
+
+# Security
+cryptography==44.0.0  # Encryption
+python-jose==3.3.0  # JWT tokens
+passlib==1.7.4  # Password hashing
+
+# Data Science & ML (Optional)
+scikit-learn==1.6.1  # Machine learning
+joblib==1.4.2  # Parallel computing
+
+# ===== GOOGLE SHEETS INTEGRATION =====
+gspread==6.2.1  # Google Sheets API
+google-auth==2.40.3  # Google authentication
+google-auth-oauthlib==1.2.2  # OAuth2 flow
+google-auth-httplib2==0.2.0  # HTTP library adapter
+
+# Development Tools
+ipython==8.31.0  # Enhanced Python shell
+jupyter==1.1.1  # Notebook interface (optional)
+pre-commit==4.0.1  # Git hooks
+python-semantic-release==9.16.1  # Versioning
+
+# ===== NOTES =====
+# - All versions tested and working on macOS 14.5.0
+# - Python 3.13.5 compatible
+# - Added performance, testing, and code quality tools (2025-01-07)
+# - Total installation size: ~3.5GB (with new deps)
+# - Installation time: 5-6 minutes
+# - Run: pip install -r requirements.txt --upgrade

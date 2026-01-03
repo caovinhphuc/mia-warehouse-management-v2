@@ -1,0 +1,18 @@
+# Ignore parent project files
+../src/
+../node_modules/
+../*.js
+../*.json
+../package.json
+
+# Ignore build outputs
+build/
+dist/
+coverage/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore config files
+*.config.js
+*.config.ts

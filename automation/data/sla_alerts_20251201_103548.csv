@@ -1,0 +1,3 @@
+﻿type,platform,message,count,hours_left
+CRITICAL,Shopee,🚨 1 đơn hàng QUÁ HẠN xác nhận (9h sáng),1.0,
+WARNING,Shopee,⚠️ Đơn 503313 sắp hết hạn bàn giao (1.4h),,1.403266987222222

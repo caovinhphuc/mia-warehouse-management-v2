@@ -1,0 +1,64 @@
+.nlp-chat-interface {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 16px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  padding: 8px;
+}
+
+.message-item {
+  border: none !important;
+  padding: 8px 0 !important;
+}
+
+.user-message {
+  flex-direction: row-reverse;
+}
+
+.assistant-message {
+  flex-direction: row;
+}
+
+.message-content {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #f0f2f5;
+}
+
+.user-message .message-content {
+  background: #e6f7ff;
+  margin-left: auto;
+}
+
+.message-text {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.loading-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  color: #8c8c8c;
+}
+
+.chat-input {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 16px;
+}

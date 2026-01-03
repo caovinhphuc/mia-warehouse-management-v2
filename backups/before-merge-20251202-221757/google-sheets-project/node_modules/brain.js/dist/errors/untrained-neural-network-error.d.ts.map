@@ -1,0 +1,1 @@
+{"version":3,"file":"untrained-neural-network-error.d.ts","sourceRoot":"","sources":["../../src/errors/untrained-neural-network-error.ts"],"names":[],"mappings":"AAAA,qBAAa,2BAA2B,CACtC,CAAC,SAAS;IAAE,WAAW,EAAE;QAAE,IAAI,EAAE,MAAM,CAAA;KAAE,CAAA;CAAE,CAC3C,SAAQ,KAAK;gBACD,aAAa,EAAE,CAAC;CAK7B"}

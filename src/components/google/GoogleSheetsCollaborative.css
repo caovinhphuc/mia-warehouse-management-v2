@@ -1,0 +1,99 @@
+.sheets-collaborative {
+  padding: 16px;
+}
+
+.collaborative-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.active-users {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f0f2f5;
+  border-radius: 4px;
+}
+
+.sheets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.grid-cell {
+  padding: 12px;
+  border: 2px solid #d9d9d9;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: white;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.grid-cell:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+}
+
+.grid-cell.selected {
+  border-color: #3b82f6;
+  background: #e6f7ff;
+  box-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
+}
+
+.grid-cell.cursor-active {
+  border-color: #52c41a;
+  border-style: dashed;
+}
+
+.cell-label {
+  font-weight: bold;
+  font-size: 12px;
+  color: #8c8c8c;
+  margin-bottom: 8px;
+}
+
+.cell-value {
+  flex: 1;
+  font-size: 14px;
+  color: #262626;
+}
+
+.cell-cursors {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.edit-form {
+  margin-top: 16px;
+}
+
+.edit-history {
+  margin-top: 16px;
+}
+
+.history-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}

@@ -1,0 +1,161 @@
+
+GOOGLE APPS SCRIPT DEPLOYMENT INSTRUCTIONS
+==========================================
+
+1. Truy cập: https://script.google.com
+2. Tạo project mới: "MIA Warehouse Profile Updater"
+3. Copy Code.gs content (đã save trong file này)
+4. Deploy as Web App với settings:
+   - Execute as: Me
+   - Who has access: Anyone
+5. Copy Web App URL
+6. Update Vercel environment variables
+7. Test integration
+
+Code.gs Content:
+================
+/**
+ * 🚀 MIA WAREHOUSE MANAGEMENT - SIMPLIFIED APPS SCRIPT FOR AUDIT LOGGING
+ * Compatible với frontend logAuditEvent() function
+ */
+
+const SPREADSHEET_ID = "1m2B2ODXuuatnW0EKExdVeCa1WwvF52bZOhS7DGqG6Vg";
+
+/**
+ * Handle GET requests for testing
+ */
+function doGet(e) {
+  return ContentService.createTextOutput(
+    JSON.stringify({
+      success: true,
+      message: "🏭 MIA Warehouse Apps Script is working!",
+      timestamp: new Date().toISOString(),
+      version: "1.0 - Audit Logging",
+      endpoint:
+        "AKfycbxSt8QUiny3-a_iW_-W50GUteSpERWj1ddma3TMH1y1V5UQfY4bswhVZ1o7Aj3FE_UZ",
+    })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * Handle POST requests for audit logging
+ */
+function doPost(e) {
+  // Enable CORS
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Content-Type": "application/json",
+  };
+
+  try {
+    // Parse request data
+    const requestData = JSON.parse(e.postData.contents);
+    console.log("Received data:", requestData);
+
+    // Get spreadsheet
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+
+    // Get AuditLog sheet (create if not exists)
+    let auditSheet = ss.getSheetByName("AuditLog");
+    if (!auditSheet) {
+      auditSheet = ss.insertSheet("AuditLog");
+      // Add headers
+      auditSheet.appendRow([
+        "Timestamp",
+        "Action",
+        "Username",
+        "Details",
+        "Status",
+        "IP Address",
+      ]);
+    }
+
+    // Prepare data for AuditLog sheet
+    const rowData = [
+      requestData.timestamp || new Date().toISOString(),
+      requestData.action || "UNKNOWN",
+      requestData.username || "unknown",
+      requestData.details || "",
+      requestData.status || "SUCCESS",
+      requestData.ipAddress || "unknown",
+    ];
+
+    // Append to AuditLog sheet
+    auditSheet.appendRow(rowData);
+
+    // Also log to LoginLog sheet if it's a login/logout action
+    if (
+      requestData.action &&
+      (requestData.action.includes("LOGIN") ||
+        requestData.action.includes("LOGOUT"))
+    ) {
+      let loginSheet = ss.getSheetByName("LoginLog");
+      if (!loginSheet) {
+        loginSheet = ss.insertSheet("LoginLog");
+        // Add headers
+        loginSheet.appendRow([
+          "Timestamp",
+          "Action",
+          "Username",
+          "Details",
+          "Status",
+          "IP Address",
+          "Session ID",
+        ]);
+      }
+
+      loginSheet.appendRow([...rowData, requestData.sessionId || ""]);
+    }
+
+    console.log("Successfully logged to sheets:", rowData);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        success: true,
+        message: "Activity logged successfully",
+        timestamp: new Date().toISOString(),
+        action: requestData.action,
+        sheetsUpdated: ["AuditLog"],
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    console.error("Error in doPost:", error);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        success: false,
+        error: error.toString(),
+        timestamp: new Date().toISOString(),
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+/**
+ * Handle OPTIONS requests for CORS
+ */
+function doOptions(e) {
+  return ContentService.createTextOutput("").setHeaders({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  });
+}
+
+
+Environment Variables to Add:
+============================
+REACT_APP_AUDIT_WEBHOOK_URL=[YOUR_WEB_APP_URL]
+REACT_APP_PROFILE_UPDATE_WEBHOOK_URL=[YOUR_WEB_APP_URL]
+
+Test Cases:
+===========
+1. Login with admin account
+2. Update profile information
+3. Verify Google Sheets update
+4. Check audit log entries
+
+Generated: 2025-12-25T17:29:37.051Z
+Support: caovinhphuc.ios@gmail.com

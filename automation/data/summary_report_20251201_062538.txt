@@ -1,0 +1,46 @@
+📊 BÁO CÁO TỔNG HỢP XUẤT DỮ LIỆU
+==================================================
+
+🕐 Thời gian xuất: 2025-12-01 06:25:38
+📦 Tổng số đơn hàng: 834
+📋 Số cột dữ liệu: 30
+
+📁 Các file đã xuất:
+  • CSV: data/orders_export_20251201_062538.csv (315.0 KB)
+  • DASHBOARD_CSV: data/orders_dashboard_20251201_062538.csv (112.1 KB)
+
+📋 Cấu trúc dữ liệu:
+  1. row_index
+  2. total_columns
+  3. scraped_at
+  4. col_1
+  5. id
+  6. order_code
+  7. col_4
+  8. customer
+  9. col_2
+  10. col_3
+  11. col_5
+  12. col_7
+  13. col_9
+  14. col_10
+  15. col_11
+  16. col_13
+  17. col_15
+  18. col_16
+  19. col_17
+  20. col_18
+  21. col_20
+  22. col_21
+  23. col_22
+  24. col_8
+  25. col_12
+  26. col_14
+  27. col_19
+  28. col_23
+  29. col_6
+  30. Thời gian xuất
+
+📊 Thống kê cơ bản:
+  • row_index: Min=1, Max=834, Avg=417.50
+  • total_columns: Min=23, Max=23, Avg=23.00

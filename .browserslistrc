@@ -1,0 +1,21 @@
+# Browsers that we support
+
+# Production browsers
+> 0.5%
+last 2 versions
+not dead
+not op_mini all
+
+# Development browsers
+Chrome >= 90
+Firefox >= 88
+Safari >= 14
+Edge >= 90
+
+# Mobile browsers
+iOS >= 13
+Android >= 8
+
+# Specific requirements
+not IE 11
+not IE_Mob 11

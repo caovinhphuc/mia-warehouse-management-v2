@@ -1,0 +1,8 @@
+{
+  "automation_type": "one-time",
+  "session_id": "session_20251202_181550",
+  "timestamp": "2025-12-02T18:15:50.173751",
+  "total_sessions": 1,
+  "backend_url": "http://localhost:5001",
+  "status": "completed"
+}

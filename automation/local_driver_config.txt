@@ -1,0 +1,28 @@
+
+# Thêm vào đầu automation.py hoặc automation_enhanced.py:
+
+import os
+from selenium.webdriver.chrome.service import Service
+
+# Bypass ChromeDriver Manager
+USE_LOCAL_DRIVER = True
+LOCAL_DRIVER_PATH = "./chromedriver"  # hoặc đường dẫn đến chromedriver
+
+def setup_driver_local():
+    '''Setup driver với chromedriver local'''
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+
+    options = Options()
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    # ... các options khác
+
+    if USE_LOCAL_DRIVER and os.path.exists(LOCAL_DRIVER_PATH):
+        service = Service(LOCAL_DRIVER_PATH)
+        driver = webdriver.Chrome(service=service, options=options)
+    else:
+        # Fallback to system Chrome
+        driver = webdriver.Chrome(options=options)
+
+    return driver

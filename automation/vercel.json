@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/index.py", "use": "@vercel/python" },
+    { "src": "warehouse-dashboard-enterprise.html", "use": "@vercel/static" },
+    { "src": "mia_dynamic_dashboard.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/index.py" },
+    { "src": "/", "dest": "/warehouse-dashboard-enterprise.html" }
+  ]
+}
+
+

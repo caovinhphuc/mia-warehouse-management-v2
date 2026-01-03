@@ -1,0 +1,31 @@
+{
+  "system": {
+    "one_url": "https://one.tga.com.vn",
+    "orders_url": "https://one.tga.com.vn/so/",
+    "implicit_wait": 3,
+    "page_load_timeout": 15,
+    "login_timeout": 8,
+    "use_javascript_optimization": true,
+    "session_timeout": 3600
+  },
+  "credentials": {
+    "username": "${ONE_USERNAME}",
+    "password": "${ONE_PASSWORD}"
+  },
+  "logging": {
+    "level": "INFO"
+  },
+  "data_processing": {
+    "max_rows_for_testing": 2000,
+    "enable_fast_mode": false,
+    "export_formats": "['json', 'excel']"
+  },
+  "notifications": {
+    "email": "{'enabled': False, 'smtp_server': 'smtp.gmail.com', 'smtp_port': 587, 'sender_email': '${EMAIL_ADDRESS}', 'sender_password': '${EMAIL_PASSWORD}', 'recipients': ['admin@example.com']}",
+    "slack": "{'enabled': False, 'webhook_url': '${SLACK_WEBHOOK_URL}'}"
+  },
+  "scheduling": {
+    "enabled": false,
+    "interval_hours": 2
+  }
+}

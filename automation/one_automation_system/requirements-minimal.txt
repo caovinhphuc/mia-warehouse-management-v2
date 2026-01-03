@@ -1,0 +1,38 @@
+# 🚀 MINIMAL REQUIREMENTS - Chỉ cần thiết để chạy Inventory.py
+# Cài nhanh: pip install -r requirements-minimal.txt
+# Không bao gồm orjson, pydantic (cần Rust compiler)
+
+# ===== CORE AUTOMATION (BẮT BUỘC) =====
+selenium==4.15.2
+webdriver-manager==4.0.1
+
+# ===== DATA PROCESSING (BẮT BUỘC) =====
+pandas==2.3.0
+openpyxl==3.1.5
+
+# ===== UTILS (BẮT BUỘC) =====
+python-dotenv==1.0.0
+requests==2.31.0
+pyperclip==1.9.0  # Clipboard access for copy/paste
+schedule==1.2.0  # Task scheduling
+loguru==0.7.3  # Advanced logging
+
+# ===== OPTIONAL - RECOMMENDED =====
+beautifulsoup4==4.12.2
+lxml==6.0.0
+colorlog==6.9.0
+
+# ===== API SERVER (Nếu cần chạy api_server.py hoặc auth_api_server.py) =====
+flask==3.1.2
+flask-cors==6.0.1
+
+# ===== OPTIONAL - GOOGLE SHEETS INTEGRATION =====
+# Uncomment nếu cần Google Sheets integration (sẽ không có warnings)
+# gspread==6.2.1
+# google-auth==2.40.3
+# google-auth-oauthlib==1.2.2
+# google-auth-httplib2==0.2.0
+
+# Tổng: 12 packages core (không có orjson, pydantic)
+# + 3 packages optional recommended
+# + 4 packages optional Google Sheets (uncomment nếu cần)
