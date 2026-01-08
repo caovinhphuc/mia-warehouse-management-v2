@@ -37,8 +37,13 @@ class WebSocketService {
         reconnection: true,
         reconnectionAttempts: this.maxReconnectAttempts,
         reconnectionDelay: this.reconnectDelay,
+        reconnectionDelayMax: 5000,
+        timeout: 20000,
         autoConnect: true,
         withCredentials: true,
+        forceNew: false,
+        // Ignore errors from browser extensions
+        rejectUnauthorized: false,
       });
 
       // Connection events
@@ -61,6 +66,15 @@ class WebSocketService {
       });
 
       this.socket.on("connect_error", (error) => {
+        // Ignore errors from React DevTools or browser extensions
+        if (
+          error.message &&
+          (error.message.includes("installHook") ||
+            error.message.includes("TransportError"))
+        ) {
+          console.warn("⚠️ Ignoring WebSocket error from DevTools/extension:", error.message);
+          return;
+        }
         console.error("❌ WebSocket connection error:", error);
         this.reconnectAttempts++;
         this.emit("connection-error", {

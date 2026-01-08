@@ -75,10 +75,12 @@ export default defineConfig({
     open: false,
     cors: true,
     strictPort: false,
-    // Disable HMR completely to avoid WebSocket issues
-    hmr: false,
-    // Disable WebSocket completely
-    ws: false,
+    // ✅ ENABLE HMR for hot reload
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+      port: 3000,
+    },
     watch: {
       usePolling: true,
       interval: 1000,
@@ -88,7 +90,7 @@ export default defineConfig({
         target: "http://localhost:3001",
         changeOrigin: true,
         secure: false,
-        ws: false,
+        ws: true, // ✅ Enable WebSocket for API
       },
     },
   },
@@ -145,9 +147,10 @@ export default defineConfig({
     },
   },
 
-  // Environment variables
+  // Environment variables - ✅ FIX process.env
   define: {
     global: "globalThis",
+    'process.env': {}, // ✅ Fix "process is not defined"
   },
 
   // Optimization
