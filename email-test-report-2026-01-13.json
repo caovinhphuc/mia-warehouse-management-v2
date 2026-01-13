@@ -1,0 +1,50 @@
+{
+  "title": "Email Service Test Report",
+  "timestamp": "2026-01-13T19:37:27.265Z",
+  "summary": {
+    "total_tests": 1,
+    "passed": 0,
+    "failed": 1,
+    "warnings": 0
+  },
+  "configuration": {
+    "sendgrid_api_key": "missing",
+    "sendgrid_from_email": "missing",
+    "smtp_host": "missing",
+    "smtp_user": "missing"
+  },
+  "results": [
+    {
+      "test": "environment-check",
+      "status": "error",
+      "message": "Không có email service nào được cấu hình",
+      "details": {
+        "missing_sendgrid": [
+          {
+            "key": "SENDGRID_API_KEY",
+            "description": "SendGrid API Key"
+          },
+          {
+            "key": "SENDGRID_FROM_EMAIL",
+            "description": "SendGrid From Email"
+          }
+        ],
+        "missing_smtp": [
+          {
+            "key": "SMTP_HOST",
+            "description": "SMTP Host"
+          },
+          {
+            "key": "SMTP_USER",
+            "description": "SMTP Username"
+          },
+          {
+            "key": "SMTP_PASS",
+            "description": "SMTP Password"
+          }
+        ]
+      },
+      "timestamp": "2026-01-13T19:37:27.264Z"
+    }
+  ]
+}
