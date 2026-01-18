@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Tabs, Card, Space } from "antd";
+import React, { useState } from 'react';
+import { Tabs, Card, Space } from 'antd';
 import {
   SafetyOutlined,
   UserOutlined,
@@ -7,20 +7,20 @@ import {
   SettingOutlined,
   LoginOutlined,
   LockOutlined,
-} from "@ant-design/icons";
-import MFASetup from "./MFASetup";
-import SSOLogin from "./SSOLogin";
-import UserManagement from "./UserManagement";
-import AuditLogsViewer from "./AuditLogsViewer";
-import SecuritySettings from "./SecuritySettings";
-import "./Security.css";
+} from '@ant-design/icons';
+import MFASetup from './MFASetup';
+import SSOLogin from './SSOLogin';
+import UserManagement from './UserManagement';
+import AuditLogsViewer from './AuditLogsViewer';
+import SecuritySettings from './SecuritySettings';
+import './Security.css';
 
 const SecurityDashboard = () => {
-  const [activeTab, setActiveTab] = useState("mfa");
+  const [activeTab, setActiveTab] = useState('mfa');
 
   const tabItems = [
     {
-      key: "mfa",
+      key: 'mfa',
       label: (
         <Space>
           <SafetyOutlined />
@@ -30,7 +30,7 @@ const SecurityDashboard = () => {
       children: <MFASetup />,
     },
     {
-      key: "sso",
+      key: 'sso',
       label: (
         <Space>
           <LoginOutlined />
@@ -40,7 +40,7 @@ const SecurityDashboard = () => {
       children: <SSOLogin />,
     },
     {
-      key: "users",
+      key: 'users',
       label: (
         <Space>
           <UserOutlined />
@@ -50,7 +50,7 @@ const SecurityDashboard = () => {
       children: <UserManagement />,
     },
     {
-      key: "audit",
+      key: 'audit',
       label: (
         <Space>
           <FileSearchOutlined />
@@ -60,7 +60,7 @@ const SecurityDashboard = () => {
       children: <AuditLogsViewer />,
     },
     {
-      key: "settings",
+      key: 'settings',
       label: (
         <Space>
           <SettingOutlined />

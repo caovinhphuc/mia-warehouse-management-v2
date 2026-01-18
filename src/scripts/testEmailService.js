@@ -1,18 +1,18 @@
-const nodemailer = require("nodemailer");
-const fs = require("fs");
-require("dotenv").config();
+const nodemailer = require('nodemailer');
+const fs = require('fs');
+require('dotenv').config();
 
 // Colors for console output
 const colors = {
-  reset: "\x1b[0m",
-  bright: "\x1b[1m",
-  dim: "\x1b[2m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  magenta: "\x1b[35m",
-  cyan: "\x1b[36m",
+  reset: '\x1b[0m',
+  bright: '\x1b[1m',
+  dim: '\x1b[2m',
+  red: '\x1b[31m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+  magenta: '\x1b[35m',
+  cyan: '\x1b[36m',
 };
 
 const log = {
@@ -45,11 +45,11 @@ class EmailTester {
     });
 
     const statusIcon =
-      status === "success" ? "✅" : status === "error" ? "❌" : "⚠️";
+      status === 'success' ? '✅' : status === 'error' ? '❌' : '⚠️';
     const color =
-      status === "success"
+      status === 'success'
         ? colors.green
-        : status === "error"
+        : status === 'error'
           ? colors.red
           : colors.yellow;
 
@@ -63,17 +63,17 @@ class EmailTester {
   }
 
   async checkEnvironmentVariables() {
-    log.step("Kiểm tra Environment Variables...");
+    log.step('Kiểm tra Environment Variables...');
 
     const sendgridVars = [
-      { key: "SENDGRID_API_KEY", description: "SendGrid API Key" },
-      { key: "SENDGRID_FROM_EMAIL", description: "SendGrid From Email" },
+      { key: 'SENDGRID_API_KEY', description: 'SendGrid API Key' },
+      { key: 'SENDGRID_FROM_EMAIL', description: 'SendGrid From Email' },
     ];
 
     const smtpVars = [
-      { key: "SMTP_HOST", description: "SMTP Host" },
-      { key: "SMTP_USER", description: "SMTP Username" },
-      { key: "SMTP_PASS", description: "SMTP Password" },
+      { key: 'SMTP_HOST', description: 'SMTP Host' },
+      { key: 'SMTP_USER', description: 'SMTP Username' },
+      { key: 'SMTP_PASS', description: 'SMTP Password' },
     ];
 
     const hasSendGrid = sendgridVars.every((v) => process.env[v.key]);
@@ -81,13 +81,13 @@ class EmailTester {
 
     if (hasSendGrid || hasSMTP) {
       const available = [];
-      if (hasSendGrid) available.push("SendGrid API");
-      if (hasSMTP) available.push("SMTP");
+      if (hasSendGrid) available.push('SendGrid API');
+      if (hasSMTP) available.push('SMTP');
 
       this.addResult(
-        "environment-check",
-        "success",
-        `Email service configured: ${available.join(", ")}`,
+        'environment-check',
+        'success',
+        `Email service configured: ${available.join(', ')}`,
         {
           sendgrid: hasSendGrid,
           smtp: hasSMTP,
@@ -97,9 +97,9 @@ class EmailTester {
       return { hasSendGrid, hasSMTP };
     } else {
       this.addResult(
-        "environment-check",
-        "error",
-        "Không có email service nào được cấu hình",
+        'environment-check',
+        'error',
+        'Không có email service nào được cấu hình',
         {
           missing_sendgrid: sendgridVars.filter((v) => !process.env[v.key]),
           missing_smtp: smtpVars.filter((v) => !process.env[v.key]),
@@ -110,27 +110,27 @@ class EmailTester {
   }
 
   async testSendGridConnection() {
-    log.step("Test SendGrid API connection...");
+    log.step('Test SendGrid API connection...');
 
     if (!this.sendgridApiKey) {
       this.addResult(
-        "sendgrid-connection",
-        "warning",
-        "SendGrid API key không được cấu hình"
+        'sendgrid-connection',
+        'warning',
+        'SendGrid API key không được cấu hình'
       );
       return false;
     }
 
     try {
       // Test SendGrid API với HTTP request
-      const axios = require("axios");
+      const axios = require('axios');
 
       const response = await axios.get(
-        "https://api.sendgrid.com/v3/user/profile",
+        'https://api.sendgrid.com/v3/user/profile',
         {
           headers: {
             Authorization: `Bearer ${this.sendgridApiKey}`,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           timeout: 10000,
         }
@@ -138,9 +138,9 @@ class EmailTester {
 
       if (response.status === 200) {
         this.addResult(
-          "sendgrid-connection",
-          "success",
-          "SendGrid API connection successful",
+          'sendgrid-connection',
+          'success',
+          'SendGrid API connection successful',
           {
             username: response.data.username,
             email: response.data.email,
@@ -161,8 +161,8 @@ class EmailTester {
       }
 
       this.addResult(
-        "sendgrid-connection",
-        "error",
+        'sendgrid-connection',
+        'error',
         `SendGrid connection failed: ${errorMessage}`,
         errorDetails
       );
@@ -171,13 +171,13 @@ class EmailTester {
   }
 
   async testSMTPConnection() {
-    log.step("Test SMTP connection...");
+    log.step('Test SMTP connection...');
 
     if (!this.smtpHost || !this.smtpUser || !this.smtpPass) {
       this.addResult(
-        "smtp-connection",
-        "warning",
-        "SMTP credentials không đầy đủ"
+        'smtp-connection',
+        'warning',
+        'SMTP credentials không đầy đủ'
       );
       return false;
     }
@@ -186,7 +186,7 @@ class EmailTester {
       const transporter = nodemailer.createTransporter({
         host: this.smtpHost,
         port: process.env.SMTP_PORT || 587,
-        secure: process.env.SMTP_SECURE === "true",
+        secure: process.env.SMTP_SECURE === 'true',
         auth: {
           user: this.smtpUser,
           pass: this.smtpPass,
@@ -197,21 +197,21 @@ class EmailTester {
       await transporter.verify();
 
       this.addResult(
-        "smtp-connection",
-        "success",
-        "SMTP connection successful",
+        'smtp-connection',
+        'success',
+        'SMTP connection successful',
         {
           host: this.smtpHost,
           port: process.env.SMTP_PORT || 587,
           user: this.smtpUser,
-          secure: process.env.SMTP_SECURE === "true",
+          secure: process.env.SMTP_SECURE === 'true',
         }
       );
       return true;
     } catch (error) {
       this.addResult(
-        "smtp-connection",
-        "error",
+        'smtp-connection',
+        'error',
         `SMTP connection failed: ${error.message}`,
         {
           error: error.message,
@@ -222,28 +222,28 @@ class EmailTester {
   }
 
   async sendTestEmailViaSendGrid() {
-    log.step("Gửi test email qua SendGrid...");
+    log.step('Gửi test email qua SendGrid...');
 
     if (!this.sendgridApiKey) {
       this.addResult(
-        "sendgrid-test-email",
-        "warning",
-        "Bỏ qua test SendGrid - không có API key"
+        'sendgrid-test-email',
+        'warning',
+        'Bỏ qua test SendGrid - không có API key'
       );
       return false;
     }
 
     try {
-      const sgMail = require("@sendgrid/mail");
+      const sgMail = require('@sendgrid/mail');
       sgMail.setApiKey(this.sendgridApiKey);
 
       const testEmail = {
         to: this.sendgridFromEmail, // Gửi về chính email của mình để test
         from: {
           email: this.sendgridFromEmail,
-          name: this.sendgridFromName || "MIA Logistics",
+          name: this.sendgridFromName || 'MIA Logistics',
         },
-        subject: "🧪 Test Email từ MIA Logistics System",
+        subject: '🧪 Test Email từ MIA Logistics System',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #2563eb;">🧪 Test Email - MIA Logistics</h2>
@@ -252,7 +252,7 @@ class EmailTester {
             <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #374151; margin-top: 0;">📊 Thông tin hệ thống:</h3>
               <ul style="color: #6b7280;">
-                <li><strong>Thời gian:</strong> ${new Date().toLocaleString("vi-VN")}</li>
+                <li><strong>Thời gian:</strong> ${new Date().toLocaleString('vi-VN')}</li>
                 <li><strong>Service:</strong> SendGrid API</li>
                 <li><strong>From:</strong> ${this.sendgridFromEmail}</li>
                 <li><strong>Status:</strong> ✅ Hoạt động bình thường</li>
@@ -277,11 +277,11 @@ class EmailTester {
       const response = await sgMail.send(testEmail);
 
       this.addResult(
-        "sendgrid-test-email",
-        "success",
-        "Test email đã được gửi thành công qua SendGrid",
+        'sendgrid-test-email',
+        'success',
+        'Test email đã được gửi thành công qua SendGrid',
         {
-          message_id: response[0].headers["x-message-id"],
+          message_id: response[0].headers['x-message-id'],
           to: testEmail.to,
           from: testEmail.from.email,
           subject: testEmail.subject,
@@ -298,8 +298,8 @@ class EmailTester {
       }
 
       this.addResult(
-        "sendgrid-test-email",
-        "error",
+        'sendgrid-test-email',
+        'error',
         `Không thể gửi email qua SendGrid: ${errorMessage}`,
         errorDetails
       );
@@ -308,13 +308,13 @@ class EmailTester {
   }
 
   async sendTestEmailViaSMTP() {
-    log.step("Gửi test email qua SMTP...");
+    log.step('Gửi test email qua SMTP...');
 
     if (!this.smtpHost || !this.smtpUser || !this.smtpPass) {
       this.addResult(
-        "smtp-test-email",
-        "warning",
-        "Bỏ qua test SMTP - thiếu credentials"
+        'smtp-test-email',
+        'warning',
+        'Bỏ qua test SMTP - thiếu credentials'
       );
       return false;
     }
@@ -323,7 +323,7 @@ class EmailTester {
       const transporter = nodemailer.createTransporter({
         host: this.smtpHost,
         port: process.env.SMTP_PORT || 587,
-        secure: process.env.SMTP_SECURE === "true",
+        secure: process.env.SMTP_SECURE === 'true',
         auth: {
           user: this.smtpUser,
           pass: this.smtpPass,
@@ -331,9 +331,9 @@ class EmailTester {
       });
 
       const testEmail = {
-        from: `"${this.sendgridFromName || "MIA Logistics"}" <${this.emailFrom || this.smtpUser}>`,
+        from: `"${this.sendgridFromName || 'MIA Logistics'}" <${this.emailFrom || this.smtpUser}>`,
         to: this.smtpUser, // Gửi về chính email của mình để test
-        subject: "🧪 Test Email từ MIA Logistics System (SMTP)",
+        subject: '🧪 Test Email từ MIA Logistics System (SMTP)',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #2563eb;">🧪 Test Email - MIA Logistics (SMTP)</h2>
@@ -342,7 +342,7 @@ class EmailTester {
             <div style="background-color: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
               <h3 style="color: #374151; margin-top: 0;">📊 Thông tin hệ thống:</h3>
               <ul style="color: #6b7280;">
-                <li><strong>Thời gian:</strong> ${new Date().toLocaleString("vi-VN")}</li>
+                <li><strong>Thời gian:</strong> ${new Date().toLocaleString('vi-VN')}</li>
                 <li><strong>Service:</strong> SMTP (${this.smtpHost})</li>
                 <li><strong>From:</strong> ${this.emailFrom || this.smtpUser}</li>
                 <li><strong>Status:</strong> ✅ Hoạt động bình thường</li>
@@ -367,9 +367,9 @@ class EmailTester {
       const info = await transporter.sendMail(testEmail);
 
       this.addResult(
-        "smtp-test-email",
-        "success",
-        "Test email đã được gửi thành công qua SMTP",
+        'smtp-test-email',
+        'success',
+        'Test email đã được gửi thành công qua SMTP',
         {
           message_id: info.messageId,
           to: testEmail.to,
@@ -380,8 +380,8 @@ class EmailTester {
       return true;
     } catch (error) {
       this.addResult(
-        "smtp-test-email",
-        "error",
+        'smtp-test-email',
+        'error',
         `Không thể gửi email qua SMTP: ${error.message}`,
         {
           error: error.message,
@@ -393,7 +393,7 @@ class EmailTester {
 
   async runAllTests() {
     console.log(`${colors.bright}📧 EMAIL SERVICE TEST${colors.reset}`);
-    console.log("=".repeat(50));
+    console.log('='.repeat(50));
 
     // Check environment variables
     const envCheck = await this.checkEnvironmentVariables();
@@ -427,26 +427,26 @@ class EmailTester {
 
   generateReport() {
     const report = {
-      title: "Email Service Test Report",
+      title: 'Email Service Test Report',
       timestamp: new Date().toISOString(),
       summary: {
         total_tests: this.results.length,
-        passed: this.results.filter((r) => r.status === "success").length,
-        failed: this.results.filter((r) => r.status === "error").length,
-        warnings: this.results.filter((r) => r.status === "warning").length,
+        passed: this.results.filter((r) => r.status === 'success').length,
+        failed: this.results.filter((r) => r.status === 'error').length,
+        warnings: this.results.filter((r) => r.status === 'warning').length,
       },
       configuration: {
-        sendgrid_api_key: this.sendgridApiKey ? "configured" : "missing",
-        sendgrid_from_email: this.sendgridFromEmail || "missing",
-        smtp_host: this.smtpHost || "missing",
-        smtp_user: this.smtpUser || "missing",
+        sendgrid_api_key: this.sendgridApiKey ? 'configured' : 'missing',
+        sendgrid_from_email: this.sendgridFromEmail || 'missing',
+        smtp_host: this.smtpHost || 'missing',
+        smtp_user: this.smtpUser || 'missing',
       },
       results: this.results,
     };
 
-    console.log("\n" + "=".repeat(50));
+    console.log(`\n${'='.repeat(50)}`);
     console.log(`${colors.bright}📊 KẾT QUA TEST${colors.reset}`);
-    console.log("=".repeat(50));
+    console.log('='.repeat(50));
 
     console.log(
       `${colors.green}✅ Passed: ${report.summary.passed}${colors.reset}`
@@ -460,7 +460,7 @@ class EmailTester {
     console.log(`📊 Total: ${report.summary.total_tests}`);
 
     // Save report
-    const reportPath = `email-test-report-${new Date().toISOString().split("T")[0]}.json`;
+    const reportPath = `email-test-report-${new Date().toISOString().split('T')[0]}.json`;
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`\n📄 Report đã được lưu: ${reportPath}`);
 

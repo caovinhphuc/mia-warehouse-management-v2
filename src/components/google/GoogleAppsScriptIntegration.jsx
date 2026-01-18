@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import Loading from "../Common/Loading";
-import { scriptService } from "../../services/scriptService";
-import { message } from "antd";
-import "./GoogleAppsScriptIntegration.css";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import Loading from '../Common/Loading';
+import { scriptService } from '../../services/scriptService';
+import { message } from 'antd';
+import './GoogleAppsScriptIntegration.css';
 
 const GoogleAppsScriptIntegration = () => {
   const { loading, error } = useSelector((state) => state.auth);
@@ -13,21 +13,21 @@ const GoogleAppsScriptIntegration = () => {
 
   const [scripts, setScripts] = useState([]);
   const [selectedScript, setSelectedScript] = useState(null);
-  const [scriptCode, setScriptCode] = useState("");
+  const [scriptCode, setScriptCode] = useState('');
   const [isRunning, setIsRunning] = useState(false);
   const [executionLogs, setExecutionLogs] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [newScriptName, setNewScriptName] = useState("");
-  const [newScriptDescription, setNewScriptDescription] = useState("");
+  const [newScriptName, setNewScriptName] = useState('');
+  const [newScriptDescription, setNewScriptDescription] = useState('');
 
   // Sample scripts
   const sampleScripts = [
     {
-      id: "script_1",
-      name: "Tự động gửi email báo cáo",
-      description: "Gửi email báo cáo hàng ngày cho quản lý",
-      lastModified: "2024-01-15T10:30:00Z",
-      status: "active",
+      id: 'script_1',
+      name: 'Tự động gửi email báo cáo',
+      description: 'Gửi email báo cáo hàng ngày cho quản lý',
+      lastModified: '2024-01-15T10:30:00Z',
+      status: 'active',
       executions: 45,
       code: `function sendDailyReport() {
   const sheet = SpreadsheetApp.getActiveSheet();
@@ -49,11 +49,11 @@ const GoogleAppsScriptIntegration = () => {
 }`,
     },
     {
-      id: "script_2",
-      name: "Đồng bộ dữ liệu Google Sheets",
-      description: "Đồng bộ dữ liệu giữa các sheet khác nhau",
-      lastModified: "2024-01-14T15:45:00Z",
-      status: "active",
+      id: 'script_2',
+      name: 'Đồng bộ dữ liệu Google Sheets',
+      description: 'Đồng bộ dữ liệu giữa các sheet khác nhau',
+      lastModified: '2024-01-14T15:45:00Z',
+      status: 'active',
       executions: 23,
       code: `function syncSheetsData() {
   const sourceSheet = SpreadsheetApp.openById('SOURCE_SHEET_ID').getActiveSheet();
@@ -66,11 +66,11 @@ const GoogleAppsScriptIntegration = () => {
 }`,
     },
     {
-      id: "script_3",
-      name: "Tự động backup dữ liệu",
-      description: "Tạo backup dữ liệu hàng tuần",
-      lastModified: "2024-01-13T09:20:00Z",
-      status: "inactive",
+      id: 'script_3',
+      name: 'Tự động backup dữ liệu',
+      description: 'Tạo backup dữ liệu hàng tuần',
+      lastModified: '2024-01-13T09:20:00Z',
+      status: 'inactive',
       executions: 8,
       code: `function weeklyBackup() {
   const sheet = SpreadsheetApp.getActiveSheet();
@@ -105,8 +105,8 @@ const GoogleAppsScriptIntegration = () => {
       setExecutionLogs([
         {
           time: new Date().toISOString(),
-          message: "Bắt đầu thực thi script...",
-          type: "info",
+          message: 'Bắt đầu thực thi script...',
+          type: 'info',
         },
       ]);
 
@@ -115,14 +115,14 @@ const GoogleAppsScriptIntegration = () => {
       if (selectedScript.scriptId) {
         result = await scriptService.executeScript(
           selectedScript.scriptId,
-          selectedScript.functionName || "main",
+          selectedScript.functionName || 'main',
           selectedScript.parameters || []
         );
       } else {
         // Try inline execution (will fail gracefully if not supported)
         result = await scriptService.executeInline(
           selectedScript.code,
-          selectedScript.functionName || "main",
+          selectedScript.functionName || 'main',
           selectedScript.parameters || []
         );
       }
@@ -132,27 +132,27 @@ const GoogleAppsScriptIntegration = () => {
           ...prev,
           {
             time: new Date().toISOString(),
-            message: "✅ Script đã được thực thi thành công!",
-            type: "success",
+            message: '✅ Script đã được thực thi thành công!',
+            type: 'success',
           },
           {
             time: new Date().toISOString(),
             message: `Kết quả: ${JSON.stringify(result.data)}`,
-            type: "info",
+            type: 'info',
           },
         ]);
-        message.success("Script đã được thực thi thành công!");
+        message.success('Script đã được thực thi thành công!');
       } else {
-        throw new Error(result.error || "Script execution failed");
+        throw new Error(result.error || 'Script execution failed');
       }
     } catch (error) {
-      console.error("Error executing script:", error);
+      console.error('Error executing script:', error);
       setExecutionLogs((prev) => [
         ...prev,
         {
           time: new Date().toISOString(),
           message: `❌ Lỗi: ${error.message}`,
-          type: "error",
+          type: 'error',
         },
       ]);
       message.error(`Lỗi thực thi script: ${error.message}`);
@@ -169,17 +169,17 @@ const GoogleAppsScriptIntegration = () => {
       name: newScriptName,
       description: newScriptDescription,
       lastModified: new Date().toISOString(),
-      status: "active",
+      status: 'active',
       executions: 0,
-      code: `function ${newScriptName.replace(/\s+/g, "")}() {
+      code: `function ${newScriptName.replace(/\s+/g, '')}() {
   // Viết code của bạn ở đây
   console.log('Script mới đã được tạo');
 }`,
     };
 
     setScripts((prev) => [newScript, ...prev]);
-    setNewScriptName("");
-    setNewScriptDescription("");
+    setNewScriptName('');
+    setNewScriptDescription('');
     setShowCreateModal(false);
   };
 
@@ -209,34 +209,34 @@ const GoogleAppsScriptIntegration = () => {
     setScripts((prev) => prev.filter((script) => script.id !== scriptId));
     if (selectedScript?.id === scriptId) {
       setSelectedScript(null);
-      setScriptCode("");
+      setScriptCode('');
     }
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("vi-VN", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
+    return new Date(dateString).toLocaleDateString('vi-VN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
     });
   };
 
   const getStatusColor = (status) => {
-    return status === "active" ? "#22c55e" : "#ef4444";
+    return status === 'active' ? '#22c55e' : '#ef4444';
   };
 
   const getLogTypeColor = (type) => {
     switch (type) {
-      case "success":
-        return "#22c55e";
-      case "error":
-        return "#ef4444";
-      case "warning":
-        return "#f59e0b";
+      case 'success':
+        return '#22c55e';
+      case 'error':
+        return '#ef4444';
+      case 'warning':
+        return '#f59e0b';
       default:
-        return "#3b82f6";
+        return '#3b82f6';
     }
   };
 
@@ -275,7 +275,7 @@ const GoogleAppsScriptIntegration = () => {
               <div
                 key={script.id}
                 className={`script-item ${
-                  selectedScript?.id === script.id ? "active" : ""
+                  selectedScript?.id === script.id ? 'active' : ''
                 }`}
                 onClick={() => handleScriptSelect(script)}
               >
@@ -287,9 +287,9 @@ const GoogleAppsScriptIntegration = () => {
                       className="script-status"
                       style={{ color: getStatusColor(script.status) }}
                     >
-                      {script.status === "active"
-                        ? "🟢 Hoạt động"
-                        : "🔴 Tạm dừng"}
+                      {script.status === 'active'
+                        ? '🟢 Hoạt động'
+                        : '🔴 Tạm dừng'}
                     </span>
                     <span className="script-executions">
                       {script.executions} lần chạy
@@ -334,7 +334,7 @@ const GoogleAppsScriptIntegration = () => {
                     onClick={handleRunScript}
                     disabled={isRunning}
                   >
-                    {isRunning ? "⏳ Đang chạy..." : "▶️ Chạy script"}
+                    {isRunning ? '⏳ Đang chạy...' : '▶️ Chạy script'}
                   </button>
                 </div>
               </div>
@@ -356,7 +356,7 @@ const GoogleAppsScriptIntegration = () => {
                     {executionLogs.map((log, index) => (
                       <div key={index} className="log-entry">
                         <span className="log-time">
-                          {new Date(log.time).toLocaleTimeString("vi-VN")}
+                          {new Date(log.time).toLocaleTimeString('vi-VN')}
                         </span>
                         <span
                           className="log-message"

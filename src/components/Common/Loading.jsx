@@ -1,28 +1,28 @@
-import "./Loading.css";
+import './Loading.css';
 
 const Loading = ({
-  size = "medium",
-  color = "primary",
-  text = "Đang tải...",
+  size = 'medium',
+  color = 'primary',
+  text = 'Đang tải...',
   fullScreen = false,
 } = {}) => {
   const sizeClasses = {
-    small: "loading-small",
-    medium: "loading-medium",
-    large: "loading-large",
+    small: 'loading-small',
+    medium: 'loading-medium',
+    large: 'loading-large',
   };
 
   const colorClasses = {
-    primary: "loading-primary",
-    secondary: "loading-secondary",
-    success: "loading-success",
-    warning: "loading-warning",
-    danger: "loading-danger",
+    primary: 'loading-primary',
+    secondary: 'loading-secondary',
+    success: 'loading-success',
+    warning: 'loading-warning',
+    danger: 'loading-danger',
   };
 
   const containerClass = fullScreen
-    ? "loading-fullscreen"
-    : "loading-container";
+    ? 'loading-fullscreen'
+    : 'loading-container';
 
   return (
     <div

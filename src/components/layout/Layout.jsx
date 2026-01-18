@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Badge } from "antd";
-import importMetaEnv from "../../utils/importMetaEnv";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Dropdown, message } from "antd";
+import React, { useState, useEffect } from 'react';
+import { Badge } from 'antd';
+import importMetaEnv from '../../utils/importMetaEnv';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Dropdown, message } from 'antd';
 import {
   LogoutOutlined,
   UserOutlined,
   SettingOutlined,
-} from "@ant-design/icons";
-import "./Layout.css";
-import HamburgerMenu from "./HamburgerMenu";
-import ActionButton from "./ActionButton";
-import NavSection from "./NavSection";
-import ConnectionSection from "./ConnectionSection";
+} from '@ant-design/icons';
+import './Layout.css';
+import HamburgerMenu from './HamburgerMenu';
+import ActionButton from './ActionButton';
+import NavSection from './NavSection';
+import ConnectionSection from './ConnectionSection';
 import {
   connectionData,
   defaultUserInfo,
   defaultSystemStatus,
-} from "./layoutData";
-import { navigationData } from "./navigationData";
-import { BRAND_CONFIG } from "../../config/brand";
-import { logout } from "../../store/actions/authActions";
+} from './layoutData';
+import { navigationData } from './navigationData';
+import { BRAND_CONFIG } from '../../config/brand';
+import { logout } from '../../store/actions/authActions';
 
 const Layout = ({ children }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
       }
 
       const token =
-        localStorage.getItem("authToken") || localStorage.getItem("token");
+        localStorage.getItem('authToken') || localStorage.getItem('token');
       if (!token) {
         return;
       }
@@ -50,12 +50,12 @@ const Layout = ({ children }) => {
         const API_BASE_URL =
           importMetaEnv.VITE_API_URL ||
           importMetaEnv.REACT_APP_API_URL ||
-          "http://localhost:3001";
+          'http://localhost:3001';
 
         const response = await fetch(`${API_BASE_URL}/api/auth/verify`, {
-          method: "GET",
+          method: 'GET',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         });
@@ -68,9 +68,9 @@ const Layout = ({ children }) => {
             // Ignore errors
           }
           message.warning(
-            "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại."
+            'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.'
           );
-          navigate("/login");
+          navigate('/login');
         }
       } catch (error) {
         // Network error - backend có thể chưa chạy hoặc không kết nối được
@@ -93,8 +93,8 @@ const Layout = ({ children }) => {
     if (!path) return false;
 
     // Exact match for root
-    if (path === "/") {
-      return location.pathname === "/";
+    if (path === '/') {
+      return location.pathname === '/';
     }
 
     // Exact match for other paths
@@ -104,8 +104,8 @@ const Layout = ({ children }) => {
 
     // For nested routes, check if current path starts with the nav path
     // But avoid matching parent paths when on child routes
-    const pathSegments = path.split("/").filter(Boolean);
-    const currentSegments = location.pathname.split("/").filter(Boolean);
+    const pathSegments = path.split('/').filter(Boolean);
+    const currentSegments = location.pathname.split('/').filter(Boolean);
 
     // Only match if first segment matches (to avoid /security matching /security/mfa)
     if (pathSegments.length > 0 && currentSegments.length > 0) {
@@ -121,14 +121,12 @@ const Layout = ({ children }) => {
   const handleLogout = async (logoutAll = false) => {
     try {
       await dispatch(logout(logoutAll));
-      message.success("Đăng xuất thành công");
-      navigate("/login");
+      message.success('Đăng xuất thành công');
+      navigate('/login');
     } catch (error) {
-      message.error(
-        "Đăng xuất thất bại: " + (error.message || "Unknown error")
-      );
+      message.error(`Đăng xuất thất bại: ${error.message || 'Unknown error'}`);
       // Still navigate to login even if logout fails
-      navigate("/login");
+      navigate('/login');
     }
   };
 
@@ -138,34 +136,34 @@ const Layout = ({ children }) => {
 
   const userMenuItems = [
     {
-      key: "profile",
+      key: 'profile',
       icon: <UserOutlined />,
-      label: "Hồ sơ",
-      onClick: () => navigate("/profile"),
+      label: 'Hồ sơ',
+      onClick: () => navigate('/profile'),
     },
     {
-      key: "settings",
+      key: 'settings',
       icon: <SettingOutlined />,
-      label: "Cài đặt",
+      label: 'Cài đặt',
       onClick: () => {
         setShowSettings(true);
-        navigate("/settings");
+        navigate('/settings');
       },
     },
     {
-      type: "divider",
+      type: 'divider',
     },
     {
-      key: "logout",
+      key: 'logout',
       icon: <LogoutOutlined />,
-      label: "Đăng xuất",
+      label: 'Đăng xuất',
       danger: true,
       onClick: () => handleLogout(false),
     },
     {
-      key: "logoutAll",
+      key: 'logoutAll',
       icon: <LogoutOutlined />,
-      label: "Đăng xuất tất cả thiết bị",
+      label: 'Đăng xuất tất cả thiết bị',
       danger: true,
       onClick: () => handleLogout(true),
     },
@@ -177,9 +175,9 @@ const Layout = ({ children }) => {
     // Load notifications from API or localStorage
     try {
       const API_BASE_URL =
-        importMetaEnv("VITE_API_URL") || "http://localhost:3001";
+        importMetaEnv('VITE_API_URL') || 'http://localhost:3001';
       const token =
-        localStorage.getItem("authToken") || localStorage.getItem("token");
+        localStorage.getItem('authToken') || localStorage.getItem('token');
 
       if (token) {
         const response = await fetch(`${API_BASE_URL}/api/notifications`, {
@@ -195,13 +193,13 @@ const Layout = ({ children }) => {
         }
       }
     } catch (error) {
-      console.log("Notifications will be loaded when API is available");
+      console.log('Notifications will be loaded when API is available');
     }
   };
 
   const handleSettingsClick = () => {
     setShowSettings(true);
-    navigate("/settings");
+    navigate('/settings');
   };
 
   return (
@@ -232,18 +230,18 @@ const Layout = ({ children }) => {
             <Dropdown
               menu={{ items: userMenuItems }}
               placement="bottomRight"
-              trigger={["click"]}
+              trigger={['click']}
             >
-              <div className="user-info" style={{ cursor: "pointer" }}>
+              <div className="user-info" style={{ cursor: 'pointer' }}>
                 <div className="user-avatar">👤</div>
                 <div className="user-details">
-                  <span className="user-name">{user.email || "User"}</span>
+                  <span className="user-name">{user.email || 'User'}</span>
                   <span className="user-role">
-                    {user.role === "admin"
-                      ? "Quản trị viên"
-                      : user.role === "manager"
-                        ? "Quản lý"
-                        : "Người dùng"}
+                    {user.role === 'admin'
+                      ? 'Quản trị viên'
+                      : user.role === 'manager'
+                        ? 'Quản lý'
+                        : 'Người dùng'}
                   </span>
                 </div>
               </div>
@@ -262,7 +260,7 @@ const Layout = ({ children }) => {
               icon="🔔"
               title="Thông báo"
               onClick={handleNotificationClick}
-              className={`notification-btn ${notificationCount > 0 ? "has-notifications" : ""}`}
+              className={`notification-btn ${notificationCount > 0 ? 'has-notifications' : ''}`}
             />
             <ActionButton
               icon="⚙️"
@@ -276,7 +274,7 @@ const Layout = ({ children }) => {
 
       <div className="layout-body">
         {/* Sidebar */}
-        <aside className={`sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
+        <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
           <nav className="sidebar-nav">
             <NavSection
               title="Điều hướng"

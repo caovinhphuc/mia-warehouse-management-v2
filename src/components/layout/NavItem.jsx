@@ -1,20 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavItem = ({
   item,
   isActive,
   collapsed,
   onClick,
-  className = "",
+  className = '',
   isChild = false,
 }) => {
   const { path, icon, label, description } = item;
 
   const navItemClasses = `
     nav-item
-    ${isChild ? "nav-child" : ""}
-    ${isActive ? "active" : ""}
+    ${isChild ? 'nav-child' : ''}
+    ${isActive ? 'active' : ''}
     ${className}
   `.trim();
 

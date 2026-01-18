@@ -1,18 +1,18 @@
-const axios = require("axios");
-const fs = require("fs");
-require("dotenv").config();
+const axios = require('axios');
+const fs = require('fs');
+require('dotenv').config();
 
 // Colors for console output
 const colors = {
-  reset: "\x1b[0m",
-  bright: "\x1b[1m",
-  dim: "\x1b[2m",
-  red: "\x1b[31m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  blue: "\x1b[34m",
-  magenta: "\x1b[35m",
-  cyan: "\x1b[36m",
+  reset: '\x1b[0m',
+  bright: '\x1b[1m',
+  dim: '\x1b[2m',
+  red: '\x1b[31m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+  magenta: '\x1b[35m',
+  cyan: '\x1b[36m',
 };
 
 const log = {
@@ -41,11 +41,11 @@ class TelegramTester {
     });
 
     const statusIcon =
-      status === "success" ? "✅" : status === "error" ? "❌" : "⚠️";
+      status === 'success' ? '✅' : status === 'error' ? '❌' : '⚠️';
     const color =
-      status === "success"
+      status === 'success'
         ? colors.green
-        : status === "error"
+        : status === 'error'
           ? colors.red
           : colors.yellow;
 
@@ -59,11 +59,11 @@ class TelegramTester {
   }
 
   async checkEnvironmentVariables() {
-    log.step("Kiểm tra Environment Variables...");
+    log.step('Kiểm tra Environment Variables...');
 
     const required = [
-      { key: "TELEGRAM_BOT_TOKEN", description: "Telegram Bot Token" },
-      { key: "TELEGRAM_CHAT_ID", description: "Chat ID để test" },
+      { key: 'TELEGRAM_BOT_TOKEN', description: 'Telegram Bot Token' },
+      { key: 'TELEGRAM_CHAT_ID', description: 'Chat ID để test' },
     ];
 
     let allPresent = true;
@@ -78,16 +78,16 @@ class TelegramTester {
 
     if (allPresent) {
       this.addResult(
-        "environment-check",
-        "success",
-        "Tất cả environment variables cần thiết đã có",
+        'environment-check',
+        'success',
+        'Tất cả environment variables cần thiết đã có',
         { required_count: required.length }
       );
       return true;
     } else {
       this.addResult(
-        "environment-check",
-        "error",
+        'environment-check',
+        'error',
         `Thiếu ${missing.length} environment variables`,
         { missing }
       );
@@ -96,7 +96,7 @@ class TelegramTester {
   }
 
   async getBotInfo() {
-    log.step("Lấy thông tin Bot...");
+    log.step('Lấy thông tin Bot...');
 
     try {
       const response = await axios.get(`${this.apiUrl}/getMe`);
@@ -104,8 +104,8 @@ class TelegramTester {
       if (response.data.ok) {
         const botInfo = response.data.result;
         this.addResult(
-          "bot-info",
-          "success",
+          'bot-info',
+          'success',
           `Bot kết nối thành công: ${botInfo.first_name}`,
           {
             id: botInfo.id,
@@ -122,8 +122,8 @@ class TelegramTester {
       }
     } catch (error) {
       this.addResult(
-        "bot-info",
-        "error",
+        'bot-info',
+        'error',
         `Không thể lấy thông tin bot: ${error.message}`,
         {
           error: error.message,
@@ -134,7 +134,7 @@ class TelegramTester {
   }
 
   async checkWebhookInfo() {
-    log.step("Kiểm tra Webhook...");
+    log.step('Kiểm tra Webhook...');
 
     try {
       const response = await axios.get(`${this.apiUrl}/getWebhookInfo`);
@@ -144,9 +144,9 @@ class TelegramTester {
         const hasWebhook = webhookInfo.url && webhookInfo.url.length > 0;
 
         this.addResult(
-          "webhook-info",
-          hasWebhook ? "success" : "warning",
-          hasWebhook ? "Webhook đã được cấu hình" : "Chưa cấu hình webhook",
+          'webhook-info',
+          hasWebhook ? 'success' : 'warning',
+          hasWebhook ? 'Webhook đã được cấu hình' : 'Chưa cấu hình webhook',
           {
             url: webhookInfo.url,
             has_custom_certificate: webhookInfo.has_custom_certificate,
@@ -159,8 +159,8 @@ class TelegramTester {
       }
     } catch (error) {
       this.addResult(
-        "webhook-info",
-        "error",
+        'webhook-info',
+        'error',
         `Không thể kiểm tra webhook: ${error.message}`,
         {
           error: error.message,
@@ -171,19 +171,19 @@ class TelegramTester {
   }
 
   async sendTestMessage() {
-    log.step("Gửi tin nhắn test...");
+    log.step('Gửi tin nhắn test...');
 
     if (!this.chatId) {
       this.addResult(
-        "send-message",
-        "error",
-        "Không có TELEGRAM_CHAT_ID để test"
+        'send-message',
+        'error',
+        'Không có TELEGRAM_CHAT_ID để test'
       );
       return false;
     }
 
     const testMessage = `🧪 Test message từ MIA Logistics Bot
-⏰ Thời gian: ${new Date().toLocaleString("vi-VN")}
+⏰ Thời gian: ${new Date().toLocaleString('vi-VN')}
 🚀 Hệ thống: MIA.vn Google Integration
 ✅ Status: Testing Telegram functionality`;
 
@@ -191,14 +191,14 @@ class TelegramTester {
       const response = await axios.post(`${this.apiUrl}/sendMessage`, {
         chat_id: this.chatId,
         text: testMessage,
-        parse_mode: "Markdown",
+        parse_mode: 'Markdown',
       });
 
       if (response.data.ok) {
         const messageInfo = response.data.result;
         this.addResult(
-          "send-message",
-          "success",
+          'send-message',
+          'success',
           `Tin nhắn test đã được gửi thành công`,
           {
             message_id: messageInfo.message_id,
@@ -206,7 +206,7 @@ class TelegramTester {
             chat_type: messageInfo.chat.type,
             chat_title:
               messageInfo.chat.title ||
-              `${messageInfo.chat.first_name} ${messageInfo.chat.last_name || ""}`.trim(),
+              `${messageInfo.chat.first_name} ${messageInfo.chat.last_name || ''}`.trim(),
             date: new Date(messageInfo.date * 1000).toISOString(),
           }
         );
@@ -216,8 +216,8 @@ class TelegramTester {
       }
     } catch (error) {
       this.addResult(
-        "send-message",
-        "error",
+        'send-message',
+        'error',
         `Không thể gửi tin nhắn test: ${error.message}`,
         {
           error: error.message,
@@ -228,13 +228,13 @@ class TelegramTester {
   }
 
   async getChatInfo() {
-    log.step("Lấy thông tin Chat...");
+    log.step('Lấy thông tin Chat...');
 
     if (!this.chatId) {
       this.addResult(
-        "chat-info",
-        "warning",
-        "Không có TELEGRAM_CHAT_ID để lấy thông tin"
+        'chat-info',
+        'warning',
+        'Không có TELEGRAM_CHAT_ID để lấy thông tin'
       );
       return null;
     }
@@ -247,8 +247,8 @@ class TelegramTester {
       if (response.data.ok) {
         const chatInfo = response.data.result;
         this.addResult(
-          "chat-info",
-          "success",
+          'chat-info',
+          'success',
           `Thông tin chat lấy thành công: ${chatInfo.title || chatInfo.first_name}`,
           {
             id: chatInfo.id,
@@ -267,8 +267,8 @@ class TelegramTester {
       }
     } catch (error) {
       this.addResult(
-        "chat-info",
-        "error",
+        'chat-info',
+        'error',
         `Không thể lấy thông tin chat: ${error.message}`,
         {
           error: error.message,
@@ -279,42 +279,42 @@ class TelegramTester {
   }
 
   async testFileUpload() {
-    log.step("Test upload file...");
+    log.step('Test upload file...');
 
     if (!this.chatId) {
       this.addResult(
-        "file-upload",
-        "warning",
-        "Không có TELEGRAM_CHAT_ID để test upload"
+        'file-upload',
+        'warning',
+        'Không có TELEGRAM_CHAT_ID để test upload'
       );
       return false;
     }
 
     // Tạo file test tạm thời
     const testReportData = {
-      title: "MIA Logistics - Test Report",
+      title: 'MIA Logistics - Test Report',
       generated_at: new Date().toISOString(),
-      bot_status: "operational",
-      integration_status: "active",
+      bot_status: 'operational',
+      integration_status: 'active',
       test_results: this.results,
       environment: {
-        bot_token: this.botToken ? "configured" : "missing",
-        chat_id: this.chatId ? "configured" : "missing",
+        bot_token: this.botToken ? 'configured' : 'missing',
+        chat_id: this.chatId ? 'configured' : 'missing',
       },
     };
 
-    const reportPath = "./telegram-test-report.json";
+    const reportPath = './telegram-test-report.json';
 
     try {
       // Tạo file report
       fs.writeFileSync(reportPath, JSON.stringify(testReportData, null, 2));
 
       // Upload file
-      const FormData = require("form-data");
+      const FormData = require('form-data');
       const form = new FormData();
-      form.append("chat_id", this.chatId);
-      form.append("document", fs.createReadStream(reportPath));
-      form.append("caption", "📄 Test Report từ MIA Logistics Bot");
+      form.append('chat_id', this.chatId);
+      form.append('document', fs.createReadStream(reportPath));
+      form.append('caption', '📄 Test Report từ MIA Logistics Bot');
 
       const response = await axios.post(`${this.apiUrl}/sendDocument`, form, {
         headers: form.getHeaders(),
@@ -323,8 +323,8 @@ class TelegramTester {
       if (response.data.ok) {
         const fileInfo = response.data.result.document;
         this.addResult(
-          "file-upload",
-          "success",
+          'file-upload',
+          'success',
           `File test đã được upload thành công`,
           {
             file_id: fileInfo.file_id,
@@ -347,8 +347,8 @@ class TelegramTester {
       }
 
       this.addResult(
-        "file-upload",
-        "error",
+        'file-upload',
+        'error',
         `Không thể upload file test: ${error.message}`,
         {
           error: error.message,
@@ -360,7 +360,7 @@ class TelegramTester {
 
   async runAllTests() {
     console.log(`${colors.bright}🚀 TELEGRAM INTEGRATION TEST${colors.reset}`);
-    console.log("=".repeat(50));
+    console.log('='.repeat(50));
 
     // Kiểm tra environment variables
     const envCheck = await this.checkEnvironmentVariables();
@@ -383,25 +383,25 @@ class TelegramTester {
 
   generateReport() {
     const report = {
-      title: "Telegram Integration Test Report",
+      title: 'Telegram Integration Test Report',
       timestamp: new Date().toISOString(),
       summary: {
         total_tests: this.results.length,
-        passed: this.results.filter((r) => r.status === "success").length,
-        failed: this.results.filter((r) => r.status === "error").length,
-        warnings: this.results.filter((r) => r.status === "warning").length,
+        passed: this.results.filter((r) => r.status === 'success').length,
+        failed: this.results.filter((r) => r.status === 'error').length,
+        warnings: this.results.filter((r) => r.status === 'warning').length,
       },
       configuration: {
-        bot_token: this.botToken ? "configured" : "missing",
-        chat_id: this.chatId ? "configured" : "missing",
+        bot_token: this.botToken ? 'configured' : 'missing',
+        chat_id: this.chatId ? 'configured' : 'missing',
         api_url: this.apiUrl,
       },
       results: this.results,
     };
 
-    console.log("\n" + "=".repeat(50));
+    console.log(`\n${'='.repeat(50)}`);
     console.log(`${colors.bright}📊 KẾT QUA TEST${colors.reset}`);
-    console.log("=".repeat(50));
+    console.log('='.repeat(50));
 
     console.log(
       `${colors.green}✅ Passed: ${report.summary.passed}${colors.reset}`
@@ -415,7 +415,7 @@ class TelegramTester {
     console.log(`📊 Total: ${report.summary.total_tests}`);
 
     // Lưu report
-    const reportPath = `telegram-test-report-${new Date().toISOString().split("T")[0]}.json`;
+    const reportPath = `telegram-test-report-${new Date().toISOString().split('T')[0]}.json`;
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`\n📄 Report đã được lưu: ${reportPath}`);
 

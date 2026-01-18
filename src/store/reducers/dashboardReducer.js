@@ -1,13 +1,13 @@
-import { actionTypes } from "../actionTypes";
+import { actionTypes } from '../actionTypes';
 
 const initialState = {
-  activeTab: "overview",
+  activeTab: 'overview',
   data: {
     overview: {
       totalSheets: 0,
       totalFiles: 0,
       lastSync: null,
-      systemHealth: "healthy",
+      systemHealth: 'healthy',
     },
     analytics: {
       charts: [],

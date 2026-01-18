@@ -1,4 +1,4 @@
-import importMetaEnv from "../utils/importMetaEnv";
+import importMetaEnv from '../utils/importMetaEnv';
 /**
  * 🔐 Enterprise Security Service
  *
@@ -9,20 +9,20 @@ const API_BASE_URL =
   importMetaEnv.VITE_API_URL ||
   importMetaEnv.REACT_APP_API_URL ||
   process.env.REACT_APP_API_URL ||
-  "http://localhost:3001"; // Backend API port (not AI Service)
+  'http://localhost:3001'; // Backend API port (not AI Service)
 
 /**
  * Check if backend is available
  */
 export const checkBackendConnection = async () => {
   // In development, always return true if we can reach the backend
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
 
       const response = await fetch(`${API_BASE_URL}/health`, {
-        method: "GET",
+        method: 'GET',
         signal: controller.signal,
       });
 
@@ -31,13 +31,13 @@ export const checkBackendConnection = async () => {
 
       // If health check fails, still return true in dev mode
       console.warn(
-        "Backend health check failed, but allowing in development mode"
+        'Backend health check failed, but allowing in development mode'
       );
       return true;
     } catch (error) {
       // Network error in development - still allow
       console.warn(
-        "Backend connection check failed in development:",
+        'Backend connection check failed in development:',
         error.message
       );
       return true;
@@ -50,7 +50,7 @@ export const checkBackendConnection = async () => {
     const timeoutId = setTimeout(() => controller.abort(), 5000);
 
     const response = await fetch(`${API_BASE_URL}/health`, {
-      method: "GET",
+      method: 'GET',
       signal: controller.signal,
     });
 
@@ -65,23 +65,23 @@ export const checkBackendConnection = async () => {
  * Get authentication token from localStorage
  */
 const getAuthToken = () => {
-  return localStorage.getItem("authToken") || localStorage.getItem("token");
+  return localStorage.getItem('authToken') || localStorage.getItem('token');
 };
 
 /**
  * Set authentication token to localStorage
  */
 const setAuthToken = (token) => {
-  localStorage.setItem("authToken", token);
-  localStorage.setItem("token", token);
+  localStorage.setItem('authToken', token);
+  localStorage.setItem('token', token);
 };
 
 /**
  * Remove authentication token from localStorage
  */
 const removeAuthToken = () => {
-  localStorage.removeItem("authToken");
-  localStorage.removeItem("token");
+  localStorage.removeItem('authToken');
+  localStorage.removeItem('token');
 };
 
 /**
@@ -91,7 +91,7 @@ const removeAuthToken = () => {
 const authenticatedFetchResponse = async (url, options = {}) => {
   const token = getAuthToken();
   const headers = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
     ...options.headers,
   };
 
@@ -99,7 +99,7 @@ const authenticatedFetchResponse = async (url, options = {}) => {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const fullUrl = url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
+  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
 
   return fetch(fullUrl, {
     ...options,
@@ -113,7 +113,7 @@ const authenticatedFetchResponse = async (url, options = {}) => {
 const authenticatedFetch = async (url, options = {}) => {
   const token = getAuthToken();
   const headers = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
     ...options.headers,
   };
 
@@ -121,7 +121,7 @@ const authenticatedFetch = async (url, options = {}) => {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const fullUrl = url.startsWith("http") ? url : `${API_BASE_URL}${url}`;
+  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
 
   const response = await fetch(fullUrl, {
     ...options,
@@ -131,7 +131,7 @@ const authenticatedFetch = async (url, options = {}) => {
   if (response.status === 401) {
     removeAuthToken();
     // Không redirect ngay, để component xử lý
-    throw new Error("Unauthorized");
+    throw new Error('Unauthorized');
   }
 
   if (!response.ok) {
@@ -147,22 +147,22 @@ const authenticatedFetch = async (url, options = {}) => {
 /**
  * Register new user
  */
-export const registerUser = async (email, password, role = "user") => {
+export const registerUser = async (email, password, role = 'user') => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password, role }),
     });
 
     // Check if response is HTML (error page)
-    const contentType = response.headers.get("content-type");
-    if (contentType && !contentType.includes("application/json")) {
+    const contentType = response.headers.get('content-type');
+    if (contentType && !contentType.includes('application/json')) {
       const text = await response.text();
       console.error(
-        "Backend returned non-JSON response:",
+        'Backend returned non-JSON response:',
         text.substring(0, 200)
       );
       throw new Error(
@@ -173,15 +173,15 @@ export const registerUser = async (email, password, role = "user") => {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      throw new Error(data.error || "Registration failed");
+      throw new Error(data.error || 'Registration failed');
     }
 
     return data.data;
   } catch (error) {
-    console.error("Register error:", error);
+    console.error('Register error:', error);
 
     // Improved error message for network errors
-    if (error.message === "Failed to fetch" || error.name === "TypeError") {
+    if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
       throw new Error(
         `Không thể kết nối đến backend server. Vui lòng kiểm tra:\n` +
           `1. Backend có đang chạy không? (${API_BASE_URL})\n` +
@@ -201,9 +201,9 @@ export const registerUser = async (email, password, role = "user") => {
 export const verifyOneTGALogin = async (email, password) => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/auth/verify-one-tga`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password }),
     });
@@ -212,20 +212,20 @@ export const verifyOneTGALogin = async (email, password) => {
       const error = await response.json().catch(() => ({}));
       throw new Error(
         error.error ||
-          "❌ Không thể xác thực với one.tga.com.vn. " +
-            "Vui lòng kiểm tra lại email và password."
+          '❌ Không thể xác thực với one.tga.com.vn. ' +
+            'Vui lòng kiểm tra lại email và password.'
       );
     }
 
     const data = await response.json();
     return data.success === true && data.valid === true;
   } catch (error) {
-    console.error("One TGA verification error:", error);
+    console.error('One TGA verification error:', error);
 
     // If backend is not available, allow login to proceed (for development)
-    if (error.message === "Failed to fetch" || error.name === "TypeError") {
+    if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
       console.warn(
-        "One TGA verification skipped - backend may not be available"
+        'One TGA verification skipped - backend may not be available'
       );
       return true; // Allow login to proceed in development mode
     }
@@ -245,7 +245,7 @@ export const loginUser = async (email, password, mfaToken = null) => {
     // Step 2: Verify one.tga.com.vn login (CHỈ khi backend đã chạy)
     // Điều kiện tiên quyết: Phải đăng nhập one.tga.com.vn thành công
     const ONE_TGA_VERIFICATION_ENABLED =
-      process.env.REACT_APP_ENABLE_ONE_TGA_VERIFICATION !== "false";
+      process.env.REACT_APP_ENABLE_ONE_TGA_VERIFICATION !== 'false';
 
     // CHỈ verify one.tga.com.vn khi backend đã chạy
     if (ONE_TGA_VERIFICATION_ENABLED && isBackendAvailable) {
@@ -253,29 +253,29 @@ export const loginUser = async (email, password, mfaToken = null) => {
         const isOneTGAValid = await verifyOneTGALogin(email, password);
         if (!isOneTGAValid) {
           throw new Error(
-            "❌ Đăng nhập vào one.tga.com.vn không thành công.\n" +
-              "Vui lòng kiểm tra lại email và password của hệ thống one.tga.com.vn.\n" +
-              "Chỉ khi đăng nhập one.tga.com.vn thành công, bạn mới có thể tiếp tục các bước sau."
+            '❌ Đăng nhập vào one.tga.com.vn không thành công.\n' +
+              'Vui lòng kiểm tra lại email và password của hệ thống one.tga.com.vn.\n' +
+              'Chỉ khi đăng nhập one.tga.com.vn thành công, bạn mới có thể tiếp tục các bước sau.'
           );
         }
         // ✅ One TGA login thành công - tiếp tục các bước sau
       } catch (error) {
         // If verification fails with specific error about one.tga.com.vn, throw it
         if (
-          error.message.includes("one.tga.com.vn") ||
-          error.message.includes("one TGA") ||
-          error.message.includes("Đăng nhập vào")
+          error.message.includes('one.tga.com.vn') ||
+          error.message.includes('one TGA') ||
+          error.message.includes('Đăng nhập vào')
         ) {
           throw error;
         }
         // Otherwise, log warning but allow to proceed (backend may not be configured)
-        console.warn("One TGA verification skipped:", error.message);
+        console.warn('One TGA verification skipped:', error.message);
       }
     } else if (ONE_TGA_VERIFICATION_ENABLED && !isBackendAvailable) {
       // Backend không chạy → skip one.tga.com.vn verification
       console.warn(
-        "⚠️ One TGA verification bị skip vì backend không chạy. " +
-          "Vui lòng start backend để sử dụng tính năng này."
+        '⚠️ One TGA verification bị skip vì backend không chạy. ' +
+          'Vui lòng start backend để sử dụng tính năng này.'
       );
     }
 
@@ -285,7 +285,7 @@ export const loginUser = async (email, password, mfaToken = null) => {
         `Backend server không khả dụng tại ${API_BASE_URL}. ` +
           `Vui lòng kiểm tra:\n` +
           `1. Backend có đang chạy không? (Chạy: npm start trong thư mục backend)\n` +
-          `2. Port ${API_BASE_URL.split(":").pop()} có đang được sử dụng không?\n` +
+          `2. Port ${API_BASE_URL.split(':').pop()} có đang được sử dụng không?\n` +
           `3. Kiểm tra kết nối mạng và firewall settings`
       );
     }
@@ -295,9 +295,9 @@ export const loginUser = async (email, password, mfaToken = null) => {
     const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
 
     const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password, mfaToken }),
       signal: controller.signal,
@@ -306,12 +306,12 @@ export const loginUser = async (email, password, mfaToken = null) => {
     clearTimeout(timeoutId);
 
     // Check if response is HTML (error page)
-    const contentType = response.headers.get("content-type");
-    if (contentType && !contentType.includes("application/json")) {
+    const contentType = response.headers.get('content-type');
+    if (contentType && !contentType.includes('application/json')) {
       const text = await response.text();
       // eslint-disable-next-line no-console
       console.error(
-        "Backend returned non-JSON response:",
+        'Backend returned non-JSON response:',
         text.substring(0, 200)
       );
       throw new Error(
@@ -323,7 +323,7 @@ export const loginUser = async (email, password, mfaToken = null) => {
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      throw new Error(data.error || data.message || "Đăng nhập thất bại");
+      throw new Error(data.error || data.message || 'Đăng nhập thất bại');
     }
 
     // If MFA is required
@@ -338,17 +338,17 @@ export const loginUser = async (email, password, mfaToken = null) => {
 
     return data.data;
   } catch (error) {
-    console.error("Login error:", error);
+    console.error('Login error:', error);
 
     // Handle specific error types
-    if (error.name === "AbortError") {
+    if (error.name === 'AbortError') {
       throw new Error(
         `Request timeout: Backend không phản hồi trong 10 giây. ` +
           `Vui lòng kiểm tra backend server tại ${API_BASE_URL}`
       );
     }
 
-    if (error.message === "Failed to fetch" || error.name === "TypeError") {
+    if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
       throw new Error(
         `Không thể kết nối đến backend server tại ${API_BASE_URL}. ` +
           `Vui lòng kiểm tra:\n` +
@@ -376,13 +376,13 @@ export const logoutUser = async (sessionId = null, logoutAll = false) => {
     if (token) {
       try {
         await authenticatedFetch(`${API_BASE_URL}/api/auth/logout`, {
-          method: "POST",
+          method: 'POST',
           body: JSON.stringify({ sessionId, logoutAll }),
         });
       } catch (apiError) {
         // Even if API call fails, continue with local cleanup
         console.warn(
-          "Logout API call failed, but continuing with local cleanup:",
+          'Logout API call failed, but continuing with local cleanup:',
           apiError
         );
       }
@@ -390,16 +390,16 @@ export const logoutUser = async (sessionId = null, logoutAll = false) => {
 
     // Always cleanup local storage and state
     removeAuthToken();
-    localStorage.removeItem("sessionId");
-    localStorage.removeItem("token");
+    localStorage.removeItem('sessionId');
+    localStorage.removeItem('token');
 
     return true;
   } catch (error) {
-    console.error("Logout error:", error);
+    console.error('Logout error:', error);
     // Always cleanup even if there's an error
     removeAuthToken();
-    localStorage.removeItem("sessionId");
-    localStorage.removeItem("token");
+    localStorage.removeItem('sessionId');
+    localStorage.removeItem('token');
     throw error;
   }
 };
@@ -412,7 +412,7 @@ export const getCurrentUser = async () => {
     const data = await authenticatedFetch(`${API_BASE_URL}/api/auth/me`);
     return data.data;
   } catch (error) {
-    console.error("Get current user error:", error);
+    console.error('Get current user error:', error);
     throw error;
   }
 };
@@ -427,12 +427,12 @@ export const generateMFASecret = async () => {
     const data = await authenticatedFetch(
       `${API_BASE_URL}/api/auth/mfa/generate`,
       {
-        method: "POST",
+        method: 'POST',
       }
     );
     return data.data;
   } catch (error) {
-    console.error("Generate MFA secret error:", error);
+    console.error('Generate MFA secret error:', error);
     throw error;
   }
 };
@@ -445,13 +445,13 @@ export const enableMFA = async (token) => {
     const data = await authenticatedFetch(
       `${API_BASE_URL}/api/auth/mfa/enable`,
       {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({ token }),
       }
     );
     return data;
   } catch (error) {
-    console.error("Enable MFA error:", error);
+    console.error('Enable MFA error:', error);
     throw error;
   }
 };
@@ -464,12 +464,12 @@ export const disableMFA = async () => {
     const data = await authenticatedFetch(
       `${API_BASE_URL}/api/auth/mfa/disable`,
       {
-        method: "POST",
+        method: 'POST',
       }
     );
     return data;
   } catch (error) {
-    console.error("Disable MFA error:", error);
+    console.error('Disable MFA error:', error);
     throw error;
   }
 };
@@ -492,10 +492,10 @@ export const getSSOAuthUrl = async (provider) => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    console.error("Get SSO auth URL error:", error);
+    console.error('Get SSO auth URL error:', error);
 
     // Improved error message for network errors
-    if (error.message === "Failed to fetch" || error.name === "TypeError") {
+    if (error.message === 'Failed to fetch' || error.name === 'TypeError') {
       throw new Error(
         `Không thể kết nối đến backend server. Vui lòng kiểm tra:\n` +
           `1. Backend có đang chạy không? (${API_BASE_URL})\n` +
@@ -516,14 +516,14 @@ export const handleSSOCallback = async (provider, code, state) => {
     const response = await fetch(
       `${API_BASE_URL}/api/auth/sso/${provider}/callback?code=${code}&state=${state}`,
       {
-        method: "GET",
+        method: 'GET',
       }
     );
 
     const data = await response.json();
 
     if (!response.ok || !data.success) {
-      throw new Error(data.error || "SSO callback failed");
+      throw new Error(data.error || 'SSO callback failed');
     }
 
     // Set token and return user data
@@ -533,7 +533,7 @@ export const handleSSOCallback = async (provider, code, state) => {
 
     return data.data;
   } catch (error) {
-    console.error("SSO callback error:", error);
+    console.error('SSO callback error:', error);
     throw error;
   }
 };
@@ -548,7 +548,7 @@ export const getAllUsers = async () => {
     const data = await authenticatedFetch(`${API_BASE_URL}/api/auth/users`);
     return data.data;
   } catch (error) {
-    console.error("Get all users error:", error);
+    console.error('Get all users error:', error);
     throw error;
   }
 };
@@ -563,7 +563,7 @@ export const getUserById = async (userId) => {
     );
     return data.data;
   } catch (error) {
-    console.error("Get user error:", error);
+    console.error('Get user error:', error);
     throw error;
   }
 };
@@ -576,13 +576,13 @@ export const updateUserRole = async (userId, role) => {
     const data = await authenticatedFetch(
       `${API_BASE_URL}/api/auth/users/${userId}/role`,
       {
-        method: "PUT",
+        method: 'PUT',
         body: JSON.stringify({ role }),
       }
     );
     return data.data;
   } catch (error) {
-    console.error("Update user role error:", error);
+    console.error('Update user role error:', error);
     throw error;
   }
 };
@@ -595,12 +595,12 @@ export const deleteUser = async (userId) => {
     const data = await authenticatedFetch(
       `${API_BASE_URL}/api/auth/users/${userId}`,
       {
-        method: "DELETE",
+        method: 'DELETE',
       }
     );
     return data;
   } catch (error) {
-    console.error("Delete user error:", error);
+    console.error('Delete user error:', error);
     throw error;
   }
 };
@@ -615,7 +615,7 @@ export const queryAuditLogs = async (filters = {}) => {
     // eslint-disable-next-line no-undef
     const queryParams = new URLSearchParams();
     Object.entries(filters).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== "") {
+      if (value !== undefined && value !== null && value !== '') {
         queryParams.append(key, value);
       }
     });
@@ -625,7 +625,7 @@ export const queryAuditLogs = async (filters = {}) => {
     );
     return data.data;
   } catch (error) {
-    console.error("Query audit logs error:", error);
+    console.error('Query audit logs error:', error);
     throw error;
   }
 };
@@ -638,7 +638,7 @@ export const getAuditStatistics = async (filters = {}) => {
     // eslint-disable-next-line no-undef
     const queryParams = new URLSearchParams();
     Object.entries(filters).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== "") {
+      if (value !== undefined && value !== null && value !== '') {
         queryParams.append(key, value);
       }
     });
@@ -648,7 +648,7 @@ export const getAuditStatistics = async (filters = {}) => {
     );
     return data.data;
   } catch (error) {
-    console.error("Get audit statistics error:", error);
+    console.error('Get audit statistics error:', error);
     throw error;
   }
 };
@@ -661,13 +661,13 @@ export const generateComplianceReport = async (startDate, endDate) => {
     const data = await authenticatedFetch(
       `${API_BASE_URL}/api/audit/compliance/report`,
       {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({ startDate, endDate }),
       }
     );
     return data.data;
   } catch (error) {
-    console.error("Generate compliance report error:", error);
+    console.error('Generate compliance report error:', error);
     throw error;
   }
 };

@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const DemoDashboard = () => {
-  const [activeTab, setActiveTab] = useState("demo");
+  const [activeTab, setActiveTab] = useState('demo');
 
   const tabStyle = (isActive) => ({
-    padding: "10px 20px",
-    margin: "0 5px",
-    border: "1px solid #ddd",
-    backgroundColor: isActive ? "#1976d2" : "#f5f5f5",
-    color: isActive ? "white" : "#333",
-    cursor: "pointer",
-    borderRadius: "4px 4px 0 0",
+    padding: '10px 20px',
+    margin: '0 5px',
+    border: '1px solid #ddd',
+    backgroundColor: isActive ? '#1976d2' : '#f5f5f5',
+    color: isActive ? 'white' : '#333',
+    cursor: 'pointer',
+    borderRadius: '4px 4px 0 0',
   });
 
   const DemoContent = () => (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
+    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
       <h2>🚀 React Google Integration Demo</h2>
 
       <div
         style={{
-          backgroundColor: "#e8f5e8",
-          border: "1px solid #4caf50",
-          borderRadius: "4px",
-          padding: "15px",
-          margin: "20px 0",
+          backgroundColor: '#e8f5e8',
+          border: '1px solid #4caf50',
+          borderRadius: '4px',
+          padding: '15px',
+          margin: '20px 0',
         }}
       >
         <h3>✅ Setup hoàn thành!</h3>
@@ -41,11 +41,11 @@ const DemoDashboard = () => {
 
       <div
         style={{
-          backgroundColor: "#fff3cd",
-          border: "1px solid #ffc107",
-          borderRadius: "4px",
-          padding: "15px",
-          margin: "20px 0",
+          backgroundColor: '#fff3cd',
+          border: '1px solid #ffc107',
+          borderRadius: '4px',
+          padding: '15px',
+          margin: '20px 0',
         }}
       >
         <h3>📋 Bước tiếp theo:</h3>
@@ -84,11 +84,11 @@ const DemoDashboard = () => {
 
       <div
         style={{
-          backgroundColor: "#f8d7da",
-          border: "1px solid #dc3545",
-          borderRadius: "4px",
-          padding: "15px",
-          margin: "20px 0",
+          backgroundColor: '#f8d7da',
+          border: '1px solid #dc3545',
+          borderRadius: '4px',
+          padding: '15px',
+          margin: '20px 0',
         }}
       >
         <h3>⚠️ Lưu ý quan trọng:</h3>
@@ -107,11 +107,11 @@ const DemoDashboard = () => {
 
       <div
         style={{
-          backgroundColor: "#d1ecf1",
-          border: "1px solid #bee5eb",
-          borderRadius: "4px",
-          padding: "15px",
-          margin: "20px 0",
+          backgroundColor: '#d1ecf1',
+          border: '1px solid #bee5eb',
+          borderRadius: '4px',
+          padding: '15px',
+          margin: '20px 0',
         }}
       >
         <h3>📚 Tài liệu tham khảo:</h3>
@@ -123,7 +123,7 @@ const DemoDashboard = () => {
             📖 <strong>doc/user-guide/</strong> - Tài liệu hướng dẫn đầy đủ
           </li>
           <li>
-            🔗{" "}
+            🔗{' '}
             <a
               href="https://console.cloud.google.com/"
               target="_blank"
@@ -133,7 +133,7 @@ const DemoDashboard = () => {
             </a>
           </li>
           <li>
-            🔗{" "}
+            🔗{' '}
             <a
               href="https://developers.google.com/sheets/api"
               target="_blank"
@@ -143,7 +143,7 @@ const DemoDashboard = () => {
             </a>
           </li>
           <li>
-            🔗{" "}
+            🔗{' '}
             <a
               href="https://developers.google.com/drive/api"
               target="_blank"
@@ -155,13 +155,13 @@ const DemoDashboard = () => {
         </ul>
       </div>
 
-      <div style={{ textAlign: "center", marginTop: "30px" }}>
-        <p style={{ fontSize: "18px", color: "#666" }}>
+      <div style={{ textAlign: 'center', marginTop: '30px' }}>
+        <p style={{ fontSize: '18px', color: '#666' }}>
           <strong>
             🎉 Chúc mừng! Ứng dụng React Google Integration đã sẵn sàng!
           </strong>
         </p>
-        <p style={{ color: "#888" }}>
+        <p style={{ color: '#888' }}>
           Làm theo hướng dẫn trong SETUP_GUIDE.md để bắt đầu sử dụng
         </p>
       </div>
@@ -169,21 +169,21 @@ const DemoDashboard = () => {
   );
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f9f9f9" }}>
-      <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
-        <h1 style={{ textAlign: "center", color: "#333" }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#f9f9f9' }}>
+      <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+        <h1 style={{ textAlign: 'center', color: '#333' }}>
           Google Services Integration Demo
         </h1>
 
-        <p style={{ textAlign: "center", color: "#666", marginBottom: "30px" }}>
+        <p style={{ textAlign: 'center', color: '#666', marginBottom: '30px' }}>
           Demo ứng dụng React tích hợp Google Sheets và Google Drive
         </p>
 
         {/* Tab navigation */}
-        <div style={{ marginBottom: "20px", borderBottom: "1px solid #ddd" }}>
+        <div style={{ marginBottom: '20px', borderBottom: '1px solid #ddd' }}>
           <button
-            style={tabStyle(activeTab === "demo")}
-            onClick={() => setActiveTab("demo")}
+            style={tabStyle(activeTab === 'demo')}
+            onClick={() => setActiveTab('demo')}
           >
             🎯 Demo & Setup
           </button>
@@ -192,13 +192,13 @@ const DemoDashboard = () => {
         {/* Tab content */}
         <div
           style={{
-            backgroundColor: "white",
-            borderRadius: "0 4px 4px 4px",
-            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-            minHeight: "500px",
+            backgroundColor: 'white',
+            borderRadius: '0 4px 4px 4px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            minHeight: '500px',
           }}
         >
-          {activeTab === "demo" && <DemoContent />}
+          {activeTab === 'demo' && <DemoContent />}
         </div>
       </div>
     </div>

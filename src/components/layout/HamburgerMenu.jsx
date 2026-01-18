@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-const HamburgerMenu = ({ collapsed, onClick, className = "" }) => {
+const HamburgerMenu = ({ collapsed, onClick, className = '' }) => {
   return (
     <button
       className={`sidebar-toggle ${className}`}
       onClick={onClick}
-      aria-label={collapsed ? "Mở sidebar" : "Đóng sidebar"}
+      aria-label={collapsed ? 'Mở sidebar' : 'Đóng sidebar'}
       aria-expanded={!collapsed}
     >
       <span className="hamburger"></span>

@@ -5,9 +5,9 @@
  * Displays sales, inventory, customer, and store performance metrics.
  */
 
-import React, { useState, useEffect } from "react";
-import { Card, Typography, Spin, Alert, Row, Col, Tag, Space } from "antd";
-import { Line, Bar, Pie } from "react-chartjs-2";
+import React, { useState, useEffect } from 'react';
+import { Card, Typography, Spin, Alert, Row, Col, Tag, Space } from 'antd';
+import { Line, Bar, Pie } from 'react-chartjs-2';
 import {
   fetchRetailDashboard,
   fetchSalesMetrics,
@@ -15,7 +15,7 @@ import {
   fetchCustomerAnalytics,
   formatVND,
   formatNumber,
-} from "../../services/retailService";
+} from '../../services/retailService';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -27,7 +27,7 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
+} from 'chart.js';
 
 // Register Chart.js components
 ChartJS.register(
@@ -64,9 +64,9 @@ const MIARetailDashboard = () => {
 
       const [dashboard, sales, inventory, customers] = await Promise.all([
         fetchRetailDashboard(),
-        fetchSalesMetrics("30d"),
+        fetchSalesMetrics('30d'),
         fetchInventoryStatus(),
-        fetchCustomerAnalytics("30d"),
+        fetchCustomerAnalytics('30d'),
       ]);
 
       if (dashboard) setDashboardData(dashboard);
@@ -75,7 +75,7 @@ const MIARetailDashboard = () => {
       if (customers) setCustomerData(customers);
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.error("Error fetching retail data:", err);
+      console.error('Error fetching retail data:', err);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -84,13 +84,13 @@ const MIARetailDashboard = () => {
 
   // Sales trend chart data
   const salesChartData = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
       {
-        label: "Revenue (VND)",
+        label: 'Revenue (VND)',
         data: [120000, 150000, 180000, 140000, 160000, 200000, 220000],
-        borderColor: "#3b82f6",
-        backgroundColor: "rgba(59, 130, 246, 0.1)",
+        borderColor: '#3b82f6',
+        backgroundColor: 'rgba(59, 130, 246, 0.1)',
         tension: 0.4,
       },
     ],
@@ -102,14 +102,14 @@ const MIARetailDashboard = () => {
         labels: salesData.topProducts.map((p) => p.name),
         datasets: [
           {
-            label: "Sales (VND)",
+            label: 'Sales (VND)',
             data: salesData.topProducts.map((p) => p.sales),
             backgroundColor: [
-              "#3b82f6",
-              "#60a5fa",
-              "#2563eb",
-              "#06a77d",
-              "#1d4ed8",
+              '#3b82f6',
+              '#60a5fa',
+              '#2563eb',
+              '#06a77d',
+              '#1d4ed8',
             ],
           },
         ],
@@ -119,7 +119,7 @@ const MIARetailDashboard = () => {
   // Inventory status pie chart
   const inventoryStatusData = inventoryData
     ? {
-        labels: ["In Stock", "Low Stock", "Out of Stock"],
+        labels: ['In Stock', 'Low Stock', 'Out of Stock'],
         datasets: [
           {
             data: [
@@ -127,7 +127,7 @@ const MIARetailDashboard = () => {
               inventoryData.lowStock,
               inventoryData.outOfStock,
             ],
-            backgroundColor: ["#06a77d", "#f59e0b", "#d62828"],
+            backgroundColor: ['#06a77d', '#f59e0b', '#d62828'],
           },
         ],
       }
@@ -137,10 +137,10 @@ const MIARetailDashboard = () => {
     return (
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "400px",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '400px',
         }}
       >
         <Spin size="large" />
@@ -164,7 +164,7 @@ const MIARetailDashboard = () => {
     <div style={{ padding: 16 }}>
       <Typography.Title
         level={2}
-        style={{ marginBottom: 24, fontWeight: 700, color: "#3b82f6" }}
+        style={{ marginBottom: 24, fontWeight: 700, color: '#3b82f6' }}
       >
         🛒 MIA Retail Dashboard
       </Typography.Title>
@@ -174,32 +174,32 @@ const MIARetailDashboard = () => {
         <Col xs={24} sm={12} md={6}>
           <Card
             style={{
-              background: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
-              color: "white",
+              background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+              color: 'white',
             }}
           >
             <Typography.Text
               style={{
-                display: "block",
+                display: 'block',
                 marginBottom: 8,
                 opacity: 0.9,
-                color: "white",
+                color: 'white',
               }}
             >
               Today's Revenue
             </Typography.Text>
             <Typography.Title
               level={3}
-              style={{ fontWeight: 700, color: "white", margin: 0 }}
+              style={{ fontWeight: 700, color: 'white', margin: 0 }}
             >
               {formatVND(dashboardData?.today?.revenue || 0)}
             </Typography.Title>
             <Typography.Text
               style={{
-                display: "block",
+                display: 'block',
                 marginTop: 8,
                 opacity: 0.8,
-                color: "white",
+                color: 'white',
               }}
             >
               {dashboardData?.today?.orders || 0} orders
@@ -211,32 +211,32 @@ const MIARetailDashboard = () => {
         <Col xs={24} sm={12} md={6}>
           <Card
             style={{
-              background: "linear-gradient(135deg, #f77f00 0%, #fcbf49 100%)",
-              color: "white",
+              background: 'linear-gradient(135deg, #f77f00 0%, #fcbf49 100%)',
+              color: 'white',
             }}
           >
             <Typography.Text
               style={{
-                display: "block",
+                display: 'block',
                 marginBottom: 8,
                 opacity: 0.9,
-                color: "white",
+                color: 'white',
               }}
             >
               Active Customers
             </Typography.Text>
             <Typography.Title
               level={3}
-              style={{ fontWeight: 700, color: "white", margin: 0 }}
+              style={{ fontWeight: 700, color: 'white', margin: 0 }}
             >
               {customerData?.activeCustomers?.toLocaleString() || 0}
             </Typography.Title>
             <Typography.Text
               style={{
-                display: "block",
+                display: 'block',
                 marginTop: 8,
                 opacity: 0.8,
-                color: "white",
+                color: 'white',
               }}
             >
               {customerData?.newCustomers || 0} new this month
@@ -248,33 +248,33 @@ const MIARetailDashboard = () => {
         <Col xs={24} sm={12} md={6}>
           <Card
             style={{
-              background: "linear-gradient(135deg, #06a77d 0%, #3b82f6 100%)",
-              color: "white",
+              background: 'linear-gradient(135deg, #06a77d 0%, #3b82f6 100%)',
+              color: 'white',
             }}
           >
             <Typography.Text
               style={{
-                display: "block",
+                display: 'block',
                 marginBottom: 8,
                 opacity: 0.9,
-                color: "white",
+                color: 'white',
               }}
             >
               Inventory
             </Typography.Text>
             <Typography.Title
               level={3}
-              style={{ fontWeight: 700, color: "white", margin: 0 }}
+              style={{ fontWeight: 700, color: 'white', margin: 0 }}
             >
-              {inventoryData?.inStock || 0} /{" "}
+              {inventoryData?.inStock || 0} /{' '}
               {inventoryData?.totalProducts || 0}
             </Typography.Title>
             <Typography.Text
               style={{
-                display: "block",
+                display: 'block',
                 marginTop: 8,
                 opacity: 0.8,
-                color: "white",
+                color: 'white',
               }}
             >
               {inventoryData?.lowStock || 0} low stock items
@@ -286,35 +286,35 @@ const MIARetailDashboard = () => {
         <Col xs={24} sm={12} md={6}>
           <Card
             style={{
-              background: "linear-gradient(135deg, #3b82f6 0%, #667eea 100%)",
-              color: "white",
+              background: 'linear-gradient(135deg, #3b82f6 0%, #667eea 100%)',
+              color: 'white',
             }}
           >
             <Typography.Text
               style={{
-                display: "block",
+                display: 'block',
                 marginBottom: 8,
                 opacity: 0.9,
-                color: "white",
+                color: 'white',
               }}
             >
               Conversion Rate
             </Typography.Text>
             <Typography.Title
               level={3}
-              style={{ fontWeight: 700, color: "white", margin: 0 }}
+              style={{ fontWeight: 700, color: 'white', margin: 0 }}
             >
               {salesData?.conversionRate?.toFixed(1) || 0}%
             </Typography.Title>
             <Typography.Text
               style={{
-                display: "block",
+                display: 'block',
                 marginTop: 8,
                 opacity: 0.8,
-                color: "white",
+                color: 'white',
               }}
             >
-              AOV: {salesData?.averageOrderValue?.toLocaleString("vi-VN") || 0}₫
+              AOV: {salesData?.averageOrderValue?.toLocaleString('vi-VN') || 0}₫
             </Typography.Text>
           </Card>
         </Col>
@@ -325,7 +325,7 @@ const MIARetailDashboard = () => {
             <Typography.Title level={4} style={{ marginBottom: 16 }}>
               📈 Sales Trend (Last 7 Days)
             </Typography.Title>
-            <div style={{ height: "300px" }}>
+            <div style={{ height: '300px' }}>
               <Line
                 data={salesChartData}
                 options={{
@@ -336,11 +336,9 @@ const MIARetailDashboard = () => {
                     tooltip: {
                       callbacks: {
                         label: function (context) {
-                          return (
-                            "Revenue: " +
-                            context.parsed.y.toLocaleString("vi-VN") +
-                            "₫"
-                          );
+                          return `Revenue: ${context.parsed.y.toLocaleString(
+                            'vi-VN'
+                          )}₫`;
                         },
                       },
                     },
@@ -350,7 +348,7 @@ const MIARetailDashboard = () => {
                       beginAtZero: true,
                       ticks: {
                         callback: function (value) {
-                          return value.toLocaleString("vi-VN") + "₫";
+                          return `${value.toLocaleString('vi-VN')}₫`;
                         },
                       },
                     },
@@ -368,14 +366,14 @@ const MIARetailDashboard = () => {
               📦 Inventory Status
             </Typography.Title>
             {inventoryStatusData && (
-              <div style={{ height: "300px" }}>
+              <div style={{ height: '300px' }}>
                 <Pie
                   data={inventoryStatusData}
                   options={{
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                      legend: { position: "bottom" },
+                      legend: { position: 'bottom' },
                     },
                   }}
                 />
@@ -391,7 +389,7 @@ const MIARetailDashboard = () => {
               🏆 Top Selling Products
             </Typography.Title>
             {topProductsData && (
-              <div style={{ height: "300px" }}>
+              <div style={{ height: '300px' }}>
                 <Bar
                   data={topProductsData}
                   options={{
@@ -402,11 +400,9 @@ const MIARetailDashboard = () => {
                       tooltip: {
                         callbacks: {
                           label: function (context) {
-                            return (
-                              "Sales: " +
-                              context.parsed.y.toLocaleString("vi-VN") +
-                              "₫"
-                            );
+                            return `Sales: ${context.parsed.y.toLocaleString(
+                              'vi-VN'
+                            )}₫`;
                           },
                         },
                       },
@@ -416,7 +412,7 @@ const MIARetailDashboard = () => {
                         beginAtZero: true,
                         ticks: {
                           callback: function (value) {
-                            return value.toLocaleString("vi-VN") + "₫";
+                            return `${value.toLocaleString('vi-VN')}₫`;
                           },
                         },
                       },
@@ -437,13 +433,13 @@ const MIARetailDashboard = () => {
             <Space
               orientation="vertical"
               size="middle"
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
             >
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
                 <Typography.Text>Total Customers</Typography.Text>
@@ -453,9 +449,9 @@ const MIARetailDashboard = () => {
               </div>
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
                 <Typography.Text>Retention Rate</Typography.Text>
@@ -465,21 +461,21 @@ const MIARetailDashboard = () => {
               </div>
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
                 <Typography.Text>Customer Lifetime Value</Typography.Text>
                 <Tag color="cyan">
-                  {`${customerData?.customerLifetimeValue?.toLocaleString("vi-VN") || 0}₫`}
+                  {`${customerData?.customerLifetimeValue?.toLocaleString('vi-VN') || 0}₫`}
                 </Tag>
               </div>
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}
               >
                 <Typography.Text>Average Order Frequency</Typography.Text>

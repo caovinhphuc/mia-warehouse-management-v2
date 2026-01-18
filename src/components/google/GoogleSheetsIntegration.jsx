@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import importMetaEnv from "../../utils/importMetaEnv";
-import { useSelector, useDispatch } from "react-redux";
-import Loading from "../Common/Loading";
-import { googleSheetsApiService } from "../../services/googleSheetsApi";
-import "./GoogleSheetsIntegration.css";
+import React, { useState, useEffect } from 'react';
+import importMetaEnv from '../../utils/importMetaEnv';
+import { useSelector, useDispatch } from 'react-redux';
+import Loading from '../Common/Loading';
+import { googleSheetsApiService } from '../../services/googleSheetsApi';
+import './GoogleSheetsIntegration.css';
 
 const GoogleSheetsIntegration = () => {
   // const dispatch = useDispatch();
@@ -16,12 +16,12 @@ const GoogleSheetsIntegration = () => {
   const [sheetContent, setSheetContent] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({});
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [newSheetName, setNewSheetName] = useState("");
+  const [newSheetName, setNewSheetName] = useState('');
   const [showColumnModal, setShowColumnModal] = useState(false);
-  const [newColumnName, setNewColumnName] = useState("");
+  const [newColumnName, setNewColumnName] = useState('');
   const [selectedRows, setSelectedRows] = useState([]);
   const [spreadsheets, setSpreadsheets] = useState([]);
   const [isLoadingMetadata, setIsLoadingMetadata] = useState(false);
@@ -39,7 +39,7 @@ const GoogleSheetsIntegration = () => {
         const spreadsheet = {
           id:
             importMetaEnv.VITE_GOOGLE_SHEETS_SPREADSHEET_ID ||
-            "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As",
+            '18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As',
           title: metadata.title,
           sheets: metadata.sheets.map((sheet, index) => ({
             name: sheet.title,
@@ -52,9 +52,9 @@ const GoogleSheetsIntegration = () => {
       } catch (err) {
         // Error message đã được format trong googleSheetsApiService
         // Chỉ log trong development mode
-        if (process.env.NODE_ENV === "development") {
+        if (process.env.NODE_ENV === 'development') {
           // eslint-disable-next-line no-console
-          console.error("Failed to load sheet metadata:", err.message);
+          console.error('Failed to load sheet metadata:', err.message);
         }
         setMetadataError(err.message);
         // Fallback to empty state
@@ -82,7 +82,7 @@ const GoogleSheetsIntegration = () => {
           spreadsheets[0]?.id ||
           importMetaEnv.VITE_GOOGLE_SHEETS_SPREADSHEET_ID ||
           importMetaEnv.REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID ||
-          "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As";
+          '18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As';
 
         // Read data from the selected sheet (use sheet name in range)
         const sheetName = selectedSheet.name;
@@ -93,7 +93,7 @@ const GoogleSheetsIntegration = () => {
         );
         setSheetContent(result.data || []);
       } catch (err) {
-        console.error("Failed to load sheet content:", err);
+        console.error('Failed to load sheet content:', err);
         setSheetContent([]);
       } finally {
         setIsLoadingContent(false);
@@ -128,13 +128,13 @@ const GoogleSheetsIntegration = () => {
       spreadsheetId =
         spreadsheets[0]?.id ||
         importMetaEnv.VITE_GOOGLE_SHEETS_SPREADSHEET_ID ||
-        "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As";
+        '18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As';
     }
 
     // Tạo URL để mở sheet cụ thể
     // Format: https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}/edit#gid={SHEET_ID}
     const sheetUrl = `https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit#gid=${sheet.id}`;
-    window.open(sheetUrl, "_blank");
+    window.open(sheetUrl, '_blank');
   };
 
   const handleCellEdit = (rowIndex, colIndex, value) => {
@@ -154,12 +154,12 @@ const GoogleSheetsIntegration = () => {
 
   const handleExport = () => {
     // Simulate export operation
-    const csvContent = filteredData.map((row) => row.join(",")).join("\n");
-    const blob = new Blob([csvContent], { type: "text/csv" });
+    const csvContent = filteredData.map((row) => row.join(',')).join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
-    a.download = `${selectedSheet?.name || "sheet"}.csv`;
+    a.download = `${selectedSheet?.name || 'sheet'}.csv`;
     a.click();
     window.URL.revokeObjectURL(url);
   };
@@ -174,7 +174,7 @@ const GoogleSheetsIntegration = () => {
       const spreadsheetId =
         spreadsheets[0]?.id ||
         importMetaEnv.VITE_GOOGLE_SHEETS_SPREADSHEET_ID ||
-        "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As";
+        '18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As';
 
       // Call API to create new sheet
       const newSheet = await googleSheetsApiService.addSheet(
@@ -205,15 +205,15 @@ const GoogleSheetsIntegration = () => {
         setSelectedSheet(createdSheet);
       }
 
-      setNewSheetName("");
+      setNewSheetName('');
       setShowCreateModal(false);
       setIsLoadingMetadata(false);
     } catch (error) {
       // Error message đã được format trong googleSheetsApiService
       // Chỉ log trong development mode
-      if (process.env.NODE_ENV === "development") {
+      if (process.env.NODE_ENV === 'development') {
         // eslint-disable-next-line no-console
-        console.error("Error creating sheet:", error.message);
+        console.error('Error creating sheet:', error.message);
       }
       alert(`Lỗi tạo sheet: ${error.message}`);
       setIsLoadingMetadata(false);
@@ -229,12 +229,12 @@ const GoogleSheetsIntegration = () => {
         return [...row, newColumnName];
       } else {
         // Data rows
-        return [...row, ""];
+        return [...row, ''];
       }
     });
 
     setSheetContent(updatedContent);
-    setNewColumnName("");
+    setNewColumnName('');
     setShowColumnModal(false);
   };
 
@@ -251,7 +251,7 @@ const GoogleSheetsIntegration = () => {
   const handleAddRow = () => {
     if (!selectedSheet) return;
 
-    const newRow = Array(selectedSheet.headers.length).fill("");
+    const newRow = Array(selectedSheet.headers.length).fill('');
     setSheetContent([...sheetContent, newRow]);
   };
 
@@ -264,7 +264,7 @@ const GoogleSheetsIntegration = () => {
 
   const handleDeleteEmptyRows = () => {
     const updatedContent = sheetContent.filter((row) =>
-      row.some((cell) => cell.toString().trim() !== "")
+      row.some((cell) => cell.toString().trim() !== '')
     );
     setSheetContent(updatedContent);
   };
@@ -337,7 +337,7 @@ const GoogleSheetsIntegration = () => {
                 className="btn btn-secondary"
                 onClick={() => setIsEditing(!isEditing)}
               >
-                {isEditing ? "💾 Lưu" : "✏️ Chỉnh sửa"}
+                {isEditing ? '💾 Lưu' : '✏️ Chỉnh sửa'}
               </button>
               <button className="btn btn-primary" onClick={handleExport}>
                 📥 Xuất CSV
@@ -356,7 +356,7 @@ const GoogleSheetsIntegration = () => {
               <span className="sheets-count">Đang tải...</span>
             ) : (
               <span className="sheets-count">
-                {spreadsheets.reduce((sum, s) => sum + s.sheets.length, 0)}{" "}
+                {spreadsheets.reduce((sum, s) => sum + s.sheets.length, 0)}{' '}
                 sheets
               </span>
             )}
@@ -366,11 +366,11 @@ const GoogleSheetsIntegration = () => {
             <div
               className="error-banner"
               style={{
-                padding: "10px",
-                margin: "10px",
-                backgroundColor: "#ffebee",
-                color: "#c62828",
-                borderRadius: "4px",
+                padding: '10px',
+                margin: '10px',
+                backgroundColor: '#ffebee',
+                color: '#c62828',
+                borderRadius: '4px',
               }}
             >
               ⚠️ Lỗi tải metadata: {metadataError}
@@ -379,11 +379,11 @@ const GoogleSheetsIntegration = () => {
 
           <div className="sheets-list">
             {isLoadingMetadata ? (
-              <div style={{ padding: "20px", textAlign: "center" }}>
+              <div style={{ padding: '20px', textAlign: 'center' }}>
                 Đang tải...
               </div>
             ) : spreadsheets.length === 0 ? (
-              <div style={{ padding: "20px", textAlign: "center" }}>
+              <div style={{ padding: '20px', textAlign: 'center' }}>
                 Không có sheets nào
               </div>
             ) : (
@@ -394,7 +394,7 @@ const GoogleSheetsIntegration = () => {
                     <div
                       key={sheet.id}
                       className={`sheet-item ${
-                        selectedSheet?.id === sheet.id ? "active" : ""
+                        selectedSheet?.id === sheet.id ? 'active' : ''
                       }`}
                       onClick={() => handleSheetSelect(sheet)}
                       onDoubleClick={() =>
@@ -415,7 +415,7 @@ const GoogleSheetsIntegration = () => {
                           </div>
                         </div>
                         <div className="sheet-description">
-                          Google Sheets - {sheet.rowCount} hàng ×{" "}
+                          Google Sheets - {sheet.rowCount} hàng ×{' '}
                           {sheet.columnCount} cột
                         </div>
                         <div className="sheet-meta">
@@ -442,7 +442,7 @@ const GoogleSheetsIntegration = () => {
                           className="action-btn"
                           onClick={(e) => {
                             e.stopPropagation();
-                            alert("Thêm cột vào " + sheet.name);
+                            alert(`Thêm cột vào ${sheet.name}`);
                           }}
                           title="Thêm cột"
                         >
@@ -452,7 +452,7 @@ const GoogleSheetsIntegration = () => {
                           className="action-btn"
                           onClick={(e) => {
                             e.stopPropagation();
-                            alert("Thêm hàng vào " + sheet.name);
+                            alert(`Thêm hàng vào ${sheet.name}`);
                           }}
                           title="Thêm hàng"
                         >
@@ -462,7 +462,7 @@ const GoogleSheetsIntegration = () => {
                           className="action-btn"
                           onClick={(e) => {
                             e.stopPropagation();
-                            alert("Xóa dòng trống trong " + sheet.name);
+                            alert(`Xóa dòng trống trong ${sheet.name}`);
                           }}
                           title="Xóa dòng trống"
                         >
@@ -490,7 +490,7 @@ const GoogleSheetsIntegration = () => {
         {/* Main Content - Sheet Data */}
         <div className="sheets-main-content">
           {isLoadingContent ? (
-            <div style={{ padding: "40px", textAlign: "center" }}>
+            <div style={{ padding: '40px', textAlign: 'center' }}>
               <Loading text="Đang tải dữ liệu sheet..." />
             </div>
           ) : selectedSheet ? (
@@ -500,7 +500,7 @@ const GoogleSheetsIntegration = () => {
                   <div className="sheet-title-info">
                     <h3>{selectedSheet.name}</h3>
                     <span className="sheet-dimensions">
-                      {selectedSheet.rowCount} hàng ×{" "}
+                      {selectedSheet.rowCount} hàng ×{' '}
                       {selectedSheet.columnCount} cột
                     </span>
                   </div>
@@ -510,11 +510,11 @@ const GoogleSheetsIntegration = () => {
                       const spreadsheetId =
                         spreadsheets[0]?.id ||
                         importMetaEnv.VITE_GOOGLE_SHEETS_SPREADSHEET_ID ||
-                        "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As";
+                        '18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As';
                       handleOpenSheetInGoogle(selectedSheet, spreadsheetId);
                     }}
                     title="Mở trên Google Sheets"
-                    style={{ marginLeft: "10px", padding: "4px 8px" }}
+                    style={{ marginLeft: '10px', padding: '4px 8px' }}
                   >
                     🔗 Mở trên Google Sheets
                   </button>
@@ -533,7 +533,7 @@ const GoogleSheetsIntegration = () => {
 
               <div className="sheet-table-container">
                 {filteredData.length === 0 ? (
-                  <div style={{ padding: "40px", textAlign: "center" }}>
+                  <div style={{ padding: '40px', textAlign: 'center' }}>
                     <p>Sheet trống hoặc không có dữ liệu</p>
                   </div>
                 ) : (

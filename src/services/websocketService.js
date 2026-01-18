@@ -72,7 +72,10 @@ class WebSocketService {
           (error.message.includes("installHook") ||
             error.message.includes("TransportError"))
         ) {
-          console.warn("⚠️ Ignoring WebSocket error from DevTools/extension:", error.message);
+          console.warn(
+            "⚠️ Ignoring WebSocket error from DevTools/extension:",
+            error.message
+          );
           return;
         }
         console.error("❌ WebSocket connection error:", error);

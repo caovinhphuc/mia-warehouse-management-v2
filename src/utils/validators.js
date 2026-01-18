@@ -9,7 +9,7 @@ export const isValidEmail = (email) => {
 // Phone number validation (Vietnamese format)
 export const isValidPhoneVN = (phone) => {
   const phoneRegex = /^(0|\+84)[0-9]{9,10}$/;
-  return phoneRegex.test(phone.replace(/\s/g, ""));
+  return phoneRegex.test(phone.replace(/\s/g, ''));
 };
 
 // URL validation
@@ -56,15 +56,15 @@ export const isValidDate = (date) => {
 
 // Required field validation
 export const isRequired = (value) => {
-  if (typeof value === "string") {
+  if (typeof value === 'string') {
     return value.trim().length > 0;
   }
-  return value !== null && value !== undefined && value !== "";
+  return value !== null && value !== undefined && value !== '';
 };
 
 // String length validation
 export const isValidLength = (value, min = 0, max = Infinity) => {
-  if (typeof value !== "string") return false;
+  if (typeof value !== 'string') return false;
   return value.length >= min && value.length <= max;
 };
 
@@ -131,7 +131,7 @@ export const isValidNonEmptyArray = (value) => {
 
 // Object validation
 export const isValidObject = (value) => {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
 };
 
 // File name validation
@@ -173,40 +173,40 @@ export const validateForm = (formData, rules) => {
       let isValid = true;
 
       switch (type) {
-        case "required":
+        case 'required':
           isValid = isRequired(value);
           break;
-        case "email":
+        case 'email':
           isValid = isValidEmail(value);
           break;
-        case "phone":
+        case 'phone':
           isValid = isValidPhoneVN(value);
           break;
-        case "url":
+        case 'url':
           isValid = isValidURL(value);
           break;
-        case "number":
+        case 'number':
           isValid = isValidNumber(value);
           break;
-        case "integer":
+        case 'integer':
           isValid = isValidInteger(value);
           break;
-        case "positive":
+        case 'positive':
           isValid = isValidPositiveNumber(value);
           break;
-        case "length":
+        case 'length':
           isValid = isValidLength(value, options.min, options.max);
           break;
-        case "range":
+        case 'range':
           isValid = isValidRange(value, options.min, options.max);
           break;
-        case "sheetId":
+        case 'sheetId':
           isValid = isValidSheetId(value);
           break;
-        case "folderId":
+        case 'folderId':
           isValid = isValidDriveFolderId(value);
           break;
-        case "custom":
+        case 'custom':
           isValid = options.validator ? options.validator(value) : true;
           break;
         default:
@@ -228,13 +228,13 @@ export const validateForm = (formData, rules) => {
 
 // Sanitize input
 export const sanitizeInput = (input) => {
-  if (typeof input !== "string") return input;
+  if (typeof input !== 'string') return input;
 
   return input
     .trim()
-    .replace(/[<>]/g, "") // Remove potential HTML tags
-    .replace(/javascript:/gi, "") // Remove javascript: protocol
-    .replace(/on\w+=/gi, ""); // Remove event handlers
+    .replace(/[<>]/g, '') // Remove potential HTML tags
+    .replace(/javascript:/gi, '') // Remove javascript: protocol
+    .replace(/on\w+=/gi, ''); // Remove event handlers
 };
 
 // Format validation error messages
@@ -247,62 +247,62 @@ export const formatValidationErrors = (errors) => {
 
 // Common validation rules
 export const commonRules = {
-  required: (message = "This field is required") => ({
-    type: "required",
+  required: (message = 'This field is required') => ({
+    type: 'required',
     message,
   }),
 
-  email: (message = "Please enter a valid email address") => ({
-    type: "email",
+  email: (message = 'Please enter a valid email address') => ({
+    type: 'email',
     message,
   }),
 
-  phone: (message = "Please enter a valid phone number") => ({
-    type: "phone",
+  phone: (message = 'Please enter a valid phone number') => ({
+    type: 'phone',
     message,
   }),
 
-  url: (message = "Please enter a valid URL") => ({
-    type: "url",
+  url: (message = 'Please enter a valid URL') => ({
+    type: 'url',
     message,
   }),
 
-  number: (message = "Please enter a valid number") => ({
-    type: "number",
+  number: (message = 'Please enter a valid number') => ({
+    type: 'number',
     message,
   }),
 
-  positive: (message = "Please enter a positive number") => ({
-    type: "positive",
+  positive: (message = 'Please enter a positive number') => ({
+    type: 'positive',
     message,
   }),
 
   length: (min, max, message) => ({
-    type: "length",
+    type: 'length',
     min,
     max,
     message: message || `Length must be between ${min} and ${max} characters`,
   }),
 
   range: (min, max, message) => ({
-    type: "range",
+    type: 'range',
     min,
     max,
     message: message || `Value must be between ${min} and ${max}`,
   }),
 
-  sheetId: (message = "Please enter a valid Google Sheet ID") => ({
-    type: "sheetId",
+  sheetId: (message = 'Please enter a valid Google Sheet ID') => ({
+    type: 'sheetId',
     message,
   }),
 
-  folderId: (message = "Please enter a valid Google Drive folder ID") => ({
-    type: "folderId",
+  folderId: (message = 'Please enter a valid Google Drive folder ID') => ({
+    type: 'folderId',
     message,
   }),
 
   custom: (validator, message) => ({
-    type: "custom",
+    type: 'custom',
     validator,
     message,
   }),

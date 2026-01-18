@@ -5,9 +5,9 @@
  * Monitors performance metrics against budget and alerts if exceeded
  */
 
-const fs = require("fs");
-const path = require("path");
-const { execSync } = require("child_process");
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
 
 // Performance budgets
 const BUDGETS = {
@@ -34,27 +34,27 @@ const BUDGETS = {
 };
 
 const colors = {
-  reset: "\x1b[0m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  red: "\x1b[31m",
-  cyan: "\x1b[36m",
+  reset: '\x1b[0m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  red: '\x1b[31m',
+  cyan: '\x1b[36m',
 };
 
-function log(message, color = "reset") {
+function log(message, color = 'reset') {
   console.log(`${colors[color]}${message}${colors.reset}`);
 }
 
 function checkBundleBudget() {
-  log("📦 Checking Bundle Budget...", "cyan");
+  log('📦 Checking Bundle Budget...', 'cyan');
 
-  const buildDir = "build";
+  const buildDir = 'build';
   if (!fs.existsSync(buildDir)) {
-    log('⚠️  Build directory not found. Run "npm run build" first.', "yellow");
-    return { passed: false, warnings: ["Build directory not found"] };
+    log('⚠️  Build directory not found. Run "npm run build" first.', 'yellow');
+    return { passed: false, warnings: ['Build directory not found'] };
   }
 
-  const { checkBundleSize } = require("./performance-bundle");
+  const { checkBundleSize } = require('./performance-bundle');
   try {
     checkBundleSize();
     return { passed: true };
@@ -64,22 +64,22 @@ function checkBundleBudget() {
 }
 
 function checkLighthouseBudget() {
-  log("🔍 Checking Lighthouse Budget...", "cyan");
+  log('🔍 Checking Lighthouse Budget...', 'cyan');
 
   // Check if server is running
   try {
     execSync('curl -s -o /dev/null -w "%{http_code}" http://localhost:3000', {
-      stdio: "pipe",
+      stdio: 'pipe',
     });
   } catch (error) {
-    log("⚠️  Server not running. Skipping Lighthouse check.", "yellow");
+    log('⚠️  Server not running. Skipping Lighthouse check.', 'yellow');
     return { passed: true, skipped: true };
   }
 
   // Run Lighthouse (simplified check)
   try {
-    const { runLighthouse } = require("./performance-lighthouse");
-    runLighthouse("http://localhost:3000");
+    const { runLighthouse } = require('./performance-lighthouse');
+    runLighthouse('http://localhost:3000');
     return { passed: true };
   } catch (error) {
     return { passed: false, error: error.message };
@@ -87,29 +87,29 @@ function checkLighthouseBudget() {
 }
 
 function checkAPIBudget() {
-  log("🌐 Checking API Budget...", "cyan");
+  log('🌐 Checking API Budget...', 'cyan');
 
-  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:3001";
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
   try {
     const startTime = Date.now();
     execSync(`curl -s -o /dev/null -w "%{http_code}" ${apiUrl}/health`, {
-      stdio: "pipe",
+      stdio: 'pipe',
     });
     const responseTime = Date.now() - startTime;
 
     if (responseTime > BUDGETS.api.responseTime) {
       log(
         `⚠️  API response time: ${responseTime}ms (budget: ${BUDGETS.api.responseTime}ms)`,
-        "yellow"
+        'yellow'
       );
       return { passed: false, responseTime };
     }
 
-    log(`✅ API response time: ${responseTime}ms`, "green");
+    log(`✅ API response time: ${responseTime}ms`, 'green');
     return { passed: true, responseTime };
   } catch (error) {
-    log("⚠️  API not accessible. Skipping API check.", "yellow");
+    log('⚠️  API not accessible. Skipping API check.', 'yellow');
     return { passed: true, skipped: true };
   }
 }
@@ -129,16 +129,16 @@ function generateReport(results) {
   };
 
   fs.writeFileSync(
-    "performance-budget-report.json",
+    'performance-budget-report.json',
     JSON.stringify(report, null, 2)
   );
   return report;
 }
 
 function checkPerformanceBudget() {
-  log("💰 Performance Budget Monitor", "cyan");
-  log("================================", "cyan");
-  console.log("");
+  log('💰 Performance Budget Monitor', 'cyan');
+  log('================================', 'cyan');
+  console.log('');
 
   const results = {
     bundle: checkBundleBudget(),
@@ -146,44 +146,44 @@ function checkPerformanceBudget() {
     api: checkAPIBudget(),
   };
 
-  console.log("");
-  log("📊 Performance Budget Summary:", "cyan");
-  console.log("");
+  console.log('');
+  log('📊 Performance Budget Summary:', 'cyan');
+  console.log('');
 
   Object.entries(results).forEach(([check, result]) => {
     if (result.skipped) {
-      log(`  ⏭️  ${check}: Skipped`, "yellow");
+      log(`  ⏭️  ${check}: Skipped`, 'yellow');
     } else if (result.passed) {
-      log(`  ✅ ${check}: Passed`, "green");
+      log(`  ✅ ${check}: Passed`, 'green');
     } else {
-      log(`  ❌ ${check}: Failed`, "red");
+      log(`  ❌ ${check}: Failed`, 'red');
       if (result.error) {
-        log(`     Error: ${result.error}`, "red");
+        log(`     Error: ${result.error}`, 'red');
       }
     }
   });
 
-  console.log("");
+  console.log('');
 
   // Generate report
   const report = generateReport(results);
 
   const { summary } = report;
-  log(`Total Checks: ${summary.total}`, "cyan");
-  log(`Passed: ${summary.passed}`, "green");
-  log(`Failed: ${summary.failed}`, summary.failed > 0 ? "red" : "green");
-  log(`Skipped: ${summary.skipped}`, summary.skipped > 0 ? "yellow" : "cyan");
-  console.log("");
+  log(`Total Checks: ${summary.total}`, 'cyan');
+  log(`Passed: ${summary.passed}`, 'green');
+  log(`Failed: ${summary.failed}`, summary.failed > 0 ? 'red' : 'green');
+  log(`Skipped: ${summary.skipped}`, summary.skipped > 0 ? 'yellow' : 'cyan');
+  console.log('');
 
   if (summary.failed > 0) {
-    log("❌ Performance budget exceeded!", "red");
-    log("💡 Review performance-budget-report.json for details", "yellow");
+    log('❌ Performance budget exceeded!', 'red');
+    log('💡 Review performance-budget-report.json for details', 'yellow');
     process.exit(1);
   } else {
-    log("✅ All performance budgets met!", "green");
+    log('✅ All performance budgets met!', 'green');
   }
 
-  log("📄 Report saved to performance-budget-report.json", "cyan");
+  log('📄 Report saved to performance-budget-report.json', 'cyan');
 }
 
 if (require.main === module) {

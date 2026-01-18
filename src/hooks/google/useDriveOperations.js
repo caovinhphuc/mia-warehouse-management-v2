@@ -31,7 +31,7 @@ const useDriveOperations = () => {
 
   const deleteFile = useCallback(async (fileId) => {
     // TODO: Implement delete logic
-    setFiles(prev => prev.filter(f => f.id !== fileId));
+    setFiles((prev) => prev.filter((f) => f.id !== fileId));
   }, []);
 
   return {

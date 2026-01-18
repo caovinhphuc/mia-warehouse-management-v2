@@ -1,12 +1,12 @@
-import React, { useState, useRef } from "react";
-import { googleDriveApiService } from "../../services/googleDriveApi";
+import React, { useState, useRef } from 'react';
+import { googleDriveApiService } from '../../services/googleDriveApi';
 
 const DriveTester = () => {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [testResult, setTestResult] = useState("");
-  const [uploadProgress, setUploadProgress] = useState("");
+  const [testResult, setTestResult] = useState('');
+  const [uploadProgress, setUploadProgress] = useState('');
   const fileInputRef = useRef(null);
 
   // Test upload file
@@ -26,15 +26,15 @@ const DriveTester = () => {
       );
 
       setTestResult(`✅ Upload successful: ${result.name}`);
-      setUploadProgress("");
-      console.log("Uploaded file:", result);
+      setUploadProgress('');
+      console.log('Uploaded file:', result);
 
       // Refresh file list
       setTimeout(() => handleListFiles(), 1000);
     } catch (error) {
       setError(`Upload failed: ${error.message}`);
-      setTestResult("❌ Upload failed");
-      setUploadProgress("");
+      setTestResult('❌ Upload failed');
+      setUploadProgress('');
     } finally {
       setLoading(false);
     }
@@ -51,7 +51,7 @@ const DriveTester = () => {
       setTestResult(`✅ Listed ${result.files.length} files`);
     } catch (error) {
       setError(`Failed to list files: ${error.message}`);
-      setTestResult("❌ List files failed");
+      setTestResult('❌ List files failed');
     } finally {
       setLoading(false);
     }
@@ -66,13 +66,13 @@ const DriveTester = () => {
     try {
       const result = await googleDriveApiService.createFolder(folderName);
       setTestResult(`✅ Folder created: ${result.name}`);
-      console.log("Created folder:", result);
+      console.log('Created folder:', result);
 
       // Refresh file list
       setTimeout(() => handleListFiles(), 1000);
     } catch (error) {
       setError(`Failed to create folder: ${error.message}`);
-      setTestResult("❌ Create folder failed");
+      setTestResult('❌ Create folder failed');
     } finally {
       setLoading(false);
     }
@@ -95,7 +95,7 @@ const DriveTester = () => {
       setTimeout(() => handleListFiles(), 1000);
     } catch (error) {
       setError(`Failed to delete file: ${error.message}`);
-      setTestResult("❌ Delete failed");
+      setTestResult('❌ Delete failed');
     } finally {
       setLoading(false);
     }
@@ -105,17 +105,17 @@ const DriveTester = () => {
   const handleGenerateTestReport = async () => {
     setLoading(true);
     setError(null);
-    setUploadProgress("Generating test report...");
+    setUploadProgress('Generating test report...');
 
     try {
       const reportData = {
-        title: "Test Report",
+        title: 'Test Report',
         timestamp: new Date().toISOString(),
         data: [
-          ["Item", "Quantity", "Price", "Total"],
-          ["Product A", "10", "100", "1000"],
-          ["Product B", "5", "200", "1000"],
-          ["Product C", "3", "300", "900"],
+          ['Item', 'Quantity', 'Price', 'Total'],
+          ['Product A', '10', '100', '1000'],
+          ['Product B', '5', '200', '1000'],
+          ['Product C', '3', '300', '900'],
         ],
         summary: {
           totalItems: 3,
@@ -125,12 +125,12 @@ const DriveTester = () => {
       };
 
       const jsonContent = JSON.stringify(reportData, null, 2);
-      const blob = new Blob([jsonContent], { type: "application/json" });
+      const blob = new Blob([jsonContent], { type: 'application/json' });
       const file = new File(
         [blob],
         `test-report-${new Date().getTime()}.json`,
         {
-          type: "application/json",
+          type: 'application/json',
         }
       );
 
@@ -141,24 +141,24 @@ const DriveTester = () => {
       );
 
       setTestResult(`✅ Report uploaded: ${result.name}`);
-      setUploadProgress("");
+      setUploadProgress('');
 
       // Refresh file list
       setTimeout(() => handleListFiles(), 1000);
     } catch (error) {
       setError(`Failed to generate report: ${error.message}`);
-      setTestResult("❌ Report generation failed");
-      setUploadProgress("");
+      setTestResult('❌ Report generation failed');
+      setUploadProgress('');
     } finally {
       setLoading(false);
     }
   };
 
   const formatFileSize = (bytes) => {
-    if (!bytes) return "N/A";
-    const sizes = ["Bytes", "KB", "MB", "GB"];
+    if (!bytes) return 'N/A';
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return Math.round((bytes / Math.pow(1024, i)) * 100) / 100 + " " + sizes[i];
+    return `${Math.round((bytes / Math.pow(1024, i)) * 100) / 100} ${sizes[i]}`;
   };
 
   const formatDate = (dateString) => {
@@ -166,124 +166,124 @@ const DriveTester = () => {
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "1000px", margin: "0 auto" }}>
+    <div style={{ padding: '20px', maxWidth: '1000px', margin: '0 auto' }}>
       <h2>Google Drive Integration Tester</h2>
 
       {/* Status display */}
       <div
         style={{
-          padding: "10px",
-          margin: "10px 0",
-          backgroundColor: error ? "#ffebee" : "#e8f5e8",
-          border: `1px solid ${error ? "#f44336" : "#4caf50"}`,
-          borderRadius: "4px",
+          padding: '10px',
+          margin: '10px 0',
+          backgroundColor: error ? '#ffebee' : '#e8f5e8',
+          border: `1px solid ${error ? '#f44336' : '#4caf50'}`,
+          borderRadius: '4px',
         }}
       >
         <p>
           <strong>Status:</strong> {testResult}
         </p>
         {error && (
-          <p style={{ color: "#f44336" }}>
+          <p style={{ color: '#f44336' }}>
             <strong>Error:</strong> {error}
           </p>
         )}
         {uploadProgress && (
-          <p style={{ color: "#2196f3" }}>
+          <p style={{ color: '#2196f3' }}>
             <strong>Progress:</strong> {uploadProgress}
           </p>
         )}
       </div>
 
       {/* Control buttons */}
-      <div style={{ margin: "20px 0" }}>
+      <div style={{ margin: '20px 0' }}>
         <button
           onClick={handleListFiles}
           disabled={loading}
-          style={{ margin: "5px", padding: "10px 15px" }}
+          style={{ margin: '5px', padding: '10px 15px' }}
         >
-          {loading ? "Loading..." : "List Files"}
+          {loading ? 'Loading...' : 'List Files'}
         </button>
 
         <button
           onClick={handleCreateFolder}
           disabled={loading}
-          style={{ margin: "5px", padding: "10px 15px" }}
+          style={{ margin: '5px', padding: '10px 15px' }}
         >
-          {loading ? "Loading..." : "Create Test Folder"}
+          {loading ? 'Loading...' : 'Create Test Folder'}
         </button>
 
         <button
           onClick={handleGenerateTestReport}
           disabled={loading}
-          style={{ margin: "5px", padding: "10px 15px" }}
+          style={{ margin: '5px', padding: '10px 15px' }}
         >
-          {loading ? "Loading..." : "Generate Test Report"}
+          {loading ? 'Loading...' : 'Generate Test Report'}
         </button>
 
         <input
           type="file"
           ref={fileInputRef}
           onChange={handleFileUpload}
-          style={{ margin: "5px", padding: "10px" }}
+          style={{ margin: '5px', padding: '10px' }}
           disabled={loading}
         />
       </div>
 
       {/* Files list */}
       {files.length > 0 && (
-        <div style={{ marginTop: "20px" }}>
+        <div style={{ marginTop: '20px' }}>
           <h3>Files in Drive:</h3>
-          <div style={{ overflowX: "auto" }}>
+          <div style={{ overflowX: 'auto' }}>
             <table
               style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                border: "1px solid #ddd",
+                width: '100%',
+                borderCollapse: 'collapse',
+                border: '1px solid #ddd',
               }}
             >
               <thead>
-                <tr style={{ backgroundColor: "#f5f5f5" }}>
+                <tr style={{ backgroundColor: '#f5f5f5' }}>
                   <th
                     style={{
-                      border: "1px solid #ddd",
-                      padding: "8px",
-                      textAlign: "left",
+                      border: '1px solid #ddd',
+                      padding: '8px',
+                      textAlign: 'left',
                     }}
                   >
                     Name
                   </th>
                   <th
                     style={{
-                      border: "1px solid #ddd",
-                      padding: "8px",
-                      textAlign: "left",
+                      border: '1px solid #ddd',
+                      padding: '8px',
+                      textAlign: 'left',
                     }}
                   >
                     Type
                   </th>
                   <th
                     style={{
-                      border: "1px solid #ddd",
-                      padding: "8px",
-                      textAlign: "left",
+                      border: '1px solid #ddd',
+                      padding: '8px',
+                      textAlign: 'left',
                     }}
                   >
                     Size
                   </th>
                   <th
                     style={{
-                      border: "1px solid #ddd",
-                      padding: "8px",
-                      textAlign: "left",
+                      border: '1px solid #ddd',
+                      padding: '8px',
+                      textAlign: 'left',
                     }}
                   >
                     Modified
                   </th>
                   <th
                     style={{
-                      border: "1px solid #ddd",
-                      padding: "8px",
-                      textAlign: "left",
+                      border: '1px solid #ddd',
+                      padding: '8px',
+                      textAlign: 'left',
                     }}
                   >
                     Actions
@@ -293,38 +293,38 @@ const DriveTester = () => {
               <tbody>
                 {files.map((file, index) => (
                   <tr key={file.id}>
-                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                       <a
                         href={file.webViewLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ textDecoration: "none", color: "#1976d2" }}
+                        style={{ textDecoration: 'none', color: '#1976d2' }}
                       >
                         {file.name}
                       </a>
                     </td>
-                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                      {file.mimeType.includes("folder")
-                        ? "📁 Folder"
-                        : "📄 File"}
+                    <td style={{ border: '1px solid #ddd', padding: '8px' }}>
+                      {file.mimeType.includes('folder')
+                        ? '📁 Folder'
+                        : '📄 File'}
                     </td>
-                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                       {formatFileSize(file.size)}
                     </td>
-                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                       {formatDate(file.modifiedTime)}
                     </td>
-                    <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                    <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                       <button
                         onClick={() => handleDeleteFile(file.id, file.name)}
                         disabled={loading}
                         style={{
-                          padding: "5px 10px",
-                          backgroundColor: "#f44336",
-                          color: "white",
-                          border: "none",
-                          borderRadius: "3px",
-                          cursor: "pointer",
+                          padding: '5px 10px',
+                          backgroundColor: '#f44336',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '3px',
+                          cursor: 'pointer',
                         }}
                       >
                         Delete

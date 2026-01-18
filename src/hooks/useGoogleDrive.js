@@ -1,16 +1,16 @@
-import { useState, useCallback } from "react";
-import { googleDriveApiService } from "../services/googleDriveApi";
+import { useState, useCallback } from 'react';
+import { googleDriveApiService } from '../services/googleDriveApi';
 
 export const useGoogleDrive = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [files, setFiles] = useState([]);
-  const [uploadProgress, setUploadProgress] = useState("");
+  const [uploadProgress, setUploadProgress] = useState('');
 
   const uploadFile = useCallback(async (file, fileName, mimeType, folderId) => {
     setLoading(true);
     setError(null);
-    setUploadProgress(`Uploading ${fileName || "file"}...`);
+    setUploadProgress(`Uploading ${fileName || 'file'}...`);
 
     try {
       const result = await googleDriveApiService.uploadFile(
@@ -19,11 +19,11 @@ export const useGoogleDrive = () => {
         mimeType,
         folderId
       );
-      setUploadProgress("");
+      setUploadProgress('');
       return result;
     } catch (err) {
       setError(err.message);
-      setUploadProgress("");
+      setUploadProgress('');
       throw err;
     } finally {
       setLoading(false);

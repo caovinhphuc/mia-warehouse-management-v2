@@ -1,42 +1,42 @@
-import React, { useState } from "react";
-import SheetTester from "../GoogleSheet/SheetTester.jsx";
-import DriveTester from "../GoogleDrive/DriveTester.jsx";
+import React, { useState } from 'react';
+import SheetTester from '../GoogleSheet/SheetTester.jsx';
+import DriveTester from '../GoogleDrive/DriveTester.jsx';
 
 const TestDashboard = () => {
-  const [activeTab, setActiveTab] = useState("sheets");
+  const [activeTab, setActiveTab] = useState('sheets');
 
   const tabStyle = (isActive) => ({
-    padding: "10px 20px",
-    margin: "0 5px",
-    border: "1px solid #ddd",
-    backgroundColor: isActive ? "#1976d2" : "#f5f5f5",
-    color: isActive ? "white" : "#333",
-    cursor: "pointer",
-    borderRadius: "4px 4px 0 0",
+    padding: '10px 20px',
+    margin: '0 5px',
+    border: '1px solid #ddd',
+    backgroundColor: isActive ? '#1976d2' : '#f5f5f5',
+    color: isActive ? 'white' : '#333',
+    cursor: 'pointer',
+    borderRadius: '4px 4px 0 0',
   });
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f9f9f9" }}>
-      <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
-        <h1 style={{ textAlign: "center", color: "#333" }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#f9f9f9' }}>
+      <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+        <h1 style={{ textAlign: 'center', color: '#333' }}>
           Google Services Integration Test Dashboard
         </h1>
 
-        <p style={{ textAlign: "center", color: "#666", marginBottom: "30px" }}>
+        <p style={{ textAlign: 'center', color: '#666', marginBottom: '30px' }}>
           Test your React app's integration with Google Sheets and Google Drive
         </p>
 
         {/* Tab navigation */}
-        <div style={{ marginBottom: "20px", borderBottom: "1px solid #ddd" }}>
+        <div style={{ marginBottom: '20px', borderBottom: '1px solid #ddd' }}>
           <button
-            style={tabStyle(activeTab === "sheets")}
-            onClick={() => setActiveTab("sheets")}
+            style={tabStyle(activeTab === 'sheets')}
+            onClick={() => setActiveTab('sheets')}
           >
             📊 Google Sheets Test
           </button>
           <button
-            style={tabStyle(activeTab === "drive")}
-            onClick={() => setActiveTab("drive")}
+            style={tabStyle(activeTab === 'drive')}
+            onClick={() => setActiveTab('drive')}
           >
             💾 Google Drive Test
           </button>
@@ -45,24 +45,24 @@ const TestDashboard = () => {
         {/* Tab content */}
         <div
           style={{
-            backgroundColor: "white",
-            borderRadius: "0 4px 4px 4px",
-            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-            minHeight: "500px",
+            backgroundColor: 'white',
+            borderRadius: '0 4px 4px 4px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            minHeight: '500px',
           }}
         >
-          {activeTab === "sheets" && <SheetTester />}
-          {activeTab === "drive" && <DriveTester />}
+          {activeTab === 'sheets' && <SheetTester />}
+          {activeTab === 'drive' && <DriveTester />}
         </div>
 
         {/* Instructions */}
         <div
           style={{
-            marginTop: "30px",
-            padding: "20px",
-            backgroundColor: "white",
-            borderRadius: "4px",
-            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+            marginTop: '30px',
+            padding: '20px',
+            backgroundColor: 'white',
+            borderRadius: '4px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
           }}
         >
           <h3>Instructions:</h3>

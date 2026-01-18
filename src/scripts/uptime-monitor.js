@@ -5,28 +5,28 @@
  * Monitors multiple services and tracks uptime, response times, and alerts
  */
 
-const https = require("https");
-const http = require("http");
-const { URL } = require("url");
+const https = require('https');
+const http = require('http');
+const { URL } = require('url');
 
 // Configuration
 const CONFIG = {
   services: [
     {
-      name: "Frontend",
-      url: process.env.FRONTEND_URL || "http://localhost:3000",
+      name: 'Frontend',
+      url: process.env.FRONTEND_URL || 'http://localhost:3000',
       interval: 60000, // 1 minute
       timeout: 5000,
     },
     {
-      name: "Backend API",
-      url: process.env.BACKEND_URL || "http://localhost:3001/health",
+      name: 'Backend API',
+      url: process.env.BACKEND_URL || 'http://localhost:3001/health',
       interval: 60000,
       timeout: 5000,
     },
     {
-      name: "Automation API",
-      url: process.env.AUTOMATION_URL || "http://localhost:3001/health",
+      name: 'Automation API',
+      url: process.env.AUTOMATION_URL || 'http://localhost:3001/health',
       interval: 60000,
       timeout: 5000,
     },
@@ -51,15 +51,15 @@ const metrics = {
 
 // Colors for console
 const colors = {
-  reset: "\x1b[0m",
-  green: "\x1b[32m",
-  yellow: "\x1b[33m",
-  red: "\x1b[31m",
-  cyan: "\x1b[36m",
-  blue: "\x1b[34m",
+  reset: '\x1b[0m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  red: '\x1b[31m',
+  cyan: '\x1b[36m',
+  blue: '\x1b[34m',
 };
 
-function log(message, color = "reset") {
+function log(message, color = 'reset') {
   const timestamp = new Date().toISOString();
   console.log(`${colors[color]}[${timestamp}] ${message}${colors.reset}`);
 }
@@ -67,25 +67,25 @@ function log(message, color = "reset") {
 function makeRequest(url) {
   return new Promise((resolve, reject) => {
     const parsedUrl = new URL(url);
-    const client = parsedUrl.protocol === "https:" ? https : http;
+    const client = parsedUrl.protocol === 'https:' ? https : http;
     const options = {
       hostname: parsedUrl.hostname,
-      port: parsedUrl.port || (parsedUrl.protocol === "https:" ? 443 : 80),
+      port: parsedUrl.port || (parsedUrl.protocol === 'https:' ? 443 : 80),
       path: parsedUrl.pathname + parsedUrl.search,
-      method: "GET",
+      method: 'GET',
       timeout: CONFIG.services.find((s) => s.url === url)?.timeout || 5000,
     };
 
     const startTime = Date.now();
     const req = client.request(options, (res) => {
       const responseTime = Date.now() - startTime;
-      let data = "";
+      let data = '';
 
-      res.on("data", (chunk) => {
+      res.on('data', (chunk) => {
         data += chunk;
       });
 
-      res.on("end", () => {
+      res.on('end', () => {
         resolve({
           status: res.statusCode,
           responseTime,
@@ -95,7 +95,7 @@ function makeRequest(url) {
       });
     });
 
-    req.on("error", (error) => {
+    req.on('error', (error) => {
       reject({
         error: error.message,
         responseTime: Date.now() - startTime,
@@ -103,10 +103,10 @@ function makeRequest(url) {
       });
     });
 
-    req.on("timeout", () => {
+    req.on('timeout', () => {
       req.destroy();
       reject({
-        error: "Request timeout",
+        error: 'Request timeout',
         responseTime: Date.now() - startTime,
         success: false,
       });
@@ -122,7 +122,7 @@ function initializeService(service) {
     metrics.uptime[service.name] = { startTime: Date.now(), downTime: 0 };
     metrics.responseTimes[service.name] = [];
     metrics.errors[service.name] = [];
-    serviceStates[service.name] = { status: "unknown", lastCheck: null };
+    serviceStates[service.name] = { status: 'unknown', lastCheck: null };
   }
 }
 
@@ -158,20 +158,20 @@ function checkService(service) {
         metrics.checks[service.name].successful++;
         const previousStatus = serviceStates[service.name].status;
 
-        if (previousStatus === "down") {
+        if (previousStatus === 'down') {
           // Service recovered
           const downDuration =
             now - (serviceStates[service.name].downSince || now);
           metrics.uptime[service.name].downTime += downDuration;
           log(
             `✅ ${service.name} recovered after ${Math.round(downDuration / 1000)}s`,
-            "green"
+            'green'
           );
-          sendAlert(service.name, "recovered", `Service is back online`);
+          sendAlert(service.name, 'recovered', `Service is back online`);
         }
 
         serviceStates[service.name] = {
-          status: result.responseTime > service.timeout ? "slow" : "up",
+          status: result.responseTime > service.timeout ? 'slow' : 'up',
           lastCheck: now,
           responseTime: result.responseTime,
         };
@@ -179,10 +179,10 @@ function checkService(service) {
         if (result.responseTime > CONFIG.alertThresholds.slowResponse) {
           log(
             `⚠️  ${service.name} slow response: ${result.responseTime}ms`,
-            "yellow"
+            'yellow'
           );
         } else {
-          log(`✅ ${service.name} OK (${result.responseTime}ms)`, "green");
+          log(`✅ ${service.name} OK (${result.responseTime}ms)`, 'green');
         }
       } else {
         metrics.checks[service.name].failed++;
@@ -212,7 +212,7 @@ function handleServiceDown(service, timestamp, reason) {
   const downSince = serviceStates[service.name]?.downSince || timestamp;
 
   serviceStates[service.name] = {
-    status: "down",
+    status: 'down',
     lastCheck: timestamp,
     downSince: downSince,
     error: reason,
@@ -220,18 +220,18 @@ function handleServiceDown(service, timestamp, reason) {
 
   const downDuration = timestamp - downSince;
 
-  if (previousStatus !== "down") {
+  if (previousStatus !== 'down') {
     // Service just went down
-    log(`❌ ${service.name} is DOWN: ${reason}`, "red");
+    log(`❌ ${service.name} is DOWN: ${reason}`, 'red');
   }
 
   if (
     downDuration >= CONFIG.alertThresholds.downTime &&
-    previousStatus !== "down"
+    previousStatus !== 'down'
   ) {
     sendAlert(
       service.name,
-      "critical",
+      'critical',
       `Service has been down for ${Math.round(downDuration / 1000)}s: ${reason}`
     );
   }
@@ -247,31 +247,31 @@ function sendAlert(serviceName, level, message) {
 
   // Console alert
   const color =
-    level === "critical" ? "red" : level === "warning" ? "yellow" : "green";
+    level === 'critical' ? 'red' : level === 'warning' ? 'yellow' : 'green';
   log(`🚨 ALERT [${level.toUpperCase()}]: ${serviceName} - ${message}`, color);
 
   // Webhook alert
   if (CONFIG.webhook) {
     fetch(CONFIG.webhook, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(alert),
     }).catch((err) => {
-      log(`Failed to send webhook alert: ${err.message}`, "yellow");
+      log(`Failed to send webhook alert: ${err.message}`, 'yellow');
     });
   }
 
   // Email alert (via webhook or direct)
-  if (CONFIG.email && level === "critical") {
+  if (CONFIG.email && level === 'critical') {
     // Email would be sent via webhook integration
-    log(`📧 Email alert would be sent to ${CONFIG.email}`, "cyan");
+    log(`📧 Email alert would be sent to ${CONFIG.email}`, 'cyan');
   }
 }
 
 function printStatus() {
-  console.log("\n" + "=".repeat(60));
-  log("📊 UPTIME MONITOR STATUS", "cyan");
-  console.log("=".repeat(60));
+  console.log(`\n${'='.repeat(60)}`);
+  log('📊 UPTIME MONITOR STATUS', 'cyan');
+  console.log('='.repeat(60));
 
   CONFIG.services.forEach((service) => {
     const state = serviceStates[service.name];
@@ -281,36 +281,36 @@ function printStatus() {
     const errorRate =
       checks.total > 0
         ? ((checks.failed / checks.total) * 100).toFixed(2)
-        : "0.00";
+        : '0.00';
 
     const statusColor =
-      state.status === "up"
-        ? "green"
-        : state.status === "down"
-          ? "red"
-          : "yellow";
+      state.status === 'up'
+        ? 'green'
+        : state.status === 'down'
+          ? 'red'
+          : 'yellow';
 
-    log(`\n${service.name}:`, "cyan");
+    log(`\n${service.name}:`, 'cyan');
     log(`  Status: ${state.status.toUpperCase()}`, statusColor);
-    log(`  Uptime: ${uptime.toFixed(2)}%`, "blue");
-    log(`  Checks: ${checks.successful}/${checks.total} successful`, "blue");
-    log(`  Error Rate: ${errorRate}%`, errorRate > 10 ? "red" : "blue");
-    log(`  Avg Response: ${avgResponse}ms`, "blue");
+    log(`  Uptime: ${uptime.toFixed(2)}%`, 'blue');
+    log(`  Checks: ${checks.successful}/${checks.total} successful`, 'blue');
+    log(`  Error Rate: ${errorRate}%`, errorRate > 10 ? 'red' : 'blue');
+    log(`  Avg Response: ${avgResponse}ms`, 'blue');
     if (state.responseTime) {
-      log(`  Last Response: ${state.responseTime}ms`, "blue");
+      log(`  Last Response: ${state.responseTime}ms`, 'blue');
     }
     if (state.error) {
-      log(`  Last Error: ${state.error}`, "red");
+      log(`  Last Error: ${state.error}`, 'red');
     }
   });
 
-  console.log("\n" + "=".repeat(60) + "\n");
+  console.log(`\n${'='.repeat(60)}\n`);
 }
 
 // Start monitoring
 function startMonitoring() {
-  log("🚀 Starting Uptime Monitor...", "cyan");
-  log(`Monitoring ${CONFIG.services.length} services`, "cyan");
+  log('🚀 Starting Uptime Monitor...', 'cyan');
+  log(`Monitoring ${CONFIG.services.length} services`, 'cyan');
 
   // Initial check
   CONFIG.services.forEach((service) => {
@@ -339,14 +339,14 @@ function startMonitoring() {
 }
 
 // Handle graceful shutdown
-process.on("SIGINT", () => {
-  log("\n🛑 Shutting down monitor...", "yellow");
+process.on('SIGINT', () => {
+  log('\n🛑 Shutting down monitor...', 'yellow');
   printStatus();
   process.exit(0);
 });
 
-process.on("SIGTERM", () => {
-  log("\n🛑 Shutting down monitor...", "yellow");
+process.on('SIGTERM', () => {
+  log('\n🛑 Shutting down monitor...', 'yellow');
   printStatus();
   process.exit(0);
 });

@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
 const LoadingSpinner = ({
-  size = "medium",
-  color = "#1976d2",
-  text = "Loading...",
+  size = 'medium',
+  color = '#1976d2',
+  text = 'Loading...',
   overlay = false,
 }) => {
   const sizeMap = {
-    small: "20px",
-    medium: "40px",
-    large: "60px",
+    small: '20px',
+    medium: '40px',
+    large: '60px',
   };
 
   const spinnerSize = sizeMap[size] || sizeMap.medium;
@@ -19,30 +19,30 @@ const LoadingSpinner = ({
     height: spinnerSize,
     border: `3px solid #f3f3f3`,
     borderTop: `3px solid ${color}`,
-    borderRadius: "50%",
-    animation: "spin 1s linear infinite",
-    margin: "0 auto",
+    borderRadius: '50%',
+    animation: 'spin 1s linear infinite',
+    margin: '0 auto',
   };
 
   const containerStyle = overlay
     ? {
-        position: "fixed",
+        position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         zIndex: 9999,
       }
     : {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "20px",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
       };
 
   return (
@@ -51,9 +51,9 @@ const LoadingSpinner = ({
       {text && (
         <p
           style={{
-            marginTop: "10px",
+            marginTop: '10px',
             color: color,
-            fontSize: size === "small" ? "12px" : "14px",
+            fontSize: size === 'small' ? '12px' : '14px',
           }}
         >
           {text}
@@ -76,51 +76,51 @@ const LoadingSpinner = ({
 };
 
 // Inline spinner component for buttons
-export const InlineSpinner = ({ size = "16px", color = "#ffffff" }) => (
+export const InlineSpinner = ({ size = '16px', color = '#ffffff' }) => (
   <div
     style={{
-      display: "inline-block",
+      display: 'inline-block',
       width: size,
       height: size,
       border: `2px solid transparent`,
       borderTop: `2px solid ${color}`,
-      borderRadius: "50%",
-      animation: "spin 1s linear infinite",
-      marginRight: "8px",
+      borderRadius: '50%',
+      animation: 'spin 1s linear infinite',
+      marginRight: '8px',
     }}
   />
 );
 
 // Dots spinner for smaller spaces
-export const DotsSpinner = ({ color = "#1976d2" }) => (
-  <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+export const DotsSpinner = ({ color = '#1976d2' }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
     <div
       style={{
-        width: "8px",
-        height: "8px",
+        width: '8px',
+        height: '8px',
         backgroundColor: color,
-        borderRadius: "50%",
-        animation: "bounce 1.4s ease-in-out infinite both",
+        borderRadius: '50%',
+        animation: 'bounce 1.4s ease-in-out infinite both',
       }}
     />
     <div
       style={{
-        width: "8px",
-        height: "8px",
+        width: '8px',
+        height: '8px',
         backgroundColor: color,
-        borderRadius: "50%",
-        animation: "bounce 1.4s ease-in-out infinite both",
-        animationDelay: "-0.16s",
+        borderRadius: '50%',
+        animation: 'bounce 1.4s ease-in-out infinite both',
+        animationDelay: '-0.16s',
       }}
     />
     <div
       style={{
-        width: "8px",
-        height: "8px",
+        width: '8px',
+        height: '8px',
         backgroundColor: color,
-        borderRadius: "50%",
-        animation: "bounce 1.4s ease-in-out infinite both",
-        animationDelay: "-0.32s",
+        borderRadius: '50%',
+        animation: 'bounce 1.4s ease-in-out infinite both',
+        animationDelay: '-0.32s',
       }}
     />
 
@@ -140,18 +140,18 @@ export const DotsSpinner = ({ color = "#1976d2" }) => (
 );
 
 // Skeleton loader for content
-export const SkeletonLoader = ({ lines = 3, width = "100%" }) => (
+export const SkeletonLoader = ({ lines = 3, width = '100%' }) => (
   <div style={{ width }}>
     {Array.from({ length: lines }).map((_, index) => (
       <div
         key={index}
         style={{
-          height: "16px",
-          backgroundColor: "#f0f0f0",
-          borderRadius: "4px",
-          marginBottom: "8px",
-          animation: "pulse 1.5s ease-in-out infinite",
-          width: index === lines - 1 ? "60%" : "100%",
+          height: '16px',
+          backgroundColor: '#f0f0f0',
+          borderRadius: '4px',
+          marginBottom: '8px',
+          animation: 'pulse 1.5s ease-in-out infinite',
+          width: index === lines - 1 ? '60%' : '100%',
         }}
       />
     ))}

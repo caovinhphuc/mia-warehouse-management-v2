@@ -5,8 +5,8 @@
  * This significantly reduces initial bundle size
  */
 
-import { lazy, Suspense } from "react";
-import { Spin } from "antd";
+import { lazy, Suspense } from 'react';
+import { Spin } from 'antd';
 
 /**
  * Create a lazy-loaded component with loading fallback
@@ -20,10 +20,10 @@ export const lazyLoad = (importFunc, fallback = null) => {
   const defaultFallback = (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
       }}
     >
       <Spin size="large" tip="Loading..." />
@@ -54,7 +54,7 @@ export const lazyLoadWithRetry = (
       if (onError) {
         onError(error);
       }
-      console.error("Failed to load component:", error);
+      console.error('Failed to load component:', error);
       // Retry once after 1 second
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -67,10 +67,10 @@ export const lazyLoadWithRetry = (
   const defaultFallback = (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
       }}
     >
       <Spin size="large" tip="Loading..." />

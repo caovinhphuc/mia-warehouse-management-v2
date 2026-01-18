@@ -1,4 +1,4 @@
-import { actionTypes } from "../actionTypes";
+import { actionTypes } from '../actionTypes';
 
 const initialState = {
   alerts: [],
@@ -11,7 +11,7 @@ const alertsReducer = (state = initialState, action) => {
     case actionTypes.SHOW_ALERT:
       const newAlert = {
         id: Date.now(),
-        type: action.payload.type || "info",
+        type: action.payload.type || 'info',
         title: action.payload.title,
         message: action.payload.message,
         timestamp: new Date().toISOString(),
