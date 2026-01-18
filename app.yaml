@@ -1,0 +1,14 @@
+runtime: nodejs16
+env: standard
+
+env_variables:
+  REACT_APP_GOOGLE_CLIENT_EMAIL: "your-service-account@project.iam.gserviceaccount.com"
+  REACT_APP_GOOGLE_PRIVATE_KEY: "-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+  REACT_APP_GOOGLE_PROJECT_ID: "your-project-id"
+
+handlers:
+- url: /static
+  static_dir: build/static
+- url: /.*
+  static_files: build/index.html
+  upload: build/index.html

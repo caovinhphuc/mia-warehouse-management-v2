@@ -1,0 +1,6 @@
+services:
+  miawarehousemanagementv2:
+    image: miawarehousemanagementv2
+    build:
+      context: .
+      dockerfile: ./Dockerfile
