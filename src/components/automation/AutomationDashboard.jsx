@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import Loading from "../Common/Loading";
-import "./AutomationDashboard.css";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import Loading from '../Common/Loading';
+import './AutomationDashboard.css';
 
 const AutomationDashboard = () => {
   const { loading, error } = useSelector((state) => state.auth);
@@ -13,93 +13,93 @@ const AutomationDashboard = () => {
   const [selectedAutomation, setSelectedAutomation] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [newAutomation, setNewAutomation] = useState({
-    name: "",
-    description: "",
-    trigger: "schedule",
-    action: "email",
-    status: "active",
+    name: '',
+    description: '',
+    trigger: 'schedule',
+    action: 'email',
+    status: 'active',
   });
   const [executionLogs, setExecutionLogs] = useState([]);
 
   // Sample automation data
   const sampleAutomations = [
     {
-      id: "auto_1",
-      name: "Báo cáo hàng ngày",
-      description: "Tự động gửi báo cáo hàng ngày lúc 8:00 sáng",
+      id: 'auto_1',
+      name: 'Báo cáo hàng ngày',
+      description: 'Tự động gửi báo cáo hàng ngày lúc 8:00 sáng',
       trigger: {
-        type: "schedule",
-        schedule: "0 8 * * *", // 8:00 AM daily
-        timezone: "Asia/Ho_Chi_Minh",
+        type: 'schedule',
+        schedule: '0 8 * * *', // 8:00 AM daily
+        timezone: 'Asia/Ho_Chi_Minh',
       },
       action: {
-        type: "email",
-        template: "daily_report",
-        recipients: ["manager@mia.vn", "admin@mia.vn"],
+        type: 'email',
+        template: 'daily_report',
+        recipients: ['manager@mia.vn', 'admin@mia.vn'],
       },
-      status: "active",
-      lastRun: "2024-01-15T08:00:00Z",
-      nextRun: "2024-01-16T08:00:00Z",
+      status: 'active',
+      lastRun: '2024-01-15T08:00:00Z',
+      nextRun: '2024-01-16T08:00:00Z',
       executions: 45,
       successRate: 98.5,
     },
     {
-      id: "auto_2",
-      name: "Backup dữ liệu",
-      description: "Tự động backup dữ liệu Google Sheets hàng tuần",
+      id: 'auto_2',
+      name: 'Backup dữ liệu',
+      description: 'Tự động backup dữ liệu Google Sheets hàng tuần',
       trigger: {
-        type: "schedule",
-        schedule: "0 2 * * 0", // 2:00 AM every Sunday
-        timezone: "Asia/Ho_Chi_Minh",
+        type: 'schedule',
+        schedule: '0 2 * * 0', // 2:00 AM every Sunday
+        timezone: 'Asia/Ho_Chi_Minh',
       },
       action: {
-        type: "backup",
-        source: "google_sheets",
-        destination: "google_drive",
+        type: 'backup',
+        source: 'google_sheets',
+        destination: 'google_drive',
       },
-      status: "active",
-      lastRun: "2024-01-14T02:00:00Z",
-      nextRun: "2024-01-21T02:00:00Z",
+      status: 'active',
+      lastRun: '2024-01-14T02:00:00Z',
+      nextRun: '2024-01-21T02:00:00Z',
       executions: 8,
       successRate: 100,
     },
     {
-      id: "auto_3",
-      name: "Thông báo đơn hàng mới",
-      description: "Gửi thông báo Telegram khi có đơn hàng mới",
+      id: 'auto_3',
+      name: 'Thông báo đơn hàng mới',
+      description: 'Gửi thông báo Telegram khi có đơn hàng mới',
       trigger: {
-        type: "webhook",
-        endpoint: "/webhook/new-order",
-        method: "POST",
+        type: 'webhook',
+        endpoint: '/webhook/new-order',
+        method: 'POST',
       },
       action: {
-        type: "telegram",
-        message: "Có đơn hàng mới: {order_id}",
-        chatId: "-4818209867",
+        type: 'telegram',
+        message: 'Có đơn hàng mới: {order_id}',
+        chatId: '-4818209867',
       },
-      status: "active",
-      lastRun: "2024-01-15T14:30:00Z",
-      nextRun: "N/A",
+      status: 'active',
+      lastRun: '2024-01-15T14:30:00Z',
+      nextRun: 'N/A',
       executions: 23,
       successRate: 95.7,
     },
     {
-      id: "auto_4",
-      name: "Đồng bộ inventory",
-      description: "Đồng bộ dữ liệu inventory giữa các hệ thống",
+      id: 'auto_4',
+      name: 'Đồng bộ inventory',
+      description: 'Đồng bộ dữ liệu inventory giữa các hệ thống',
       trigger: {
-        type: "schedule",
-        schedule: "0 */6 * * *", // Every 6 hours
-        timezone: "Asia/Ho_Chi_Minh",
+        type: 'schedule',
+        schedule: '0 */6 * * *', // Every 6 hours
+        timezone: 'Asia/Ho_Chi_Minh',
       },
       action: {
-        type: "sync",
-        source: "google_sheets",
-        target: "erp_system",
+        type: 'sync',
+        source: 'google_sheets',
+        target: 'erp_system',
       },
-      status: "inactive",
-      lastRun: "2024-01-10T12:00:00Z",
-      nextRun: "N/A",
+      status: 'inactive',
+      lastRun: '2024-01-10T12:00:00Z',
+      nextRun: 'N/A',
       executions: 156,
       successRate: 92.3,
     },
@@ -108,35 +108,35 @@ const AutomationDashboard = () => {
   const sampleLogs = [
     {
       id: 1,
-      automationId: "auto_1",
-      timestamp: "2024-01-15T08:00:00Z",
-      status: "success",
-      message: "Báo cáo hàng ngày đã được gửi thành công",
-      duration: "2.3s",
+      automationId: 'auto_1',
+      timestamp: '2024-01-15T08:00:00Z',
+      status: 'success',
+      message: 'Báo cáo hàng ngày đã được gửi thành công',
+      duration: '2.3s',
     },
     {
       id: 2,
-      automationId: "auto_3",
-      timestamp: "2024-01-15T14:30:00Z",
-      status: "success",
-      message: "Thông báo đơn hàng #12345 đã được gửi",
-      duration: "0.8s",
+      automationId: 'auto_3',
+      timestamp: '2024-01-15T14:30:00Z',
+      status: 'success',
+      message: 'Thông báo đơn hàng #12345 đã được gửi',
+      duration: '0.8s',
     },
     {
       id: 3,
-      automationId: "auto_2",
-      timestamp: "2024-01-14T02:00:00Z",
-      status: "success",
-      message: "Backup dữ liệu hoàn thành",
-      duration: "45.2s",
+      automationId: 'auto_2',
+      timestamp: '2024-01-14T02:00:00Z',
+      status: 'success',
+      message: 'Backup dữ liệu hoàn thành',
+      duration: '45.2s',
     },
     {
       id: 4,
-      automationId: "auto_1",
-      timestamp: "2024-01-14T08:00:00Z",
-      status: "error",
-      message: "Lỗi kết nối email server",
-      duration: "5.1s",
+      automationId: 'auto_1',
+      timestamp: '2024-01-14T08:00:00Z',
+      status: 'error',
+      message: 'Lỗi kết nối email server',
+      duration: '5.1s',
     },
   ];
 
@@ -163,11 +163,11 @@ const AutomationDashboard = () => {
 
     setAutomations((prev) => [automation, ...prev]);
     setNewAutomation({
-      name: "",
-      description: "",
-      trigger: "schedule",
-      action: "email",
-      status: "active",
+      name: '',
+      description: '',
+      trigger: 'schedule',
+      action: 'email',
+      status: 'active',
     });
     setShowCreateModal(false);
   };
@@ -178,7 +178,7 @@ const AutomationDashboard = () => {
         auto.id === automationId
           ? {
               ...auto,
-              status: auto.status === "active" ? "inactive" : "active",
+              status: auto.status === 'active' ? 'inactive' : 'active',
             }
           : auto
       )
@@ -193,57 +193,57 @@ const AutomationDashboard = () => {
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("vi-VN", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
+    return new Date(dateString).toLocaleDateString('vi-VN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
     });
   };
 
   const getStatusColor = (status) => {
-    return status === "active" ? "#22c55e" : "#ef4444";
+    return status === 'active' ? '#22c55e' : '#ef4444';
   };
 
   const getLogStatusColor = (status) => {
     switch (status) {
-      case "success":
-        return "#22c55e";
-      case "error":
-        return "#ef4444";
-      case "warning":
-        return "#f59e0b";
+      case 'success':
+        return '#22c55e';
+      case 'error':
+        return '#ef4444';
+      case 'warning':
+        return '#f59e0b';
       default:
-        return "#3b82f6";
+        return '#3b82f6';
     }
   };
 
   const getTriggerIcon = (type) => {
     switch (type) {
-      case "schedule":
-        return "⏰";
-      case "webhook":
-        return "🔗";
-      case "manual":
-        return "👆";
+      case 'schedule':
+        return '⏰';
+      case 'webhook':
+        return '🔗';
+      case 'manual':
+        return '👆';
       default:
-        return "⚡";
+        return '⚡';
     }
   };
 
   const getActionIcon = (type) => {
     switch (type) {
-      case "email":
-        return "📧";
-      case "telegram":
-        return "💬";
-      case "backup":
-        return "💾";
-      case "sync":
-        return "🔄";
+      case 'email':
+        return '📧';
+      case 'telegram':
+        return '💬';
+      case 'backup':
+        return '💾';
+      case 'sync':
+        return '🔄';
       default:
-        return "⚡";
+        return '⚡';
     }
   };
 
@@ -284,7 +284,7 @@ const AutomationDashboard = () => {
               <div
                 key={automation.id}
                 className={`automation-item ${
-                  selectedAutomation?.id === automation.id ? "active" : ""
+                  selectedAutomation?.id === automation.id ? 'active' : ''
                 }`}
                 onClick={() => handleAutomationSelect(automation)}
               >
@@ -295,7 +295,7 @@ const AutomationDashboard = () => {
                       className="automation-status"
                       style={{ color: getStatusColor(automation.status) }}
                     >
-                      {automation.status === "active" ? "🟢" : "🔴"}
+                      {automation.status === 'active' ? '🟢' : '🔴'}
                     </span>
                   </div>
                   <div className="automation-description">
@@ -303,11 +303,11 @@ const AutomationDashboard = () => {
                   </div>
                   <div className="automation-meta">
                     <span className="automation-trigger">
-                      {getTriggerIcon(automation.trigger.type)}{" "}
+                      {getTriggerIcon(automation.trigger.type)}{' '}
                       {automation.trigger.type}
                     </span>
                     <span className="automation-action">
-                      {getActionIcon(automation.action.type)}{" "}
+                      {getActionIcon(automation.action.type)}{' '}
                       {automation.action.type}
                     </span>
                   </div>
@@ -324,10 +324,10 @@ const AutomationDashboard = () => {
                       handleToggleAutomation(automation.id);
                     }}
                     title={
-                      automation.status === "active" ? "Tạm dừng" : "Kích hoạt"
+                      automation.status === 'active' ? 'Tạm dừng' : 'Kích hoạt'
                     }
                   >
-                    {automation.status === "active" ? "⏸️" : "▶️"}
+                    {automation.status === 'active' ? '⏸️' : '▶️'}
                   </button>
                   <button
                     className="action-btn"
@@ -360,9 +360,9 @@ const AutomationDashboard = () => {
                       ),
                     }}
                   >
-                    {selectedAutomation.status === "active"
-                      ? "Hoạt động"
-                      : "Tạm dừng"}
+                    {selectedAutomation.status === 'active'
+                      ? 'Hoạt động'
+                      : 'Tạm dừng'}
                   </span>
                 </div>
                 <div className="details-actions">
@@ -372,9 +372,9 @@ const AutomationDashboard = () => {
                       handleToggleAutomation(selectedAutomation.id)
                     }
                   >
-                    {selectedAutomation.status === "active"
-                      ? "⏸️ Tạm dừng"
-                      : "▶️ Kích hoạt"}
+                    {selectedAutomation.status === 'active'
+                      ? '⏸️ Tạm dừng'
+                      : '▶️ Kích hoạt'}
                   </button>
                 </div>
               </div>
@@ -389,7 +389,7 @@ const AutomationDashboard = () => {
                   <h4>⚡ Trigger</h4>
                   <div className="trigger-info">
                     <span className="trigger-type">
-                      {getTriggerIcon(selectedAutomation.trigger.type)}{" "}
+                      {getTriggerIcon(selectedAutomation.trigger.type)}{' '}
                       {selectedAutomation.trigger.type}
                     </span>
                     {selectedAutomation.trigger.schedule && (
@@ -409,13 +409,13 @@ const AutomationDashboard = () => {
                   <h4>🎯 Action</h4>
                   <div className="action-info">
                     <span className="action-type">
-                      {getActionIcon(selectedAutomation.action.type)}{" "}
+                      {getActionIcon(selectedAutomation.action.type)}{' '}
                       {selectedAutomation.action.type}
                     </span>
                     {selectedAutomation.action.recipients && (
                       <span className="action-recipients">
-                        Người nhận:{" "}
-                        {selectedAutomation.action.recipients.join(", ")}
+                        Người nhận:{' '}
+                        {selectedAutomation.action.recipients.join(', ')}
                       </span>
                     )}
                     {selectedAutomation.action.chatId && (
@@ -434,15 +434,15 @@ const AutomationDashboard = () => {
                       <span className="stat-value">
                         {selectedAutomation.lastRun
                           ? formatDate(selectedAutomation.lastRun)
-                          : "Chưa chạy"}
+                          : 'Chưa chạy'}
                       </span>
                     </div>
                     <div className="stat-item">
                       <span className="stat-label">Lần chạy tiếp theo</span>
                       <span className="stat-value">
-                        {selectedAutomation.nextRun !== "N/A"
+                        {selectedAutomation.nextRun !== 'N/A'
                           ? formatDate(selectedAutomation.nextRun)
-                          : "N/A"}
+                          : 'N/A'}
                       </span>
                     </div>
                     <div className="stat-item">
@@ -478,7 +478,7 @@ const AutomationDashboard = () => {
                             className="log-status"
                             style={{ color: getLogStatusColor(log.status) }}
                           >
-                            {log.status === "success" ? "✅" : "❌"}
+                            {log.status === 'success' ? '✅' : '❌'}
                           </span>
                           <span className="log-message">{log.message}</span>
                           <span className="log-duration">{log.duration}</span>
