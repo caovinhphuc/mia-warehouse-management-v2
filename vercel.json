@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "mia-google-integration",
   "builds": [
     {
       "src": "package.json",
@@ -21,10 +20,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "functions": {
-    "app/api/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }
