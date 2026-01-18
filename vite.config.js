@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
+import viteCompression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,6 +11,22 @@ export default defineConfig({
       // Use React 17+ automatic JSX runtime
       jsxRuntime: "automatic",
     }),
+    // Gzip compression
+    viteCompression({
+      verbose: true,
+      disable: false,
+      threshold: 10240, // Only compress files larger than 10kb
+      algorithm: "gzip",
+      ext: ".gz",
+    }),
+    // Brotli compression (better than gzip)
+    viteCompression({
+      verbose: true,
+      disable: false,
+      threshold: 10240,
+      algorithm: "brotliCompress",
+      ext: ".br",
+    }),
   ],
 
   // Build configuration
@@ -18,23 +35,69 @@ export default defineConfig({
     sourcemap: process.env.GENERATE_SOURCEMAP !== "false",
     minify: "terser",
     target: "es2015",
+    cssCodeSplit: true,
     rollupOptions: {
-      // Suppress circular dependency warnings (they don't affect functionality)
-      onwarn(warning, warn) {
-        // Ignore circular dependency warnings
-        if (warning.code === "CIRCULAR_DEPENDENCY") return;
-        // Use default for other warnings
-        warn(warning);
-      },
       // Multiple entry points: main app và standalone login
       input: {
         main: path.resolve(__dirname, "index.html"),
         login: path.resolve(__dirname, "public/login.html"),
       },
       output: {
-        // Let Vite/Rollup handle chunking automatically
-        // This eliminates ALL circular dependency warnings
-        manualChunks: undefined,
+        manualChunks(id) {
+          // Improved chunk strategy for better code splitting
+          if (id.includes("node_modules")) {
+            // Core React libraries
+            if (
+              id.includes("react") ||
+              id.includes("react-dom") ||
+              id.includes("react-is")
+            ) {
+              return "vendor-react";
+            }
+
+            // Ant Design - split into smaller chunks
+            if (id.includes("@ant-design/icons")) {
+              return "vendor-antd-icons";
+            }
+            if (id.includes("antd") || id.includes("@ant-design")) {
+              return "vendor-antd";
+            }
+
+            // Chart libraries - split by library
+            if (id.includes("chart.js")) {
+              return "vendor-chartjs";
+            }
+            if (id.includes("react-chartjs-2")) {
+              return "vendor-react-charts";
+            }
+            if (id.includes("recharts")) {
+              return "vendor-recharts";
+            }
+
+            // Redux ecosystem
+            if (id.includes("redux") || id.includes("react-redux")) {
+              return "vendor-redux";
+            }
+
+            // Router
+            if (id.includes("react-router")) {
+              return "vendor-router";
+            }
+
+            // Google APIs (large, separate chunk)
+            if (id.includes("googleapis") || id.includes("google-auth")) {
+              return "vendor-google";
+            }
+
+            // Lodash/utility libraries
+            if (id.includes("lodash") || id.includes("dayjs")) {
+              return "vendor-utils";
+            }
+
+            // Everything else goes to vendor
+            return "vendor";
+          }
+        },
         // Entry file names
         entryFileNames: (chunkInfo) => {
           return chunkInfo.name === "login"
@@ -54,7 +117,14 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
+    terserOptions: {
+      compress: {
+        drop_console: process.env.NODE_ENV === "production",
+        drop_debugger: true,
+        pure_funcs: ["console.log", "console.info"],
+      },
+    },
   },
 
   // Development server

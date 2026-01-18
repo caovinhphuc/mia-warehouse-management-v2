@@ -8,7 +8,7 @@ const initialState = {
 
 const alertsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SHOW_ALERT: {
+    case actionTypes.SHOW_ALERT:
       const newAlert = {
         id: Date.now(),
         type: action.payload.type || 'info',
@@ -24,7 +24,6 @@ const alertsReducer = (state = initialState, action) => {
         notifications: [...state.notifications, newAlert],
         unreadCount: state.unreadCount + 1,
       };
-    }
 
     case actionTypes.HIDE_ALERT:
       return {

@@ -1,67 +1,10 @@
 # 🎨 ESLint, Prettier & Jest Configuration Guide
 
-## ✅ Consolidated Configuration (Single Source of Truth)
+## ✅ Đã cài đặt và cấu hình
 
-**Philosophy:** One configuration file per tool, strictly enforced across all environments.
+### 1. ESLint (Code Linting)
 
-### 1. ESLint (Code Linting) - ENFORCED
-
-**Primary Config:** `eslint.config.mjs` (ESLint 9+ flat config only)
-
-**DEPRECATED FILES (Remove these):**
-
-- ❌ `.eslintrc.json` - Old format, not used
-- ❌ `eslint.config.js` - Old flat config, not used
-- ✅ `eslint.config.mjs` - **ONLY THIS FILE IS ACTIVE**
-
-**Strict Rules Enforced:**
-
-```javascript
-// eslint.config.mjs - Consolidated rules
-export default [
-  {
-    rules: {
-      // ERRORS (Block commit)
-      "no-var": "error", // Must use let/const
-      semi: "error", // Always use semicolons
-      "no-undef": "error", // No undefined variables
-      "no-duplicate-imports": "error", // No duplicate imports
-      "prefer-const": "error", // Use const when possible
-
-      // WARNINGS (Should fix before merge)
-      "no-console": ["warn", { allow: ["warn", "error"] }],
-      "no-unused-vars": [
-        "warn",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-        },
-      ],
-      "require-await": "warn",
-
-      // React specific
-      "react/jsx-uses-react": "off", // React 17+ doesn't need import
-      "react/react-in-jsx-scope": "off",
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-    },
-  },
-];
-```
-
-**Ignore Patterns (Consolidated):**
-
-```javascript
-ignores: [
-  "**/node_modules/**",
-  "**/build/**",
-  "**/dist/**",
-  "**/coverage/**",
-  "**/*.min.js",
-  "**/scripts/**/*.js", // Scripts can use console
-  "**/*.test.js", // Tests have different rules
-];
-```
+**File cấu hình:** `eslint.config.mjs` (ESLint 9+ flat config)
 
 **Plugins đã cài:**
 
@@ -81,118 +24,68 @@ ignores: [
 - Unused variables warnings
 - Console.log warnings (production)
 
-### 2. Prettier (Code Formatting) - AUTO-ENFORCED
+### 2. Prettier (Code Formatting)
 
-**Primary Config:** `.prettierrc` (JSON format only)
+**File cấu hình:** `.prettierrc`
 
-**Settings (LOCKED - Do not modify):**
-
-````json
-{
-  "semi": true,
-  "trailingComma": "es5",
-  "singleQuote": false,
-  "printWidth": 80,
-  "tabWidth": 2,
-  "arrowParens": "always",
-  "endOfLine": "lf",
-  "useTabs": false,
-  "bracketSpacing": true,
-  "jsxBracketSameLine": false
-} - STRICT COVERAGE
-
-**Primary Config:** `jest.config.js` (CommonJS format)
-
-**Strict Coverage Thresholds:**
-
-```javascript
-coverageThreshold: {
-  global: {
-    branches: 70,      // Increased from 50%
-    functions: 70,     // Increased from 50%
-    lines: 70,         // Increased from 50%
-    statements: 70     // Increased from 50%
-  }
-}
-````
-
-**Required Test Patterns:**
-
-- ✅ `*.test.js` - Unit tests
-- ✅ `*.spec.js` - Integration tests
-- ✅ `__tests__/*.js` - Test suites
-  Enforced Workflow
-
-### Auto-fix on Save (VS Code Required Settings)
-
-Update `.vscode/settings.json`:
+**Settings:**
 
 ```json
 {
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never"
-  },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "eslint.codeActionsOnSave.mode": "all",
-  "files.eol": "\n",
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true
+  "semi": true, // Semicolons required
+  "trailingComma": "es5", // Trailing commas where valid in ES5
+  "singleQuote": false, // Use double quotes
+  "printWidth": 80, // Line wrap at 80 characters
+  "tabWidth": 2, // 2 spaces per indent
+  "arrowParens": "always", // Always parentheses for arrow functions
+  "endOfLine": "lf" // Unix line endings
 }
 ```
 
-### Pre-commit Hook (MANDATORY)
+### 3. Jest (Testing)
 
-Install Husky + lint-staged:
+**File cấu hình:** `jest.config.js`
+
+**Features:**
+
+- jsdom test environment
+- Path aliases matching Vite/CRACO config
+- Coverage thresholds (50%)
+- CSS/Asset mocking
+- Transform ignore for specific packages
+- Watch mode with typeahead
+- Babel transformation
+
+**Plugins:**
+
+- ✅ `jest-watch-typeahead` - Better watch mode
+- ✅ `babel-jest` - Transform modern JavaScript
+- ✅ `identity-obj-proxy` - Mock CSS modules
+- ✅ `jest-transform-stub` - Mock static assets
+
+## 🚀 Sử dụng
+
+### Formatting với Prettier
 
 ```bash
-npm install --save-dev husky lint-staged
+# Check formatting
+npm run format:check
 
-# Setup husky
-npx husky init
-npx husky add .husky/pre-commit "npx lint-staged"
+# Auto-format all files
+npm run format
+
+# Format specific files
+npm run format:staged
 ```
 
-**lint-staged config in package.json:**
+### Linting với ESLint
 
-```json
-{
-  "lint-staged": {
-    "*.{js,jsx}": ["prettier --write", "eslint --fix --max-warnings=0"],
-    "*.{json,md,css,scss}": ["prettier --write"]
-  }
-}
-```
+```bash
+# Check for linting errors
+npm run lint:check
 
-### StConsolidated File Structure (Single Source)
-
-```
-project-root/
-├── eslint.config.mjs       # ✅ ONLY ESLint config (ESLint 9+)
-├── .prettierrc             # ✅ ONLY Prettier config (JSON)
-├── .prettierignore         # ✅ Prettier ignore patterns
-├── jest.config.js          # ✅ ONLY Jest config (CommonJS)
-├── babel.config.js         # ✅ Babel for Jest/Build
-├── vite.config.js          # ✅ Vite build config
-├── .vscode/
-│   └── settings.json       # ✅ Editor enforcement
-├── .husky/
-│   └── pre-commit          # ✅ Git hooks
-└── package.json
-    └── lint-staged         # ✅ Pre-commit rules
-
-❌ REMOVE THESE DEPRECATED FILES:
-├── .eslintrc.json          # Old format
-├── .eslintrc.js            # Old format
-├── eslint.config.js        # Old flat config
-└── craco.config.js         # Use vite.config.js instead
+# Auto-fix linting errors
+npm run lint:fix
 
 # Lint with warnings allowed
 npm run lint
@@ -240,61 +133,43 @@ project-root/
     └── check-config.sh     # Configuration validation
 ```
 
-## 🔧 Strict Rule Enforcement
+## 🔧 VS Code Integration
 
-### ESLint Rules (ERRORS - Block Commit)
+### Recommended Extensions
 
-| Rule                         | Level | Description                    | Auto-fix |
-| ---------------------------- | ----- | ------------------------------ | -------- |
-| `no-var`                     | error | Must use let/const             | ✅       |
-| `semi`                       | error | Always use semicolons          | ✅       |
-| `no-undef`                   | error | No undefined variables         | ❌       |
-| `no-duplicate-imports`       | error | No duplicate imports           | ✅       |
-| `prefer-const`               | error | Use const when possible        | ✅       |
-| `no-case-declarations`       | error | No declarations in case blocks | ❌       |
-| `react-hooks/rules-of-hooks` | error | Follow React Hooks rules       | ❌       |
+```json
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "orta.vscode-jest"
+  ]
+}
+```
 
-### ESLint Warnings (Should Fix Before Merge)
+### Workspace Settings
 
-| Rule                          | Level | Description                           | Auto-fix |
-| ----------------------------- | ----- | ------------------------------------- | -------- |
-| `no-console`                  | warn  | Remove console.log (allow warn/error) | ❌       |
-| `no-unused-vars`              | warn  | Remove unused variables               | ❌       |
-| `require-await`               | warn  | Async functions must use await        | ❌       |
-| `react-hooks/exhaustive-deps` | warn  | Include all dependencies              | ❌       |
+Tạo file `.vscode/settings.json`:
 
-### Prettier Rules (AUTO-FIX Always)
-
-- ✅ `semi: true` - Semicolons required
-- ✅ `singleQuote: false` - Double quotes only
-- ✅ `trailingComma: "es5"` - Trailing commas where valid
-- ✅ `printWidth: 80` - Max line length 80
-- ✅ `tabWidth: 2` - 2 spaces per indent
-- ✅ `endOfLine: "lf"` - Unix line endings only
-
-### Jest Requirements (MANDATORY)
-
-- ✅ 70% branch coverage
-- ✅ 70% function coverage
-- ✅ 70% line coverage
-- ✅ 70% statement coverage
-- ✅ All tests must pass before commite,
+```json
+{
+  "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-  "source.fixAll.eslint": true,
-  "source.organizeImports": false
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
   },
   "eslint.validate": [
-  "javascript",
-  "javascriptreact",
-  "typescript",
-  "typescriptreact"
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
   ],
   "jest.autoRun": "off",
   "jest.showCoverageOnLoad": false
-  }
-
-````
+}
+```
 
 ## 🎯 ESLint Rules Overview
 
@@ -303,98 +178,31 @@ project-root/
 - `no-var` - Use let/const instead of var
 - `semi` - Always use semicolons
 - `react-hooks/rules-of-hooks` - Follow React Hooks rules
- (ENFORCED)
 
-### GitHub Actions (Required)
+### Warnings (Should Fix)
 
-```yaml
-name: Quality Check
+- `no-console` - Remove console.log (except warn/error)
+- `no-unused-vars` - Remove unused variables
+- `prefer-const` - Use const when variable isn't reassigned
+- `react-hooks/exhaustive-deps` - Include all dependencies in useEffect
 
-on: [push, pull_request]
+### Disabled (Handled by Prettier)
 
-jobs:
-  quality:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+- `quotes` - Quote style
+- `comma-dangle` - Trailing commas
+- `object-curly-spacing` - Object spacing
+- `indent` - Indentation
+- All other formatting rules
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: 'npm'
+## 🧪 Jest Testing Best Practices
 
-      - name: Install dependencies
-        run: npm ci
+### Test File Naming
 
-      - name: Format check (BLOCKING)
-        run: npm run format:check
-
-      - name: Lint check (ZERO warnings)
-        run: npm run lint:check -- --max-warnings=0
-
-      - name: Test with coverage (70% required)
-        run: npm run test:coverage
-
-      - name: Build check
-        run: npm run build
-````
-
-### Pre-commit Hook (AUTO-INSTALLED)
-
-````bash
-#!/bin/sh
-. "$(dirname "$Requirements (STRICT)
-
-**Current Enforced Thresholds:**
-
-```javascript
-// jest.config.js
-coverageThreshold: {
-  global: {
-    branches: 70,      // ✅ 70% minimum (increased from 50%)
-    functions: 70,     // ✅ 70% minimum (increased from 50%)
-    lines: 70,         // ✅ 70% minimum (increased from 50%)
-    statements: 70     // ✅ 70% minimum (increased from 50%)
-  }
-}
-````
-
-**Per-directory enforcement:**
-
-```javascript
-coverageThreshold: {
-  './src/services/': {
-    branches: 80,
-    functions: 80,
-    lines: 80,
-    statements: 80
-  },
-  './src/utils/': {
-    branches: 90,
-    functions: 90,
-    lines: 90,
-    statements: 90
-  }
-}
 ```
-
-**Coverage reports MUST be committed:**
-
-````gitignore
-# DO NOT ignore these
-!coverage/coverage-summary.json
-!coverage/lcov.info echo "❌ Lint check failed. Run 'npm run lint:fix' to fix."
-  exit 1
-}
-
-# Test check
-npm run test:unit || {
-  echo "❌ Tests failed. Fix tests before committing."
-  exit 1
-}
-
-echo "✅ Pre-commit checks passed!"
+MyComponent.jsx          → MyComponent.test.jsx
+myUtility.js            → myUtility.spec.js
+__tests__/MyComponent.js
+```
 
 ### Test Structure
 
@@ -404,160 +212,41 @@ import MyComponent from "@components/MyComponent";
 
 describe("MyComponent", () => {
   it("renders correctly", () => {
-    reStrict Workflow (MANDATORY)
+    render(<MyComponent />);
+    expect(screen.getByText("Hello")).toBeInTheDocument();
+  });
 
-### 1. Development Workflow
-
-```bash
-# Start development (with auto-fix on save enabled)
-npm run dev
-
-# Before committing ANY code:
-npm run format        # Format code (REQUIRED)
-npm run lint:fix      # Fix lint errors (REQUIRED)
-npm run test          # Run all tests (REQUIRED)
-npm run test:coverage # Verify coverage ≥70% (REQUIRED)
-
-# Commit (pre-commit hook runs automatically)
-git add .
-git commit -m "feat: your message"  # Blocks if checks fail
-````
-
-### 2. Code Review Checklist (ALL MUST PASS)
-
-- ✅ No ESLint errors (zero tolerance)
-- ✅ No ESLint warnings in new code
-- ✅ Code formatted with Prettier
-- ✅ All tests passing
-- ✅ Coverage ≥70% maintained
-- ✅ No console.logs except console.warn/console.error
-- ✅ No unused variables/imports
-- ✅ No `any` types (if using TypeScript)
-- ✅ All async functions use await
-- ✅ React hooks follow rules
-
-### 3. Merge Requirements
-
-**BLOCKING conditions (PR cannot merge):**
-
-- ❌ ESLint errors exist
-- ❌ Tests failing
-- ❌ Coverage below 70%
-- ❌ Format check fails
-- ❌ Build fails
-
-**WARNING conditions (should fix before merge):**
-
-- ⚠️ EEssential Commands (Use These Only)
-
-```bash
-# ============================================
-# FORMATTING (Run first, always)
-# ============================================
-npm run format                 # Auto-fix all formatting
-npm run format:check           # Check formatting (CI)
-
-# ============================================
-# LINTING (Run second, fix errors)
-# ============================================
-npm run lint:fix               # Auto-fix lint errors
-npm run lint:check             # Check linting (CI)
-npm run lint:check -- --max-warnings=0  # Strict mode (CI)
-
-# ============================================
-# TESTING (Run third, verify coverage)
-# ============================================
-npm test                       # Run all tests
-npm run test:coverage          # With coverage report
-npm run test:watch             # Watch mode (development)
-
-# ============================================
-# ALL-IN-ONE (Run before commit)
-# ============================================
-npm run precommit              # Format + Lint + Test (REQUIRED)
-
-# ============================================
-# BUILD (Run before deploy)
-# ============================================
-npm run build                  # Production build
-npm run build && npm run analyze  # Build + analyze bundle
+  it("handles click events", () => {
+    const handleClick = jest.fn();
+    render(<MyComponent onClick={handleClick} />);
+    // ... test implementation
+  });
+});
 ```
 
-## 🚨 Troubleshooting Enforced Rules
+### Path Aliases in Tests
 
-### Error: "Unexpected console statement"
-
-```bash
-# Option 1: Use console.warn or console.error instead
-console.warn('This is allowed');
-
-# Option 2: Add eslint-disable comment
-// eslint-disable-next-line no-console
-console.log('Debug info');
-
-# Option 3: Move to scripts/ folder (console allowed there)
+```javascript
+// All these work in tests:
+import Component from "@/components/MyComponent";
+import { myUtil } from "@utils/myUtility";
+import config from "@config/app.config";
 ```
 
-### Error: "No undefined variables (no-undef)"
+## 🔄 CI/CD Integration
 
-```bash
-# Add global comment at top of file
-/* global Intl, AbortController */
+### Pre-commit Hook (Husky)
 
-# Or better: Import from proper source
-import { AbortController } from 'node-abort-controller';
-```
-
-### Error: "Async function has no await"
-
-```bash
-# Option 1: Add await
-async function fetchData() {
-  return await axios.get('/api');  // Added await
-}
-
-# Option 2: Remove async
-function fetchData() {
-  return axios.get('/api');  // Not async
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit",
+      "pre-push": "npm run prepush"
+    }
+  }
 }
 ```
-
-### Error: "Duplicate imports"
-
-```bash
-# Bad:
-import { Button } from 'antd';
-import { Table } from 'antd';
-
-# Good:
-import { Button, Table } from 'antd';
-```
-
-### Error: "Coverage threshold not met"
-
-```bash
-# Add tests to increase coverage
-npm run test:coverage -- --collectCoverageFrom='src/**/*.js' --verbose
-
-# View coverage report
-open coverage/lcov-report/index.html
-```
-
----
-
-**Version:** 3.0.0 (Enforced Rules)  
-**Last Updated:** 2026-01-19  
-**Status:** ✅ Strict Mode Enabled  
-**Enforcement:** Zero tolerance for errors, warnings reviewed  
-**Tools:** ESLint 9+, Prettier 3+, Jest 29+, Husky, lint-staged
-"hooks": {
-"pre-commit": "npm run precommit",
-"pre-push": "npm run prepush"
-}
-}
-}
-
-````
 
 ### GitHub Actions
 
@@ -569,7 +258,7 @@ open coverage/lcov-report/index.html
 
 - name: Run Tests
   run: npm run test:coverage
-````
+```
 
 ## 📊 Coverage Thresholds
 

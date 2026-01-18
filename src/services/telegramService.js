@@ -48,21 +48,21 @@ class TelegramService {
   /**
    * Gửi tin nhắn đơn giản
    */
-  sendSimpleMessage(text) {
+  async sendSimpleMessage(text) {
     return this.sendMessage(text);
   }
 
   /**
    * Gửi tin nhắn với format HTML
    */
-  sendHTMLMessage(htmlContent) {
+  async sendHTMLMessage(htmlContent) {
     return this.sendMessage(htmlContent, null, 'HTML');
   }
 
   /**
    * Gửi tin nhắn với format Markdown
    */
-  sendMarkdownMessage(markdownContent) {
+  async sendMarkdownMessage(markdownContent) {
     return this.sendMessage(markdownContent, null, 'Markdown');
   }
 

@@ -18,7 +18,6 @@ export const checkBackendConnection = async () => {
   // In development, always return true if we can reach the backend
   if (process.env.NODE_ENV === 'development') {
     try {
-      // eslint-disable-next-line no-undef
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
 
@@ -47,7 +46,6 @@ export const checkBackendConnection = async () => {
 
   // Production mode - strict check
   try {
-    // eslint-disable-next-line no-undef
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000);
 

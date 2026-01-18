@@ -127,7 +127,6 @@ export const fetchProductPerformance = async (
  * Format currency for Vietnamese Dong
  */
 export const formatVND = (amount) => {
-  // eslint-disable-next-line no-undef
   return new Intl.NumberFormat('vi-VN', {
     style: 'currency',
     currency: 'VND',
@@ -138,7 +137,6 @@ export const formatVND = (amount) => {
  * Format number with Vietnamese locale
  */
 export const formatNumber = (number) => {
-  // eslint-disable-next-line no-undef
   return new Intl.NumberFormat('vi-VN').format(number);
 };
 

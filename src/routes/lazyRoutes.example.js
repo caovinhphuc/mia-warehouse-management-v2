@@ -5,7 +5,7 @@
  * Replace the imports in your main App.jsx with these lazy-loaded versions
  */
 // Utility function to lazy load components
-import { lazyLoad } from '../utils/lazyLoad';
+import { lazyLoad } from '@utils/lazyLoad';
 
 // ============================================================================
 // BEFORE: Regular imports (loads everything at startup)

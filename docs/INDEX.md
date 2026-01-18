@@ -191,9 +191,7 @@ node scripts/testEmailService.js      # Email service test
 docker-compose up -d         # Start all services
 docker-compose logs -f       # View logs
 docker-compose down          # Stop services
-docker-compose restart       # Restart services
-docker-compose exec web bash  # Access web container shell
-docker-compose exec backend bash  # Access backend container shell
+
 # Database & backup
 npm run backup:sheets        # Backup all 22 sheets
 npm run sync:drive          # Synchronize Drive files

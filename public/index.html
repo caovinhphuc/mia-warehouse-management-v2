@@ -90,26 +90,6 @@
       <!-- React app will mount here -->
       <!-- Loading state handled by React -->
     </div>
-
-    <!-- Google API -->
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script>
-      // Khởi tạo Google API
-      gapi.load("client", async () => {
-        try {
-          await gapi.client.init({
-            apiKey: "%REACT_APP_GOOGLE_API_KEY%",
-            discoveryDocs: [
-              "https://sheets.googleapis.com/$discovery/rest?version=v4",
-            ],
-          });
-          console.log("✅ Google API đã sẵn sàng");
-        } catch (error) {
-          console.error("❌ Lỗi khởi tạo Google API:", error);
-        }
-      });
-    </script>
-
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

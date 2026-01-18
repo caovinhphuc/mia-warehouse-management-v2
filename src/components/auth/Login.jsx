@@ -4,7 +4,7 @@ import {
   LockOutlined,
   UserOutlined,
   WindowsOutlined,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 import {
   Alert,
   App,
@@ -16,16 +16,16 @@ import {
   Input,
   Space,
   Typography,
-} from 'antd';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+} from "antd";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import securityService, {
   loginUser,
   registerUser,
-} from '../../services/securityService';
-import Loading from '../Common/Loading';
-import './Auth.css';
+} from "../../services/securityService";
+import Loading from "../Common/Loading";
+import "./Auth.css";
 
 const { Title, Text } = Typography;
 
@@ -42,15 +42,15 @@ const Login = () => {
   const [ssoLoading, setSsoLoading] = useState(null);
 
   // Lấy returnUrl từ query params
-  const returnUrl = searchParams.get('returnUrl') || '/';
+  const returnUrl = searchParams.get("returnUrl") || "/";
 
   // Redirect if already authenticated
   useEffect(() => {
     const token =
-      localStorage.getItem('authToken') || localStorage.getItem('token');
+      localStorage.getItem("authToken") || localStorage.getItem("token");
     if (token || isAuthenticated) {
       // Nếu có returnUrl, redirect về đó, nếu không thì về home
-      navigate(returnUrl !== '/' ? returnUrl : '/');
+      navigate(returnUrl !== "/" ? returnUrl : "/");
     }
   }, [isAuthenticated, navigate, returnUrl]);
 
@@ -61,15 +61,15 @@ const Login = () => {
     try {
       if (isRegister) {
         // Register
-        await registerUser(values.email, values.password, 'user');
-        message.success('Đăng ký thành công! Vui lòng đăng nhập.');
+        await registerUser(values.email, values.password, "user");
+        message.success("Đăng ký thành công! Vui lòng đăng nhập.");
         setIsRegister(false);
         form.resetFields();
       } else {
         // Login với các điều kiện theo thứ tự:
         // Step 1: Validate email/password format
         if (!values.email || !values.password) {
-          setError('Vui lòng nhập đầy đủ email và mật khẩu');
+          setError("Vui lòng nhập đầy đủ email và mật khẩu");
           return;
         }
 
@@ -80,7 +80,7 @@ const Login = () => {
 
         // Hiển thị loading message cho user biết đang kiểm tra one.tga.com.vn
         const hideLoading = message.loading(
-          'Đang kiểm tra đăng nhập one.tga.com.vn...',
+          "Đang kiểm tra đăng nhập one.tga.com.vn...",
           0
         );
 
@@ -96,23 +96,23 @@ const Login = () => {
 
         if (result.requiresMFA) {
           // MFA required - redirect to MFA page
-          message.info('Vui lòng nhập mã MFA');
-          navigate('/security', {
+          message.info("Vui lòng nhập mã MFA");
+          navigate("/security", {
             state: { requiresMFA: true, email: values.email },
           });
         } else if (result?.token) {
           // Login success
-          localStorage.setItem('authToken', result.token);
-          localStorage.setItem('token', result.token);
+          localStorage.setItem("authToken", result.token);
+          localStorage.setItem("token", result.token);
 
           // Store sessionId if provided
           if (result.sessionId) {
-            localStorage.setItem('sessionId', result.sessionId);
+            localStorage.setItem("sessionId", result.sessionId);
           }
 
           // Update Redux store
           dispatch({
-            type: 'LOGIN_SUCCESS',
+            type: "LOGIN_SUCCESS",
             payload: {
               user: result.user,
               sessionId: result.sessionId,
@@ -120,36 +120,36 @@ const Login = () => {
             },
           });
 
-          message.success('Đăng nhập thành công!');
+          message.success("Đăng nhập thành công!");
 
           // Redirect về returnUrl nếu có, nếu không thì về home
           const redirectTo =
-            returnUrl && returnUrl !== '/login' ? returnUrl : '/';
+            returnUrl && returnUrl !== "/login" ? returnUrl : "/";
           navigate(redirectTo);
         }
       }
     } catch (err) {
       // Format error message for better display
-      const errorMessage = err.message || 'Đăng nhập thất bại';
+      const errorMessage = err.message || "Đăng nhập thất bại";
 
       // Split multi-line error messages
-      const errorLines = errorMessage.split('\n');
+      const errorLines = errorMessage.split("\n");
       const mainError = errorLines[0];
       const details = errorLines.slice(1).filter((line) => line.trim());
 
       setError(
-        details.length > 0 ? `${mainError}\n${details.join('\n')}` : mainError
+        details.length > 0 ? `${mainError}\n${details.join("\n")}` : mainError
       );
 
       // Show error notification with details
       message.error({
         content: (
           <div>
-            <div style={{ fontWeight: 'bold', marginBottom: 4 }}>
+            <div style={{ fontWeight: "bold", marginBottom: 4 }}>
               {mainError}
             </div>
             {details.length > 0 && (
-              <div style={{ fontSize: '12px', color: '#ff7875' }}>
+              <div style={{ fontSize: "12px", color: "#ff7875" }}>
                 {details.map((detail, idx) => (
                   <div key={idx}>{detail}</div>
                 ))}
@@ -182,22 +182,22 @@ const Login = () => {
 
   const ssoProviders = [
     {
-      id: 'google',
-      name: 'Google',
+      id: "google",
+      name: "Google",
       icon: <GoogleOutlined />,
-      color: '#4285F4',
+      color: "#4285F4",
     },
     {
-      id: 'github',
-      name: 'GitHub',
+      id: "github",
+      name: "GitHub",
       icon: <GithubOutlined />,
-      color: '#24292e',
+      color: "#24292e",
     },
     {
-      id: 'microsoft',
-      name: 'Microsoft',
+      id: "microsoft",
+      name: "Microsoft",
       icon: <WindowsOutlined />,
-      color: '#00A1F1',
+      color: "#00A1F1",
     },
   ];
 
@@ -211,31 +211,31 @@ const Login = () => {
         <Card className="auth-card">
           <div className="auth-header">
             <Title level={2} className="auth-title">
-              {isRegister ? '📝 Đăng ký' : '🔐 Đăng nhập'}
+              {isRegister ? "📝 Đăng ký" : "🔐 Đăng nhập"}
             </Title>
             <Text type="secondary">
               {isRegister
-                ? 'Tạo tài khoản mới để sử dụng hệ thống'
-                : 'Chào mừng trở lại MIA.vn Integration'}
+                ? "Tạo tài khoản mới để sử dụng hệ thống"
+                : "Chào mừng trở lại MIA.vn Integration"}
             </Text>
           </div>
 
           {error && (
             <Alert
-              message={<div style={{ whiteSpace: 'pre-line' }}>{error}</div>}
+              message={<div style={{ whiteSpace: "pre-line" }}>{error}</div>}
               type="error"
               showIcon
               closable
               onClose={() => setError(null)}
               style={{ marginBottom: 24 }}
               description={
-                error.includes('Backend server không khả dụng') ||
-                error.includes('Không thể kết nối') ? (
-                  <div style={{ marginTop: 8, fontSize: '12px' }}>
+                error.includes("Backend server không khả dụng") ||
+                error.includes("Không thể kết nối") ? (
+                  <div style={{ marginTop: 8, fontSize: "12px" }}>
                     <strong>Hướng dẫn khắc phục:</strong>
                     <ol style={{ marginTop: 4, paddingLeft: 20 }}>
                       <li>
-                        Mở terminal và chạy:{' '}
+                        Mở terminal và chạy:{" "}
                         <code>cd backend && npm start</code>
                       </li>
                       <li>Đảm bảo backend đang chạy trên port 8000</li>
@@ -259,8 +259,8 @@ const Login = () => {
               name="email"
               label="Email"
               rules={[
-                { required: true, message: 'Vui lòng nhập email!' },
-                { type: 'email', message: 'Email không hợp lệ!' },
+                { required: true, message: "Vui lòng nhập email!" },
+                { type: "email", message: "Email không hợp lệ!" },
               ]}
             >
               <Input
@@ -274,14 +274,14 @@ const Login = () => {
               name="password"
               label="Mật khẩu"
               rules={[
-                { required: true, message: 'Vui lòng nhập mật khẩu!' },
-                { min: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự!' },
+                { required: true, message: "Vui lòng nhập mật khẩu!" },
+                { min: 6, message: "Mật khẩu phải có ít nhất 6 ký tự!" },
               ]}
             >
               <Input.Password
                 prefix={<LockOutlined />}
                 placeholder="••••••••"
-                autoComplete={isRegister ? 'new-password' : 'current-password'}
+                autoComplete={isRegister ? "new-password" : "current-password"}
               />
             </Form.Item>
 
@@ -289,16 +289,16 @@ const Login = () => {
               <Form.Item
                 name="confirmPassword"
                 label="Xác nhận mật khẩu"
-                dependencies={['password']}
+                dependencies={["password"]}
                 rules={[
-                  { required: true, message: 'Vui lòng xác nhận mật khẩu!' },
+                  { required: true, message: "Vui lòng xác nhận mật khẩu!" },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
-                      if (!value || getFieldValue('password') === value) {
+                      if (!value || getFieldValue("password") === value) {
                         return Promise.resolve();
                       }
                       return Promise.reject(
-                        new Error('Mật khẩu xác nhận không khớp!')
+                        new Error("Mật khẩu xác nhận không khớp!")
                       );
                     },
                   }),
@@ -331,14 +331,18 @@ const Login = () => {
                 loading={loading}
                 size="large"
               >
-                {isRegister ? 'Đăng ký' : 'Đăng nhập'}
+                {isRegister ? "Đăng ký" : "Đăng nhập"}
               </Button>
             </Form.Item>
           </Form>
 
-          <Divider>Hoặc</Divider>
+          <Divider plain>Hoặc</Divider>
 
-          <Space orientation="vertical" size="middle" style={{ width: '100%' }}>
+          <Space
+            direction="vertical"
+            size="small"
+            style={{ width: "100%", display: "flex" }}
+          >
             {ssoProviders.map((provider) => (
               <Button
                 key={provider.id}
@@ -350,6 +354,7 @@ const Login = () => {
                 style={{
                   borderColor: provider.color,
                   color: provider.color,
+                  height: "44px",
                 }}
               >
                 Đăng nhập với {provider.name}
@@ -359,7 +364,7 @@ const Login = () => {
 
           <div className="auth-footer">
             <Text type="secondary">
-              {isRegister ? 'Đã có tài khoản? ' : 'Chưa có tài khoản? '}
+              {isRegister ? "Đã có tài khoản? " : "Chưa có tài khoản? "}
               <a
                 href="#"
                 onClick={(e) => {
@@ -370,7 +375,7 @@ const Login = () => {
                 }}
                 className="auth-link"
               >
-                {isRegister ? 'Đăng nhập' : 'Đăng ký ngay'}
+                {isRegister ? "Đăng nhập" : "Đăng ký ngay"}
               </a>
             </Text>
           </div>

@@ -15,7 +15,7 @@ import { Spin } from 'antd';
  * @returns {React.Component} Lazy-loaded component wrapped in Suspense
  */
 export const lazyLoad = (importFunc, fallback = null) => {
-  const Component = lazy(importFunc);
+  const LazyComponent = lazy(importFunc);
 
   const defaultFallback = (
     <div
@@ -32,7 +32,7 @@ export const lazyLoad = (importFunc, fallback = null) => {
 
   return (props) => (
     <Suspense fallback={fallback || defaultFallback}>
-      <Component {...props} />
+      <LazyComponent {...props} />
     </Suspense>
   );
 };
@@ -49,7 +49,7 @@ export const lazyLoadWithRetry = (
   fallback = null,
   onError = null
 ) => {
-  const Component = lazy(() =>
+  const LazyComponent = lazy(() =>
     importFunc().catch((error) => {
       if (onError) {
         onError(error);
@@ -79,7 +79,7 @@ export const lazyLoadWithRetry = (
 
   return (props) => (
     <Suspense fallback={fallback || defaultFallback}>
-      <Component {...props} />
+      <LazyComponent {...props} />
     </Suspense>
   );
 };

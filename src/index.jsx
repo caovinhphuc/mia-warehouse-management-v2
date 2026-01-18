@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 if (!rootElement) {
-  throw new Error('Root element not found');
+  throw new Error("Root element not found");
 }
 
 const root = ReactDOM.createRoot(rootElement);
@@ -18,10 +18,10 @@ root.render(
 
 // Hide loading screen when React app is mounted
 const hideLoadingScreen = () => {
-  const loadingScreen = document.getElementById('loading-screen');
+  const loadingScreen = document.getElementById("loading-screen");
   if (loadingScreen) {
-    loadingScreen.style.display = 'none';
-    document.body.classList.add('app-loaded');
+    loadingScreen.style.display = "none";
+    document.body.classList.add("app-loaded");
   }
 };
 
