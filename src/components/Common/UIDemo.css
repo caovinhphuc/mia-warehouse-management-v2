@@ -1,0 +1,162 @@
+.ui-demo {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ui-demo h1 {
+  margin-bottom: 32px;
+  color: #1890ff;
+}
+
+.demo-section {
+  margin-bottom: 24px;
+}
+
+.demo-section h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #262626;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Skeleton Demo */
+.skeleton-demo {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 8px;
+  min-height: 200px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.profile .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #1890ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.profile h3 {
+  margin: 0 0 4px 0;
+}
+
+.profile p {
+  margin: 0;
+  color: #8c8c8c;
+}
+
+.content-block {
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+}
+
+/* Button Showcase */
+.button-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Card Showcase */
+.card-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.card-showcase h4 {
+  margin: 0 0 8px 0;
+}
+
+.card-showcase p {
+  margin: 0;
+  color: #8c8c8c;
+}
+
+/* Empty Demo */
+.empty-demo {
+  margin-top: 16px;
+  padding: 24px;
+  background: #fafafa;
+  border-radius: 8px;
+  min-height: 300px;
+}
+
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list-item {
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #d9d9d9;
+}
+
+/* Loading Showcase */
+.loading-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.loading-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.loading-item p {
+  margin: 0;
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ui-demo {
+    padding: 16px;
+  }
+
+  .button-group,
+  .button-row {
+    flex-direction: column;
+  }
+
+  .card-showcase,
+  .loading-showcase {
+    grid-template-columns: 1fr;
+  }
+}
