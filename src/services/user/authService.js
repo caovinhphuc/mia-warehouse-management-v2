@@ -7,8 +7,13 @@
  */
 
 import axios from "axios";
+import importMetaEnv from "../../utils/importMetaEnv";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const API_URL =
+  importMetaEnv.VITE_API_URL ||
+  importMetaEnv.REACT_APP_API_URL ||
+  process.env.REACT_APP_API_URL ||
+  "http://localhost:3001";
 const API_BASE = `${API_URL}/api`;
 
 /**
