@@ -14,9 +14,9 @@ import importMetaEnv from "../../utils/importMetaEnv";
 import ActionButton from "./ActionButton";
 import ConnectionSection from "./ConnectionSection";
 import HamburgerMenu from "./HamburgerMenu";
+import "./Layout.css";
 import LayoutConfigButton from "./LayoutConfigButton";
 import LayoutConfigManager from "./LayoutConfigManager";
-import "./Layout.css";
 import NavSection from "./NavSection";
 import { navigationData } from "./navigationData";
 
@@ -174,7 +174,9 @@ const Layout = ({ children }) => {
     // Load notifications from API or localStorage
     try {
       const API_BASE_URL =
-        importMetaEnv("VITE_API_URL") || "http://localhost:3001";
+        importMetaEnv.VITE_API_URL ||
+        importMetaEnv.REACT_APP_API_URL ||
+        "http://localhost:3001";
       const token =
         localStorage.getItem("authToken") || localStorage.getItem("token");
 

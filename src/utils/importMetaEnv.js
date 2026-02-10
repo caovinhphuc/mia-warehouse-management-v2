@@ -3,7 +3,12 @@
  * Maps VITE_* and import.meta.env.* to process.env.REACT_APP_*
  */
 
+const viteEnv = typeof import.meta !== "undefined" ? import.meta.env : null;
+
 const getEnv = (key) => {
+  if (viteEnv && key in viteEnv) {
+    return viteEnv[key];
+  }
   // Map VITE_* to REACT_APP_*
   if (key.startsWith("VITE_")) {
     const reactAppKey = key.replace("VITE_", "REACT_APP_");
@@ -11,13 +16,13 @@ const getEnv = (key) => {
   }
   // Handle special cases
   if (key === "DEV") {
-    return process.env.NODE_ENV !== "production";
+    return viteEnv?.DEV ?? process.env.NODE_ENV !== "production";
   }
   if (key === "PROD") {
-    return process.env.NODE_ENV === "production";
+    return viteEnv?.PROD ?? process.env.NODE_ENV === "production";
   }
   if (key === "MODE") {
-    return process.env.NODE_ENV || "development";
+    return viteEnv?.MODE ?? process.env.NODE_ENV || "development";
   }
   // Direct access to REACT_APP_* or process.env
   return process.env[key] || process.env[`REACT_APP_${key}`] || "";
