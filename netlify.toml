@@ -5,9 +5,9 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# SPA routing - redirect all non-asset requests to index.html
+# SPA routing - only redirect if file doesn't exist (force = false)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  conditions = { "NOT Path" = ["/assets/*", "*.html", "*.js", "*.css", "*.svg", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.ico", "*.woff*", "*.ttf", "*.eot"] }
+  force = false
