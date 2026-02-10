@@ -1,4 +1,4 @@
-import importMetaEnv from '../utils/importMetaEnv';
+import importMetaEnv from "../utils/importMetaEnv";
 /**
  * Telegram Service - Kết nối với Backend Telegram API
  */
@@ -6,18 +6,18 @@ import importMetaEnv from '../utils/importMetaEnv';
 const API_BASE_URL =
   importMetaEnv.VITE_API_URL ||
   importMetaEnv.REACT_APP_API_URL ||
-  'http://localhost:3001';
+  "http://localhost:3001";
 
 class TelegramService {
   /**
    * Gửi tin nhắn Telegram qua alerts API
    */
-  async sendMessage(message, chatId = null, parseMode = 'HTML') {
+  async sendMessage(message, chatId = null, parseMode = "HTML") {
     try {
       const response = await fetch(`${API_BASE_URL}/api/alerts/telegram`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           message,
@@ -40,7 +40,7 @@ class TelegramService {
       return await response.json();
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Error sending Telegram message:', error);
+      console.error("Error sending Telegram message:", error);
       throw error;
     }
   }
@@ -56,14 +56,14 @@ class TelegramService {
    * Gửi tin nhắn với format HTML
    */
   async sendHTMLMessage(htmlContent) {
-    return this.sendMessage(htmlContent, null, 'HTML');
+    return this.sendMessage(htmlContent, null, "HTML");
   }
 
   /**
    * Gửi tin nhắn với format Markdown
    */
   async sendMarkdownMessage(markdownContent) {
-    return this.sendMessage(markdownContent, null, 'Markdown');
+    return this.sendMessage(markdownContent, null, "Markdown");
   }
 
   /**
@@ -72,12 +72,12 @@ class TelegramService {
   async testConnection() {
     try {
       const response = await fetch(`${API_BASE_URL}/api/alerts/test`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          channel: 'telegram',
+          channel: "telegram",
         }),
       });
 
@@ -88,7 +88,7 @@ class TelegramService {
       return await response.json();
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error('Error testing Telegram connection:', error);
+      console.error("Error testing Telegram connection:", error);
       throw error;
     }
   }

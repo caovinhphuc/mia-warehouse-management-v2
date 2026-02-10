@@ -7,6 +7,7 @@ const { google } = require("googleapis");
 const { Readable } = require("stream");
 const fs = require("fs");
 const path = require("path");
+const { normalizeCredentials, normalizePrivateKey } = require("../utils/googleAuthUtils");
 
 class GoogleDriveService {
   constructor() {
@@ -16,27 +17,23 @@ class GoogleDriveService {
 
   async initialize() {
     try {
-      // Service Account JSON file path (ưu tiên)
-      // Thứ tự ưu tiên:
-      // 1. GOOGLE_SERVICE_ACCOUNT_KEY_PATH env
-      // 2. automation/config/google-credentials.json (file chính)
-      // 3. Path cũ (fallback)
-      let serviceAccountPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH;
-
-      if (!serviceAccountPath) {
-        // Thử dùng automation/config/google-credentials.json
-        const defaultPath = path.join(
-          __dirname,
-          "../../automation/config/google-credentials.json"
-        );
-        if (fs.existsSync(defaultPath)) {
-          serviceAccountPath = defaultPath;
-          console.log(`📁 Dùng credentials chính: ${serviceAccountPath}`);
-        } else {
-          // Fallback về path cũ
-          serviceAccountPath =
-            "/Users/phuccao/Service Account/react-integration-469009-25ca7002a525.json";
-        }
+      // Cùng logic path với Google Sheets (thống nhất credentials)
+      const projectRoot = path.join(__dirname, "..", "..");
+      let serviceAccountPath =
+        process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH ||
+        process.env.GOOGLE_APPLICATION_CREDENTIALS ||
+        path.join(__dirname, "..", "config", "service-account-key.json");
+      // Resolve ./backend/config/... từ project root
+      if (!path.isAbsolute(serviceAccountPath) && serviceAccountPath.startsWith("./")) {
+        serviceAccountPath = path.join(projectRoot, serviceAccountPath.replace(/^\.\//, ""));
+      } else if (!path.isAbsolute(serviceAccountPath) && !fs.existsSync(serviceAccountPath)) {
+        const altPath = path.join(__dirname, "..", "config", "service-account-key.json");
+        if (fs.existsSync(altPath)) serviceAccountPath = altPath;
+      }
+      // Fallback: automation/config nếu vẫn không tìm thấy
+      if (!fs.existsSync(serviceAccountPath)) {
+        const automationPath = path.join(projectRoot, "automation", "config", "google-credentials.json");
+        if (fs.existsSync(automationPath)) serviceAccountPath = automationPath;
       }
 
       let credentials;
@@ -51,15 +48,18 @@ class GoogleDriveService {
           "utf8"
         );
         credentials = JSON.parse(serviceAccountContent);
+        credentials = normalizeCredentials(credentials);
         console.log(`✅ Đã load service account: ${credentials.client_email}`);
       } else {
         // Fallback: dùng environment variables
         console.log("⚠️ Không tìm thấy file JSON, dùng environment variables");
+        let privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+        if (privateKey) privateKey = normalizePrivateKey(privateKey);
         credentials = {
           type: "service_account",
           project_id: process.env.GOOGLE_PROJECT_ID,
           private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
-          private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+          private_key: privateKey,
           client_email:
             process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL ||
             process.env.GOOGLE_CLIENT_EMAIL,

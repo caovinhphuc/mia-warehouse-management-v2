@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-02-09T18:36:35.393Z",
+  "logDir": "logs",
+  "files": [
+    {
+      "file": "backend.log",
+      "totalLines": 77,
+      "errors": [],
+      "warnings": [],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "infoCount": 0,
+      "patterns": {
+        "api": 2
+      }
+    },
+    {
+      "file": "frontend.log",
+      "totalLines": 365,
+      "errors": [
+        {
+          "line": 94,
+          "content": "4:25:41 AM [vite] (client) page reload coverage/lcov-report/src/components/Common/ErrorBoundary.jsx.html"
+        },
+        {
+          "line": 299,
+          "content": "4:26:54 AM [vite] (client) page reload coverage/lcov-report/src/components/Common/ErrorBoundary.jsx.html"
+        }
+      ],
+      "warnings": [],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 2,
+      "warningCount": 0,
+      "infoCount": 0,
+      "patterns": {
+        "connection": 10,
+        "api": 6
+      }
+    }
+  ],
+  "summary": {
+    "totalFiles": 2,
+    "totalLines": 442,
+    "totalErrors": 2,
+    "totalWarnings": 0
+  }
+}

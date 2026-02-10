@@ -6,9 +6,9 @@
  * =============================================================================
  */
 
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 const API_BASE = `${API_URL}/api`;
 
 /**
@@ -19,17 +19,17 @@ export const login = async (credentials) => {
     const response = await axios.post(`${API_BASE}/auth/login`, credentials);
 
     if (response.data.token) {
-      localStorage.setItem('authToken', response.data.token);
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("authToken", response.data.token);
+      localStorage.setItem("token", response.data.token);
 
       if (response.data.user) {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
       }
     }
 
     return response.data;
   } catch (error) {
-    console.error('Login error:', error);
+    console.error("Login error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -42,17 +42,17 @@ export const register = async (userData) => {
     const response = await axios.post(`${API_BASE}/auth/register`, userData);
 
     if (response.data.token) {
-      localStorage.setItem('authToken', response.data.token);
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("authToken", response.data.token);
+      localStorage.setItem("token", response.data.token);
 
       if (response.data.user) {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
       }
     }
 
     return response.data;
   } catch (error) {
-    console.error('Register error:', error);
+    console.error("Register error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -63,7 +63,7 @@ export const register = async (userData) => {
 export const logout = async () => {
   try {
     const token =
-      localStorage.getItem('authToken') || localStorage.getItem('token');
+      localStorage.getItem("authToken") || localStorage.getItem("token");
 
     if (token) {
       await axios.post(
@@ -78,19 +78,19 @@ export const logout = async () => {
     }
 
     // Clear all auth data
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('permissions');
-    localStorage.removeItem('roles');
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("permissions");
+    localStorage.removeItem("roles");
 
     return { success: true };
   } catch (error) {
-    console.error('Logout error:', error);
+    console.error("Logout error:", error);
     // Clear local storage even if API call fails
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     return { success: true };
   }
 };
@@ -101,7 +101,7 @@ export const logout = async () => {
 export const refreshToken = async () => {
   try {
     const token =
-      localStorage.getItem('authToken') || localStorage.getItem('token');
+      localStorage.getItem("authToken") || localStorage.getItem("token");
 
     const response = await axios.post(
       `${API_BASE}/auth/refresh`,
@@ -114,13 +114,13 @@ export const refreshToken = async () => {
     );
 
     if (response.data.token) {
-      localStorage.setItem('authToken', response.data.token);
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("authToken", response.data.token);
+      localStorage.setItem("token", response.data.token);
     }
 
     return response.data;
   } catch (error) {
-    console.error('Refresh token error:', error);
+    console.error("Refresh token error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -133,7 +133,7 @@ export const verifyToken = async (token) => {
     const response = await axios.post(`${API_BASE}/auth/verify`, { token });
     return response.data;
   } catch (error) {
-    console.error('Verify token error:', error);
+    console.error("Verify token error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -148,7 +148,7 @@ export const forgotPassword = async (email) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Forgot password error:', error);
+    console.error("Forgot password error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -164,7 +164,7 @@ export const resetPassword = async (token, newPassword) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Reset password error:', error);
+    console.error("Reset password error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -175,7 +175,7 @@ export const resetPassword = async (token, newPassword) => {
 export const changePassword = async (currentPassword, newPassword) => {
   try {
     const token =
-      localStorage.getItem('authToken') || localStorage.getItem('token');
+      localStorage.getItem("authToken") || localStorage.getItem("token");
 
     const response = await axios.post(
       `${API_BASE}/auth/change-password`,
@@ -191,7 +191,7 @@ export const changePassword = async (currentPassword, newPassword) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Change password error:', error);
+    console.error("Change password error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -202,7 +202,7 @@ export const changePassword = async (currentPassword, newPassword) => {
 export const getCurrentUser = async () => {
   try {
     const token =
-      localStorage.getItem('authToken') || localStorage.getItem('token');
+      localStorage.getItem("authToken") || localStorage.getItem("token");
 
     const response = await axios.get(`${API_BASE}/auth/me`, {
       headers: {
@@ -211,12 +211,12 @@ export const getCurrentUser = async () => {
     });
 
     if (response.data.user) {
-      localStorage.setItem('user', JSON.stringify(response.data.user));
+      localStorage.setItem("user", JSON.stringify(response.data.user));
     }
 
     return response.data;
   } catch (error) {
-    console.error('Get current user error:', error);
+    console.error("Get current user error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -226,7 +226,7 @@ export const getCurrentUser = async () => {
  */
 export const isAuthenticated = () => {
   const token =
-    localStorage.getItem('authToken') || localStorage.getItem('token');
+    localStorage.getItem("authToken") || localStorage.getItem("token");
   return !!token;
 };
 
@@ -235,10 +235,10 @@ export const isAuthenticated = () => {
  */
 export const getStoredUser = () => {
   try {
-    const userStr = localStorage.getItem('user');
+    const userStr = localStorage.getItem("user");
     return userStr ? JSON.parse(userStr) : null;
   } catch (error) {
-    console.error('Get stored user error:', error);
+    console.error("Get stored user error:", error);
     return null;
   }
 };
@@ -248,7 +248,7 @@ export const getStoredUser = () => {
  */
 export const getToken = () => {
   return (
-    localStorage.getItem('authToken') || localStorage.getItem('token') || null
+    localStorage.getItem("authToken") || localStorage.getItem("token") || null
   );
 };
 
@@ -260,17 +260,17 @@ export const ssoLogin = async (provider, data) => {
     const response = await axios.post(`${API_BASE}/auth/sso/${provider}`, data);
 
     if (response.data.token) {
-      localStorage.setItem('authToken', response.data.token);
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("authToken", response.data.token);
+      localStorage.setItem("token", response.data.token);
 
       if (response.data.user) {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
       }
     }
 
     return response.data;
   } catch (error) {
-    console.error('SSO login error:', error);
+    console.error("SSO login error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -285,7 +285,7 @@ export const verifyEmail = async (token) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Verify email error:', error);
+    console.error("Verify email error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -300,7 +300,7 @@ export const resendVerificationEmail = async (email) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Resend verification email error:', error);
+    console.error("Resend verification email error:", error);
     throw error.response?.data || error.message;
   }
 };

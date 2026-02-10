@@ -34,13 +34,21 @@
 
 /* Primary */
 .btn--primary {
-  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500),
+    var(--color-primary-600)
+  );
   color: white;
   box-shadow: var(--shadow-sm);
 }
 
 .btn--primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-600),
+    var(--color-primary-700)
+  );
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
@@ -65,39 +73,63 @@
 
 /* Success */
 .btn--success {
-  background: linear-gradient(135deg, var(--color-success-500), var(--color-success-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-success-500),
+    var(--color-success-600)
+  );
   color: white;
   box-shadow: var(--shadow-sm);
 }
 
 .btn--success:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--color-success-600), var(--color-success-700));
+  background: linear-gradient(
+    135deg,
+    var(--color-success-600),
+    var(--color-success-700)
+  );
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
 /* Warning */
 .btn--warning {
-  background: linear-gradient(135deg, var(--color-warning-500), var(--color-warning-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-warning-500),
+    var(--color-warning-600)
+  );
   color: white;
   box-shadow: var(--shadow-sm);
 }
 
 .btn--warning:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--color-warning-600), var(--color-warning-700));
+  background: linear-gradient(
+    135deg,
+    var(--color-warning-600),
+    var(--color-warning-700)
+  );
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
 /* Error */
 .btn--error {
-  background: linear-gradient(135deg, var(--color-error-500), var(--color-error-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-error-500),
+    var(--color-error-600)
+  );
   color: white;
   box-shadow: var(--shadow-sm);
 }
 
 .btn--error:hover:not(:disabled) {
-  background: linear-gradient(135deg, var(--color-error-600), var(--color-error-700));
+  background: linear-gradient(
+    135deg,
+    var(--color-error-600),
+    var(--color-error-700)
+  );
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }

@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
 const ConnectionItem = ({
   name,
   icon,
-  status = 'connected',
-  className = '',
+  status = "connected",
+  className = "",
 }) => {
   const statusClasses = {
-    connected: 'connected',
-    disconnected: 'disconnected',
-    connecting: 'connecting',
-    error: 'error',
+    connected: "connected",
+    disconnected: "disconnected",
+    connecting: "connecting",
+    error: "error",
   };
 
   const statusTexts = {
-    connected: 'Đã kết nối',
-    disconnected: 'Mất kết nối',
-    connecting: 'Đang kết nối...',
-    error: 'Lỗi kết nối',
+    connected: "Đã kết nối",
+    disconnected: "Mất kết nối",
+    connecting: "Đang kết nối...",
+    error: "Lỗi kết nối",
   };
 
   return (
@@ -27,7 +27,7 @@ const ConnectionItem = ({
         <div className="connection-name">{name}</div>
         <div className="connection-status">
           <span
-            className={`status-dot ${statusClasses[status] || 'disconnected'}`}
+            className={`status-dot ${statusClasses[status] || "disconnected"}`}
           ></span>
           <span>{statusTexts[status] || statusTexts.disconnected}</span>
         </div>

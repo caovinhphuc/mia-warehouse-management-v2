@@ -84,7 +84,9 @@ Card.Meta = ({ title, description, avatar, className = "", ...props }) => (
     {avatar && <div className="card__meta-avatar">{avatar}</div>}
     <div className="card__meta-content">
       {title && <div className="card__meta-title">{title}</div>}
-      {description && <div className="card__meta-description">{description}</div>}
+      {description && (
+        <div className="card__meta-description">{description}</div>
+      )}
     </div>
   </div>
 );

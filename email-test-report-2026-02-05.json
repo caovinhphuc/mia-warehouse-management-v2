@@ -1,0 +1,67 @@
+{
+  "title": "Email Service Test Report",
+  "timestamp": "2026-02-05T22:29:04.354Z",
+  "summary": {
+    "total_tests": 3,
+    "passed": 1,
+    "failed": 2,
+    "warnings": 0
+  },
+  "configuration": {
+    "sendgrid_api_key": "configured",
+    "sendgrid_from_email": "kho.1@mia.vn",
+    "smtp_host": "missing",
+    "smtp_user": "missing"
+  },
+  "results": [
+    {
+      "test": "environment-check",
+      "status": "success",
+      "message": "Email service configured: SendGrid API",
+      "details": {
+        "sendgrid": true,
+        "smtp": false,
+        "available_methods": [
+          "SendGrid API"
+        ]
+      },
+      "timestamp": "2026-02-05T22:29:03.559Z"
+    },
+    {
+      "test": "sendgrid-connection",
+      "status": "error",
+      "message": "SendGrid connection failed: SendGrid API error: 401 - Unauthorized",
+      "details": {
+        "error": "Request failed with status code 401",
+        "status": 401,
+        "response": {
+          "errors": [
+            {
+              "field": null,
+              "message": "unauthorized"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-02-05T22:29:04.083Z"
+    },
+    {
+      "test": "sendgrid-test-email",
+      "status": "error",
+      "message": "Không thể gửi email qua SendGrid: SendGrid error: The provided authorization grant is invalid, expired, or revoked",
+      "details": {
+        "error": "Unauthorized",
+        "response": {
+          "errors": [
+            {
+              "message": "The provided authorization grant is invalid, expired, or revoked",
+              "field": null,
+              "help": null
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-02-05T22:29:04.354Z"
+    }
+  ]
+}

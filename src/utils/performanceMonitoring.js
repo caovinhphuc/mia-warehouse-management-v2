@@ -1,12 +1,12 @@
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
-import importMetaEnv from '../utils/importMetaEnv';
+import { getCLS, getFID, getFCP, getLCP, getTTFB } from "web-vitals";
+import importMetaEnv from "../utils/importMetaEnv";
 
 // Performance monitoring configuration
 const ANALYTICS_ENDPOINT =
   importMetaEnv.VITE_ANALYTICS_ENDPOINT ||
   importMetaEnv.REACT_APP_ANALYTICS_ENDPOINT;
 const APP_VERSION =
-  importMetaEnv.VITE_APP_VERSION || importMetaEnv.REACT_APP_VERSION || '1.0.0';
+  importMetaEnv.VITE_APP_VERSION || importMetaEnv.REACT_APP_VERSION || "1.0.0";
 
 // Send performance metrics to analytics
 function sendToAnalytics({ name, value, id, delta }) {
@@ -27,10 +27,10 @@ function sendToAnalytics({ name, value, id, delta }) {
     navigator.sendBeacon(ANALYTICS_ENDPOINT, body);
   } else {
     fetch(ANALYTICS_ENDPOINT, {
-      method: 'POST',
+      method: "POST",
       body,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       keepalive: true,
     }).catch(console.error);
@@ -39,10 +39,10 @@ function sendToAnalytics({ name, value, id, delta }) {
 
 // Get or create session ID
 function getSessionId() {
-  let sessionId = sessionStorage.getItem('sessionId');
+  let sessionId = sessionStorage.getItem("sessionId");
   if (!sessionId) {
     sessionId = Math.random().toString(36).substr(2, 9);
-    sessionStorage.setItem('sessionId', sessionId);
+    sessionStorage.setItem("sessionId", sessionId);
   }
   return sessionId;
 }
@@ -75,10 +75,10 @@ function measureCustomMetrics() {
   const observer = new PerformanceObserver((entryList) => {
     const entries = entryList.getEntries();
     entries.forEach((entry) => {
-      if (entry.entryType === 'navigation') {
+      if (entry.entryType === "navigation") {
         const tti = entry.domContentLoadedEventEnd - entry.navigationStart;
         sendToAnalytics({
-          name: 'TTI',
+          name: "TTI",
           value: tti,
           id: `tti-${Date.now()}`,
           delta: 0,
@@ -87,7 +87,7 @@ function measureCustomMetrics() {
     });
   });
 
-  observer.observe({ entryTypes: ['navigation'] });
+  observer.observe({ entryTypes: ["navigation"] });
 
   // Component render time
   window.componentRenderTime = {};
@@ -110,11 +110,11 @@ function trackAPIPerformance() {
       const duration = endTime - startTime;
 
       sendToAnalytics({
-        name: 'API_RESPONSE_TIME',
+        name: "API_RESPONSE_TIME",
         value: duration,
         id: `api-${Date.now()}`,
         delta: 0,
-        url: typeof url === 'string' ? url : url.url,
+        url: typeof url === "string" ? url : url.url,
         status: response.status,
       });
 
@@ -124,11 +124,11 @@ function trackAPIPerformance() {
       const duration = endTime - startTime;
 
       sendToAnalytics({
-        name: 'API_ERROR',
+        name: "API_ERROR",
         value: duration,
         id: `api-error-${Date.now()}`,
         delta: 0,
-        url: typeof url === 'string' ? url : url.url,
+        url: typeof url === "string" ? url : url.url,
         error: error.message,
       });
 
@@ -143,7 +143,7 @@ function measureResourceTiming() {
     const entries = entryList.getEntries();
 
     entries.forEach((entry) => {
-      if (entry.entryType === 'resource') {
+      if (entry.entryType === "resource") {
         const resourceType = entry.initiatorType;
         const duration = entry.responseEnd - entry.requestStart;
 
@@ -159,7 +159,7 @@ function measureResourceTiming() {
     });
   });
 
-  observer.observe({ entryTypes: ['resource'] });
+  observer.observe({ entryTypes: ["resource"] });
 }
 
 // Measure user interactions
@@ -168,11 +168,11 @@ function measureUserInteractions() {
   const scrollDepth = 0;
 
   // Click tracking
-  document.addEventListener('click', (event) => {
+  document.addEventListener("click", (event) => {
     clickCount++;
 
     sendToAnalytics({
-      name: 'USER_CLICK',
+      name: "USER_CLICK",
       value: 1,
       id: `click-${Date.now()}`,
       delta: 1,
@@ -183,7 +183,7 @@ function measureUserInteractions() {
 
   // Scroll depth tracking
   let maxScroll = 0;
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     const scrolled = Math.round(
       (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
     );
@@ -194,7 +194,7 @@ function measureUserInteractions() {
       if (maxScroll % 25 === 0) {
         // Track every 25%
         sendToAnalytics({
-          name: 'SCROLL_DEPTH',
+          name: "SCROLL_DEPTH",
           value: maxScroll,
           id: `scroll-${Date.now()}`,
           delta: 0,
@@ -207,9 +207,9 @@ function measureUserInteractions() {
 // Error tracking
 function trackErrors() {
   // JavaScript errors
-  window.addEventListener('error', (event) => {
+  window.addEventListener("error", (event) => {
     sendToAnalytics({
-      name: 'JS_ERROR',
+      name: "JS_ERROR",
       value: 1,
       id: `error-${Date.now()}`,
       delta: 1,
@@ -221,9 +221,9 @@ function trackErrors() {
   });
 
   // Promise rejections
-  window.addEventListener('unhandledrejection', (event) => {
+  window.addEventListener("unhandledrejection", (event) => {
     sendToAnalytics({
-      name: 'PROMISE_REJECTION',
+      name: "PROMISE_REJECTION",
       value: 1,
       id: `rejection-${Date.now()}`,
       delta: 1,
@@ -242,7 +242,7 @@ export function withPerformanceTracking(WrappedComponent, componentName) {
       const renderTime = endTime - startTime;
 
       sendToAnalytics({
-        name: 'COMPONENT_RENDER_TIME',
+        name: "COMPONENT_RENDER_TIME",
         value: renderTime,
         id: `component-${Date.now()}`,
         delta: 0,

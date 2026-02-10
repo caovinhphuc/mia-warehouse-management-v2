@@ -238,7 +238,7 @@ const Login = () => {
                         Mở terminal và chạy:{" "}
                         <code>cd backend && npm start</code>
                       </li>
-                      <li>Đảm bảo backend đang chạy trên port 8000</li>
+                      <li>Đảm bảo backend đang chạy trên port 3001</li>
                       <li>Kiểm tra console để xem lỗi chi tiết</li>
                     </ol>
                   </div>

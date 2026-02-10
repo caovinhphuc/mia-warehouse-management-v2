@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, Result } from 'antd';
-import importMetaEnv from '../../utils/importMetaEnv';
+import React from "react";
+import { Button, Result } from "antd";
+import importMetaEnv from "../../utils/importMetaEnv";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -22,16 +22,16 @@ class ErrorBoundary extends React.Component {
 
     // Send error to analytics/monitoring
     if (window.gtag) {
-      window.gtag('event', 'exception', {
+      window.gtag("event", "exception", {
         description: error.toString(),
         fatal: false,
       });
     }
 
     // Log to console in development
-    if (importMetaEnv.DEV || importMetaEnv.MODE === 'development') {
+    if (importMetaEnv.DEV || importMetaEnv.MODE === "development") {
       // eslint-disable-next-line no-console
-      console.error('Error Boundary caught an error:', error, errorInfo);
+      console.error("Error Boundary caught an error:", error, errorInfo);
     }
 
     // Send to error tracking service
@@ -56,13 +56,13 @@ class ErrorBoundary extends React.Component {
     };
 
     // Send to support endpoint
-    fetch('/api/error-report', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetch("/api/error-report", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(errorReport),
     }).catch(() => {
       // Fallback: open email client
-      const subject = encodeURIComponent('Error Report - MIA.vn Integration');
+      const subject = encodeURIComponent("Error Report - MIA.vn Integration");
       const body = encodeURIComponent(JSON.stringify(errorReport, null, 2));
       window.open(`mailto:support@mia.vn?subject=${subject}&body=${body}`);
     });
@@ -72,7 +72,7 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       // Custom error UI
       return (
-        <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto' }}>
+        <div style={{ padding: "40px", maxWidth: "800px", margin: "0 auto" }}>
           <Result
             status="error"
             title="⚠️ Đã xảy ra lỗi"
@@ -84,24 +84,24 @@ class ErrorBoundary extends React.Component {
               <Button key="report" onClick={this.handleReportError}>
                 📧 Báo cáo lỗi
               </Button>,
-              <Button key="home" onClick={() => (window.location.href = '/')}>
+              <Button key="home" onClick={() => (window.location.href = "/")}>
                 🏠 Về trang chủ
               </Button>,
             ]}
           >
-            {(importMetaEnv.DEV || importMetaEnv.MODE === 'development') &&
+            {(importMetaEnv.DEV || importMetaEnv.MODE === "development") &&
               this.state.error && (
-                <details style={{ whiteSpace: 'pre-wrap', marginTop: '20px' }}>
-                  <summary style={{ cursor: 'pointer', marginBottom: '10px' }}>
+                <details style={{ whiteSpace: "pre-wrap", marginTop: "20px" }}>
+                  <summary style={{ cursor: "pointer", marginBottom: "10px" }}>
                     Chi tiết lỗi (Development)
                   </summary>
                   <div
                     style={{
-                      background: '#f5f5f5',
-                      padding: '15px',
-                      borderRadius: '4px',
-                      fontSize: '12px',
-                      fontFamily: 'monospace',
+                      background: "#f5f5f5",
+                      padding: "15px",
+                      borderRadius: "4px",
+                      fontSize: "12px",
+                      fontFamily: "monospace",
                     }}
                   >
                     <strong>Error:</strong> {this.state.error.toString()}

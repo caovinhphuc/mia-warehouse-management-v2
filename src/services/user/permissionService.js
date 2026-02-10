@@ -6,9 +6,9 @@
  * =============================================================================
  */
 
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 const API_BASE = `${API_URL}/api`;
 
 /**
@@ -16,11 +16,11 @@ const API_BASE = `${API_URL}/api`;
  */
 const getAuthHeaders = () => {
   const token =
-    localStorage.getItem('authToken') || localStorage.getItem('token');
+    localStorage.getItem("authToken") || localStorage.getItem("token");
   return {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 };
@@ -36,7 +36,7 @@ export const getAllPermissions = async () => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get all permissions error:', error);
+    console.error("Get all permissions error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -52,7 +52,7 @@ export const getPermissionById = async (permissionId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get permission by ID error:', error);
+    console.error("Get permission by ID error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -69,7 +69,7 @@ export const createPermission = async (permissionData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Create permission error:', error);
+    console.error("Create permission error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -86,7 +86,7 @@ export const updatePermission = async (permissionId, permissionData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Update permission error:', error);
+    console.error("Update permission error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -102,7 +102,7 @@ export const deletePermission = async (permissionId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Delete permission error:', error);
+    console.error("Delete permission error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -118,7 +118,7 @@ export const getPermissionsByCategory = async (category) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Get permissions by category error:', error);
+    console.error("Get permissions by category error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -134,7 +134,7 @@ export const checkUserPermission = async (permissionName) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Check user permission error:', error);
+    console.error("Check user permission error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -150,7 +150,7 @@ export const getUserPermissions = async () => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get user permissions error:', error);
+    console.error("Get user permissions error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -166,7 +166,7 @@ export const getRolesWithPermission = async (permissionId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get roles with permission error:', error);
+    console.error("Get roles with permission error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -183,7 +183,7 @@ export const bulkCreatePermissions = async (permissionsData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Bulk create permissions error:', error);
+    console.error("Bulk create permissions error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -199,7 +199,7 @@ export const getPermissionCategories = async () => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get permission categories error:', error);
+    console.error("Get permission categories error:", error);
     throw error.response?.data || error.message;
   }
 };

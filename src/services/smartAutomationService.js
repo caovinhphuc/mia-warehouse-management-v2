@@ -1,4 +1,4 @@
-import importMetaEnv from '../utils/importMetaEnv';
+import importMetaEnv from "../utils/importMetaEnv";
 /* eslint-disable */
 /**
  * Smart Automation Service

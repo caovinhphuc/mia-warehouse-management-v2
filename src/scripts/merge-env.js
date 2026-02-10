@@ -4,16 +4,16 @@
  * 🔄 Merge .env files - Merge thông tin từ .env copy vào .env
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const colors = {
-  reset: '\x1b[0m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  red: '\x1b[31m',
-  blue: '\x1b[34m',
-  cyan: '\x1b[36m',
+  reset: "\x1b[0m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  red: "\x1b[31m",
+  blue: "\x1b[34m",
+  cyan: "\x1b[36m",
 };
 
 const log = {
@@ -29,14 +29,14 @@ function parseEnvFile(filePath) {
   if (!fs.existsSync(filePath)) {
     return {};
   }
-  const content = fs.readFileSync(filePath, 'utf-8');
+  const content = fs.readFileSync(filePath, "utf-8");
   const env = {};
-  content.split('\n').forEach((line) => {
+  content.split("\n").forEach((line) => {
     const trimmed = line.trim();
-    if (trimmed && !trimmed.startsWith('#')) {
-      const [key, ...valueParts] = trimmed.split('=');
+    if (trimmed && !trimmed.startsWith("#")) {
+      const [key, ...valueParts] = trimmed.split("=");
       if (key && valueParts.length > 0) {
-        env[key.trim()] = valueParts.join('=').trim();
+        env[key.trim()] = valueParts.join("=").trim();
       }
     }
   });
@@ -45,10 +45,10 @@ function parseEnvFile(filePath) {
 
 // Merge env files
 function mergeEnvFiles() {
-  log.step('Đang merge .env files...');
+  log.step("Đang merge .env files...");
 
-  const currentEnv = parseEnvFile('.env');
-  const copyEnv = parseEnvFile('.env copy');
+  const currentEnv = parseEnvFile(".env");
+  const copyEnv = parseEnvFile(".env copy");
 
   if (Object.keys(copyEnv).length === 0) {
     log.error("File '.env copy' không tồn tại hoặc rỗng");
@@ -73,68 +73,68 @@ function mergeEnvFiles() {
   }
 
   // Tạo backup
-  if (fs.existsSync('.env')) {
-    fs.copyFileSync('.env', `.env.backup-${Date.now()}`);
-    log.info('Đã tạo backup file .env');
+  if (fs.existsSync(".env")) {
+    fs.copyFileSync(".env", `.env.backup-${Date.now()}`);
+    log.info("Đã tạo backup file .env");
   }
 
   // Write merged content
   const lines = [];
-  lines.push('# ============================================');
-  lines.push('# MIA.VN GOOGLE INTEGRATION - ENVIRONMENT VARIABLES');
-  lines.push('# ============================================');
+  lines.push("# ============================================");
+  lines.push("# MIA.VN GOOGLE INTEGRATION - ENVIRONMENT VARIABLES");
+  lines.push("# ============================================");
   lines.push(`# Merged from .env copy on ${new Date().toISOString()}`);
-  lines.push('');
+  lines.push("");
 
   // Group by category
   const categories = {
-    'SERVER CONFIGURATION': ['NODE_ENV', 'PORT', 'FLASK_ENV', 'FLASK_DEBUG'],
-    'API CONFIGURATION': [
-      'REACT_APP_API_URL',
-      'REACT_APP_API_BASE_URL',
-      'REACT_APP_AI_SERVICE_URL',
-      'API_BASE_URL',
-      'VITE_API_BASE_URL',
+    "SERVER CONFIGURATION": ["NODE_ENV", "PORT", "FLASK_ENV", "FLASK_DEBUG"],
+    "API CONFIGURATION": [
+      "REACT_APP_API_URL",
+      "REACT_APP_API_BASE_URL",
+      "REACT_APP_AI_SERVICE_URL",
+      "API_BASE_URL",
+      "VITE_API_BASE_URL",
     ],
-    'GOOGLE SERVICE ACCOUNT': [
-      'GOOGLE_SERVICE_ACCOUNT_EMAIL',
-      'GOOGLE_SERVICE_ACCOUNT_KEY_PATH',
-      'GOOGLE_PROJECT_ID',
-      'GOOGLE_PRIVATE_KEY_ID',
-      'GOOGLE_PRIVATE_KEY',
-      'GOOGLE_CLIENT_ID',
-      'REACT_APP_GOOGLE_CLIENT_EMAIL',
-      'REACT_APP_GOOGLE_PRIVATE_KEY',
-      'REACT_APP_GOOGLE_PROJECT_ID',
+    "GOOGLE SERVICE ACCOUNT": [
+      "GOOGLE_SERVICE_ACCOUNT_EMAIL",
+      "GOOGLE_SERVICE_ACCOUNT_KEY_PATH",
+      "GOOGLE_PROJECT_ID",
+      "GOOGLE_PRIVATE_KEY_ID",
+      "GOOGLE_PRIVATE_KEY",
+      "GOOGLE_CLIENT_ID",
+      "REACT_APP_GOOGLE_CLIENT_EMAIL",
+      "REACT_APP_GOOGLE_PRIVATE_KEY",
+      "REACT_APP_GOOGLE_PROJECT_ID",
     ],
-    'GOOGLE SHEETS': [
-      'REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID',
-      'REACT_APP_GOOGLE_SHEET_ID',
-      'VITE_GOOGLE_SHEETS_SPREADSHEET_ID',
+    "GOOGLE SHEETS": [
+      "REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID",
+      "REACT_APP_GOOGLE_SHEET_ID",
+      "VITE_GOOGLE_SHEETS_SPREADSHEET_ID",
     ],
-    'GOOGLE DRIVE': [
-      'GOOGLE_DRIVE_FOLDER_ID',
-      'REACT_APP_GOOGLE_DRIVE_FOLDER_ID',
-      'VITE_GOOGLE_DRIVE_FOLDER_ID',
+    "GOOGLE DRIVE": [
+      "GOOGLE_DRIVE_FOLDER_ID",
+      "REACT_APP_GOOGLE_DRIVE_FOLDER_ID",
+      "VITE_GOOGLE_DRIVE_FOLDER_ID",
     ],
     TELEGRAM: [
-      'TELEGRAM_BOT_TOKEN',
-      'TELEGRAM_WEBHOOK_URL',
-      'TELEGRAM_CHAT_ID',
-      'REACT_APP_TELEGRAM_CHAT_ID',
+      "TELEGRAM_BOT_TOKEN",
+      "TELEGRAM_WEBHOOK_URL",
+      "TELEGRAM_CHAT_ID",
+      "REACT_APP_TELEGRAM_CHAT_ID",
     ],
-    'EMAIL - SENDGRID': [
-      'SENDGRID_API_KEY',
-      'SENDGRID_FROM_EMAIL',
-      'SENDGRID_FROM_NAME',
-      'EMAIL_FROM',
+    "EMAIL - SENDGRID": [
+      "SENDGRID_API_KEY",
+      "SENDGRID_FROM_EMAIL",
+      "SENDGRID_FROM_NAME",
+      "EMAIL_FROM",
     ],
-    'EMAIL - SMTP': [
-      'SMTP_HOST',
-      'SMTP_PORT',
-      'SMTP_SECURE',
-      'SMTP_USER',
-      'SMTP_PASS',
+    "EMAIL - SMTP": [
+      "SMTP_HOST",
+      "SMTP_PORT",
+      "SMTP_SECURE",
+      "SMTP_USER",
+      "SMTP_PASS",
     ],
   };
 
@@ -147,7 +147,7 @@ function mergeEnvFiles() {
         lines.push(`${key}=${merged[key]}`);
       }
     });
-    lines.push('');
+    lines.push("");
   });
 
   // Add other keys
@@ -165,8 +165,8 @@ function mergeEnvFiles() {
     });
   }
 
-  fs.writeFileSync('.env', lines.join('\n'));
-  log.success('Đã merge thành công!');
+  fs.writeFileSync(".env", lines.join("\n"));
+  log.success("Đã merge thành công!");
 
   // Summary
   const stats = {

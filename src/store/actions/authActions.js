@@ -1,6 +1,6 @@
-import { logoutUser } from '../../services/securityService';
-import { actionTypes } from '../actionTypes';
-import { persistor } from '../store';
+import { logoutUser } from "../../services/securityService";
+import { actionTypes } from "../actionTypes";
+import { persistor } from "../store";
 
 /**
  * Logout action - clears Redux state and persisted storage
@@ -11,7 +11,7 @@ export const logout = (logoutAll = false) => {
       // Get sessionId from state or localStorage
       const state = getState();
       const sessionId =
-        state.auth?.sessionId || localStorage.getItem('sessionId');
+        state.auth?.sessionId || localStorage.getItem("sessionId");
 
       // Call logout API
       await logoutUser(sessionId, logoutAll);
@@ -25,16 +25,16 @@ export const logout = (logoutAll = false) => {
       await persistor.purge();
 
       // Clear all localStorage items related to auth
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('token');
-      localStorage.removeItem('sessionId');
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("token");
+      localStorage.removeItem("sessionId");
 
       // Clear sessionStorage
       sessionStorage.clear();
 
       return { success: true };
     } catch (error) {
-      console.error('Logout action error:', error);
+      console.error("Logout action error:", error);
 
       // Even if API fails, clear local state
       dispatch({
@@ -42,9 +42,9 @@ export const logout = (logoutAll = false) => {
       });
 
       await persistor.purge();
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('token');
-      localStorage.removeItem('sessionId');
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("token");
+      localStorage.removeItem("sessionId");
       sessionStorage.clear();
 
       throw error;

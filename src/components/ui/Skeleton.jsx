@@ -46,22 +46,57 @@ const Skeleton = ({
 
 // Skeleton Avatar
 Skeleton.Avatar = ({ size = 48, className = "", ...props }) => (
-  <Skeleton variant="avatar" width={size} height={size} circle className={className} {...props} />
+  <Skeleton
+    variant="avatar"
+    width={size}
+    height={size}
+    circle
+    className={className}
+    {...props}
+  />
 );
 
 // Skeleton Button
 Skeleton.Button = ({ width = 100, height = 40, className = "", ...props }) => (
-  <Skeleton variant="button" width={width} height={height} className={className} {...props} />
+  <Skeleton
+    variant="button"
+    width={width}
+    height={height}
+    className={className}
+    {...props}
+  />
 );
 
 // Skeleton Input
-Skeleton.Input = ({ width = "100%", height = 40, className = "", ...props }) => (
-  <Skeleton variant="input" width={width} height={height} className={className} {...props} />
+Skeleton.Input = ({
+  width = "100%",
+  height = 40,
+  className = "",
+  ...props
+}) => (
+  <Skeleton
+    variant="input"
+    width={width}
+    height={height}
+    className={className}
+    {...props}
+  />
 );
 
 // Skeleton Image
-Skeleton.Image = ({ width = "100%", height = 200, className = "", ...props }) => (
-  <Skeleton variant="image" width={width} height={height} className={className} {...props} />
+Skeleton.Image = ({
+  width = "100%",
+  height = 200,
+  className = "",
+  ...props
+}) => (
+  <Skeleton
+    variant="image"
+    width={width}
+    height={height}
+    className={className}
+    {...props}
+  />
 );
 
 // Skeleton Card

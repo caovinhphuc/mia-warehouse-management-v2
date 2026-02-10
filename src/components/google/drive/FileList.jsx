@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, Typography, Button, Tooltip, Space } from 'antd';
-import { EyeOutlined } from '@ant-design/icons';
+import React from "react";
+import { Card, Typography, Button, Tooltip, Space } from "antd";
+import { EyeOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
 
@@ -11,7 +11,7 @@ const { Title } = Typography;
 const FileList = ({
   files = [],
   selectedItems = [],
-  viewMode = 'grid',
+  viewMode = "grid",
   onItemSelect,
   getFileIcon,
   formatDate,
@@ -29,11 +29,11 @@ const FileList = ({
             key={file.id}
             hoverable
             className={`item-card ${
-              selectedItems.includes(file.id) ? 'selected' : ''
+              selectedItems.includes(file.id) ? "selected" : ""
             }`}
             onClick={() => onItemSelect(file.id)}
-            onDoubleClick={() => window.open(file.webViewLink, '_blank')}
-            style={{ cursor: 'pointer' }}
+            onDoubleClick={() => window.open(file.webViewLink, "_blank")}
+            style={{ cursor: "pointer" }}
           >
             <div className="item-content">
               <div className="item-icon">{getFileIcon(file.type)}</div>
@@ -52,7 +52,7 @@ const FileList = ({
                     <Button
                       type="text"
                       icon={<EyeOutlined />}
-                      onClick={() => window.open(file.webViewLink, '_blank')}
+                      onClick={() => window.open(file.webViewLink, "_blank")}
                     />
                   </Tooltip>
                   {/* Thêm các actions khác nếu cần */}

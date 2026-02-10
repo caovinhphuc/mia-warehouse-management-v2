@@ -6,6 +6,7 @@
 const { google } = require("googleapis");
 const fs = require("fs");
 const path = require("path");
+const { normalizeCredentials, normalizePrivateKey } = require("../utils/googleAuthUtils");
 
 class GoogleSheetsService {
   constructor() {
@@ -15,10 +16,19 @@ class GoogleSheetsService {
 
   async initialize() {
     try {
-      // Service Account JSON file path (ưu tiên)
-      const serviceAccountPath =
+      // Service Account JSON: env hoặc backend/config/service-account-key.json
+      const projectRoot = path.join(__dirname, "..", "..");
+      let serviceAccountPath =
         process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH ||
-        "/Users/phuccao/Service Account/react-integration-469009-25ca7002a525.json";
+        process.env.GOOGLE_APPLICATION_CREDENTIALS ||
+        path.join(__dirname, "..", "config", "service-account-key.json");
+      // Resolve relative path từ project root (./backend/config/...)
+      if (!path.isAbsolute(serviceAccountPath) && serviceAccountPath.startsWith("./")) {
+        serviceAccountPath = path.join(projectRoot, serviceAccountPath.replace(/^\.\//, ""));
+      } else if (!path.isAbsolute(serviceAccountPath) && !fs.existsSync(serviceAccountPath)) {
+        const altPath = path.join(__dirname, "..", "config", "service-account-key.json");
+        if (fs.existsSync(altPath)) serviceAccountPath = altPath;
+      }
 
       let credentials;
 
@@ -32,6 +42,7 @@ class GoogleSheetsService {
           "utf8"
         );
         credentials = JSON.parse(serviceAccountContent);
+        credentials = normalizeCredentials(credentials);
         console.log(`✅ Đã load service account: ${credentials.client_email}`);
       } else {
         // Fallback: dùng environment variables
@@ -40,10 +51,9 @@ class GoogleSheetsService {
         // Process private key
         let privateKey = process.env.GOOGLE_PRIVATE_KEY;
         if (privateKey) {
-          // Remove quotes if present
           privateKey = privateKey.replace(/^["']|["']$/g, "");
-          // Replace escaped newlines with actual newlines
           privateKey = privateKey.replace(/\\n/g, "\n");
+          privateKey = normalizePrivateKey(privateKey);
         }
 
         credentials = {

@@ -20,22 +20,38 @@
 }
 
 .card--primary {
-  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-500),
+    var(--color-primary-600)
+  );
   color: white;
 }
 
 .card--success {
-  background: linear-gradient(135deg, var(--color-success-500), var(--color-success-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-success-500),
+    var(--color-success-600)
+  );
   color: white;
 }
 
 .card--warning {
-  background: linear-gradient(135deg, var(--color-warning-500), var(--color-warning-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-warning-500),
+    var(--color-warning-600)
+  );
   color: white;
 }
 
 .card--error {
-  background: linear-gradient(135deg, var(--color-error-500), var(--color-error-600));
+  background: linear-gradient(
+    135deg,
+    var(--color-error-500),
+    var(--color-error-600)
+  );
   color: white;
 }
 

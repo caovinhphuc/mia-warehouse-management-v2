@@ -1,6 +1,6 @@
 # 📊 Bundle Optimization Report
 
-**Generated:** 01:52:17 19/1/2026
+**Generated:** 01:53:33 10/2/2026
 
 ## 📦 Bundle Sizes
 
@@ -14,21 +14,21 @@
 ## 📁 Top Largest Files
 
 ```
-1. assets/vendor-Dz46Z7ed.js.map - 3.32 MB
-2. assets/vendor-antd-BTsOZedP.js.map - 2.35 MB
-3. assets/vendor-recharts-CO2k6GU0.js.map - 1.16 MB
-4. assets/vendor-react-DnSczW8v.js.map - 916.17 KB
-5. assets/vendor-chartjs-BkJ7gSU4.js.map - 786.78 KB
-6. assets/vendor-Dz46Z7ed.js - 664.51 KB
-7. assets/vendor-antd-BTsOZedP.js - 622.6 KB
-8. assets/vendor-antd-icons-BTyy99qL.js.map - 262.3 KB
-9. assets/vendor-redux-BfzBoM78.js.map - 255.91 KB
-10. assets/vendor-recharts-CO2k6GU0.js - 250.94 KB
-11. assets/vendor-react-DnSczW8v.js - 243.05 KB
-12. assets/vendor-Dz46Z7ed.js.gz - 216.67 KB
-13. assets/vendor-Dz46Z7ed.js.br - 182.62 KB
-14. assets/vendor-antd-BTsOZedP.js.gz - 169.18 KB
-15. assets/vendor-chartjs-BkJ7gSU4.js - 163.16 KB
+1. assets/vendor-C7BSvB0W.js - 663.7 KB
+2. assets/vendor-antd-HC56gY9Y.js - 622.93 KB
+3. assets/vendor-recharts-B0jLgzcr.js - 256.13 KB
+4. assets/vendor-react-zV7Bptx5.js - 243.6 KB
+5. assets/vendor-C7BSvB0W.js.gz - 216.42 KB
+6. assets/vendor-C7BSvB0W.js.br - 182.25 KB
+7. assets/vendor-antd-HC56gY9Y.js.gz - 169.25 KB
+8. assets/vendor-chartjs-BRqP4Ssd.js - 163.11 KB
+9. assets/vendor-antd-HC56gY9Y.js.br - 134.38 KB
+10. assets/vendor-react-zV7Bptx5.js.gz - 71.69 KB
+11. assets/vendor-antd-icons-BAbhBvQK.js - 69.96 KB
+12. assets/vendor-recharts-B0jLgzcr.js.gz - 64.3 KB
+13. assets/vendor-react-zV7Bptx5.js.br - 62.22 KB
+14. assets/vendor-chartjs-BRqP4Ssd.js.gz - 54.68 KB
+15. assets/vendor-recharts-B0jLgzcr.js.br - 54.23 KB
 ```
 
 ## 💡 Recommendations

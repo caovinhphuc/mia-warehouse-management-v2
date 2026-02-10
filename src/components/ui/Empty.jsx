@@ -15,7 +15,9 @@ const Empty = ({
   className = "",
   ...props
 }) => {
-  const emptyClasses = ["empty", `empty--${variant}`, className].filter(Boolean).join(" ");
+  const emptyClasses = ["empty", `empty--${variant}`, className]
+    .filter(Boolean)
+    .join(" ");
 
   const defaultImages = {
     default: (
@@ -35,7 +37,14 @@ const Empty = ({
     search: (
       <svg className="empty__image" viewBox="0 0 200 200" fill="none">
         <circle cx="100" cy="100" r="80" fill="var(--color-gray-100)" />
-        <circle cx="90" cy="90" r="30" stroke="var(--color-gray-400)" strokeWidth="6" fill="none" />
+        <circle
+          cx="90"
+          cy="90"
+          r="30"
+          stroke="var(--color-gray-400)"
+          strokeWidth="6"
+          fill="none"
+        />
         <path
           d="M112 112L135 135"
           stroke="var(--color-gray-400)"
@@ -47,7 +56,13 @@ const Empty = ({
     error: (
       <svg className="empty__image" viewBox="0 0 200 200" fill="none">
         <circle cx="100" cy="100" r="80" fill="var(--color-error-100)" />
-        <circle cx="100" cy="100" r="40" stroke="var(--color-error-500)" strokeWidth="6" />
+        <circle
+          cx="100"
+          cy="100"
+          r="40"
+          stroke="var(--color-error-500)"
+          strokeWidth="6"
+        />
         <path
           d="M85 85L115 115M115 85L85 115"
           stroke="var(--color-error-500)"
@@ -59,7 +74,13 @@ const Empty = ({
     success: (
       <svg className="empty__image" viewBox="0 0 200 200" fill="none">
         <circle cx="100" cy="100" r="80" fill="var(--color-success-100)" />
-        <circle cx="100" cy="100" r="40" stroke="var(--color-success-500)" strokeWidth="6" />
+        <circle
+          cx="100"
+          cy="100"
+          r="40"
+          stroke="var(--color-success-500)"
+          strokeWidth="6"
+        />
         <path
           d="M80 100L95 115L120 85"
           stroke="var(--color-success-500)"

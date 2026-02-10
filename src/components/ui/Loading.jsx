@@ -109,7 +109,9 @@ Loading.Overlay = ({ visible = false, children, ...props }) => {
 
 // Loading Inline Component (for buttons, cards, etc.)
 Loading.Inline = ({ size = "sm", color = "primary", className = "" }) => (
-  <span className={`loading-inline loading-inline--${size} loading-inline--${color} ${className}`}>
+  <span
+    className={`loading-inline loading-inline--${size} loading-inline--${color} ${className}`}
+  >
     <svg className="loading-inline__spinner" viewBox="0 0 24 24">
       <circle
         className="loading-inline__circle"

@@ -1,8 +1,8 @@
 # 🔍 Hướng dẫn tìm nút Layout Configuration
 
-**Ngày tạo:** 2025-01-06  
-**Cập nhật lần cuối:** 2025-01-07  
-**Status:** ✅ Active  
+**Ngày tạo:** 2025-01-06
+**Cập nhật lần cuối:** 2025-01-07
+**Status:** ✅ Active
 **Tác giả:** AI Code Assistant
 
 ---
@@ -39,10 +39,10 @@ Nút **Layout Configuration** được đặt ở **góc phải trên** của He
 
 Nút Layout Configuration được tách thành component riêng:
 
-- **File**: `src/components/layout/Header/components/LayoutConfigButton.jsx`
+- **File**: `src/components/layout/LayoutConfigButton.jsx`
 - **Props**:
-  - `onLayoutConfigOpen`: Function để mở Layout Configuration Manager
-  - `themeClasses`: Object chứa các class CSS cho theme
+  - `onClick`: Function để mở Layout Configuration Manager
+  - Style: CSS module (LayoutConfigButton.css)
 
 ### 🎨 Chi tiết UI:
 
@@ -84,29 +84,25 @@ Nút Layout Configuration được tách thành component riêng:
 ### ❓ Nếu vẫn không thấy:
 
 1. **Kiểm tra responsive**:
-
    - Ở màn hình nhỏ có thể bị ẩn do không đủ không gian
    - System Status Bar sẽ ẩn ở màn hình < 1280px (xl breakpoint)
 
 2. **Kiểm tra theme**:
-
    - Có thể bị ẩn do CSS theme
    - Thử chuyển đổi Dark/Light mode
 
 3. **Check console**:
-
    - F12 để mở DevTools
    - Xem có lỗi JavaScript không
    - Kiểm tra component có được import đúng không
 
 4. **Refresh page**:
-
    - Ctrl + F5 (Windows/Linux) hoặc Cmd + Shift + R (Mac)
    - Để refresh hoàn toàn và clear cache
 
 5. **Kiểm tra import**:
-   - Đảm bảo `LayoutConfigButton` được import trong `Header.jsx`
-   - Kiểm tra `onLayoutConfigOpen` prop được truyền đúng
+   - Đảm bảo `LayoutConfigButton` được import trong `Layout.jsx` ✅
+   - Kiểm tra `onClick` prop được truyền đúng ✅
 
 ### 🎨 Cải tiến đã thêm:
 
@@ -122,18 +118,16 @@ Nút Layout Configuration được tách thành component riêng:
 ### 📝 Code Reference:
 
 ```jsx
-// LayoutConfigButton component
-<LayoutConfigButton
-  onLayoutConfigOpen={onLayoutConfigOpen}
-  themeClasses={themeClasses}
-/>
+// LayoutConfigButton component (trong Layout.jsx)
+<LayoutConfigButton onClick={() => setLayoutConfigOpen(true)} />
 ```
 
 ### 🔗 Liên kết:
 
-- **Component file**: `src/components/layout/Header/components/LayoutConfigButton.jsx`
-- **Header file**: `src/components/layout/Header/Header.jsx`
-- **Layout Manager**: `src/components/layout/LayoutConfigManager.jsx`
+- **Button component**: [src/components/layout/LayoutConfigButton.jsx](src/components/layout/LayoutConfigButton.jsx)
+- **Button CSS**: [src/components/layout/LayoutConfigButton.css](src/components/layout/LayoutConfigButton.css)
+- **Layout component** (wrapper): [src/components/layout/Layout.jsx](src/components/layout/Layout.jsx) (line 258, 315-316)
+- **Layout Manager modal**: [src/components/layout/LayoutConfigManager.jsx](src/components/layout/LayoutConfigManager.jsx)
 
 ---
 

@@ -5,9 +5,9 @@
  * Checks bundle size against performance budget
  */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+const fs = require("fs");
+const path = require("path");
+const { execSync } = require("child_process");
 
 // Performance budget (in bytes)
 const BUDGET = {
@@ -19,14 +19,14 @@ const BUDGET = {
 };
 
 const colors = {
-  reset: '\x1b[0m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  red: '\x1b[31m',
-  cyan: '\x1b[36m',
+  reset: "\x1b[0m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  red: "\x1b[31m",
+  cyan: "\x1b[36m",
 };
 
-function log(message, color = 'reset') {
+function log(message, color = "reset") {
   console.log(`${colors[color]}${message}${colors.reset}`);
 }
 
@@ -62,41 +62,41 @@ function getDirectorySize(dir, extensions = []) {
 }
 
 function formatBytes(bytes) {
-  if (bytes === 0) return '0 Bytes';
+  if (bytes === 0) return "0 Bytes";
   const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const sizes = ["Bytes", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
 }
 
 function checkBundleSize() {
-  log('📦 Performance Bundle Size Checker', 'cyan');
-  log('=====================================', 'cyan');
-  console.log('');
+  log("📦 Performance Bundle Size Checker", "cyan");
+  log("=====================================", "cyan");
+  console.log("");
 
-  const buildDir = 'build';
+  const buildDir = "build";
 
   if (!fs.existsSync(buildDir)) {
-    log('❌ Build directory not found. Run "npm run build" first.', 'red');
+    log('❌ Build directory not found. Run "npm run build" first.', "red");
     process.exit(1);
   }
 
   // Get sizes by type
-  const jsSize = getDirectorySize(buildDir, ['.js']);
-  const cssSize = getDirectorySize(buildDir, ['.css']);
+  const jsSize = getDirectorySize(buildDir, [".js"]);
+  const cssSize = getDirectorySize(buildDir, [".css"]);
   const imageSize = getDirectorySize(buildDir, [
-    '.png',
-    '.jpg',
-    '.jpeg',
-    '.gif',
-    '.svg',
-    '.webp',
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".svg",
+    ".webp",
   ]);
   const fontSize = getDirectorySize(buildDir, [
-    '.woff',
-    '.woff2',
-    '.ttf',
-    '.eot',
+    ".woff",
+    ".woff2",
+    ".ttf",
+    ".eot",
   ]);
   const totalSize = getDirectorySize(buildDir);
 
@@ -130,14 +130,14 @@ function checkBundleSize() {
   };
 
   // Display results
-  console.log('📊 Bundle Size Report:');
-  console.log('');
+  console.log("📊 Bundle Size Report:");
+  console.log("");
 
   let allPassed = true;
   Object.entries(results).forEach(([type, data]) => {
     const percentage = ((data.size / data.budget) * 100).toFixed(1);
-    const status = data.status ? '✅' : '❌';
-    const color = data.status ? 'green' : 'red';
+    const status = data.status ? "✅" : "❌";
+    const color = data.status ? "green" : "red";
 
     if (!data.status) allPassed = false;
 
@@ -147,10 +147,10 @@ function checkBundleSize() {
     );
   });
 
-  console.log('');
+  console.log("");
 
   // Show largest files
-  console.log('📁 Largest Files:');
+  console.log("📁 Largest Files:");
   const allFiles = [
     ...jsSize.files,
     ...cssSize.files,
@@ -167,30 +167,30 @@ function checkBundleSize() {
     );
   });
 
-  console.log('');
+  console.log("");
 
   // Recommendations
   if (!allPassed) {
-    log('💡 Recommendations:', 'yellow');
+    log("💡 Recommendations:", "yellow");
     if (!results.javascript.status) {
-      log('  • Consider code splitting for JavaScript', 'yellow');
-      log('  • Remove unused dependencies', 'yellow');
-      log('  • Use dynamic imports for large components', 'yellow');
+      log("  • Consider code splitting for JavaScript", "yellow");
+      log("  • Remove unused dependencies", "yellow");
+      log("  • Use dynamic imports for large components", "yellow");
     }
     if (!results.css.status) {
-      log('  • Remove unused CSS', 'yellow');
-      log('  • Use CSS-in-JS or CSS modules', 'yellow');
+      log("  • Remove unused CSS", "yellow");
+      log("  • Use CSS-in-JS or CSS modules", "yellow");
     }
     if (!results.images.status) {
-      log('  • Optimize images (use WebP format)', 'yellow');
-      log('  • Use lazy loading for images', 'yellow');
-      log('  • Consider using CDN for images', 'yellow');
+      log("  • Optimize images (use WebP format)", "yellow");
+      log("  • Use lazy loading for images", "yellow");
+      log("  • Consider using CDN for images", "yellow");
     }
-    console.log('');
-    log('⚠️  Bundle size exceeds performance budget!', 'red');
+    console.log("");
+    log("⚠️  Bundle size exceeds performance budget!", "red");
     process.exit(1);
   } else {
-    log('✅ All bundle sizes are within budget!', 'green');
+    log("✅ All bundle sizes are within budget!", "green");
   }
 
   // Save report
@@ -214,8 +214,8 @@ function checkBundleSize() {
     })),
   };
 
-  fs.writeFileSync('bundle-report.json', JSON.stringify(report, null, 2));
-  log('📄 Report saved to bundle-report.json', 'cyan');
+  fs.writeFileSync("bundle-report.json", JSON.stringify(report, null, 2));
+  log("📄 Report saved to bundle-report.json", "cyan");
 }
 
 if (require.main === module) {

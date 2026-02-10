@@ -1,0 +1,40 @@
+/* LayoutConfigButton - Nút cấu hình layout trong header */
+.layout-config-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.layout-config-btn:hover {
+  transform: scale(1.05);
+}
+
+.layout-config-btn:hover .layout-config-btn-icon {
+  transform: rotate(12deg);
+}
+
+.layout-config-btn:hover {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  background: rgba(139, 92, 246, 0.2) !important;
+}
+
+.layout-config-btn-icon {
+  display: flex;
+  transition: transform 0.2s ease;
+}
+
+.layout-config-btn-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.9);
+}
+
+.layout-config-btn:hover .layout-config-btn-badge {
+  background: rgba(139, 92, 246, 1);
+}

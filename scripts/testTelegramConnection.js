@@ -1,6 +1,7 @@
 const axios = require('axios')
 const fs = require('fs')
-require('dotenv').config()
+const path = require('path')
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') })
 
 // Colors for console output
 const colors = {
@@ -54,38 +55,35 @@ class TelegramTester {
   async checkEnvironmentVariables() {
     log.step('Kiểm tra Environment Variables...')
 
-    const required = [
-      { key: 'TELEGRAM_BOT_TOKEN', description: 'Telegram Bot Token' },
-      { key: 'TELEGRAM_CHAT_ID', description: 'Chat ID để test' },
-    ]
+    const token = process.env.TELEGRAM_BOT_TOKEN || ''
+    const chatId = process.env.TELEGRAM_CHAT_ID || ''
 
-    let allPresent = true
-    const missing = []
+    // Detect placeholder values
+    const isPlaceholderToken =
+      !token ||
+      /your_|example|placeholder|xxx/i.test(token) ||
+      !/^\d+:[A-Za-z0-9_-]+$/.test(token)
+    const isPlaceholderChatId = !chatId || /your_|example|placeholder/i.test(chatId)
 
-    for (const { key, description } of required) {
-      if (!process.env[key]) {
-        missing.push({ key, description })
-        allPresent = false
-      }
-    }
-
-    if (allPresent) {
-      this.addResult(
-        'environment-check',
-        'success',
-        'Tất cả environment variables cần thiết đã có',
-        { required_count: required.length },
-      )
-      return true
-    } else {
-      this.addResult(
-        'environment-check',
-        'error',
-        `Thiếu ${missing.length} environment variables`,
-        { missing },
-      )
+    if (isPlaceholderToken || isPlaceholderChatId) {
+      const issues = []
+      if (isPlaceholderToken)
+        issues.push('TELEGRAM_BOT_TOKEN chưa cấu hình (dùng placeholder)')
+      if (isPlaceholderChatId)
+        issues.push('TELEGRAM_CHAT_ID chưa cấu hình (dùng placeholder)')
+      this.addResult('environment-check', 'error', issues.join('. '), {
+        hint: 'node scripts/testTelegramConnection.js --help',
+      })
       return false
     }
+
+    this.addResult(
+      'environment-check',
+      'success',
+      'Tất cả environment variables cần thiết đã có',
+      { required_count: 2 },
+    )
+    return true
   }
 
   async getBotInfo() {
@@ -184,8 +182,10 @@ class TelegramTester {
         throw new Error(`Telegram API error: ${response.data.description}`)
       }
     } catch (error) {
-      this.addResult('send-message', 'error', `Không thể gửi tin nhắn test: ${error.message}`, {
-        error: error.message,
+      const details = error.response?.data?.description || error.message
+      this.addResult('send-message', 'error', `Không thể gửi tin nhắn test: ${details}`, {
+        error: details,
+        hint: 'TELEGRAM_CHAT_ID sai? Lấy từ getUpdates: result[].message.chat.id',
       })
       return false
     }
@@ -226,8 +226,10 @@ class TelegramTester {
         throw new Error(`Telegram API error: ${response.data.description}`)
       }
     } catch (error) {
-      this.addResult('chat-info', 'error', `Không thể lấy thông tin chat: ${error.message}`, {
-        error: error.message,
+      const details = error.response?.data?.description || error.message
+      this.addResult('chat-info', 'error', `Không thể lấy thông tin chat: ${details}`, {
+        error: details,
+        hint: 'chat_id sai hoặc bot chưa trong group. Lấy chat_id từ: curl ".../getUpdates"',
       })
       return null
     }
@@ -364,8 +366,28 @@ class TelegramTester {
   }
 }
 
+const TELEGRAM_HELP = `
+📱 HƯỚNG DẪN CẤU HÌNH TELEGRAM
+
+1. Mở Telegram → tìm @BotFather
+2. Gửi /newbot hoặc /mybots → lấy TOKEN (dạng 1234567890:ABCdef...)
+3. Chat với bot của bạn, gửi /start
+4. Lấy Chat ID:
+   curl "https://api.telegram.org/bot<TOKEN>/getUpdates"
+   → Xem trường "chat":{"id":...}
+5. Cập nhật .env:
+   TELEGRAM_BOT_TOKEN=1234567890:ABCdef...
+   TELEGRAM_CHAT_ID=123456789
+6. Chạy lại: node scripts/testTelegramConnection.js
+`
+
 // Main execution
 async function main() {
+  if (process.argv.includes('--help') || process.argv.includes('-h')) {
+    console.log(TELEGRAM_HELP)
+    process.exit(0)
+  }
+
   try {
     const tester = new TelegramTester()
     await tester.runAllTests()

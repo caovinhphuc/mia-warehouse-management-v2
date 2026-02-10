@@ -5,19 +5,19 @@
  * và tạo file .env với thông tin thực tế
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // Colors for console output
 const colors = {
-  reset: '\x1b[0m',
-  bright: '\x1b[1m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  magenta: '\x1b[35m',
-  cyan: '\x1b[36m',
+  reset: "\x1b[0m",
+  bright: "\x1b[1m",
+  red: "\x1b[31m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
+  magenta: "\x1b[35m",
+  cyan: "\x1b[36m",
 };
 
 const log = {
@@ -31,18 +31,18 @@ const log = {
 };
 
 function createEnvFromJson() {
-  log.header('🔧 TẠO FILE .ENV TỪ SERVICE ACCOUNT JSON');
+  log.header("🔧 TẠO FILE .ENV TỪ SERVICE ACCOUNT JSON");
 
   try {
     // Đường dẫn đến file JSON
     const jsonPath = path.join(
       __dirname,
-      '..',
-      'src',
-      'config',
-      'mia-logistics-469406-239f2de9a184.json'
+      "..",
+      "src",
+      "config",
+      "mia-logistics-469406-239f2de9a184.json"
     );
-    const envPath = path.join(__dirname, '..', '.env');
+    const envPath = path.join(__dirname, "..", ".env");
 
     // Kiểm tra file JSON tồn tại
     if (!fs.existsSync(jsonPath)) {
@@ -50,13 +50,13 @@ function createEnvFromJson() {
       return false;
     }
 
-    log.step('Đọc thông tin từ service account JSON...');
+    log.step("Đọc thông tin từ service account JSON...");
 
     // Đọc file JSON
-    const jsonContent = fs.readFileSync(jsonPath, 'utf8');
+    const jsonContent = fs.readFileSync(jsonPath, "utf8");
     const serviceAccount = JSON.parse(jsonContent);
 
-    log.success('Đã đọc thông tin service account thành công');
+    log.success("Đã đọc thông tin service account thành công");
     log.info(`Project ID: ${serviceAccount.project_id}`);
     log.info(`Client Email: ${serviceAccount.client_email}`);
 
@@ -109,7 +109,7 @@ GOOGLE_CLIENT_X509_CERT_URL=${serviceAccount.client_x509_cert_url}
 GOOGLE_UNIVERSE_DOMAIN=${serviceAccount.universe_domain}
 `;
 
-    log.step('Tạo file .env...');
+    log.step("Tạo file .env...");
 
     // Ghi file .env
     fs.writeFileSync(envPath, envContent);
@@ -117,7 +117,7 @@ GOOGLE_UNIVERSE_DOMAIN=${serviceAccount.universe_domain}
     log.success(`Đã tạo file .env thành công: ${envPath}`);
 
     // Hiển thị thông tin quan trọng
-    log.header('📋 THÔNG TIN QUAN TRỌNG');
+    log.header("📋 THÔNG TIN QUAN TRỌNG");
     console.log(
       `${colors.green}✅ Service Account Email: ${serviceAccount.client_email}${colors.reset}`
     );
@@ -134,7 +134,7 @@ GOOGLE_UNIVERSE_DOMAIN=${serviceAccount.universe_domain}
       `${colors.green}✅ SendGrid API: 6TJF5SH4EEAD5RTTWF4RUUUS${colors.reset}`
     );
 
-    log.header('🚀 BƯỚC TIẾP THEO');
+    log.header("🚀 BƯỚC TIẾP THEO");
     console.log(`${colors.cyan}1. Test kết nối Google APIs:${colors.reset}`);
     console.log(`   ${colors.yellow}npm run test:google${colors.reset}`);
     console.log(
