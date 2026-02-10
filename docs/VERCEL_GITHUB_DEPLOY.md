@@ -1,6 +1,6 @@
 # 🚀 Hướng dẫn Deploy Vercel + GitHub
 
-**Ngày tạo:** 2025-02-06  
+**Ngày tạo:** 2025-02-06
 **Tác giả:** AI Assistant
 
 ---
@@ -9,10 +9,16 @@
 
 Dự án MIA Warehouse có **2 phần**:
 
-| Thành phần | Tech stack | Host đề xuất | Ghi chú |
-|------------|------------|--------------|---------|
-| **Frontend** | React + Vite | **Vercel** | Static/SPA, deploy từ GitHub |
-| **Backend** | Node.js + Express | **Railway / Render / Fly.io** | API server, WebSocket, Google/Telegram |
+| Thành phần   | Tech stack        | Host đề xuất                  | Ghi chú                                |
+| ------------ | ----------------- | ----------------------------- | -------------------------------------- |
+| **Frontend** | React + Vite      | **Vercel**                    | Static/SPA, deploy từ GitHub           |
+| **Backend**  | Node.js + Express | **Railway / Render / Fly.io** | API server, WebSocket, Google/Telegram |
+
+### Production URLs (hiện tại)
+
+- **Frontend (Netlify)**: https://fabulous-klepon-ad4aa7.netlify.app
+- **Login**: https://fabulous-klepon-ad4aa7.netlify.app/login.html
+- **Backend (Render)**: https://react-google-backend.onrender.com
 
 ### Luồng hoạt động
 
@@ -56,13 +62,13 @@ mia-warehouse-management-v2/
 
 ### Bước 2: Build Settings
 
-| Setting | Giá trị |
-|---------|---------|
-| Framework Preset | Vite |
-| Root Directory | `./` (để trống) |
-| Build Command | `npm run build` |
-| Output Directory | `build` |
-| Install Command | `npm install` |
+| Setting          | Giá trị         |
+| ---------------- | --------------- |
+| Framework Preset | Vite            |
+| Root Directory   | `./` (để trống) |
+| Build Command    | `npm run build` |
+| Output Directory | `build`         |
+| Install Command  | `npm install`   |
 
 **Ghi chú:** Project dùng Vite (`vite build`), output vào `build/`. Biến env phải có prefix `VITE_` để được embed vào bundle.
 
@@ -72,20 +78,20 @@ Vào **Project → Settings → Environment Variables**, thêm:
 
 #### Biến bắt buộc (Frontend)
 
-| Name | Value | Environment |
-|------|-------|-------------|
-| `VITE_API_URL` hoặc `VITE_API_BASE_URL` | `https://your-backend.railway.app` | Production, Preview |
-| `VITE_GOOGLE_SHEETS_SPREADSHEET_ID` | `...` | Production, Preview |
-| `VITE_GOOGLE_DRIVE_FOLDER_ID` | `...` | Production, Preview |
+| Name                                    | Value                                       | Environment         |
+| --------------------------------------- | ------------------------------------------- | ------------------- |
+| `VITE_API_URL` hoặc `VITE_API_BASE_URL` | `https://react-google-backend.onrender.com` | Production, Preview |
+| `VITE_GOOGLE_SHEETS_SPREADSHEET_ID`     | `...`                                       | Production, Preview |
+| `VITE_GOOGLE_DRIVE_FOLDER_ID`           | `...`                                       | Production, Preview |
 
 #### Biến tùy chọn
 
-| Name | Value |
-|------|-------|
-| `VITE_GOOGLE_APPS_SCRIPT_URL` | URL Apps Script |
-| `VITE_TELEGRAM_CHAT_ID` | Chat ID Telegram |
-| `VITE_AI_SERVICE_URL` | URL AI service (nếu có) |
-| `VITE_WEBSOCKET_URL` | `wss://your-backend.railway.app` |
+| Name                          | Value                            |
+| ----------------------------- | -------------------------------- |
+| `VITE_GOOGLE_APPS_SCRIPT_URL` | URL Apps Script                  |
+| `VITE_TELEGRAM_CHAT_ID`       | Chat ID Telegram                 |
+| `VITE_AI_SERVICE_URL`         | URL AI service (nếu có)          |
+| `VITE_WEBSOCKET_URL`          | `wss://your-backend.railway.app` |
 
 **Lưu ý:** Vite chỉ nhúng biến có prefix `VITE_` vào bundle. Codebase hỗ trợ cả `VITE_*` và `REACT_APP_*` (fallback), nhưng trên Vercel dùng `VITE_*`.
 
@@ -103,7 +109,8 @@ Vào **Project → Settings → Environment Variables**, thêm:
 
 ```env
 # === FRONTEND (Vercel) - Chỉ VITE_* được embed vào build ===
-VITE_API_URL=https://your-backend.railway.app
+VITE_API_URL=https://react-google-backend.onrender.com
+VITE_API_BASE_URL=https://react-google-backend.onrender.com/api
 VITE_GOOGLE_SHEETS_SPREADSHEET_ID=
 VITE_GOOGLE_DRIVE_FOLDER_ID=
 VITE_GOOGLE_APPS_SCRIPT_URL=
@@ -119,13 +126,13 @@ VITE_AI_SERVICE_URL=
 
 ### Phân chia theo môi trường
 
-| Biến | Local | Vercel (Frontend) | Backend Host |
-|------|-------|-------------------|--------------|
-| `VITE_API_URL` | `http://localhost:3001` | `https://api.mia.vn` | — |
-| `VITE_GOOGLE_SHEETS_SPREADSHEET_ID` | ✓ | ✓ | — |
-| `GOOGLE_PRIVATE_KEY` | ✓ | ✗ | ✓ |
-| `TELEGRAM_BOT_TOKEN` | ✓ | ✗ | ✓ |
-| `REACT_APP_*` | ✓ | Dùng `VITE_*` thay | — |
+| Biến                                | Local                   | Vercel (Frontend)                           | Backend Host |
+| ----------------------------------- | ----------------------- | ------------------------------------------- | ------------ |
+| `VITE_API_URL`                      | `http://localhost:3001` | `https://react-google-backend.onrender.com` | —            |
+| `VITE_GOOGLE_SHEETS_SPREADSHEET_ID` | ✓                       | ✓                                           | —            |
+| `GOOGLE_PRIVATE_KEY`                | ✓                       | ✗                                           | ✓            |
+| `TELEGRAM_BOT_TOKEN`                | ✓                       | ✗                                           | ✓            |
+| `REACT_APP_*`                       | ✓                       | Dùng `VITE_*` thay                          | —            |
 
 ---
 
@@ -167,7 +174,10 @@ File hiện tại đã dùng `@vercel/static-build` với `distDir: "build"`. Vi
     }
   ],
   "routes": [
-    { "src": "/assets/(.*)", "headers": { "cache-control": "s-maxage=31536000, immutable" } },
+    {
+      "src": "/assets/(.*)",
+      "headers": { "cache-control": "s-maxage=31536000, immutable" }
+    },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
@@ -191,9 +201,9 @@ Trong `backend/server.js`, thêm domain Vercel:
 
 ```js
 const allowedOrigins = [
-  'http://localhost:3000',
-  'https://mia-warehouse-*.vercel.app',
-  'https://your-custom-domain.com'
+  "http://localhost:3000",
+  "https://mia-warehouse-*.vercel.app",
+  "https://your-custom-domain.com",
 ];
 ```
 

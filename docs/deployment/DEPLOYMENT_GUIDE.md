@@ -14,7 +14,7 @@ The MIA.vn Google Integration Platform has been **successfully deployed** and is
 ### ✅ **Current Production Status**
 
 - 🏥 **System Health**: ✅ **OPERATIONAL** (99.9% uptime verified)
-- 🌐 **Production URL**: ✅ **LIVE** (<http://localhost:3004> in development)
+- 🌐 **Production URL**: ✅ **LIVE** (https://fabulous-klepon-ad4aa7.netlify.app)
 - 🔗 **Google Integration**: ✅ **ACTIVE** (22 Sheets + Drive operational)
 - 📊 **Performance**: ✅ **OPTIMIZED** (178ms average response time)
 - 🔐 **Security**: ✅ **ENTERPRISE-GRADE** (Service account authenticated)
@@ -37,7 +37,7 @@ The MIA.vn Google Integration Platform has been **successfully deployed** and is
 
 **Verified Production Features:**
 
-- **Optimized Build**: React 19.1.1 with build optimization (see build/ directory)
+- **Optimized Build**: React 18.2.0 with build optimization (see build/ directory)
 - **Production APIs**: 22 Google Sheets connected with 247 Drive files managed
 - **Service Reliability**: 99.9% uptime with automated health monitoring
 - **Security Framework**: JWT authentication with role-based access control
@@ -111,6 +111,10 @@ ls -la build/
 **Working Production Environment Variables:**
 
 ```env
+# Frontend (Vite) - Production
+VITE_API_URL=https://react-google-backend.onrender.com
+VITE_API_BASE_URL=https://react-google-backend.onrender.com/api
+
 # Google Service Account (Production Active)
 REACT_APP_GOOGLE_PRIVATE_KEY_ID=<production_key_id>
 REACT_APP_GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n<production_key>\n-----END PRIVATE KEY-----\n"
@@ -214,17 +218,22 @@ services:
 
 [build.environment]
   NODE_VERSION = "18"
-  NPM_VERSION = "8"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 [[headers]]
-  for = "/static/*"
+  for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache"
 ```
 
 ### **Option 3: Vercel Deployment** _(✅ React Optimized)_
@@ -376,7 +385,7 @@ npm run verify:production
 
 # Production completion
 echo "✅ Deployment completed successfully!"
-echo "🌐 Application ready at: http://localhost:3004"
+echo "🌐 Application ready at: http://localhost:3000"
 ```
 
 ### **Production Package.json Scripts**
