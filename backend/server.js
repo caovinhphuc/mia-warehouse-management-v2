@@ -1,7 +1,7 @@
 /* eslint-disable */
 /**
  * Backend Server - Express API Server with WebSocket
- * Port: 3001 (hoặc từ process.env.PORT)
+ * Port: 8000 (or from process.env.PORT or process.env.BACKEND_PORT)
  */
 
 const express = require("express");
@@ -11,7 +11,7 @@ const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const { formatVietnameseDateTime } = require("./utils/dateUtils");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || process.env.BACKEND_PORT || 8000;
 
 // Cleanup expired sessions periodically (every hour)
 const authService = require("./services/authService");
@@ -610,7 +610,12 @@ const initializeDemoAccounts = async () => {
 };
 
 // Start server with WebSocket support
-server.listen(PORT, async () => {
+server.listen(PORT, async (err) => {
+  if (err) {
+    console.error(`❌ Failed to start server on port ${PORT}:`, err.message);
+    process.exit(1);
+  }
+  
   console.log(`🚀 Backend server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🤖 AI endpoints: http://localhost:${PORT}/api/ai/*`);
@@ -620,6 +625,33 @@ server.listen(PORT, async () => {
 
   // Initialize demo accounts
   await initializeDemoAccounts();
+});
+
+// Handle server errors (e.g., port already in use)
+server.on("error", (err) => {
+  if (err.code === "EADDRINUSE") {
+    console.error(`\n❌ ERROR: Port ${PORT} is already in use!`);
+    console.error(`\n💡 Solutions:`);
+    console.error(`   1. Stop the process using port ${PORT}:`);
+    console.error(`      • On Linux/Mac: lsof -ti:${PORT} | xargs kill -9`);
+    console.error(`      • On Windows: netstat -ano | findstr :${PORT} then taskkill /PID <PID> /F`);
+    console.error(`   2. Use a different port by setting PORT or BACKEND_PORT environment variable:`);
+    console.error(`      • export PORT=8001`);
+    console.error(`      • or add PORT=8001 to your .env file`);
+    console.error(`\n`);
+    process.exit(1);
+  } else if (err.code === "EACCES") {
+    console.error(`\n❌ ERROR: Permission denied to bind to port ${PORT}`);
+    console.error(`\n💡 Solutions:`);
+    console.error(`   • Ports below 1024 require root/admin privileges`);
+    console.error(`   • Use a port above 1024 (e.g., 8000, 8001, 3000)`);
+    console.error(`   • Or run with sudo (not recommended for development)`);
+    console.error(`\n`);
+    process.exit(1);
+  } else {
+    console.error(`\n❌ Server error:`, err);
+    process.exit(1);
+  }
 });
 
 // Periodic metrics broadcasting (example)

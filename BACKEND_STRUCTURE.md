@@ -2,7 +2,7 @@
 
 **Backend Location:** `/Users/phuccao/Projects/mia-warehouse-management-v2/backend/`  
 **Server:** Express.js + Socket.io + Native WebSocket  
-**Port:** 3001 (currently running ✅)  
+**Port:** 8000 (configurable via PORT or BACKEND_PORT env variable)  
 **Analysis Date:** January 19, 2026
 
 ---
@@ -23,7 +23,7 @@ APIs: Google Sheets API, Google Drive API
 ### **Current Status**
 
 ```
-✅ Server Running: Port 3001
+✅ Server Running: Port 8000 (default, configurable)
 ✅ Socket.io: Initialized
 ✅ Native WebSocket: Ready on /ws
 ✅ Auto-created accounts: admin@mia.vn, user@mia.vn
@@ -349,10 +349,10 @@ GET    /api/scraper/data           → Get scraped data
 
 ## 🔌 WEBSOCKET SERVICES
 
-### **Socket.io** (Port 3001)
+### **Socket.io** (Port 8000)
 
 ```javascript
-Connection: ws://localhost:3001
+Connection: ws://localhost:8000
 Namespaces: /
 Events:
   - connection
@@ -369,10 +369,10 @@ Events:
 - ✅ Event broadcasting
 - ✅ Client tracking
 
-### **Native WebSocket** (Port 3001/ws)
+### **Native WebSocket** (Port 8000/ws)
 
 ```javascript
-Connection: ws://localhost:3001/ws
+Connection: ws://localhost:8000/ws
 Protocol: Native WebSocket (RFC 6455)
 ```
 
