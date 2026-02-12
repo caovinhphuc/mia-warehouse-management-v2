@@ -610,12 +610,7 @@ const initializeDemoAccounts = async () => {
 };
 
 // Start server with WebSocket support
-server.listen(PORT, async (err) => {
-  if (err) {
-    console.error(`❌ Failed to start server on port ${PORT}:`, err.message);
-    process.exit(1);
-  }
-  
+server.listen(PORT, async () => {
   console.log(`🚀 Backend server running on port ${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🤖 AI endpoints: http://localhost:${PORT}/api/ai/*`);
