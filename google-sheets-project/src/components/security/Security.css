@@ -1,0 +1,252 @@
+/* Enterprise Security Components Styles */
+
+.security-container {
+  padding: 0;
+}
+
+.security-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.security-dashboard {
+  padding: 24px;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.security-dashboard-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* MFA Setup Styles */
+.mfa-step-content {
+  padding: 24px 0;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* SSO Login Styles */
+.sso-buttons-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.sso-buttons-container .ant-btn {
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.sso-buttons-container .ant-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* User Management Styles */
+.user-management-table {
+  margin-top: 16px;
+}
+
+/* Audit Logs Styles */
+.audit-logs-filters {
+  background: #fafafa;
+  padding: 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.audit-logs-statistics {
+  margin-bottom: 24px;
+}
+
+/* Security Settings Styles */
+.security-settings-section {
+  margin-bottom: 24px;
+}
+
+.security-settings-section .ant-card {
+  margin-bottom: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .security-dashboard {
+    padding: 16px;
+  }
+
+  .mfa-step-content {
+    padding: 16px 0;
+    min-height: 300px;
+  }
+
+  .sso-buttons-container {
+    max-width: 100%;
+  }
+
+  .audit-logs-filters .ant-space {
+    width: 100%;
+  }
+
+  .audit-logs-filters .ant-select,
+  .audit-logs-filters .ant-input {
+    width: 100% !important;
+    margin-bottom: 8px;
+  }
+}
+
+/* Table Styles */
+.security-container .ant-table {
+  font-size: 14px;
+}
+
+.security-container .ant-table-thead > tr > th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.security-container .ant-table-tbody > tr:hover > td {
+  background: #f5f5f5;
+}
+
+/* Tag Styles */
+.security-container .ant-tag {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Button Styles */
+.security-container .ant-btn {
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.security-container .ant-btn-primary {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.security-container .ant-btn-primary:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Card Styles */
+.security-container .ant-card {
+  border-radius: 8px;
+}
+
+.security-container .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.security-container .ant-card-head-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Modal Styles */
+.security-container .ant-modal {
+  border-radius: 8px;
+}
+
+.security-container .ant-modal-header {
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+/* Steps Styles */
+.security-container .ant-steps {
+  margin-bottom: 24px;
+}
+
+.security-container .ant-steps-item-finish .ant-steps-item-icon {
+  background: #52c41a;
+  border-color: #52c41a;
+}
+
+/* Input Styles */
+.security-container .ant-input {
+  border-radius: 4px;
+}
+
+.security-container .ant-input:focus,
+.security-container .ant-input-focused {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* Select Styles */
+.security-container .ant-select {
+  border-radius: 4px;
+}
+
+.security-container .ant-select-selector {
+  border-radius: 4px !important;
+}
+
+/* DatePicker Styles */
+.security-container .ant-picker {
+  border-radius: 4px;
+}
+
+/* Alert Styles */
+.security-container .ant-alert {
+  border-radius: 4px;
+}
+
+.security-container .ant-alert-success {
+  background: #f6ffed;
+  border-color: #b7eb8f;
+}
+
+.security-container .ant-alert-warning {
+  background: #fffbe6;
+  border-color: #ffe58f;
+}
+
+.security-container .ant-alert-info {
+  background: #e6f7ff;
+  border-color: #91d5ff;
+}
+
+.security-container .ant-alert-error {
+  background: #fff2f0;
+  border-color: #ffccc7;
+}
+
+/* Loading Spinner */
+.security-container .ant-spin-container {
+  min-height: 200px;
+}
+
+/* QR Code Container */
+.mfa-qr-container {
+  text-align: center;
+  padding: 24px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+/* Statistics Cards */
+.security-container .ant-statistic {
+  text-align: center;
+}
+
+.security-container .ant-statistic-title {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.security-container .ant-statistic-content {
+  font-size: 24px;
+  font-weight: 600;
+}

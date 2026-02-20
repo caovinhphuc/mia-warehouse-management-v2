@@ -1,0 +1,129 @@
+/* Loading Component Styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.loading-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  position: relative;
+  display: inline-block;
+}
+
+.spinner-ring {
+  position: absolute;
+  border: 3px solid transparent;
+  border-top: 3px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.spinner-ring:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.spinner-ring:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.spinner-ring:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+.spinner-ring:nth-child(4) {
+  animation-delay: 0s;
+}
+
+/* Size variants */
+.loading-small .spinner-ring {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+}
+
+.loading-medium .spinner-ring {
+  width: 40px;
+  height: 40px;
+  margin: 4px;
+}
+
+.loading-large .spinner-ring {
+  width: 60px;
+  height: 60px;
+  margin: 6px;
+}
+
+/* Color variants */
+.loading-primary {
+  color: #3b82f6;
+}
+
+.loading-secondary {
+  color: #6b7280;
+}
+
+.loading-success {
+  color: #10b981;
+}
+
+.loading-warning {
+  color: #f59e0b;
+}
+
+.loading-danger {
+  color: #ef4444;
+}
+
+.loading-text {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-align: center;
+}
+
+.loading-fullscreen .loading-text {
+  font-size: 1rem;
+  color: #374151;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .loading-fullscreen {
+    background: rgba(17, 24, 39, 0.95);
+  }
+
+  .loading-text {
+    color: #d1d5db;
+  }
+
+  .loading-fullscreen .loading-text {
+    color: #f3f4f6;
+  }
+}

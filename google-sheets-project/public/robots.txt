@@ -1,0 +1,25 @@
+# https://www.robotstxt.org/robotstxt.html
+# MIA.vn Google Integration Platform - robots.txt
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Disallow admin and API endpoints
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_redirects
+Disallow: /*.json$
+Disallow: /sw.js
+Disallow: /manifest.json
+
+# Allow specific resources
+Allow: /static/
+Allow: /logo*.png
+Allow: /favicon.ico
+
+# Sitemap (if available)
+# Sitemap: https://your-domain.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
