@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import {
   BarChart,
   Bar,
@@ -15,11 +15,11 @@ import {
   ResponsiveContainer,
   AreaChart,
   Area,
-} from 'recharts';
-import axios from 'axios';
+} from "recharts";
+import axios from "axios";
 
 const Dashboard = () => {
-  const [activeModule, setActiveModule] = useState('overview');
+  const [activeModule, setActiveModule] = useState("overview");
   const [scheduleData, setScheduleData] = useState({});
   const [automationData, setAutomationData] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -29,22 +29,22 @@ const Dashboard = () => {
 
   // Colors
   const COLORS = [
-    '#667eea',
-    '#764ba2',
-    '#f093fb',
-    '#4ade80',
-    '#f59e0b',
-    '#dc2626',
+    "#667eea",
+    "#764ba2",
+    "#f093fb",
+    "#4ade80",
+    "#f59e0b",
+    "#dc2626",
   ];
 
   // NEW: Trigger Python scraper via backend API
   const triggerScraper = async (scriptType) => {
     try {
-      setScraperStatus((prev) => ({ ...prev, [scriptType]: 'running' }));
+      setScraperStatus((prev) => ({ ...prev, [scriptType]: "running" }));
       addLog(`🚀 Starting ${scriptType} scraper...`);
 
       const response = await axios.post(
-        'http://localhost:3001/api/scraper/trigger',
+        "http://localhost:3001/api/scraper/trigger",
         {
           type: scriptType,
         }
@@ -52,14 +52,14 @@ const Dashboard = () => {
 
       if (response.data.success) {
         addLog(`✅ ${scriptType} scraper completed successfully`);
-        setScraperStatus((prev) => ({ ...prev, [scriptType]: 'success' }));
+        setScraperStatus((prev) => ({ ...prev, [scriptType]: "success" }));
 
         // Auto-load data after scraping
         fetchScraperData(scriptType);
       }
     } catch (error) {
       addLog(`❌ ${scriptType} scraper failed: ${error.message}`);
-      setScraperStatus((prev) => ({ ...prev, [scriptType]: 'error' }));
+      setScraperStatus((prev) => ({ ...prev, [scriptType]: "error" }));
     }
   };
 
@@ -81,30 +81,30 @@ const Dashboard = () => {
 
   // NEW: Add log entry
   const addLog = (message) => {
-    const timestamp = new Date().toLocaleTimeString('vi-VN');
+    const timestamp = new Date().toLocaleTimeString("vi-VN");
     setLogs((prev) => [{ time: timestamp, message }, ...prev.slice(0, 49)]);
   };
 
   // NEW: Schedule config
   const [scheduleConfig, setScheduleConfig] = useState({
-    so: { enabled: true, interval: 30, unit: 'minutes' },
-    inventory: { enabled: true, interval: 1, unit: 'hours' },
-    po: { enabled: true, interval: 1, unit: 'days', time: '08:00' },
-    ck: { enabled: true, interval: 1, unit: 'days', time: '08:00' },
+    so: { enabled: true, interval: 30, unit: "minutes" },
+    inventory: { enabled: true, interval: 1, unit: "hours" },
+    po: { enabled: true, interval: 1, unit: "days", time: "08:00" },
+    ck: { enabled: true, interval: 1, unit: "days", time: "08:00" },
   });
 
   // NEW: Save schedule config
   const saveScheduleConfig = async () => {
     try {
       await axios.post(
-        'http://localhost:3001/api/scraper/schedule',
+        "http://localhost:3001/api/scraper/schedule",
         scheduleConfig
       );
-      addLog('✅ Schedule configuration saved');
-      alert('✅ Đã lưu cấu hình lịch tự động');
+      addLog("✅ Schedule configuration saved");
+      alert("✅ Đã lưu cấu hình lịch tự động");
     } catch (error) {
-      addLog('❌ Failed to save schedule config');
-      alert('❌ Lỗi lưu cấu hình');
+      addLog("❌ Failed to save schedule config");
+      alert("❌ Lỗi lưu cấu hình");
     }
   };
 
@@ -126,9 +126,9 @@ const Dashboard = () => {
         const content = e.target.result;
         let parsedData;
 
-        if (file.name.endsWith('.json')) {
+        if (file.name.endsWith(".json")) {
           parsedData = JSON.parse(content);
-        } else if (file.name.endsWith('.csv')) {
+        } else if (file.name.endsWith(".csv")) {
           parsedData = parseCSV(content);
         }
 
@@ -146,12 +146,12 @@ const Dashboard = () => {
 
   // Parse CSV helper
   const parseCSV = (csv) => {
-    const lines = csv.trim().split('\n');
-    const headers = lines[0].split(',').map((h) => h.trim());
+    const lines = csv.trim().split("\n");
+    const headers = lines[0].split(",").map((h) => h.trim());
     return lines.slice(1).map((line) => {
-      const values = line.split(',');
+      const values = line.split(",");
       return headers.reduce((obj, header, i) => {
-        obj[header] = values[i]?.trim() || '';
+        obj[header] = values[i]?.trim() || "";
         return obj;
       }, {});
     });
@@ -159,58 +159,58 @@ const Dashboard = () => {
 
   // Modules
   const modules = [
-    { id: 'overview', icon: '📊', name: 'Tổng quan', color: '#667eea' },
-    { id: 'automation', icon: '🤖', name: 'Automation', color: '#9333ea' },
-    { id: 'schedule', icon: '📅', name: 'Lịch làm việc', color: '#3b82f6' },
-    { id: 'orders', icon: '🛒', name: 'Đơn hàng', color: '#10b981' },
-    { id: 'inventory', icon: '📦', name: 'Tồn kho', color: '#f59e0b' },
-    { id: 'po', icon: '📥', name: 'Nhập hàng (PO)', color: '#ef4444' },
-    { id: 'ck', icon: '🔄', name: 'Chuyển kho (CK)', color: '#8b5cf6' },
+    { id: "overview", icon: "📊", name: "Tổng quan", color: "#667eea" },
+    { id: "automation", icon: "🤖", name: "Automation", color: "#9333ea" },
+    { id: "schedule", icon: "📅", name: "Lịch làm việc", color: "#3b82f6" },
+    { id: "orders", icon: "🛒", name: "Đơn hàng", color: "#10b981" },
+    { id: "inventory", icon: "📦", name: "Tồn kho", color: "#f59e0b" },
+    { id: "po", icon: "📥", name: "Nhập hàng (PO)", color: "#ef4444" },
+    { id: "ck", icon: "🔄", name: "Chuyển kho (CK)", color: "#8b5cf6" },
   ];
 
   // NEW: Enhanced Automation Module with Trigger Buttons
   const AutomationModule = () => {
-    const [activeTab, setActiveTab] = useState('orders');
+    const [activeTab, setActiveTab] = useState("orders");
 
     const automationScripts = [
       {
-        id: 'orders',
-        name: 'Đơn hàng (SO)',
-        icon: '🛒',
+        id: "orders",
+        name: "Đơn hàng (SO)",
+        icon: "🛒",
         description:
-          'automation_by_date.py - Lấy đơn hàng theo khoảng thời gian',
-        scriptType: 'so',
-        color: '#10b981',
+          "automation_by_date.py - Lấy đơn hàng theo khoảng thời gian",
+        scriptType: "so",
+        color: "#10b981",
         sampleData: automationData?.orders || [],
         realtime: true,
       },
       {
-        id: 'inventory',
-        name: 'Tồn kho',
-        icon: '📦',
-        description: 'automation_inventory.py - Lấy dữ liệu tồn kho',
-        scriptType: 'inventory',
-        color: '#f59e0b',
+        id: "inventory",
+        name: "Tồn kho",
+        icon: "📦",
+        description: "automation_inventory.py - Lấy dữ liệu tồn kho",
+        scriptType: "inventory",
+        color: "#f59e0b",
         sampleData: automationData?.inventory || [],
         realtime: false,
       },
       {
-        id: 'po',
-        name: 'Nhập hàng (PO)',
-        icon: '📥',
-        description: 'automation_po.py - Lấy đơn nhập hàng',
-        scriptType: 'po',
-        color: '#ef4444',
+        id: "po",
+        name: "Nhập hàng (PO)",
+        icon: "📥",
+        description: "automation_po.py - Lấy đơn nhập hàng",
+        scriptType: "po",
+        color: "#ef4444",
         sampleData: automationData?.po || [],
         realtime: false,
       },
       {
-        id: 'ck',
-        name: 'Chuyển kho (CK)',
-        icon: '🔄',
-        description: 'automation_ck.py - Lấy phiếu chuyển kho',
-        scriptType: 'ck',
-        color: '#8b5cf6',
+        id: "ck",
+        name: "Chuyển kho (CK)",
+        icon: "🔄",
+        description: "automation_ck.py - Lấy phiếu chuyển kho",
+        scriptType: "ck",
+        color: "#8b5cf6",
         sampleData: automationData?.ck || [],
         realtime: false,
       },
@@ -231,7 +231,7 @@ const Dashboard = () => {
               </p>
             </div>
             <button
-              onClick={() => setActiveModule('schedule-config')}
+              onClick={() => setActiveModule("schedule-config")}
               className="px-4 py-2 bg-white text-purple-600 rounded-lg hover:shadow-lg transition-all"
             >
               ⚙️ Cấu hình
@@ -248,8 +248,8 @@ const Dashboard = () => {
                 onClick={() => setActiveTab(script.id)}
                 className={`p-4 border-b-4 transition-all relative ${
                   activeTab === script.id
-                    ? 'border-purple-600 bg-purple-50'
-                    : 'border-transparent hover:bg-gray-50'
+                    ? "border-purple-600 bg-purple-50"
+                    : "border-transparent hover:bg-gray-50"
                 }`}
               >
                 <div className="text-2xl mb-1">{script.icon}</div>
@@ -279,17 +279,17 @@ const Dashboard = () => {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              {status === 'running' && (
+              {status === "running" && (
                 <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-600 text-sm flex items-center gap-2">
                   <span className="animate-spin">⚙️</span> Running...
                 </span>
               )}
-              {status === 'success' && (
+              {status === "success" && (
                 <span className="px-3 py-1 rounded-full bg-green-100 text-green-600 text-sm">
                   ✅ Success
                 </span>
               )}
-              {status === 'error' && (
+              {status === "error" && (
                 <span className="px-3 py-1 rounded-full bg-red-100 text-red-600 text-sm">
                   ❌ Error
                 </span>
@@ -307,14 +307,14 @@ const Dashboard = () => {
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             <button
               onClick={() => triggerScraper(activeScript.scriptType)}
-              disabled={status === 'running'}
+              disabled={status === "running"}
               className={`px-6 py-4 rounded-xl font-semibold text-white shadow-lg transition-all flex items-center justify-center gap-3 ${
-                status === 'running'
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-purple-600 to-blue-600 hover:shadow-xl'
+                status === "running"
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-purple-600 to-blue-600 hover:shadow-xl"
               }`}
             >
-              {status === 'running' ? (
+              {status === "running" ? (
                 <>
                   <span className="animate-spin">⚙️</span>
                   <span>Đang chạy...</span>
@@ -406,7 +406,7 @@ const Dashboard = () => {
             )}
             {logs.map((log, i) => (
               <div key={i} className="mb-1">
-                <span className="text-gray-500">[{log.time}]</span>{' '}
+                <span className="text-gray-500">[{log.time}]</span>{" "}
                 {log.message}
               </div>
             ))}
@@ -434,10 +434,10 @@ const Dashboard = () => {
                     {key.toUpperCase()}
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {key === 'so' && 'Đơn hàng - Real-time'}
-                    {key === 'inventory' && 'Tồn kho'}
-                    {key === 'po' && 'Nhập hàng'}
-                    {key === 'ck' && 'Chuyển kho'}
+                    {key === "so" && "Đơn hàng - Real-time"}
+                    {key === "inventory" && "Tồn kho"}
+                    {key === "po" && "Nhập hàng"}
+                    {key === "ck" && "Chuyển kho"}
                   </p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
@@ -494,14 +494,14 @@ const Dashboard = () => {
                     <option value="days">Days</option>
                   </select>
                 </div>
-                {config.unit === 'days' && (
+                {config.unit === "days" && (
                   <div>
                     <label className="block text-sm font-medium mb-2">
                       Time
                     </label>
                     <input
                       type="time"
-                      value={config.time || '08:00'}
+                      value={config.time || "08:00"}
                       onChange={(e) =>
                         setScheduleConfig((prev) => ({
                           ...prev,
@@ -521,7 +521,7 @@ const Dashboard = () => {
                     {config.time && ` at ${config.time}`}
                   </>
                 ) : (
-                  '❌ Disabled'
+                  "❌ Disabled"
                 )}
               </div>
             </div>
@@ -541,9 +541,9 @@ const Dashboard = () => {
   // Render active module
   const renderModule = () => {
     switch (activeModule) {
-      case 'automation':
+      case "automation":
         return <AutomationModule />;
-      case 'schedule-config':
+      case "schedule-config":
         return <ScheduleConfigModule />;
       // ... other modules
       default:
@@ -567,8 +567,8 @@ const Dashboard = () => {
               onClick={() => setActiveModule(module.id)}
               className={`w-full p-3 rounded-lg mb-2 text-left transition-all ${
                 activeModule === module.id
-                  ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg'
-                  : 'hover:bg-gray-100'
+                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                  : "hover:bg-gray-100"
               }`}
             >
               <span className="mr-3">{module.icon}</span>

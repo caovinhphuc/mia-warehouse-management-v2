@@ -1,7 +1,7 @@
-import React from 'react';
-import NavItem from './NavItem';
+import React from "react";
+import NavItem from "./NavItem";
 
-const NavSection = ({ title, items, collapsed, isActive, className = '' }) => {
+const NavSection = ({ title, items, collapsed, isActive, className = "" }) => {
   if (!items || items.length === 0) {
     return null;
   }
@@ -19,7 +19,7 @@ const NavSection = ({ title, items, collapsed, isActive, className = '' }) => {
             item={item}
             isActive={active}
             collapsed={collapsed}
-            className={item.className || ''}
+            className={item.className || ""}
           />
         );
       })}

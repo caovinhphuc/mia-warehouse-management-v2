@@ -12,7 +12,7 @@ Hệ thống hỗ trợ 2 loại WebSocket:
 ### Endpoint
 
 ```
-ws://localhost:3001/ws
+ws://localhost:8000/ws
 ```
 
 ### Tính năng
@@ -155,7 +155,7 @@ npm run test:ws
 ### 3. Test từ Browser Console
 
 ```javascript
-const ws = new WebSocket("ws://localhost:3001/ws");
+const ws = new WebSocket("ws://localhost:8000/ws");
 
 ws.onopen = () => {
   console.log("✅ Connected!");
@@ -179,10 +179,10 @@ ws.onclose = (event) => {
 
 ### Backend Port
 
-Mặc định: `3001`
+Mặc định: `8000`
 
 ```bash
-PORT=3001 npm start
+PORT=8000 npm start
 ```
 
 ### WebSocket URL

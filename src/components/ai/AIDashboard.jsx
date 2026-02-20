@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { useSelector } from "react-redux";
 import {
   AreaChart,
   Area,
@@ -11,10 +11,10 @@ import {
   BarChart,
   Bar,
   Legend,
-} from 'recharts';
-import Loading from '../Common/Loading';
-import { aiService } from '../../services/aiService';
-import './AIDashboard.css';
+} from "recharts";
+import Loading from "../Common/Loading";
+import { aiService } from "../../services/aiService";
+import "./AIDashboard.css";
 
 const AIDashboard = () => {
   const { sheets } = useSelector((state) => state.sheets);
@@ -25,18 +25,18 @@ const AIDashboard = () => {
   const [predictions, setPredictions] = useState({});
   const [recommendations, setRecommendations] = useState([]);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [selectedTimeframe, setSelectedTimeframe] = useState('7d');
+  const [selectedTimeframe, setSelectedTimeframe] = useState("7d");
   const [error, setError] = useState(null);
   const [predictionChartData, setPredictionChartData] = useState([]);
   const [trendChartData, setTrendChartData] = useState([]);
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [systemStability, setSystemStability] = useState(80);
-  const [filterType, setFilterType] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [filterType, setFilterType] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   // AI Chat state
   const [chatMessages, setChatMessages] = useState([]);
-  const [chatInput, setChatInput] = useState('');
+  const [chatInput, setChatInput] = useState("");
   const [isChatting, setIsChatting] = useState(false);
   const [showChat, setShowChat] = useState(false);
 
@@ -96,19 +96,19 @@ const AIDashboard = () => {
 
         setPredictionChartData([
           {
-            period: 'Hiện tại',
+            period: "Hiện tại",
             sheets: current.sheets,
             files: current.files,
             alerts: current.alerts,
           },
           {
-            period: 'Tuần tới',
+            period: "Tuần tới",
             sheets: nextWeek.sheets || 0,
             files: nextWeek.files || 0,
             alerts: nextWeek.alerts || 0,
           },
           {
-            period: 'Tháng tới',
+            period: "Tháng tới",
             sheets: nextMonth.sheets || 0,
             files: nextMonth.files || 0,
             alerts: nextMonth.alerts || 0,
@@ -117,7 +117,7 @@ const AIDashboard = () => {
 
         // Generate trend data (last 7 days projection)
         const trendData = [];
-        const days = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+        const days = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
         for (let i = 0; i < 7; i++) {
           const growth = 1 + (i / 7) * 0.15; // 15% growth over week
           trendData.push({
@@ -131,37 +131,37 @@ const AIDashboard = () => {
       }
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.error('AI Analysis Error:', err);
-      setError('Không thể phân tích dữ liệu. Vui lòng thử lại.');
+      console.error("AI Analysis Error:", err);
+      setError("Không thể phân tích dữ liệu. Vui lòng thử lại.");
 
       // Fallback to sample data if API fails
       const fallbackInsights = [
         {
           id: 1,
-          type: 'trend',
-          title: '📈 Xu hướng tăng trưởng',
-          description: 'Dữ liệu Google Sheets tăng 23% trong 7 ngày qua',
+          type: "trend",
+          title: "📈 Xu hướng tăng trưởng",
+          description: "Dữ liệu Google Sheets tăng 23% trong 7 ngày qua",
           confidence: 0.87,
-          impact: 'high',
-          action: 'Tăng cường backup và monitoring',
+          impact: "high",
+          action: "Tăng cường backup và monitoring",
         },
         {
           id: 2,
-          type: 'anomaly',
-          title: '⚠️ Phát hiện bất thường',
-          description: 'Hoạt động upload Drive tăng đột biến 150% vào 14:30',
+          type: "anomaly",
+          title: "⚠️ Phát hiện bất thường",
+          description: "Hoạt động upload Drive tăng đột biến 150% vào 14:30",
           confidence: 0.92,
-          impact: 'medium',
-          action: 'Kiểm tra và xác minh hoạt động',
+          impact: "medium",
+          action: "Kiểm tra và xác minh hoạt động",
         },
         {
           id: 3,
-          type: 'optimization',
-          title: '⚡ Tối ưu hóa hiệu suất',
-          description: 'Có thể giảm 40% thời gian xử lý bằng batch requests',
+          type: "optimization",
+          title: "⚡ Tối ưu hóa hiệu suất",
+          description: "Có thể giảm 40% thời gian xử lý bằng batch requests",
           confidence: 0.85,
-          impact: 'high',
-          action: 'Triển khai batch processing',
+          impact: "high",
+          action: "Triển khai batch processing",
         },
       ];
 
@@ -181,33 +181,33 @@ const AIDashboard = () => {
       const fallbackRecommendations = [
         {
           id: 1,
-          category: 'performance',
-          title: 'Tối ưu hóa API calls',
-          description: 'Sử dụng batch requests để giảm 40% thời gian xử lý',
-          priority: 'high',
-          effort: 'medium',
-          impact: 'high',
-          status: 'pending',
+          category: "performance",
+          title: "Tối ưu hóa API calls",
+          description: "Sử dụng batch requests để giảm 40% thời gian xử lý",
+          priority: "high",
+          effort: "medium",
+          impact: "high",
+          status: "pending",
         },
         {
           id: 2,
-          category: 'security',
-          title: 'Cập nhật bảo mật',
-          description: 'Thêm 2FA cho tất cả service accounts',
-          priority: 'high',
-          effort: 'low',
-          impact: 'high',
-          status: 'pending',
+          category: "security",
+          title: "Cập nhật bảo mật",
+          description: "Thêm 2FA cho tất cả service accounts",
+          priority: "high",
+          effort: "low",
+          impact: "high",
+          status: "pending",
         },
         {
           id: 3,
-          category: 'automation',
-          title: 'Tự động hóa backup',
-          description: 'Thiết lập backup tự động hàng ngày lúc 2:00 AM',
-          priority: 'medium',
-          effort: 'low',
-          impact: 'medium',
-          status: 'pending',
+          category: "automation",
+          title: "Tự động hóa backup",
+          description: "Thiết lập backup tự động hàng ngày lúc 2:00 AM",
+          priority: "medium",
+          effort: "low",
+          impact: "medium",
+          status: "pending",
         },
       ];
 
@@ -225,7 +225,7 @@ const AIDashboard = () => {
     let score = 100;
 
     // Reduce score based on anomalies
-    const anomalies = insights.filter((i) => i.type === 'anomaly');
+    const anomalies = insights.filter((i) => i.type === "anomaly");
     score -= anomalies.length * 10;
 
     // Reduce score based on alerts
@@ -233,7 +233,7 @@ const AIDashboard = () => {
     else if (alertCount > 5) score -= 5;
 
     // Increase score based on optimizations
-    const optimizations = insights.filter((i) => i.type === 'optimization');
+    const optimizations = insights.filter((i) => i.type === "optimization");
     score += optimizations.length * 5;
 
     return Math.max(0, Math.min(100, score));
@@ -245,14 +245,14 @@ const AIDashboard = () => {
 
     const userMessage = {
       id: Date.now(),
-      type: 'user',
+      type: "user",
       message: chatInput,
       timestamp: new Date().toISOString(),
     };
 
     setChatMessages((prev) => [...prev, userMessage]);
     const currentInput = chatInput;
-    setChatInput('');
+    setChatInput("");
     setIsChatting(true);
 
     try {
@@ -268,7 +268,7 @@ const AIDashboard = () => {
 
       const aiMessage = {
         id: Date.now() + 1,
-        type: 'ai',
+        type: "ai",
         message: response.response || response.message,
         confidence: response.confidence,
         suggestions: response.suggestions || [],
@@ -278,12 +278,12 @@ const AIDashboard = () => {
       setChatMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.error('AI Chat Error:', err);
+      console.error("AI Chat Error:", err);
       const errorMessage = {
         id: Date.now() + 1,
-        type: 'ai',
+        type: "ai",
         message:
-          'Xin lỗi, tôi không thể trả lời ngay bây giờ. Vui lòng thử lại sau.',
+          "Xin lỗi, tôi không thể trả lời ngay bây giờ. Vui lòng thử lại sau.",
         timestamp: new Date().toISOString(),
       };
       setChatMessages((prev) => [...prev, errorMessage]);
@@ -324,7 +324,7 @@ const AIDashboard = () => {
           rec.id === recId
             ? {
                 ...rec,
-                status: 'in-progress',
+                status: "in-progress",
                 implementedAt: new Date().toISOString(),
               }
             : rec
@@ -335,7 +335,7 @@ const AIDashboard = () => {
       setTimeout(() => {
         setRecommendations((prev) =>
           prev.map((rec) =>
-            rec.id === recId ? { ...rec, status: 'implemented' } : rec
+            rec.id === recId ? { ...rec, status: "implemented" } : rec
           )
         );
         alert(`✅ Đã triển khai thành công: ${recommendation.title}`);
@@ -354,10 +354,10 @@ const AIDashboard = () => {
     };
 
     const blob = new Blob([JSON.stringify(exportData, null, 2)], {
-      type: 'application/json',
+      type: "application/json",
     });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = `ai-dashboard-export-${Date.now()}.json`;
     a.click();
@@ -368,7 +368,7 @@ const AIDashboard = () => {
   const filteredInsights = useMemo(() => {
     let filtered = aiInsights;
 
-    if (filterType !== 'all') {
+    if (filterType !== "all") {
       filtered = filtered.filter((insight) => insight.type === filterType);
     }
 
@@ -387,7 +387,7 @@ const AIDashboard = () => {
   const filteredRecommendations = useMemo(() => {
     let filtered = recommendations;
 
-    if (filterType !== 'all') {
+    if (filterType !== "all") {
       filtered = filtered.filter((rec) => rec.category === filterType);
     }
 
@@ -405,55 +405,55 @@ const AIDashboard = () => {
 
   const getInsightIcon = (type) => {
     switch (type) {
-      case 'trend':
-        return '📈';
-      case 'anomaly':
-        return '⚠️';
-      case 'optimization':
-        return '⚡';
-      case 'security':
-        return '🔒';
+      case "trend":
+        return "📈";
+      case "anomaly":
+        return "⚠️";
+      case "optimization":
+        return "⚡";
+      case "security":
+        return "🔒";
       default:
-        return '🤖';
+        return "🤖";
     }
   };
 
   const getImpactColor = (impact) => {
     switch (impact) {
-      case 'high':
-        return '#ef4444';
-      case 'medium':
-        return '#f59e0b';
-      case 'low':
-        return '#10b981';
+      case "high":
+        return "#ef4444";
+      case "medium":
+        return "#f59e0b";
+      case "low":
+        return "#10b981";
       default:
-        return '#6b7280';
+        return "#6b7280";
     }
   };
 
   const getPriorityColor = (priority) => {
     switch (priority) {
-      case 'high':
-        return '#ef4444';
-      case 'medium':
-        return '#f59e0b';
-      case 'low':
-        return '#10b981';
+      case "high":
+        return "#ef4444";
+      case "medium":
+        return "#f59e0b";
+      case "low":
+        return "#10b981";
       default:
-        return '#6b7280';
+        return "#6b7280";
     }
   };
 
   const getStabilityColor = (stability) => {
-    if (stability >= 80) return '#10b981';
-    if (stability >= 60) return '#f59e0b';
-    return '#ef4444';
+    if (stability >= 80) return "#10b981";
+    if (stability >= 60) return "#f59e0b";
+    return "#ef4444";
   };
 
   const getStabilityText = (stability) => {
-    if (stability >= 80) return 'Hệ thống ổn định';
-    if (stability >= 60) return 'Hệ thống cần chú ý';
-    return 'Hệ thống có vấn đề';
+    if (stability >= 80) return "Hệ thống ổn định";
+    if (stability >= 60) return "Hệ thống cần chú ý";
+    return "Hệ thống có vấn đề";
   };
 
   return (
@@ -499,7 +499,7 @@ const AIDashboard = () => {
             onClick={analyzeData}
             disabled={isAnalyzing}
           >
-            {isAnalyzing ? '🔄 Đang phân tích...' : '🔍 Phân tích lại'}
+            {isAnalyzing ? "🔄 Đang phân tích..." : "🔍 Phân tích lại"}
           </button>
           <button
             className="export-btn"
@@ -512,14 +512,14 @@ const AIDashboard = () => {
             className="chat-toggle-btn"
             onClick={() => setShowChat(!showChat)}
           >
-            {showChat ? '💬 Ẩn Chat' : '💬 AI Chat'}
+            {showChat ? "💬 Ẩn Chat" : "💬 AI Chat"}
           </button>
           <button
-            className={`auto-refresh-btn ${autoRefresh ? 'active' : ''}`}
+            className={`auto-refresh-btn ${autoRefresh ? "active" : ""}`}
             onClick={() => setAutoRefresh(!autoRefresh)}
-            title={autoRefresh ? 'Tắt tự động làm mới' : 'Bật tự động làm mới'}
+            title={autoRefresh ? "Tắt tự động làm mới" : "Bật tự động làm mới"}
           >
-            {autoRefresh ? '⏸️ Tắt Auto' : '▶️ Bật Auto'}
+            {autoRefresh ? "⏸️ Tắt Auto" : "▶️ Bật Auto"}
           </button>
         </div>
       </div>
@@ -683,7 +683,7 @@ const AIDashboard = () => {
                   </span>
                   {sheets.length > 0 && (
                     <span className="change">
-                      ({predictions.nextWeek?.sheets > sheets.length ? '+' : ''}
+                      ({predictions.nextWeek?.sheets > sheets.length ? "+" : ""}
                       {(
                         ((predictions.nextWeek?.sheets - sheets.length) /
                           sheets.length) *
@@ -700,7 +700,7 @@ const AIDashboard = () => {
                   </span>
                   {files.length > 0 && (
                     <span className="change">
-                      ({predictions.nextWeek?.files > files.length ? '+' : ''}
+                      ({predictions.nextWeek?.files > files.length ? "+" : ""}
                       {(
                         ((predictions.nextWeek?.files - files.length) /
                           files.length) *
@@ -729,7 +729,7 @@ const AIDashboard = () => {
                   {sheets.length > 0 && (
                     <span className="change">
                       (
-                      {predictions.nextMonth?.sheets > sheets.length ? '+' : ''}
+                      {predictions.nextMonth?.sheets > sheets.length ? "+" : ""}
                       {(
                         ((predictions.nextMonth?.sheets - sheets.length) /
                           sheets.length) *
@@ -746,7 +746,7 @@ const AIDashboard = () => {
                   </span>
                   {files.length > 0 && (
                     <span className="change">
-                      ({predictions.nextMonth?.files > files.length ? '+' : ''}
+                      ({predictions.nextMonth?.files > files.length ? "+" : ""}
                       {(
                         ((predictions.nextMonth?.files - files.length) /
                           files.length) *
@@ -800,22 +800,22 @@ const AIDashboard = () => {
                     <span className="impact">Impact: {rec.impact}</span>
                     {rec.status && (
                       <span className={`rec-status ${rec.status}`}>
-                        {rec.status === 'implemented'
-                          ? '✅ Đã triển khai'
-                          : rec.status === 'in-progress'
-                            ? '🔄 Đang triển khai'
-                            : '⏳ Chờ triển khai'}
+                        {rec.status === "implemented"
+                          ? "✅ Đã triển khai"
+                          : rec.status === "in-progress"
+                            ? "🔄 Đang triển khai"
+                            : "⏳ Chờ triển khai"}
                       </span>
                     )}
                   </div>
                   <button
                     className="implement-btn"
                     onClick={() => handleImplementRecommendation(rec.id)}
-                    disabled={rec.status === 'implemented'}
+                    disabled={rec.status === "implemented"}
                   >
-                    {rec.status === 'implemented'
-                      ? '✅ Đã triển khai'
-                      : '🚀 Triển khai'}
+                    {rec.status === "implemented"
+                      ? "✅ Đã triển khai"
+                      : "🚀 Triển khai"}
                   </button>
                 </div>
               ))
@@ -871,19 +871,19 @@ const AIDashboard = () => {
                 <div className="chat-suggestions">
                   <button
                     className="suggestion-btn"
-                    onClick={() => setChatInput('Phân tích xu hướng dữ liệu')}
+                    onClick={() => setChatInput("Phân tích xu hướng dữ liệu")}
                   >
                     Phân tích xu hướng dữ liệu
                   </button>
                   <button
                     className="suggestion-btn"
-                    onClick={() => setChatInput('Khuyến nghị tối ưu hóa')}
+                    onClick={() => setChatInput("Khuyến nghị tối ưu hóa")}
                   >
                     Khuyến nghị tối ưu hóa
                   </button>
                   <button
                     className="suggestion-btn"
-                    onClick={() => setChatInput('Dự đoán tương lai')}
+                    onClick={() => setChatInput("Dự đoán tương lai")}
                   >
                     Dự đoán tương lai
                   </button>
@@ -920,7 +920,7 @@ const AIDashboard = () => {
               placeholder="Nhập câu hỏi của bạn..."
               value={chatInput}
               onChange={(e) => setChatInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleChatSend()}
+              onKeyPress={(e) => e.key === "Enter" && handleChatSend()}
               disabled={isChatting}
             />
             <button
@@ -929,7 +929,7 @@ const AIDashboard = () => {
               disabled={isChatting || !chatInput.trim()}
               aria-label="Gửi tin nhắn"
             >
-              {isChatting ? '⏳' : '📤'}
+              {isChatting ? "⏳" : "📤"}
             </button>
           </div>
         </div>

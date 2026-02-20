@@ -1,0 +1,2342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng dẫn Setup Nhanh React với Theme Trực Quan, Dark Mode và Tối Ưu Hóa cho Di Động</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --bg-color: #fff;
+            --card-bg: #f8f9fa;
+            --border-color: #e1e4e8;
+            --code-bg: #f6f8fa;
+            --code-text: #24292e;
+            --sidebar-bg: #f0f2f5;
+            --sidebar-active: #e2e8f0;
+            --sidebar-text: #333;
+            --header-bg: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #61dafb;
+            --secondary-color: #4fa3d1;
+            --text-color: #e1e1e1;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #2d2d2d;
+            --code-bg: #2d2d2d;
+            --code-text: #e6e6e6;
+            --sidebar-bg: #1a1a1a;
+            --sidebar-active: #2d2d2d;
+            --sidebar-text: #e1e1e1;
+            --header-bg: #1a1a1a;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px var(--shadow-color);
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 5px;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--sidebar-active);
+            border-left-color: var(--primary-color);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 20px;
+            max-width: 1200px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--header-bg);
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            font-family: monospace;
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .tip {
+            background-color: rgba(97, 218, 251, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning {
+            background-color: rgba(255, 204, 0, 0.1);
+            border-left: 4px solid #ffcc00;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .mobile-header {
+            display: none;
+            padding: 15px;
+            background-color: var(--header-bg);
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--sidebar-active);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .flex-item {
+            flex: 1;
+        }
+
+        .theme-preview {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .theme-card {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .light-theme {
+            background-color: #fff;
+            color: #333;
+        }
+
+        .dark-theme {
+            background-color: #121212;
+            color: #e1e1e1;
+        }
+
+        .responsive-preview {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .desktop-preview, .mobile-preview {
+            flex: 1;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            background-color: var(--card-bg);
+        }
+
+        .desktop-preview {
+            width: 70%;
+        }
+
+        .mobile-preview {
+            width: 30%;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 250px;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .menu-toggle, .mobile-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .flex-container, .theme-preview, .responsive-preview {
+                flex-direction: column;
+            }
+
+            .desktop-preview, .mobile-preview {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-header">
+        <button class="menu-toggle" id="menuToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <div class="theme-toggle">
+            <span>🌞</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="mobileThemeToggle">
+                <span class="slider"></span>
+            </label>
+            <span>🌙</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>React Theme Setup</h2>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#introduction" class="active">Giới thiệu</a></li>
+                <li><a href="#setup-project">Thiết lập dự án</a></li>
+                <li><a href="#theme-system">Hệ thống Theme</a></li>
+                <li><a href="#dark-mode">Dark Mode</a></li>
+                <li><a href="#mobile-optimization">Tối ưu hóa cho di động</a></li>
+                <li><a href="#responsive-design">Thiết kế Responsive</a></li>
+                <li><a href="#best-practices">Các phương pháp hay nhất</a></li>
+                <li><a href="#libraries">Thư viện đề xuất</a></li>
+                <li><a href="#examples">Ví dụ mẫu</a></li>
+                <li><a href="#troubleshooting">Xử lý sự cố</a></li>
+                <li><a href="#references">Tài liệu tham khảo</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Hướng dẫn Setup Nhanh React</h1>
+                <div class="theme-toggle">
+                    <span>🌞</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span>🌙</span>
+                </div>
+            </header>
+
+            <section id="introduction" class="section">
+                <h2>Giới thiệu</h2>
+                <div class="card">
+                    <p>Hướng dẫn này sẽ giúp bạn thiết lập nhanh một dự án React với hệ thống theme trực quan, hỗ trợ dark mode và tối ưu hóa cho thiết bị di động. Chúng ta sẽ đi qua từng bước, từ việc khởi tạo dự án đến việc triển khai các tính năng nâng cao.</p>
+                    <p>Sau khi hoàn thành hướng dẫn này, bạn sẽ có:</p>
+                    <ul>
+                        <li>Một dự án React được cấu hình đầy đủ với TypeScript</li>
+                        <li>Hệ thống theme linh hoạt và dễ mở rộng</li>
+                        <li>Chức năng chuyển đổi giữa light mode và dark mode</li>
+                        <li>Giao diện được tối ưu hóa cho cả máy tính và thiết bị di động</li>
+                        <li>Hiểu biết về các phương pháp hay nhất trong việc thiết kế giao diện người dùng</li>
+                    </ul>
+                </div>
+
+                <div class="theme-preview">
+                    <div class="theme-card light-theme">
+                        <h3>Light Mode</h3>
+                        <p>Giao diện sáng với nền trắng và văn bản tối, phù hợp cho sử dụng ban ngày và môi trường sáng.</p>
+                        <button style="background-color: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 4px;">Button Example</button>
+                    </div>
+                    <div class="theme-card dark-theme">
+                        <h3>Dark Mode</h3>
+                        <p>Giao diện tối với nền đen và văn bản sáng, giảm mỏi mắt khi sử dụng vào ban đêm hoặc môi trường tối.</p>
+                        <button style="background-color: #61dafb; color: black; border: none; padding: 8px 16px; border-radius: 4px;">Button Example</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="setup-project" class="section">
+                <h2>Thiết lập dự án</h2>
+
+                <h3>Tạo dự án React với TypeScript</h3>
+                <p>Chúng ta sẽ sử dụng Vite để tạo dự án React với TypeScript. Vite là một công cụ build hiện đại, nhanh hơn Create React App và được khuyến nghị bởi cộng đồng React.</p>
+
+                <div class="card">
+                    <h4>Tạo dự án với Vite</h4>
+                    <pre><code>npm create vite@latest my-theme-app -- --template react-ts</code></pre>
+                    <p>Hoặc sử dụng Yarn:</p>
+                    <pre><code>yarn create vite my-theme-app --template react-ts</code></pre>
+
+                    <h4>Di chuyển vào thư mục dự án và cài đặt các dependencies</h4>
+                    <pre><code>cd my-theme-app
+npm install
+# hoặc
+yarn</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>Mẹo:</strong> Vite cung cấp thời gian khởi động nhanh hơn và hot module replacement (HMR) hiệu quả hơn so với Create React App, giúp quá trình phát triển của bạn trở nên mượt mà hơn.
+                </div>
+
+                <h3>Cấu trúc thư mục</h3>
+                <p>Dưới đây là cấu trúc thư mục đề xuất cho dự án của bạn:</p>
+
+                <pre><code>my-theme-app/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── layout/
+│   │   └── ui/
+│   ├── context/
+│   │   └── ThemeContext.tsx
+│   ├── hooks/
+│   │   └── useTheme.ts
+│   ├── styles/
+│   │   ├── themes/
+│   │   │   ├── dark.ts
+│   │   │   ├── light.ts
+│   │   │   └── index.ts
+│   │   ├── global.css
+│   │   └── variables.css
+│   ├── utils/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── .eslintrc.cjs
+├── .gitignore
+├── index.html
+├── package.json
+├── tsconfig.json
+└── vite.config.ts</code></pre>
+
+                <h3>Cài đặt các thư viện cần thiết</h3>
+                <p>Chúng ta sẽ cài đặt một số thư viện để hỗ trợ việc xây dựng hệ thống theme và tối ưu hóa cho di động:</p>
+
+                <pre><code>npm install styled-components @types/styled-components
+# hoặc
+yarn add styled-components @types/styled-components</code></pre>
+
+                <p>Nếu bạn muốn sử dụng CSS variables thay vì styled-components, bạn có thể bỏ qua bước này.</p>
+            </section>
+
+            <section id="theme-system" class="section">
+                <h2>Xây dựng hệ thống Theme</h2>
+
+                <h3>Phương pháp 1: Sử dụng CSS Variables</h3>
+                <p>CSS Variables là cách đơn giản và hiệu quả để xây dựng hệ thống theme. Chúng cho phép bạn định nghĩa các biến CSS và sử dụng lại chúng trong toàn bộ ứng dụng.</p>
+
+                <div class="card">
+                    <h4>Tạo file variables.css</h4>
+                    <pre><code>/* src/styles/variables.css */
+:root {
+  /* Colors */
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --text-color: #333;
+  --bg-color: #fff;
+  --card-bg: #f8f9fa;
+  --border-color: #e1e4e8;
+
+  /* Typography */
+  --font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-size-small: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-large: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Border Radius */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}</code></pre>
+                </div>
+
+                <h3>Phương pháp 2: Sử dụng Styled Components với ThemeProvider</h3>
+                <p>Styled Components cung cấp ThemeProvider để truyền theme xuống tất cả các component con. Đây là cách tiếp cận mạnh mẽ hơn nếu bạn cần nhiều tùy chỉnh.</p>
+
+                <div class="card">
+                    <h4>Tạo theme objects</h4>
+                    <pre><code>// src/styles/themes/light.ts
+export const lightTheme = {
+  colors: {
+    primary: '#3498db',
+    secondary: '#2980b9',
+    text: '#333',
+    background: '#fff',
+    cardBg: '#f8f9fa',
+    border: '#e1e4e8',
+  },
+  fonts: {
+    family: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+    sizes: {
+      small: '0.875rem',
+      base: '1rem',
+      large: '1.25rem',
+      xl: '1.5rem',
+      '2xl': '2rem',
+    },
+  },
+  spacing: {
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+  },
+  borderRadius: {
+    sm: '0.25rem',
+    md: '0.5rem',
+    lg: '1rem',
+  },
+  shadows: {
+    sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
+    md: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    lg: '0 10px 15px rgba(0, 0, 0, 0.1)',
+  },
+  transitions: {
+    fast: '0.2s ease',
+    normal: '0.3s ease',
+    slow: '0.5s ease',
+  },
+};</code></pre>
+
+                    <h4>Tạo ThemeContext</h4>
+                    <pre><code>// src/context/ThemeContext.tsx
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { lightTheme } from '../styles/themes/light';
+import { darkTheme } from '../styles/themes/dark';
+
+type ThemeContextType = {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+};
+
+export const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light',
+  toggleTheme: () => {},
+});
+
+type ThemeProviderProps = {
+  children: ReactNode;
+};
+
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      // Kiểm tra theme hệ thống
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <StyledThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        {children}
+      </StyledThemeProvider>
+    </ThemeContext.Provider>
+  );
+};</code></pre>
+                </div>
+
+                <h3>Sử dụng Theme trong Component</h3>
+                <p>Sau khi thiết lập hệ thống theme, bạn có thể sử dụng nó trong các component của mình.</p>
+
+                <div class="card">
+                    <h4>Với CSS Variables</h4>
+                    <pre><code>// src/components/Button.tsx
+import React from 'react';
+import '../styles/variables.css';
+
+type ButtonProps = {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+const Button = ({ children, variant = 'primary', ...props }: ButtonProps) => {
+  return (
+    <button
+      className={`button ${variant}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+export default Button;</code></pre>
+
+                    <pre><code>/* src/components/Button.css */
+.button {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  transition: var(--transition-fast);
+  cursor: pointer;
+  border: none;
+}
+
+.button.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.button.secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}</code></pre>
+
+                    <h4>Với Styled Components</h4>
+                    <pre><code>// src/components/Button.tsx
+import React from 'react';
+import styled from 'styled-components';
+
+type ButtonProps = {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+const StyledButton = styled.button<{ variant: 'primary' | 'secondary' }>`
+  padding: ${({ theme }) => `${theme.spacing.sm} ${theme.spacing.md}`};
+  border-radius: ${({ theme }) => theme.borderRadius.sm};
+  font-family: ${({ theme }) => theme.fonts.family};
+  font-size: ${({ theme }) => theme.fonts.sizes.base};
+  transition: ${({ theme }) => theme.transitions.fast};
+  cursor: pointer;
+  border: none;
+  background-color: ${({ theme, variant }) =>
+    variant === 'primary' ? theme.colors.primary : theme.colors.secondary};
+  color: white;
+`;
+
+const Button = ({ children, variant = 'primary', ...props }: ButtonProps) => {
+  return (
+    <StyledButton variant={variant} {...props}>
+      {children}
+    </StyledButton>
+  );
+};
+
+export default Button;</code></pre>
+                </div>
+            </section>
+
+            <section id="dark-mode" class="section">
+                <h2>Triển khai Dark Mode</h2>
+
+                <h3>Phương pháp 1: Sử dụng CSS Variables cho Dark Mode</h3>
+                <p>Chúng ta có thể mở rộng CSS Variables để hỗ trợ dark mode bằng cách thêm các biến cho dark theme.</p>
+
+                <div class="card">
+                    <h4>Cập nhật variables.css</h4>
+                    <pre><code>/* src/styles/variables.css */
+:root {
+  /* Light Theme (Default) */
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --text-color: #333;
+  --bg-color: #fff;
+  --card-bg: #f8f9fa;
+  --border-color: #e1e4e8;
+
+  /* ... các biến khác ... */
+}
+
+[data-theme="dark"] {
+  --primary-color: #61dafb;
+  --secondary-color: #4fa3d1;
+  --text-color: #e1e1e1;
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --border-color: #2d2d2d;
+}</code></pre>
+
+                    <h4>Tạo hook useTheme</h4>
+                    <pre><code>// src/hooks/useTheme.ts
+import { useState, useEffect } from 'react';
+
+type Theme = 'light' | 'dark';
+
+export const useTheme = () => {
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    if (savedTheme) {
+      return savedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
+
+  return { theme, toggleTheme };
+};
+</code></pre>
+
+                    <h4>Tạo ThemeToggle component</h4>
+                    <pre><code>// src/components/ThemeToggle.tsx
+import React from 'react';
+import { useTheme } from '../hooks/useTheme';
+import './ThemeToggle.css';
+
+const ThemeToggle = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <div className="theme-toggle">
+      <span>{theme === 'light' ? '🌞' : '🌙'}</span>
+      <label className="toggle-switch">
+        <input
+          type="checkbox"
+          checked={theme === 'dark'}
+          onChange={toggleTheme}
+        />
+        <span className="slider"></span>
+      </label>
+    </div>
+  );
+};
+
+export default ThemeToggle;</code></pre>
+                </div>
+
+                <h3>Phương pháp 2: Sử dụng next-themes (cho Next.js)</h3>
+                <p>Nếu bạn đang sử dụng Next.js, bạn có thể sử dụng thư viện next-themes để triển khai dark mode một cách dễ dàng.</p>
+
+                <div class="card">
+                    <h4>Cài đặt next-themes</h4>
+                    <pre><code>npm install next-themes
+# hoặc
+yarn add next-themes</code></pre>
+
+                    <h4>Thiết lập ThemeProvider</h4>
+                    <pre><code>// pages/_app.tsx
+import { ThemeProvider } from 'next-themes';
+import type { AppProps } from 'next/app';
+import '../styles/globals.css';
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <ThemeProvider attribute="data-theme">
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
+}
+
+export default MyApp;</code></pre>
+
+                    <h4>Sử dụng useTheme hook</h4>
+                    <pre><code>// components/ThemeToggle.tsx
+import { useTheme } from 'next-themes';
+
+const ThemeToggle = () => {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        {theme === 'light' ? '🌙' : '🌞'}
+      </button>
+    </div>
+  );
+};</code></pre>
+                </div>
+
+                <h3>Phương pháp 3: Sử dụng use-dark-mode</h3>
+                <p>Thư viện use-dark-mode cung cấp một hook React để quản lý dark mode trong ứng dụng của bạn.</p>
+
+                <div class="card">
+                    <h4>Cài đặt use-dark-mode</h4>
+                    <pre><code>npm install use-dark-mode
+# hoặc
+yarn add use-dark-mode</code></pre>
+
+                    <h4>Tạo file noflash.js</h4>
+                    <p>Để tránh "flash of unstyled content" (FOUC), bạn cần thêm một đoạn script vào file HTML của bạn:</p>
+                    <pre><code>// public/noflash.js
+(function() {
+  // Lấy theme từ localStorage
+  var darkMode = localStorage.getItem('darkMode');
+
+  // Nếu người dùng đã chọn dark mode trước đó
+  if (darkMode === 'true') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else if (darkMode === null) {
+    // Nếu chưa có lựa chọn, kiểm tra theme hệ thống
+    var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  }
+})();</code></pre>
+
+                    <p>Thêm script vào file index.html:</p>
+                    <pre><code>&lt;!-- public/index.html -->
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+  &lt;head>
+    &lt;meta charset="utf-8" />
+    &lt;link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" />
+    &lt;title>React App&lt;/title>
+    &lt;script src="%PUBLIC_URL%/noflash.js">&lt;/script>
+  &lt;/head>
+  &lt;body>
+    &lt;div id="root">&lt;/div>
+  &lt;/body>
+&lt;/html></code></pre>
+
+                    <h4>Sử dụng use-dark-mode hook</h4>
+                    <pre><code>// src/components/ThemeToggle.tsx
+import React from 'react';
+import useDarkMode from 'use-dark-mode';
+
+const ThemeToggle = () => {
+  const darkMode = useDarkMode(false);
+
+  return (
+    <div>
+      <button onClick={darkMode.toggle}>
+        {darkMode.value ? '🌞' : '🌙'}
+      </button>
+    </div>
+  );
+};</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>Mẹo:</strong> Để tránh "flash" khi tải trang, hãy đảm bảo rằng bạn đã thêm script noflash.js vào file HTML của bạn. Điều này sẽ giúp ứng dụng của bạn áp dụng theme đúng ngay từ đầu, trước khi React được tải.
+                </div>
+            </section>
+
+            <section id="mobile-optimization" class="section">
+                <h2>Tối ưu hóa cho thiết bị di động</h2>
+
+                <h3>Responsive Design Basics</h3>
+                <p>Để tối ưu hóa ứng dụng React của bạn cho thiết bị di động, bạn cần áp dụng các nguyên tắc thiết kế responsive.</p>
+
+                <div class="card">
+                    <h4>Sử dụng Media Queries</h4>
+                    <pre><code>/* src/styles/global.css */
+/* Mobile First Approach */
+.container {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1200px;
+  }
+}</code></pre>
+
+                    <h4>Sử dụng Flexbox và Grid</h4>
+                    <pre><code>/* src/styles/global.css */
+.flex-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .flex-container {
+    flex-direction: row;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}</code></pre>
+                </div>
+
+                <h3>Tối ưu hóa hiệu suất cho thiết bị di động</h3>
+                <p>Thiết bị di động thường có hiệu suất thấp hơn so với máy tính để bàn, vì vậy việc tối ưu hóa hiệu suất là rất quan trọng.</p>
+
+                <div class="card">
+                    <h4>Lazy Loading Components</h4>
+                    <pre><code>// src/App.tsx
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Loading from './components/Loading';
+
+// Lazy load các component
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+
+const App = () => {
+  return (
+    <Router>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </Suspense>
+    </Router>
+  );
+};</code></pre>
+
+                    <h4>Tối ưu hóa hình ảnh</h4>
+                    <pre><code>// src/components/ResponsiveImage.tsx
+import React from 'react';
+
+type ResponsiveImageProps = {
+  src: string;
+  alt: string;
+  sizes?: string;
+  className?: string;
+};
+
+const ResponsiveImage = ({ src, alt, sizes = '100vw', className }: ResponsiveImageProps) => {
+  // Tạo các phiên bản khác nhau của hình ảnh
+  const basePath = src.substring(0, src.lastIndexOf('.'));
+  const extension = src.substring(src.lastIndexOf('.'));
+
+  return (
+    <img
+      src={src}
+      srcSet={`
+        ${basePath}-small${extension} 500w,
+        ${basePath}-medium${extension} 1000w,
+        ${basePath}-large${extension} 1500w
+      `}
+      sizes={sizes}
+      alt={alt}
+      className={className}
+      loading="lazy"
+    />
+  );
+};
+
+export default ResponsiveImage;</code></pre>
+                </div>
+
+                <h3>Tối ưu hóa trải nghiệm người dùng trên thiết bị di động</h3>
+                <p>Ngoài việc làm cho giao diện của bạn responsive, bạn cũng cần tối ưu hóa trải nghiệm người dùng trên thiết bị di động.</p>
+
+                <div class="card">
+                    <h4>Tạo Mobile Navigation</h4>
+                    <pre><code>// src/components/MobileNav.tsx
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './MobileNav.css';
+
+const MobileNav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className="mobile-nav">
+      <button className="menu-toggle" onClick={toggleMenu}>
+        <span className="menu-icon"></span>
+      </button>
+
+      <div className={`menu ${isOpen ? 'open' : ''}`}>
+        <nav>
+          <ul>
+            <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+            <li><Link to="/about" onClick={toggleMenu}>About</Link></li>
+            <li><Link to="/contact" onClick={toggleMenu}>Contact</Link></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  );
+};
+
+export default MobileNav;</code></pre>
+
+                    <pre><code>/* src/components/MobileNav.css */
+.mobile-nav {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.menu-icon {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  position: relative;
+  transition: var(--transition-normal);
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  transition: var(--transition-normal);
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  bottom: -8px;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  transform: translateX(-100%);
+  transition: var(--transition-normal);
+  z-index: 999;
+}
+
+.menu.open {
+  transform: translateX(0);
+}
+
+.menu ul {
+  list-style: none;
+  padding: 60px 20px 0;
+}
+
+.menu li {
+  margin-bottom: 20px;
+}
+
+.menu a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: var(--font-size-large);
+}</code></pre>
+                </div>
+
+                <div class="tip">
+                    <strong>Mẹo:</strong> Sử dụng các thao tác cảm ứng như vuốt (swipe) để cải thiện trải nghiệm người dùng trên thiết bị di động. Bạn có thể sử dụng thư viện như react-swipeable để triển khai các thao tác này.
+                </div>
+            </section>
+
+            <section id="responsive-design" class="section">
+                <h2>Thiết kế Responsive</h2>
+
+                <h3>Mobile-First Approach</h3>
+                <p>Mobile-first là một phương pháp thiết kế trong đó bạn bắt đầu thiết kế cho thiết bị di động trước, sau đó mở rộng thiết kế cho các màn hình lớn hơn.</p>
+
+                <div class="card">
+                    <h4>Ưu điểm của Mobile-First</h4>
+                    <ul>
+                        <li>Ưu tiên nội dung quan trọng nhất</li>
+                        <li>Cải thiện hiệu suất trên thiết bị di động</li>
+                        <li>Đơn giản hóa thiết kế</li>
+                        <li>Dễ dàng mở rộng lên các màn hình lớn hơn</li>
+                    </ul>
+
+                    <h4>Ví dụ về Mobile-First CSS</h4>
+                    <pre><code>/* Mobile First CSS */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Tablet và Desktop */
+@media (min-width: 768px) {
+  .card-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+/* Desktop lớn */
+@media (min-width: 1024px) {
+  .card {
+    flex: 1 1 calc(33.333% - 1rem);
+  }
+}</code></pre>
+                </div>
+
+                <h3>Sử dụng CSS Grid và Flexbox</h3>
+                <p>CSS Grid và Flexbox là hai công cụ mạnh mẽ để tạo layout responsive.</p>
+
+                <div class="card">
+                    <h4>Flexbox cho layout một chiều</h4>
+                    <pre><code>/* Flexbox Layout */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}</code></pre>
+
+                    <h4>CSS Grid cho layout hai chiều</h4>
+                    <pre><code>/* CSS Grid Layout */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}</code></pre>
+                </div>
+
+                <h3>Responsive Typography</h3>
+                <p>Typography responsive giúp đảm bảo văn bản của bạn dễ đọc trên mọi kích thước màn hình.</p>
+
+                <div class="card">
+                    <h4>Sử dụng đơn vị rem</h4>
+                    <pre><code>/* Responsive Typography */
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+h1 {
+  font-size: 2rem; /* 32px trên mobile, 36px trên tablet và desktop */
+}
+
+p {
+  font-size: 1rem; /* 16px trên mobile, 18px trên tablet và desktop */
+}</code></pre>
+
+                    <h4>Sử dụng Fluid Typography với clamp()</h4>
+                    <pre><code>/* Fluid Typography */
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}</code></pre>
+                </div>
+
+                <div class="responsive-preview">
+                    <div class="desktop-preview">
+                        <h4>Desktop View</h4>
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex: 1; background-color: var(--card-bg); padding: 10px; border-radius: 5px;">Card 1</div>
+                            <div style="flex: 1; background-color: var(--card-bg); padding: 10px; border-radius: 5px;">Card 2</div>
+                            <div style="flex: 1; background-color: var(--card-bg); padding: 10px; border-radius: 5px;">Card 3</div>
+                        </div>
+                    </div>
+                    <div class="mobile-preview">
+                        <h4>Mobile View</h4>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <div style="background-color: var(--card-bg); padding: 10px; border-radius: 5px;">Card 1</div>
+                            <div style="background-color: var(--card-bg); padding: 10px; border-radius: 5px;">Card 2</div>
+                            <div style="background-color: var(--card-bg); padding: 10px; border-radius: 5px;">Card 3</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="best-practices" class="section">
+                <h2>Các phương pháp hay nhất</h2>
+
+                <h3>Tổ chức mã nguồn</h3>
+                <p>Tổ chức mã nguồn tốt giúp dự án của bạn dễ bảo trì và mở rộng.</p>
+
+                <div class="card">
+                    <h4>Cấu trúc thư mục theo tính năng</h4>
+                    <pre><code>src/
+├── features/
+│   ├── auth/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   └── index.ts
+│   ├── dashboard/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   └── index.ts
+│   └── settings/
+│       ├── components/
+│       ├── hooks/
+│       ├── services/
+│       └── index.ts
+├── shared/
+│   ├── components/
+│   ├── hooks/
+│   ├── utils/
+│   └── index.ts
+└── App.tsx</code></pre>
+
+                    <h4>Tạo các component có thể tái sử dụng</h4>
+                    <pre><code>// src/shared/components/Button/Button.tsx
+import React from 'react';
+import './Button.css';
+
+type ButtonProps = {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'small' | 'medium' | 'large';
+  fullWidth?: boolean;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+const Button = ({
+  children,
+  variant = 'primary',
+  size = 'medium',
+  fullWidth = false,
+  ...props
+}: ButtonProps) => {
+  return (
+    <button
+      className={`button ${variant} ${size} ${fullWidth ? 'full-width' : ''}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+
+export default Button;</code></pre>
+                </div>
+
+                <h3>Hiệu suất</h3>
+                <p>Tối ưu hóa hiệu suất là rất quan trọng, đặc biệt là trên thiết bị di động.</p>
+
+                <div class="card">
+                    <h4>Sử dụng React.memo để tránh render không cần thiết</h4>
+                    <pre><code>// src/components/ExpensiveComponent.tsx
+import React from 'react';
+
+type ExpensiveComponentProps = {
+  data: any;
+};
+
+const ExpensiveComponent = ({ data }: ExpensiveComponentProps) => {
+  // Xử lý dữ liệu phức tạp
+  return (
+    <div>
+      {/* Render dữ liệu */}
+    </div>
+  );
+};
+
+export default React.memo(ExpensiveComponent);</code></pre>
+
+                    <h4>Sử dụng useCallback và useMemo</h4>
+                    <pre><code>// src/components/ParentComponent.tsx
+import React, { useState, useCallback, useMemo } from 'react';
+import ExpensiveComponent from './ExpensiveComponent';
+
+const ParentComponent = () => {
+  const [count, setCount] = useState(0);
+  const [data, setData] = useState([]);
+
+  // Sử dụng useCallback để tránh tạo lại hàm mỗi khi render
+  const handleClick = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
+  // Sử dụng useMemo để tránh tính toán lại dữ liệu mỗi khi render
+  const processedData = useMemo(() => {
+    return data.map(item => {
+      // Xử lý dữ liệu phức tạp
+      return { ...item, processed: true };
+    });
+  }, [data]);
+
+  return (
+    <div>
+      <button onClick={handleClick}>Increment</button>
+      <ExpensiveComponent data={processedData} />
+    </div>
+  );
+};</code></pre>
+                </div>
+
+                <h3>Accessibility (A11y)</h3>
+                <p>Đảm bảo ứng dụng của bạn có thể truy cập được cho tất cả người dùng, bao gồm cả những người có khuyết tật.</p>
+
+                <div class="card">
+                    <h4>Sử dụng các thuộc tính ARIA</h4>
+                    <pre><code>// src/components/Dropdown.tsx
+import React, { useState } from 'react';
+
+const Dropdown = ({ label, options }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  return (
+    <div className="dropdown">
+      <button
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {selectedOption || label}
+      </button>
+
+      {isOpen && (
+        <ul
+          role="listbox"
+          aria-labelledby={label}
+        >
+          {options.map((option) => (
+            <li
+              key={option.value}
+              role="option"
+              aria-selected={selectedOption === option.label}
+              onClick={() => {
+                setSelectedOption(option.label);
+                setIsOpen(false);
+              }}
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};</code></pre>
+
+                    <h4>Đảm bảo tương phản màu sắc</h4>
+                    <p>Đảm bảo rằng văn bản của bạn có đủ tương phản với nền để dễ đọc. Tỷ lệ tương phản tối thiểu nên là 4.5:1 cho văn bản thông thường và 3:1 cho văn bản lớn.</p>
+                </div>
+
+                <div class="tip">
+                    <strong>Mẹo:</strong> Sử dụng các công cụ như Lighthouse, axe DevTools, hoặc WAVE để kiểm tra accessibility của ứng dụng của bạn.
+                </div>
+            </section>
+
+            <section id="libraries" class="section">
+                <h2>Thư viện đề xuất</h2>
+
+                <div class="card">
+                    <h3>Thư viện Theme và Dark Mode</h3>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Thư viện</th>
+                                    <th>Mô tả</th>
+                                    <th>Ưu điểm</th>
+                                    <th>Nhược điểm</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="https://github.com/pacocoursey/next-themes" target="_blank">next-themes</a></td>
+                                    <td>Thư viện theme cho Next.js</td>
+                                    <td>
+                                        <ul>
+                                            <li>Tích hợp tốt với Next.js</li>
+                                            <li>Hỗ trợ system preference</li>
+                                            <li>Không có flash khi tải trang</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>Chỉ hoạt động với Next.js</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://github.com/donavon/use-dark-mode" target="_blank">use-dark-mode</a></td>
+                                    <td>Hook React để quản lý dark mode</td>
+                                    <td>
+                                        <ul>
+                                            <li>Đơn giản và dễ sử dụng</li>
+                                            <li>Hoạt động với mọi dự án React</li>
+                                            <li>Lưu trữ trạng thái trong localStorage</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>Cần thêm script để tránh flash</li>
+                                            <li>Ít tính năng hơn so với next-themes</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://github.com/system-ui/theme-ui" target="_blank">theme-ui</a></td>
+                                    <td>Thư viện theme toàn diện cho React</td>
+                                    <td>
+                                        <ul>
+                                            <li>Hệ thống theme mạnh mẽ</li>
+                                            <li>Tích hợp với styled-components</li>
+                                            <li>Hỗ trợ nhiều theme</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>Đường cong học tập dốc hơn</li>
+                                            <li>Có thể quá mức cần thiết cho các dự án nhỏ</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://github.com/radix-ui/themes" target="_blank">radix-ui/themes</a></td>
+                                    <td>Thư viện component với hỗ trợ theme</td>
+                                    <td>
+                                        <ul>
+                                            <li>Các component đẹp và có thể truy cập</li>
+                                            <li>Hỗ trợ dark mode</li>
+                                            <li>Dễ tùy chỉnh</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>Bạn phải sử dụng các component của họ</li>
+                                            <li>Có thể không phù hợp nếu bạn đã có design system</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Thư viện UI và Component</h3>
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Thư viện</th>
+                                    <th>Mô tả</th>
+                                    <th>Ưu điểm</th>
+                                    <th>Nhược điểm</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="https://mui.com/" target="_blank">Material-UI</a></td>
+                                    <td>Thư viện component dựa trên Material Design</td>
+                                    <td>
+                                        <ul>
+                                            <li>Nhiều component đẹp và có thể tùy chỉnh</li>
+                                            <li>Hỗ trợ dark mode</li>
+                                            <li>Cộng đồng lớn</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>Bundle size lớn nếu không được tối ưu hóa</li>
+                                            <li>Có thể khó tùy chỉnh để thoát khỏi "look" Material</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://chakra-ui.com/" target="_blank">Chakra UI</a></td>
+                                    <td>Thư viện component với hỗ trợ theme</td>
+                                    <td>
+                                        <ul>
+                                            <li>API đơn giản và nhất quán</li>
+                                            <li>Hỗ trợ dark mode tốt</li>
+                                            <li>Tập trung vào accessibility</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>Ít component hơn so với Material-UI</li>
+                                            <li>Có thể cần thêm styling cho các dự án phức tạp</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a></td>
+                                    <td>Framework CSS utility-first</td>
+                                    <td>
+                                        <ul>
+                                            <li>Linh hoạt và dễ tùy chỉnh</li>
+                                            <li>Hỗ trợ dark mode tốt</li>
+                                            <li>Bundle size nhỏ sau khi purge</li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>Đường cong học tập dốc</li>
+                                            <li>HTML có thể trở nên dài với nhiều class</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="examples" class="section">
+                <h2>Ví dụ mẫu</h2>
+
+                <h3>Ví dụ hoàn chỉnh với CSS Variables</h3>
+                <div class="card">
+                    <pre><code>// src/styles/variables.css
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --text-color: #333;
+  --bg-color: #fff;
+  --card-bg: #f8f9fa;
+  --border-color: #e1e4e8;
+
+  /* ... các biến khác ... */
+}
+
+[data-theme="dark"] {
+  --primary-color: #61dafb;
+  --secondary-color: #4fa3d1;
+  --text-color: #e1e1e1;
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --border-color: #2d2d2d;
+}
+
+/* Global styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ... các style khác ... */</code></pre>
+
+                    <pre><code>// src/hooks/useTheme.ts
+import { useState, useEffect } from 'react';
+
+type Theme = 'light' | 'dark';
+
+export const useTheme = () => {
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    if (savedTheme) {
+      return savedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
+
+  return { theme, toggleTheme };
+};</code></pre>
+
+                    <pre><code>// src/components/ThemeToggle.tsx
+import React from 'react';
+import { useTheme } from '../hooks/useTheme';
+import './ThemeToggle.css';
+
+const ThemeToggle = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <div className="theme-toggle">
+      <span>{theme === 'light' ? '🌞' : '🌙'}</span>
+      <label className="toggle-switch">
+        <input
+          type="checkbox"
+          checked={theme === 'dark'}
+          onChange={toggleTheme}
+        />
+        <span className="slider"></span>
+      </label>
+    </div>
+  );
+};
+
+export default ThemeToggle;</code></pre>
+
+                    <pre><code>// src/components/Layout.tsx
+import React from 'react';
+import ThemeToggle from './ThemeToggle';
+import './Layout.css';
+
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: LayoutProps) => {
+  return (
+    <div className="layout">
+      <header className="header">
+        <h1>My App</h1>
+        <ThemeToggle />
+      </header>
+      <main className="main">{children}</main>
+      <footer className="footer">
+        <p>&copy; 2023 My App</p>
+      </footer>
+    </div>
+  );
+};
+
+export default Layout;</code></pre>
+
+                    <pre><code>// src/App.tsx
+import React from 'react';
+import Layout from './components/Layout';
+import './styles/variables.css';
+import './styles/global.css';
+
+const App = () => {
+  return (
+    <Layout>
+      <h2>Welcome to My App</h2>
+      <p>This is a sample app with theme support.</p>
+    </Layout>
+  );
+};
+
+export default App;</code></pre>
+                </div>
+
+                <h3>Ví dụ hoàn chỉnh với Styled Components</h3>
+                <div class="card">
+                    <pre><code>// src/styles/themes/light.ts
+export const lightTheme = {
+  colors: {
+    primary: '#3498db',
+    secondary: '#2980b9',
+    text: '#333',
+    background: '#fff',
+    cardBg: '#f8f9fa',
+    border: '#e1e4e8',
+  },
+  fonts: {
+    family: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+    sizes: {
+      small: '0.875rem',
+      base: '1rem',
+      large: '1.25rem',
+      xl: '1.5rem',
+      '2xl': '2rem',
+    },
+  },
+  spacing: {
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+  },
+  borderRadius: {
+    sm: '0.25rem',
+    md: '0.5rem',
+    lg: '1rem',
+  },
+  shadows: {
+    sm: '0 1px 2px rgba(0, 0, 0, 0.05)',
+    md: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    lg: '0 10px 15px rgba(0, 0, 0, 0.1)',
+  },
+  transitions: {
+    fast: '0.2s ease',
+    normal: '0.3s ease',
+    slow: '0.5s ease',
+  },
+};</code></pre>
+
+                    <pre><code>// src/styles/themes/dark.ts
+export const darkTheme = {
+  colors: {
+    primary: '#61dafb',
+    secondary: '#4fa3d1',
+    text: '#e1e1e1',
+    background: '#121212',
+    cardBg: '#1e1e1e',
+    border: '#2d2d2d',
+  },
+  fonts: {
+    family: 'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+    sizes: {
+      small: '0.875rem',
+      base: '1rem',
+      large: '1.25rem',
+      xl: '1.5rem',
+      '2xl': '2rem',
+    },
+  },
+  spacing: {
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+  },
+  borderRadius: {
+    sm: '0.25rem',
+    md: '0.5rem',
+    lg: '1rem',
+  },
+  shadows: {
+    sm: '0 1px 2px rgba(0, 0, 0, 0.2)',
+    md: '0 4px 6px rgba(0, 0, 0, 0.3)',
+    lg: '0 10px 15px rgba(0, 0, 0, 0.3)',
+  },
+  transitions: {
+    fast: '0.2s ease',
+    normal: '0.3s ease',
+    slow: '0.5s ease',
+  },
+};</code></pre>
+
+                    <pre><code>// src/context/ThemeContext.tsx
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+import { lightTheme } from '../styles/themes/light';
+import { darkTheme } from '../styles/themes/dark';
+
+type ThemeContextType = {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+};
+
+export const ThemeContext = createContext<ThemeContextType>({
+  theme: 'light',
+  toggleTheme: () => {},
+});
+
+type ThemeProviderProps = {
+  children: ReactNode;
+};
+
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      return savedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <StyledThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        {children}
+      </StyledThemeProvider>
+    </ThemeContext.Provider>
+  );
+};</code></pre>
+
+                    <pre><code>// src/hooks/useTheme.ts
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
+};</code></pre>
+
+                    <pre><code>// src/components/ThemeToggle.tsx
+import React from 'react';
+import styled from 'styled-components';
+import { useTheme } from '../hooks/useTheme';
+
+const ToggleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+
+const ToggleSwitch = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+`;
+
+const ToggleInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+`;
+
+const Slider = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: ${({ theme }) => theme.transitions.normal};
+  border-radius: 34px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: ${({ theme }) => theme.transitions.normal};
+    border-radius: 50%;
+  }
+
+  ${ToggleInput}:checked + & {
+    background-color: ${({ theme }) => theme.colors.primary};
+  }
+
+  ${ToggleInput}:checked + &:before {
+    transform: translateX(30px);
+  }
+`;
+
+const ThemeToggle = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <ToggleContainer>
+      <span>{theme === 'light' ? '🌞' : '🌙'}</span>
+      <ToggleSwitch>
+        <ToggleInput
+          type="checkbox"
+          checked={theme === 'dark'}
+          onChange={toggleTheme}
+        />
+        <Slider />
+      </ToggleSwitch>
+    </ToggleContainer>
+  );
+};
+
+export default ThemeToggle;</code></pre>
+
+                    <pre><code>// src/components/Layout.tsx
+import React from 'react';
+import styled from 'styled-components';
+import ThemeToggle from './ThemeToggle';
+
+const LayoutContainer = styled.div`
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  transition: background-color ${({ theme }) => theme.transitions.normal}, color ${({ theme }) => theme.transitions.normal};
+`;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: ${({ theme }) => theme.spacing.md};
+  background-color: ${({ theme }) => theme.colors.cardBg};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+`;
+
+const Main = styled.main`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.spacing.lg};
+
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => theme.spacing.md};
+  }
+`;
+
+const Footer = styled.footer`
+  text-align: center;
+  padding: ${({ theme }) => theme.spacing.md};
+  background-color: ${({ theme }) => theme.colors.cardBg};
+  margin-top: auto;
+`;
+
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: LayoutProps) => {
+  return (
+    <LayoutContainer>
+      <Header>
+        <h1>My App</h1>
+        <ThemeToggle />
+      </Header>
+      <Main>{children}</Main>
+      <Footer>
+        <p>&copy; 2023 My App</p>
+      </Footer>
+    </LayoutContainer>
+  );
+};
+
+export default Layout;</code></pre>
+
+                    <pre><code>// src/App.tsx
+import React from 'react';
+import { ThemeProvider } from './context/ThemeContext';
+import Layout from './components/Layout';
+import GlobalStyle from './styles/GlobalStyle';
+
+const App = () => {
+  return (
+    <ThemeProvider>
+      <GlobalStyle />
+      <Layout>
+        <h2>Welcome to My App</h2>
+        <p>This is a sample app with theme support.</p>
+      </Layout>
+    </ThemeProvider>
+  );
+};
+
+export default App;</code></pre>
+                </div>
+            </section>
+
+            <section id="troubleshooting" class="section">
+                <h2>Xử lý sự cố</h2>
+
+                <div class="card">
+                    <h3>Flash of unstyled content (FOUC)</h3>
+                    <p>Một vấn đề phổ biến khi triển khai dark mode là "flash of unstyled content" (FOUC), khi trang web hiển thị theme mặc định trước khi JavaScript được tải và áp dụng theme đã lưu.</p>
+
+                    <h4>Giải pháp</h4>
+                    <p>Thêm script noflash.js vào file HTML của bạn:</p>
+                    <pre><code>// public/noflash.js
+(function() {
+  var darkMode = localStorage.getItem('theme');
+
+  if (darkMode === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else if (darkMode === null) {
+    var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDarkMode) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  }
+})();</code></pre>
+
+                    <h3>Theme không áp dụng cho các component động</h3>
+                    <p>Đôi khi, các component được tạo động (ví dụ: từ một modal hoặc portal) có thể không nhận được theme đúng.</p>
+
+                    <h4>Giải pháp</h4>
+                    <p>Đảm bảo rằng các component động được bọc trong ThemeProvider:</p>
+                    <pre><code>// src/components/Modal.tsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { ThemeProvider } from '../context/ThemeContext';
+import { useTheme } from '../hooks/useTheme';
+
+const Modal = ({ children }) => {
+  const { theme } = useTheme();
+
+  return ReactDOM.createPortal(
+    <ThemeProvider initialTheme={theme}>
+      <div className="modal">
+        {children}
+      </div>
+    </ThemeProvider>,
+    document.getElementById('modal-root')
+  );
+};</code></pre>
+
+                    <h3>Hiệu suất kém trên thiết bị di động</h3>
+                    <p>Ứng dụng của bạn có thể chạy chậm trên thiết bị di động do các hiệu ứng CSS hoặc JavaScript nặng.</p>
+
+                    <h4>Giải pháp</h4>
+                    <ul>
+                        <li>Giảm thiểu số lượng hiệu ứng CSS trên thiết bị di động</li>
+                        <li>Sử dụng will-change để tối ưu hóa hiệu ứng</li>
+                        <li>Lazy load các component không cần thiết</li>
+                        <li>Tối ưu hóa hình ảnh cho thiết bị di động</li>
+                    </ul>
+                </div>
+
+                <div class="warning">
+                    <strong>Lưu ý:</strong> Luôn kiểm tra ứng dụng của bạn trên nhiều thiết bị và trình duyệt khác nhau để đảm bảo trải nghiệm người dùng nhất quán.
+                </div>
+            </section>
+
+            <section id="references" class="section">
+                <h2>Tài liệu tham khảo</h2>
+
+                <div class="card">
+                    <h3>Tài liệu chính thức</h3>
+                    <ul>
+                        <li><a href="https://reactjs.org/docs/getting-started.html" target="_blank">React Documentation</a></li>
+                        <li><a href="https://www.typescriptlang.org/docs/" target="_blank">TypeScript Documentation</a></li>
+                        <li><a href="https://vitejs.dev/guide/" target="_blank">Vite Documentation</a></li>
+                        <li><a href="https://styled-components.com/docs" target="_blank">Styled Components Documentation</a></li>
+                    </ul>
+
+                    <h3>Bài viết và hướng dẫn</h3>
+                    <ul>
+                        <li><a href="https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/" target="_blank">A Complete Guide to Dark Mode on the Web</a></li>
+                        <li><a href="https://web.dev/prefers-color-scheme/" target="_blank">prefers-color-scheme: Hello darkness, my old friend</a></li>
+                        <li><a href="https://www.joshwcomeau.com/react/dark-mode/" target="_blank">The Quest for the Perfect Dark Mode</a></li>
+                        <li><a href="https://medium.com/@mwichary/dark-theme-in-a-day-3518dde2955a" target="_blank">Dark theme in a day</a></li>
+                    </ul>
+
+                    <h3>Thư viện và công cụ</h3>
+                    <ul>
+                        <li><a href="https://github.com/pacocoursey/next-themes" target="_blank">next-themes</a></li>
+                        <li><a href="https://github.com/donavon/use-dark-mode" target="_blank">use-dark-mode</a></li>
+                        <li><a href="https://github.com/system-ui/theme-ui" target="_blank">theme-ui</a></li>
+                        <li><a href="https://github.com/radix-ui/themes" target="_blank">radix-ui/themes</a></li>
+                        <li><a href="https://github.com/codemotionapps/react-native-dark-mode" target="_blank">react-native-dark-mode</a></li>
+                    </ul>
+
+                    <h3>Nguồn tham khảo</h3>
+                    <ul>
+                        <li><a href="https://medium.com/@pratik111098/top-10-responsive-design-techniques-in-react-js-3e8d35c53f75" target="_blank">Top 10 Responsive Design Techniques in React.js</a></li>
+                        <li><a href="https://medium.com/@salmiahmed/building-a-responsive-component-in-react-using-typescript-711b819568b2" target="_blank">Building a Responsive Component in React using TypeScript</a></li>
+                        <li><a href="https://medium.com/@carlotaanton/designing-for-dark-mode-5f2e9761db73" target="_blank">Designing for Dark Mode</a></li>
+                        <li><a href="https://medium.com/@tundehercules/designing-effective-dark-mode-interfaces-17f38ecea2e9" target="_blank">Designing Effective Dark Mode Interfaces</a></li>
+                        <li><a href="https://dhananjaym.medium.com/mastering-the-art-of-dark-ui-design-9-essential-principles-and-techniques-a673b1328111" target="_blank">Mastering the Art of Dark UI Design: 9 Essential Principles and Techniques</a></li>
+                        <li><a href="https://medium.com/design-bootcamp/mobile-first-design-optimizing-user-experience-for-mobile-devices-09632c8a2202" target="_blank">Mobile First Design: Optimizing User Experience for Mobile Devices</a></li>
+                        <li><a href="https://medium.com/design-bootcamp/optimizing-mobile-ui-ux-strategies-for-a-smoother-experience-b81e080b541b" target="_blank">Optimizing Mobile UI/UX: Strategies for a Smoother Experience</a></li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const body = document.documentElement;
+
+        // Check for saved theme preference or use device preference
+        const getInitialTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                return savedTheme;
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+
+        // Apply theme
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.checked = true;
+                if (mobileThemeToggle) mobileThemeToggle.checked = true;
+            } else {
+                body.removeAttribute('data-theme');
+                themeToggle.checked = false;
+                if (mobileThemeToggle) mobileThemeToggle.checked = false;
+            }
+            localStorage.setItem('theme', theme);
+        };
+
+        // Set initial theme
+        applyTheme(getInitialTheme());
+
+        // Toggle theme
+        themeToggle.addEventListener('change', () => {
+            applyTheme(themeToggle.checked ? 'dark' : 'light');
+        });
+
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('change', () => {
+                applyTheme(mobileThemeToggle.checked ? 'dark' : 'light');
+            });
+        }
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        if (menuToggle && sidebar) {
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+            });
+        }
+
+        // Active link highlighting
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('.section');
+
+        const setActiveLink = () => {
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', setActiveLink);
+
+        // Smooth scrolling for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu after clicking a link
+                    if (sidebar) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Set active link on page load
+        setActiveLink();
+    </script>
+</body>
+</html>

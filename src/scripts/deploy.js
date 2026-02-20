@@ -7,21 +7,21 @@
  * Hỗ trợ: Netlify, Vercel, AWS S3, Google Cloud Platform
  */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
-const readline = require('readline');
+const fs = require("fs");
+const path = require("path");
+const { execSync } = require("child_process");
+const readline = require("readline");
 
 // Colors for console output
 const colors = {
-  reset: '\x1b[0m',
-  bright: '\x1b[1m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  magenta: '\x1b[35m',
-  cyan: '\x1b[36m',
+  reset: "\x1b[0m",
+  bright: "\x1b[1m",
+  red: "\x1b[31m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
+  magenta: "\x1b[35m",
+  cyan: "\x1b[36m",
 };
 
 // Console logging functions
@@ -45,8 +45,8 @@ const rl = readline.createInterface({
 const execCommand = (command, options = {}) => {
   try {
     const result = execSync(command, {
-      stdio: 'pipe',
-      encoding: 'utf8',
+      stdio: "pipe",
+      encoding: "utf8",
       ...options,
     });
     return { success: true, output: result };
@@ -68,82 +68,82 @@ const fileExists = (filePath) => {
 };
 
 const validateEnvironment = () => {
-  log.step('Kiểm tra cấu hình environment...');
+  log.step("Kiểm tra cấu hình environment...");
 
-  if (!fileExists('.env')) {
+  if (!fileExists(".env")) {
     log.error(
-      'File .env không tồn tại. Vui lòng tạo và cấu hình file .env trước khi deploy.'
+      "File .env không tồn tại. Vui lòng tạo và cấu hình file .env trước khi deploy."
     );
     return false;
   }
 
   // Read .env file
-  const envContent = fs.readFileSync('.env', 'utf8');
+  const envContent = fs.readFileSync(".env", "utf8");
 
   // Check for required variables
   const requiredVars = [
-    'GOOGLE_SERVICE_ACCOUNT_EMAIL',
-    'GOOGLE_PRIVATE_KEY',
-    'REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID',
+    "GOOGLE_SERVICE_ACCOUNT_EMAIL",
+    "GOOGLE_PRIVATE_KEY",
+    "REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID",
   ];
 
   const missingVars = requiredVars.filter((varName) => {
-    const regex = new RegExp(`^${varName}=`, 'm');
+    const regex = new RegExp(`^${varName}=`, "m");
     return (
-      !regex.test(envContent) || envContent.match(regex)[0].includes('your-')
+      !regex.test(envContent) || envContent.match(regex)[0].includes("your-")
     );
   });
 
   if (missingVars.length > 0) {
     log.error(
-      `Các biến môi trường sau chưa được cấu hình: ${missingVars.join(', ')}`
+      `Các biến môi trường sau chưa được cấu hình: ${missingVars.join(", ")}`
     );
     log.info(
-      'Vui lòng cập nhật file .env với thông tin thực tế trước khi deploy.'
+      "Vui lòng cập nhật file .env với thông tin thực tế trước khi deploy."
     );
     return false;
   }
 
-  log.success('Environment configuration hợp lệ');
+  log.success("Environment configuration hợp lệ");
   return true;
 };
 
 const runTests = async () => {
-  log.step('Chạy tests trước khi deploy...');
+  log.step("Chạy tests trước khi deploy...");
 
   // Run unit tests
-  log.info('Chạy unit tests...');
+  log.info("Chạy unit tests...");
   const testResult = execCommand(
-    'npm test -- --watchAll=false --passWithNoTests'
+    "npm test -- --watchAll=false --passWithNoTests"
   );
   if (!testResult.success) {
     log.warning(`Unit tests có lỗi: ${testResult.error}`);
     const continueDeploy = await askQuestion(
-      'Bạn có muốn tiếp tục deploy? (y/N): '
+      "Bạn có muốn tiếp tục deploy? (y/N): "
     );
-    if (continueDeploy.toLowerCase() !== 'y') {
+    if (continueDeploy.toLowerCase() !== "y") {
       return false;
     }
   } else {
-    log.success('Unit tests passed');
+    log.success("Unit tests passed");
   }
 
   // Test Google connection
-  if (fileExists('scripts/testGoogleConnection.js')) {
-    log.info('Test kết nối Google APIs...');
+  if (fileExists("scripts/testGoogleConnection.js")) {
+    log.info("Test kết nối Google APIs...");
     const googleTestResult = execCommand(
-      'node scripts/testGoogleConnection.js'
+      "node scripts/testGoogleConnection.js"
     );
     if (!googleTestResult.success) {
       log.warning(`Google APIs test thất bại: ${googleTestResult.error}`);
       const continueDeploy = await askQuestion(
-        'Bạn có muốn tiếp tục deploy? (y/N): '
+        "Bạn có muốn tiếp tục deploy? (y/N): "
       );
-      if (continueDeploy.toLowerCase() !== 'y') {
+      if (continueDeploy.toLowerCase() !== "y") {
         return false;
       }
     } else {
-      log.success('Google APIs connection test passed');
+      log.success("Google APIs connection test passed");
     }
   }
 
@@ -151,123 +151,123 @@ const runTests = async () => {
 };
 
 const buildProject = async () => {
-  log.step('Build project cho production...');
+  log.step("Build project cho production...");
 
   // Clean previous build
-  if (fileExists('build')) {
-    log.info('Xóa build cũ...');
-    execCommand('rm -rf build');
+  if (fileExists("build")) {
+    log.info("Xóa build cũ...");
+    execCommand("rm -rf build");
   }
 
   // Install dependencies
-  log.info('Cài đặt dependencies...');
-  const installResult = execCommand('npm install');
+  log.info("Cài đặt dependencies...");
+  const installResult = execCommand("npm install");
   if (!installResult.success) {
     log.error(`Lỗi cài đặt dependencies: ${installResult.error}`);
     return false;
   }
 
   // Build project
-  log.info('Building project...');
-  const buildResult = execCommand('npm run build');
+  log.info("Building project...");
+  const buildResult = execCommand("npm run build");
   if (!buildResult.success) {
     log.error(`Build thất bại: ${buildResult.error}`);
     return false;
   }
 
-  log.success('Build thành công');
+  log.success("Build thành công");
   return true;
 };
 
 const deployToNetlify = async () => {
-  log.step('Deploy lên Netlify...');
+  log.step("Deploy lên Netlify...");
 
   // Check if Netlify CLI is installed
-  let netlifyCheck = execCommand('netlify --version');
+  let netlifyCheck = execCommand("netlify --version");
   if (!netlifyCheck.success) {
-    log.warn('Netlify CLI chưa được cài đặt. Đang cài đặt...');
+    log.warn("Netlify CLI chưa được cài đặt. Đang cài đặt...");
 
     // Try to install Netlify CLI
-    const installResult = execCommand('npm install -g netlify-cli');
+    const installResult = execCommand("npm install -g netlify-cli");
     if (!installResult.success) {
-      log.warn('Không thể cài đặt Netlify CLI globally. Thử sử dụng npx...');
+      log.warn("Không thể cài đặt Netlify CLI globally. Thử sử dụng npx...");
 
       // Try using npx
-      netlifyCheck = execCommand('npx netlify --version');
+      netlifyCheck = execCommand("npx netlify --version");
       if (!netlifyCheck.success) {
-        log.error('Netlify CLI không được cài đặt và không thể sử dụng npx');
+        log.error("Netlify CLI không được cài đặt và không thể sử dụng npx");
         return false;
       }
 
       // Deploy using npx
-      const deployResult = execCommand('npx netlify deploy --prod --dir=build');
+      const deployResult = execCommand("npx netlify deploy --prod --dir=build");
       if (!deployResult.success) {
         log.error(`Deploy Netlify thất bại: ${deployResult.error}`);
         return false;
       }
 
-      log.success('Deploy Netlify thành công (via npx)');
+      log.success("Deploy Netlify thành công (via npx)");
       return true;
     }
 
     // Re-check after installation
-    netlifyCheck = execCommand('netlify --version');
+    netlifyCheck = execCommand("netlify --version");
     if (!netlifyCheck.success) {
-      log.error('Netlify CLI vẫn không hoạt động sau khi cài đặt');
+      log.error("Netlify CLI vẫn không hoạt động sau khi cài đặt");
       return false;
     }
 
-    log.success('Netlify CLI đã được cài đặt');
+    log.success("Netlify CLI đã được cài đặt");
   }
 
   // Deploy to Netlify
-  const deployResult = execCommand('netlify deploy --prod --dir=build');
+  const deployResult = execCommand("netlify deploy --prod --dir=build");
   if (!deployResult.success) {
     log.error(`Deploy Netlify thất bại: ${deployResult.error}`);
     return false;
   }
 
-  log.success('Deploy Netlify thành công');
+  log.success("Deploy Netlify thành công");
   return true;
 };
 
 const deployToVercel = async () => {
-  log.step('Deploy lên Vercel...');
+  log.step("Deploy lên Vercel...");
 
   // Check if Vercel CLI is installed
-  const vercelCheck = execCommand('vercel --version');
+  const vercelCheck = execCommand("vercel --version");
   if (!vercelCheck.success) {
     log.error(
-      'Vercel CLI chưa được cài đặt. Vui lòng cài đặt: npm install -g vercel'
+      "Vercel CLI chưa được cài đặt. Vui lòng cài đặt: npm install -g vercel"
     );
     return false;
   }
 
   // Deploy to Vercel
-  const deployResult = execCommand('vercel --prod');
+  const deployResult = execCommand("vercel --prod");
   if (!deployResult.success) {
     log.error(`Deploy Vercel thất bại: ${deployResult.error}`);
     return false;
   }
 
-  log.success('Deploy Vercel thành công');
+  log.success("Deploy Vercel thành công");
   return true;
 };
 
 const deployToAWS = async () => {
-  log.step('Deploy lên AWS S3...');
+  log.step("Deploy lên AWS S3...");
 
   // Check if AWS CLI is installed
-  const awsCheck = execCommand('aws --version');
+  const awsCheck = execCommand("aws --version");
   if (!awsCheck.success) {
-    log.error('AWS CLI chưa được cài đặt. Vui lòng cài đặt AWS CLI trước.');
+    log.error("AWS CLI chưa được cài đặt. Vui lòng cài đặt AWS CLI trước.");
     return false;
   }
 
   // Get S3 bucket name
-  const bucketName = await askQuestion('Nhập tên S3 bucket: ');
+  const bucketName = await askQuestion("Nhập tên S3 bucket: ");
   if (!bucketName) {
-    log.error('Tên bucket không được để trống');
+    log.error("Tên bucket không được để trống");
     return false;
   }
 
@@ -287,25 +287,25 @@ const deployToAWS = async () => {
 };
 
 const deployToGCP = async () => {
-  log.step('Deploy lên Google Cloud Platform...');
+  log.step("Deploy lên Google Cloud Platform...");
 
   // Check if gcloud CLI is installed
-  const gcloudCheck = execCommand('gcloud --version');
+  const gcloudCheck = execCommand("gcloud --version");
   if (!gcloudCheck.success) {
     log.error(
-      'Google Cloud CLI chưa được cài đặt. Vui lòng cài đặt gcloud CLI trước.'
+      "Google Cloud CLI chưa được cài đặt. Vui lòng cài đặt gcloud CLI trước."
     );
     return false;
   }
 
   // Deploy to App Engine
-  const deployResult = execCommand('gcloud app deploy');
+  const deployResult = execCommand("gcloud app deploy");
   if (!deployResult.success) {
     log.error(`Deploy GCP thất bại: ${deployResult.error}`);
     return false;
   }
 
-  log.success('Deploy GCP thành công');
+  log.success("Deploy GCP thành công");
   return true;
 };
 
@@ -314,7 +314,7 @@ const createDeploymentConfig = async (platform) => {
 
   const configs = {
     netlify: {
-      file: 'netlify.toml',
+      file: "netlify.toml",
       content: `[build]
   command = "npm run build"
   publish = "build"
@@ -329,7 +329,7 @@ const createDeploymentConfig = async (platform) => {
 `,
     },
     vercel: {
-      file: 'vercel.json',
+      file: "vercel.json",
       content: `{
   "version": 2,
   "builds": [
@@ -357,7 +357,7 @@ const createDeploymentConfig = async (platform) => {
 `,
     },
     gcp: {
-      file: 'app.yaml',
+      file: "app.yaml",
       content: `runtime: nodejs16
 env: standard
 
@@ -388,7 +388,7 @@ handlers:
 };
 
 const showDeploymentOptions = () => {
-  log.header('🚀 DEPLOYMENT OPTIONS');
+  log.header("🚀 DEPLOYMENT OPTIONS");
 
   console.log(`
 ${colors.cyan}Chọn platform để deploy:${colors.reset}
@@ -406,7 +406,7 @@ ${colors.yellow}Lưu ý:${colors.reset}
 };
 
 const main = async () => {
-  log.header('🚀 REACT GOOGLE INTEGRATION - AUTOMATED DEPLOYMENT');
+  log.header("🚀 REACT GOOGLE INTEGRATION - AUTOMATED DEPLOYMENT");
 
   try {
     // Step 1: Validate environment
@@ -431,33 +431,33 @@ const main = async () => {
     showDeploymentOptions();
 
     // Step 5: Get platform choice
-    const platform = await askQuestion('Chọn platform (1-4): ');
+    const platform = await askQuestion("Chọn platform (1-4): ");
 
     let deploySuccess = false;
 
     switch (platform) {
-      case '1':
-        await createDeploymentConfig('netlify');
+      case "1":
+        await createDeploymentConfig("netlify");
         deploySuccess = await deployToNetlify();
         break;
-      case '2':
-        await createDeploymentConfig('vercel');
+      case "2":
+        await createDeploymentConfig("vercel");
         deploySuccess = await deployToVercel();
         break;
-      case '3':
+      case "3":
         deploySuccess = await deployToAWS();
         break;
-      case '4':
-        await createDeploymentConfig('gcp');
+      case "4":
+        await createDeploymentConfig("gcp");
         deploySuccess = await deployToGCP();
         break;
       default:
-        log.error('Lựa chọn không hợp lệ');
+        log.error("Lựa chọn không hợp lệ");
         process.exit(1);
     }
 
     if (deploySuccess) {
-      log.header('🎉 DEPLOYMENT THÀNH CÔNG!');
+      log.header("🎉 DEPLOYMENT THÀNH CÔNG!");
       console.log(`
 ${colors.green}Ứng dụng đã được deploy thành công!${colors.reset}
 
@@ -481,7 +481,7 @@ ${colors.cyan}📋 Các bước tiếp theo:${colors.reset}
 ${colors.green}Chúc mừng! Ứng dụng của bạn đã live! 🚀${colors.reset}
       `);
     } else {
-      log.error('Deployment thất bại');
+      log.error("Deployment thất bại");
       process.exit(1);
     }
   } catch (error) {
@@ -493,8 +493,8 @@ ${colors.green}Chúc mừng! Ứng dụng của bạn đã live! 🚀${colors.re
 };
 
 // Handle process termination
-process.on('SIGINT', () => {
-  log.warning('\nDeployment bị hủy bởi người dùng');
+process.on("SIGINT", () => {
+  log.warning("\nDeployment bị hủy bởi người dùng");
   rl.close();
   process.exit(0);
 });

@@ -40,7 +40,7 @@ export default defineConfig({
       // Multiple entry points: main app và standalone login
       input: {
         main: path.resolve(__dirname, "index.html"),
-        login: path.resolve(__dirname, "public/login.html"),
+        login: path.resolve(__dirname, "login.html"),
       },
       output: {
         manualChunks(id) {

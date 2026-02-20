@@ -15,6 +15,9 @@
 ### ✅ **Current Production Status**
 
 - 🏥 **System Health**: ✅ **HEALTHY** (99.9% uptime)
+- 🌐 **Frontend**: https://fabulous-klepon-ad4aa7.netlify.app
+- 🔐 **Login**: https://fabulous-klepon-ad4aa7.netlify.app/login.html
+- 🧩 **Backend API**: https://react-google-backend.onrender.com
 - 🔗 **Google Integration**: ✅ **CONNECTED** (22 Sheets + Drive active)
 - 📧 **Email Service**: ✅ **ACTIVE** (SendGrid 8.1.6 delivering)
 - 🤖 **Telegram Bot**: ✅ **ACTIVE** (@mia_logistics_manager_bot)
@@ -158,9 +161,9 @@ npm install
 npm start
 
 # 4. Access live application
-# 🏠 Main App: http://localhost:3004
-# 🔐 Login: http://localhost:3004/auth/login
-# 📊 Dashboard: http://localhost:3004/dashboard
+# 🏠 Main App: https://fabulous-klepon-ad4aa7.netlify.app
+# 🔐 Login: https://fabulous-klepon-ad4aa7.netlify.app/login.html
+# 🧩 API: https://react-google-backend.onrender.com
 ```
 
 ### 🔑 **Production Login Credentials**
@@ -562,14 +565,14 @@ _For technical support or inquiries, contact: **<kho.1@mia.vn>**_
 
 ### ✅ **All Features Working Successfully**
 
-| Feature | Status | Test Results | Details |
-|---------|---------|--------------|---------|
-| 🔐 **Authentication** | ✅ **ACTIVE** | All tests passed | Professional login với dark/light mode |
-| 📊 **Google Sheets** | ✅ **CONNECTED** | 22 sheets working | Full CRUD operations |
-| 📁 **Google Drive** | ✅ **CONNECTED** | All tests passed | File management working |
-| 📧 **Email Service** | ✅ **ACTIVE** | 3/3 tests PASSED | SendGrid delivering emails |
-| 🤖 **Telegram Bot** | ✅ **ACTIVE** | 5/6 tests PASSED | @mia_logistics_manager_bot |
-| 🏥 **System Health** | ✅ **HEALTHY** | All checks passed | Production ready |
+| Feature               | Status           | Test Results      | Details                                |
+| --------------------- | ---------------- | ----------------- | -------------------------------------- |
+| 🔐 **Authentication** | ✅ **ACTIVE**    | All tests passed  | Professional login với dark/light mode |
+| 📊 **Google Sheets**  | ✅ **CONNECTED** | 22 sheets working | Full CRUD operations                   |
+| 📁 **Google Drive**   | ✅ **CONNECTED** | All tests passed  | File management working                |
+| 📧 **Email Service**  | ✅ **ACTIVE**    | 3/3 tests PASSED  | SendGrid delivering emails             |
+| 🤖 **Telegram Bot**   | ✅ **ACTIVE**    | 5/6 tests PASSED  | @mia_logistics_manager_bot             |
+| 🏥 **System Health**  | ✅ **HEALTHY**   | All checks passed | Production ready                       |
 
 ### 🎯 **Access Points (All Working)**
 
@@ -611,17 +614,14 @@ npm run test:integration
 ### Lỗi thường gặp
 
 1. **403 Forbidden Error**
-
    - Kiểm tra service account đã được share quyền
    - Xác nhận APIs đã được kích hoạt
 
 2. **Invalid Credentials**
-
    - Kiểm tra format private key trong .env
    - Xác nhận thông tin service account
 
 3. **CORS Issues**
-
    - Sử dụng proxy cho development
    - Cấu hình theo hướng dẫn trong file 02
 

@@ -5,7 +5,7 @@
  * Replace example data with your actual API calls.
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -13,8 +13,8 @@ import {
   Box,
   CircularProgress,
   Alert,
-} from '@mui/material';
-import { Line } from 'react-chartjs-2';
+} from "@mui/material";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,7 +24,7 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from "chart.js";
 
 // Register Chart.js components
 ChartJS.register(
@@ -57,9 +57,9 @@ const YourMetricsWidget = () => {
 
       // Fetch metrics from actual API endpoints
       const API_BASE_URL =
-        process.env.REACT_APP_API_URL || 'http://localhost:3001';
+        process.env.REACT_APP_API_URL || "http://localhost:3001";
       const token =
-        localStorage.getItem('authToken') || localStorage.getItem('token');
+        localStorage.getItem("authToken") || localStorage.getItem("token");
 
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
@@ -101,7 +101,7 @@ const YourMetricsWidget = () => {
       if (sales.success) setSalesData(sales.data);
       if (users.success) setUserMetrics(users.data);
     } catch (err) {
-      console.error('Error fetching custom metrics:', err);
+      console.error("Error fetching custom metrics:", err);
       // Use fallback data on error
       setSalesData({
         total: 1250000,
@@ -121,13 +121,13 @@ const YourMetricsWidget = () => {
 
   // Chart data for sales trend
   const salesChartData = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     datasets: [
       {
-        label: 'Sales',
+        label: "Sales",
         data: [12000, 15000, 18000, 14000, 16000, 20000, 22000],
-        borderColor: 'rgb(102, 126, 234)',
-        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+        borderColor: "rgb(102, 126, 234)",
+        backgroundColor: "rgba(102, 126, 234, 0.1)",
         tension: 0.4,
       },
     ],
@@ -157,8 +157,8 @@ const YourMetricsWidget = () => {
   return (
     <Box
       sx={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
         gap: 2,
         p: 2,
       }}
@@ -166,8 +166,8 @@ const YourMetricsWidget = () => {
       {/* Sales Performance Card */}
       <Card
         sx={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          color: 'white',
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          color: "white",
         }}
       >
         <CardContent>
@@ -175,10 +175,10 @@ const YourMetricsWidget = () => {
             📊 Sales Performance
           </Typography>
           <Typography variant="h4" sx={{ mb: 1, fontWeight: 700 }}>
-            ${salesData?.totalRevenue?.toLocaleString() || 'Loading...'}
+            ${salesData?.totalRevenue?.toLocaleString() || "Loading..."}
           </Typography>
           <Typography variant="body2" sx={{ opacity: 0.9 }}>
-            {salesData?.growthRate > 0 ? '📈' : '📉'}{' '}
+            {salesData?.growthRate > 0 ? "📈" : "📉"}{" "}
             {salesData?.growthRate?.toFixed(1) || 0}% vs last period
           </Typography>
           <Box sx={{ mt: 2 }}>
@@ -193,8 +193,8 @@ const YourMetricsWidget = () => {
       {/* User Analytics Card */}
       <Card
         sx={{
-          background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-          color: 'white',
+          background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+          color: "white",
         }}
       >
         <CardContent>
@@ -202,14 +202,14 @@ const YourMetricsWidget = () => {
             👥 User Analytics
           </Typography>
           <Typography variant="h4" sx={{ mb: 1, fontWeight: 700 }}>
-            {userMetrics?.activeUsers?.toLocaleString() || 'Loading...'}
+            {userMetrics?.activeUsers?.toLocaleString() || "Loading..."}
           </Typography>
           <Typography variant="body2" sx={{ opacity: 0.9 }}>
             Active Users (Last 30 days)
           </Typography>
           <Box sx={{ mt: 2 }}>
             <Typography variant="caption" sx={{ opacity: 0.8 }}>
-              Retention: {userMetrics?.retentionRate?.toFixed(1) || 0}% | New:{' '}
+              Retention: {userMetrics?.retentionRate?.toFixed(1) || 0}% | New:{" "}
               {userMetrics?.newUsers || 0}
             </Typography>
           </Box>
@@ -219,8 +219,8 @@ const YourMetricsWidget = () => {
       {/* Your Custom KPI Card */}
       <Card
         sx={{
-          background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-          color: 'white',
+          background: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+          color: "white",
         }}
       >
         <CardContent>
@@ -228,11 +228,11 @@ const YourMetricsWidget = () => {
             🎯 Your Key Metric
           </Typography>
           <Typography variant="h4" sx={{ mb: 1, fontWeight: 700 }}>
-            {userMetrics?.yourKPI || 'N/A'}
+            {userMetrics?.yourKPI || "N/A"}
           </Typography>
           <Typography variant="body2" sx={{ opacity: 0.9 }}>
-            Target: {userMetrics?.target || 'Set target'} | Status:{' '}
-            {userMetrics?.status || 'Unknown'}
+            Target: {userMetrics?.target || "Set target"} | Status:{" "}
+            {userMetrics?.status || "Unknown"}
           </Typography>
           <Box sx={{ mt: 2 }}>
             <Typography variant="caption" sx={{ opacity: 0.8 }}>
@@ -243,12 +243,12 @@ const YourMetricsWidget = () => {
       </Card>
 
       {/* Sales Trend Chart */}
-      <Card sx={{ gridColumn: 'span 2' }}>
+      <Card sx={{ gridColumn: "span 2" }}>
         <CardContent>
           <Typography variant="h6" sx={{ mb: 2 }}>
             📈 Sales Trend (Last 7 Days)
           </Typography>
-          <Box sx={{ height: '300px' }}>
+          <Box sx={{ height: "300px" }}>
             <Line
               data={salesChartData}
               options={{
@@ -257,10 +257,10 @@ const YourMetricsWidget = () => {
                 plugins: {
                   legend: {
                     display: true,
-                    position: 'top',
+                    position: "top",
                   },
                   tooltip: {
-                    mode: 'index',
+                    mode: "index",
                     intersect: false,
                   },
                 },

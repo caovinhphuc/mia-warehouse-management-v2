@@ -296,7 +296,8 @@ Communication Services:
 npm start
 
 # 2. Run health check (60 seconds)
-npm run health:full
+./scripts/check/health.sh   # Ports + integrations (cần jq: brew install jq)
+# Hoặc: npm run health:full
 
 # 3. Verify Google integration (120 seconds)
 npm run test:google

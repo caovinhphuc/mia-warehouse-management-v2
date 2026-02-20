@@ -3,6 +3,7 @@
 # =============================================================================
 # Dependencies
 # =============================================================================
+node_modules/
 /node_modules
 /.pnp
 .pnp.js
@@ -147,13 +148,9 @@ ENV/
 # Secrets (CRITICAL)
 **/service_account.json
 **/*credentials*.json
-.env
-.env.local
-.env.*.local
-
-# Secrets (CRITICAL)
-**/service_account.json
-**/*credentials*.json
+**/sinuous-aviary-*.json
+automation/config/sinuous-aviary-*.json
+automation/config/*service-account*.json
 .env
 .env.local
 .env.*.local

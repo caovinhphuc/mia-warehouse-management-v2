@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, Typography } from 'antd';
-import { FolderOutlined } from '@ant-design/icons';
+import React from "react";
+import { Card, Typography } from "antd";
+import { FolderOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
 
@@ -11,7 +11,7 @@ const { Title } = Typography;
 const FolderList = ({
   folders = [],
   selectedItems = [],
-  viewMode = 'grid',
+  viewMode = "grid",
   onFolderClick,
   onItemSelect,
 }) => {
@@ -28,15 +28,15 @@ const FolderList = ({
             key={folder.id}
             hoverable
             className={`item-card ${
-              selectedItems.includes(folder.id) ? 'selected' : ''
+              selectedItems.includes(folder.id) ? "selected" : ""
             }`}
             onClick={() => onItemSelect(folder.id)}
             onDoubleClick={() => onFolderClick(folder)}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <div className="item-content">
               <div className="item-icon">
-                <FolderOutlined style={{ fontSize: 32, color: '#1890ff' }} />
+                <FolderOutlined style={{ fontSize: 32, color: "#1890ff" }} />
               </div>
               <div className="item-info">
                 <div className="item-name">{folder.name}</div>

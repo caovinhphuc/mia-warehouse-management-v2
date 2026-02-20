@@ -3,14 +3,14 @@
  * Calls backend API instead of direct Google APIs
  */
 
-import axios from 'axios';
-import importMetaEnv from '../utils/importMetaEnv';
+import axios from "axios";
+import importMetaEnv from "../utils/importMetaEnv";
 
 const API_BASE_URL =
   importMetaEnv.VITE_API_BASE_URL ||
   importMetaEnv.VITE_API_URL ||
   importMetaEnv.REACT_APP_API_URL ||
-  'http://localhost:3001/api';
+  "http://localhost:3001/api";
 
 /**
  * Helper function to handle network errors with better error messages
@@ -18,28 +18,28 @@ const API_BASE_URL =
  */
 const handleNetworkError = (error, operation) => {
   // Check for various network error indicators
-  const errorMessage = String(error.message || '');
-  const errorCode = String(error.code || '');
-  const errorName = String(error.name || '');
+  const errorMessage = String(error.message || "");
+  const errorCode = String(error.code || "");
+  const errorName = String(error.name || "");
 
   // Check if it's an Axios error without response (network error)
   const isAxiosNetworkError =
-    errorName === 'AxiosError' &&
-    (!error.response || error.code === 'ERR_NETWORK');
+    errorName === "AxiosError" &&
+    (!error.response || error.code === "ERR_NETWORK");
 
   // Check various network error patterns
   const isNetworkError =
-    errorCode === 'ERR_NETWORK' ||
-    errorMessage === 'Network Error' ||
-    errorMessage === 'Failed to fetch' ||
-    errorMessage.toLowerCase().includes('failed to fetch') ||
-    errorMessage.toLowerCase().includes('network error') ||
+    errorCode === "ERR_NETWORK" ||
+    errorMessage === "Network Error" ||
+    errorMessage === "Failed to fetch" ||
+    errorMessage.toLowerCase().includes("failed to fetch") ||
+    errorMessage.toLowerCase().includes("network error") ||
     isAxiosNetworkError ||
     (error.request && !error.response) || // Axios: request object exists but no response
-    errorMessage.includes('ERR_NETWORK') ||
-    errorMessage.includes('ECONNREFUSED') ||
-    errorMessage.includes('timeout') ||
-    errorMessage.includes('NetworkError');
+    errorMessage.includes("ERR_NETWORK") ||
+    errorMessage.includes("ECONNREFUSED") ||
+    errorMessage.includes("timeout") ||
+    errorMessage.includes("NetworkError");
 
   if (isNetworkError) {
     const friendlyMessage =
@@ -59,7 +59,7 @@ class GoogleSheetsApiService {
   /**
    * Read data from sheet
    */
-  async readSheet(range = 'A1:Z1000', sheetId) {
+  async readSheet(range = "A1:Z1000", sheetId) {
     try {
       const params = { range };
       if (sheetId) params.sheetId = sheetId;
@@ -73,10 +73,10 @@ class GoogleSheetsApiService {
         majorDimension: response.data.majorDimension,
       };
     } catch (error) {
-      const networkError = handleNetworkError(error, 'reading sheet');
+      const networkError = handleNetworkError(error, "reading sheet");
       if (networkError) throw networkError;
 
-      console.error('Error reading sheet:', error);
+      console.error("Error reading sheet:", error);
       throw new Error(
         error.response?.data?.error || `Failed to read sheet: ${error.message}`
       );
@@ -95,10 +95,10 @@ class GoogleSheetsApiService {
       });
       return response.data.data;
     } catch (error) {
-      const networkError = handleNetworkError(error, 'writing to sheet');
+      const networkError = handleNetworkError(error, "writing to sheet");
       if (networkError) throw networkError;
 
-      console.error('Error writing to sheet:', error);
+      console.error("Error writing to sheet:", error);
       throw new Error(
         error.response?.data?.error ||
           `Failed to write to sheet: ${error.message}`
@@ -118,10 +118,10 @@ class GoogleSheetsApiService {
       });
       return response.data.data;
     } catch (error) {
-      const networkError = handleNetworkError(error, 'appending to sheet');
+      const networkError = handleNetworkError(error, "appending to sheet");
       if (networkError) throw networkError;
 
-      console.error('Error appending to sheet:', error);
+      console.error("Error appending to sheet:", error);
       throw new Error(
         error.response?.data?.error ||
           `Failed to append to sheet: ${error.message}`
@@ -139,17 +139,17 @@ class GoogleSheetsApiService {
         sheetId ||
         importMetaEnv.VITE_GOOGLE_SHEETS_SPREADSHEET_ID ||
         importMetaEnv.REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID ||
-        '18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As';
+        "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As";
 
       const url = `${API_BASE_URL}/sheets/metadata/${targetSheetId}`;
 
       const response = await axios.get(url);
       return response.data.data;
     } catch (error) {
-      const networkError = handleNetworkError(error, 'getting sheet metadata');
+      const networkError = handleNetworkError(error, "getting sheet metadata");
       if (networkError) throw networkError;
 
-      console.error('Error getting sheet metadata:', error);
+      console.error("Error getting sheet metadata:", error);
       throw new Error(
         error.response?.data?.error ||
           `Failed to get sheet metadata: ${error.message}`
@@ -167,10 +167,10 @@ class GoogleSheetsApiService {
       });
       return response.data.data;
     } catch (error) {
-      const networkError = handleNetworkError(error, 'clearing sheet');
+      const networkError = handleNetworkError(error, "clearing sheet");
       if (networkError) throw networkError;
 
-      console.error('Error clearing sheet:', error);
+      console.error("Error clearing sheet:", error);
       throw new Error(
         error.response?.data?.error || `Failed to clear sheet: ${error.message}`
       );
@@ -188,10 +188,10 @@ class GoogleSheetsApiService {
       });
       return response.data.data;
     } catch (error) {
-      const networkError = handleNetworkError(error, 'adding sheet');
+      const networkError = handleNetworkError(error, "adding sheet");
       if (networkError) throw networkError;
 
-      console.error('Error adding sheet:', error);
+      console.error("Error adding sheet:", error);
       throw new Error(
         error.response?.data?.error || `Failed to add sheet: ${error.message}`
       );

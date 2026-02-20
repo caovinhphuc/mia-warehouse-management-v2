@@ -1,38 +1,38 @@
-import React, { Suspense, lazy } from 'react';
-import { Provider } from 'react-redux';
+import React, { Suspense, lazy } from "react";
+import { Provider } from "react-redux";
 import {
   Navigate,
   Route,
   BrowserRouter as Router,
   Routes,
-} from 'react-router-dom';
-import { ConfigProvider, theme } from 'antd';
-import viVN from 'antd/locale/vi_VN';
-import './App.css';
-import Loading from './components/Common/Loading';
-import Layout from './components/layout/Layout';
-import { store } from './store/store';
+} from "react-router-dom";
+import { ConfigProvider, theme } from "antd";
+import viVN from "antd/locale/vi_VN";
+import "./App.css";
+import Loading from "./components/Common/Loading";
+import Layout from "./components/layout/Layout";
+import { store } from "./store/store";
 
 // Test component - Simple Google Sheets
 const TestGoogleSheets = () => (
   <div
     style={{
-      padding: '20px',
-      background: '#f8fafc',
-      minHeight: 'calc(100vh - 64px)',
-      display: 'flex',
-      flexDirection: 'column',
+      padding: "20px",
+      background: "#f8fafc",
+      minHeight: "calc(100vh - 64px)",
+      display: "flex",
+      flexDirection: "column",
     }}
   >
     <h1>🧪 Test Google Sheets Component</h1>
     <div
       style={{
-        background: 'white',
-        padding: '20px',
-        borderRadius: '8px',
+        background: "white",
+        padding: "20px",
+        borderRadius: "8px",
         flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <h2>Simple Test Layout</h2>
@@ -42,10 +42,10 @@ const TestGoogleSheets = () => (
       </p>
       <div
         style={{
-          background: '#e2e8f0',
-          padding: '20px',
-          borderRadius: '8px',
-          marginTop: '20px',
+          background: "#e2e8f0",
+          padding: "20px",
+          borderRadius: "8px",
+          marginTop: "20px",
           flex: 1,
         }}
       >
@@ -60,7 +60,7 @@ const TestGoogleSheets = () => (
 const GoogleSheetsIntegration = lazy(
   () =>
     import(
-      /* webpackChunkName: "google-sheets" */ './components/google/GoogleSheetsIntegration'
+      /* webpackChunkName: "google-sheets" */ "./components/google/GoogleSheetsIntegration"
     )
 );
 
@@ -164,12 +164,12 @@ const Home = () => (
         <h3>🎯 Tính năng mới v3.0</h3>
         <div className="feature-tags">
           {[
-            '📡 Tích hợp WebSocket thời gian thực',
-            '📊 Dashboard hiệu suất trực tiếp',
-            '⚡ Cải thiện hiệu suất 50%',
-            '🎨 Thiết kế UI/UX hiện đại',
-            '📱 Hỗ trợ di động responsive',
-            '🔒 Tính năng bảo mật nâng cao',
+            "📡 Tích hợp WebSocket thời gian thực",
+            "📊 Dashboard hiệu suất trực tiếp",
+            "⚡ Cải thiện hiệu suất 50%",
+            "🎨 Thiết kế UI/UX hiện đại",
+            "📱 Hỗ trợ di động responsive",
+            "🔒 Tính năng bảo mật nâng cao",
           ].map((feature, index) => (
             <span key={index} className="feature-tag">
               {feature}
@@ -190,7 +190,7 @@ function App() {
         theme={{
           algorithm: theme.defaultAlgorithm,
           token: {
-            colorPrimary: '#3b82f6',
+            colorPrimary: "#3b82f6",
             borderRadius: 8,
           },
         }}

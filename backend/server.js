@@ -1,7 +1,7 @@
 /* eslint-disable */
 /**
  * Backend Server - Express API Server with WebSocket
- * Port: 3001 (hoặc từ process.env.PORT)
+ * Port: 8000 (or from process.env.PORT or process.env.BACKEND_PORT)
  */
 
 const express = require("express");
@@ -11,7 +11,7 @@ const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const { formatVietnameseDateTime } = require("./utils/dateUtils");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || process.env.BACKEND_PORT || 8000;
 
 // Cleanup expired sessions periodically (every hour)
 const authService = require("./services/authService");
@@ -119,7 +119,10 @@ app.use("/api/retail", retailMetricsRoutes); // MIA Retail specific metrics
 const scraperRoutes = require("./api/scraper-routes");
 app.use("/api", scraperRoutes);
 
-// Health check with actual service verification
+// Lightweight health for Docker/K8s (fast, không gọi Google/Telegram)
+app.get("/ready", (req, res) => res.status(200).json({ ok: true }));
+
+// Health check với kiểm tra integrations đầy đủ
 app.get("/health", async (req, res) => {
   const now = new Date();
   const healthStatus = {
@@ -173,7 +176,7 @@ app.get("/health", async (req, res) => {
           sheetsHealth.status = "degraded";
         }
 
-        // Test 2: Read Sheet
+        // Test 2: Read Sheet (read-only - không tạo/ghi dữ liệu)
         try {
           await sheetsService.readSheet("A1:A1", sheetId);
           sheetsHealth.functions.readSheet = {
@@ -188,83 +191,8 @@ app.get("/health", async (req, res) => {
           sheetsHealth.status = "degraded";
         }
 
-        // Test 3: Write Sheet (test write to a safe range)
-        try {
-          const testRange = "ZZ999:ZZ999"; // Safe test range
-          await sheetsService.writeSheet(
-            testRange,
-            [["Health Check Test"]],
-            sheetId
-          );
-          // Clean up test data
-          await sheetsService.clearSheet(testRange, sheetId);
-          sheetsHealth.functions.writeSheet = {
-            status: "ok",
-            message: "Working",
-          };
-        } catch (error) {
-          sheetsHealth.functions.writeSheet = {
-            status: "error",
-            message: error.message,
-          };
-          sheetsHealth.status = "degraded";
-        }
-
-        // Test 4: Append Sheet
-        try {
-          const testRange = "Sheet1!A:Z"; // Use first sheet
-          await sheetsService.appendToSheet(
-            testRange,
-            [["Health Check Append Test"]],
-            sheetId
-          );
-          sheetsHealth.functions.appendToSheet = {
-            status: "ok",
-            message: "Working",
-          };
-        } catch (error) {
-          sheetsHealth.functions.appendToSheet = {
-            status: "error",
-            message: error.message,
-          };
-          sheetsHealth.status = "degraded";
-        }
-
-        // Test 5: Clear Sheet
-        try {
-          const testRange = "ZZ998:ZZ998"; // Safe test range
-          await sheetsService.clearSheet(testRange, sheetId);
-          sheetsHealth.functions.clearSheet = {
-            status: "ok",
-            message: "Working",
-          };
-        } catch (error) {
-          sheetsHealth.functions.clearSheet = {
-            status: "error",
-            message: error.message,
-          };
-          sheetsHealth.status = "degraded";
-        }
-
-        // Test 6: Add Sheet (create test sheet, then we can delete it if needed)
-        try {
-          const testSheetName = `HealthCheck_${Date.now()}`;
-          const newSheet = await sheetsService.addSheet(testSheetName, sheetId);
-          sheetsHealth.functions.addSheet = {
-            status: "ok",
-            message: "Working",
-            testSheetCreated: {
-              sheetId: newSheet.sheetId,
-              title: newSheet.title,
-            },
-          };
-        } catch (error) {
-          sheetsHealth.functions.addSheet = {
-            status: "error",
-            message: error.message,
-          };
-          sheetsHealth.status = "degraded";
-        }
+        // Chỉ dùng getMetadata + readSheet (read-only). Đã bỏ: writeSheet, appendToSheet, clearSheet, addSheet
+        // để tránh tạo tab mới, ghi dữ liệu thừa mỗi lần health check.
 
         // Count successful functions
         const successfulFunctions = Object.values(
@@ -343,27 +271,9 @@ app.get("/health", async (req, res) => {
         driveHealth.status = "degraded";
       }
 
-      // Test 3: Create Folder (test folder, can be cleaned up later)
-      try {
-        const testFolderName = `HealthCheck_${Date.now()}`;
-        const newFolder = await driveService.createFolder(testFolderName);
-        driveHealth.functions.createFolder = {
-          status: "ok",
-          message: "Working",
-          testFolderCreated: {
-            id: newFolder.id,
-            name: newFolder.name,
-          },
-        };
-      } catch (error) {
-        driveHealth.functions.createFolder = {
-          status: "error",
-          message: error.message,
-        };
-        driveHealth.status = "degraded";
-      }
+      // Đã bỏ Test createFolder - tránh tạo thư mục mới mỗi lần health check.
 
-      // Test 4: Get File Metadata (if folder ID exists)
+      // Test 3: Get File Metadata (if folder ID exists)
       try {
         const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
         if (folderId) {
@@ -506,19 +416,32 @@ app.get("/health", async (req, res) => {
 
     // Check Telegram Service
     try {
-      const alertService = require("./services/alertService");
-      const telegramService = new alertService.AlertService();
       if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
-        // Test Telegram connection
         const axios = require("axios");
-        const response = await axios.get(
-          `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/getMe`,
-          { timeout: 5000 }
-        );
+        const token = process.env.TELEGRAM_BOT_TOKEN;
+        const apiUrl = `https://api.telegram.org/bot${token}`;
+        const response = await axios.get(`${apiUrl}/getMe`, { timeout: 5000 });
         if (response.data.ok) {
+          const bot = response.data.result;
+          let chatOk = false;
+          try {
+            const chatRes = await axios.get(`${apiUrl}/getChat`, {
+              params: { chat_id: process.env.TELEGRAM_CHAT_ID },
+              timeout: 3000,
+            });
+            chatOk = chatRes.data.ok;
+          } catch {
+            chatOk = false;
+          }
           healthStatus.services.telegram = {
             status: "healthy",
             message: "Connected",
+            bot: {
+              name: bot.first_name,
+              username: bot.username,
+              id: bot.id,
+            },
+            chatReachable: chatOk,
           };
         } else {
           healthStatus.services.telegram = {
@@ -536,7 +459,7 @@ app.get("/health", async (req, res) => {
     } catch (error) {
       healthStatus.services.telegram = {
         status: "warning",
-        message: "Not configured or connection failed",
+        message: error.message || "Connection failed",
       };
     }
 
@@ -697,6 +620,33 @@ server.listen(PORT, async () => {
 
   // Initialize demo accounts
   await initializeDemoAccounts();
+});
+
+// Handle server errors (e.g., port already in use)
+server.on("error", (err) => {
+  if (err.code === "EADDRINUSE") {
+    console.error(`\n❌ ERROR: Port ${PORT} is already in use!`);
+    console.error(`\n💡 Solutions:`);
+    console.error(`   1. Stop the process using port ${PORT}:`);
+    console.error(`      • On Linux/Mac: lsof -ti:${PORT} | xargs kill -9`);
+    console.error(`      • On Windows: netstat -ano | findstr :${PORT} then taskkill /PID <PID> /F`);
+    console.error(`   2. Use a different port by setting PORT or BACKEND_PORT environment variable:`);
+    console.error(`      • export PORT=8001`);
+    console.error(`      • or add PORT=8001 to your .env file`);
+    console.error(`\n`);
+    process.exit(1);
+  } else if (err.code === "EACCES") {
+    console.error(`\n❌ ERROR: Permission denied to bind to port ${PORT}`);
+    console.error(`\n💡 Solutions:`);
+    console.error(`   • Ports below 1024 require root/admin privileges`);
+    console.error(`   • Use a port above 1024 (e.g., 8000, 8001, 3000)`);
+    console.error(`   • Or run with sudo (not recommended for development)`);
+    console.error(`\n`);
+    process.exit(1);
+  } else {
+    console.error(`\n❌ Server error:`, err);
+    process.exit(1);
+  }
 });
 
 // Periodic metrics broadcasting (example)

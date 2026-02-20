@@ -10,18 +10,18 @@
 const GOOGLE_MAPS_API_KEY =
   process.env.REACT_APP_GOOGLE_MAPS_API_KEY ||
   process.env.VITE_GOOGLE_MAPS_API_KEY ||
-  '';
+  "";
 
 const GOOGLE_SPREADSHEET_ID =
   process.env.REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID ||
   process.env.VITE_GOOGLE_SHEETS_SPREADSHEET_ID ||
   process.env.REACT_APP_GOOGLE_SPREADSHEET_ID ||
-  '18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As';
+  "18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As";
 
 const GOOGLE_APPS_SCRIPT_URL =
   process.env.REACT_APP_GOOGLE_APPS_SCRIPT_URL ||
   process.env.VITE_GOOGLE_APPS_SCRIPT_URL ||
-  '';
+  "";
 
 /**
  * Google Configuration Object
@@ -40,54 +40,54 @@ const googleConfig = {
   // Google Sheets
   sheets: {
     spreadsheetId: GOOGLE_SPREADSHEET_ID,
-    apiEndpoint: 'https://sheets.googleapis.com/v4/spreadsheets',
+    apiEndpoint: "https://sheets.googleapis.com/v4/spreadsheets",
 
     // Sheet names
     sheetNames: {
-      users: 'Users',
-      roles: 'Roles',
-      rolePermissions: 'RolePermissions',
-      employees: 'Employees',
-      locations: 'Locations',
-      transfers: 'Transfers',
-      inventory: 'Inventory',
-      products: 'Products',
+      users: "Users",
+      roles: "Roles",
+      rolePermissions: "RolePermissions",
+      employees: "Employees",
+      locations: "Locations",
+      transfers: "Transfers",
+      inventory: "Inventory",
+      products: "Products",
     },
 
     // Data ranges
     ranges: {
-      users: 'Users!A:Z',
-      roles: 'Roles!A:Z',
-      rolePermissions: 'RolePermissions!A:Z',
-      employees: 'Employees!A:Z',
-      locations: 'Locations!A:Z',
-      transfers: 'Transfers!A:Z',
+      users: "Users!A:Z",
+      roles: "Roles!A:Z",
+      rolePermissions: "RolePermissions!A:Z",
+      employees: "Employees!A:Z",
+      locations: "Locations!A:Z",
+      transfers: "Transfers!A:Z",
     },
   },
 
   // Google Drive
   drive: {
-    apiEndpoint: 'https://www.googleapis.com/drive/v3',
-    folderId: process.env.REACT_APP_GOOGLE_DRIVE_FOLDER_ID || '',
+    apiEndpoint: "https://www.googleapis.com/drive/v3",
+    folderId: process.env.REACT_APP_GOOGLE_DRIVE_FOLDER_ID || "",
   },
 
   // Google Apps Script
   appsScript: {
     url: GOOGLE_APPS_SCRIPT_URL,
-    deploymentId: process.env.REACT_APP_APPS_SCRIPT_DEPLOYMENT_ID || '',
+    deploymentId: process.env.REACT_APP_APPS_SCRIPT_DEPLOYMENT_ID || "",
   },
 
   // OAuth Configuration (Frontend)
   oauth: {
-    clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID || '',
+    clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID || "",
     scopes: [
-      'https://www.googleapis.com/auth/spreadsheets',
-      'https://www.googleapis.com/auth/drive.file',
-      'https://www.googleapis.com/auth/drive.readonly',
+      "https://www.googleapis.com/auth/spreadsheets",
+      "https://www.googleapis.com/auth/drive.file",
+      "https://www.googleapis.com/auth/drive.readonly",
     ],
     discoveryDocs: [
-      'https://sheets.googleapis.com/$discovery/rest?version=v4',
-      'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest',
+      "https://sheets.googleapis.com/$discovery/rest?version=v4",
+      "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest",
     ],
   },
 };
@@ -101,20 +101,20 @@ export const validateConfig = () => {
 
   // Check required fields
   if (!googleConfig.sheets.spreadsheetId) {
-    errors.push('Google Spreadsheet ID is required');
+    errors.push("Google Spreadsheet ID is required");
   }
 
   // Check optional but recommended fields
   if (!googleConfig.maps.apiKey) {
-    warnings.push('Google Maps API key not configured');
+    warnings.push("Google Maps API key not configured");
   }
 
   if (!googleConfig.appsScript.url) {
-    warnings.push('Google Apps Script URL not configured');
+    warnings.push("Google Apps Script URL not configured");
   }
 
   if (!googleConfig.oauth.clientId) {
-    warnings.push('Google OAuth Client ID not configured');
+    warnings.push("Google OAuth Client ID not configured");
   }
 
   return {
@@ -130,7 +130,7 @@ export const validateConfig = () => {
  * Example: getConfig('sheets.spreadsheetId')
  */
 export const getConfig = (path) => {
-  return path.split('.').reduce((obj, key) => obj?.[key], googleConfig);
+  return path.split(".").reduce((obj, key) => obj?.[key], googleConfig);
 };
 
 /**
@@ -147,36 +147,36 @@ export const isConfigured = () => {
 export const logConfigStatus = () => {
   const { isValid, errors, warnings } = validateConfig();
 
-  console.group('🔧 Google Configuration Status');
-  console.log('Valid:', isValid ? '✅' : '❌');
+  console.group("🔧 Google Configuration Status");
+  console.log("Valid:", isValid ? "✅" : "❌");
 
   if (errors.length > 0) {
-    console.group('❌ Errors:');
+    console.group("❌ Errors:");
     errors.forEach((error) => console.error(error));
     console.groupEnd();
   }
 
   if (warnings.length > 0) {
-    console.group('⚠️ Warnings:');
+    console.group("⚠️ Warnings:");
     warnings.forEach((warning) => console.warn(warning));
     console.groupEnd();
   }
 
   console.log(
-    'Spreadsheet ID:',
-    googleConfig.sheets.spreadsheetId || '❌ Not set'
+    "Spreadsheet ID:",
+    googleConfig.sheets.spreadsheetId || "❌ Not set"
   );
   console.log(
-    'Maps API Key:',
-    googleConfig.maps.apiKey ? '✅ Set' : '❌ Not set'
+    "Maps API Key:",
+    googleConfig.maps.apiKey ? "✅ Set" : "❌ Not set"
   );
   console.log(
-    'Apps Script URL:',
-    googleConfig.appsScript.url ? '✅ Set' : '❌ Not set'
+    "Apps Script URL:",
+    googleConfig.appsScript.url ? "✅ Set" : "❌ Not set"
   );
   console.log(
-    'OAuth Client ID:',
-    googleConfig.oauth.clientId ? '✅ Set' : '❌ Not set'
+    "OAuth Client ID:",
+    googleConfig.oauth.clientId ? "✅ Set" : "❌ Not set"
   );
 
   console.groupEnd();

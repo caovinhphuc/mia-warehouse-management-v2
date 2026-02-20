@@ -14,7 +14,7 @@ The MIA.vn Google Integration Platform has been **successfully deployed** and is
 ### ✅ **Current Production Status**
 
 - 🏥 **System Health**: ✅ **OPERATIONAL** (99.9% uptime verified)
-- 🌐 **Production URL**: ✅ **LIVE** (<http://localhost:3004> in development)
+- 🌐 **Production URL**: ✅ **LIVE** (https://fabulous-klepon-ad4aa7.netlify.app)
 - 🔗 **Google Integration**: ✅ **ACTIVE** (22 Sheets + Drive operational)
 - 📊 **Performance**: ✅ **OPTIMIZED** (178ms average response time)
 - 🔐 **Security**: ✅ **ENTERPRISE-GRADE** (Service account authenticated)
@@ -37,7 +37,7 @@ The MIA.vn Google Integration Platform has been **successfully deployed** and is
 
 **Verified Production Features:**
 
-- **Optimized Build**: React 19.1.1 with build optimization (see build/ directory)
+- **Optimized Build**: React 18.2.0 with build optimization (see build/ directory)
 - **Production APIs**: 22 Google Sheets connected with 247 Drive files managed
 - **Service Reliability**: 99.9% uptime with automated health monitoring
 - **Security Framework**: JWT authentication with role-based access control
@@ -111,6 +111,10 @@ ls -la build/
 **Working Production Environment Variables:**
 
 ```env
+# Frontend (Vite) - Production
+VITE_API_URL=https://react-google-backend.onrender.com
+VITE_API_BASE_URL=https://react-google-backend.onrender.com/api
+
 # Google Service Account (Production Active)
 REACT_APP_GOOGLE_PRIVATE_KEY_ID=<production_key_id>
 REACT_APP_GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n<production_key>\n-----END PRIVATE KEY-----\n"
@@ -176,7 +180,7 @@ CMD ["npm", "start"]
 
 ```yaml
 # docker-compose.yml (production-ready)
-version: '3.8'
+version: "3.8"
 services:
   mia-app:
     build: .
@@ -214,17 +218,22 @@ services:
 
 [build.environment]
   NODE_VERSION = "18"
-  NPM_VERSION = "8"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 [[headers]]
-  for = "/static/*"
+  for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache"
 ```
 
 ### **Option 3: Vercel Deployment** _(✅ React Optimized)_
@@ -334,11 +343,49 @@ ls -la build/
 echo "✅ Build size: $(du -sh build/ | cut -f1)"
 
 # Production health check
-echo "🏥 Running production health checks..."
-npm run health:full
+echo "🔍 Running production health checks..."
+npm run health-check:js
+npm run health-check:backend
+npm run health-check:frontend
 
+# Production deployment
+echo "🚀 Starting production deployment..."
+npm run deploy:production
+
+# Production monitoring
+echo "🔍 Starting production monitoring..."
+npm run monitor:services
+npm run monitor:uptime
+
+# Production analytics
+echo "📊 Starting production analytics..."
+npm run analytics:realtime
+npm run analytics:logs
+
+# Production security audit
+echo "🔒 Starting production security audit..."
+npm run audit:security
+
+# Production performance optimization
+echo "🔧 Starting production performance optimization..."
+npm run optimize:build
+npm run optimize:runtime
+
+# Production rollback
+echo "🔄 Starting production rollback..."
+npm run rollback:production
+
+# Production cleanup
+echo "🧹 Starting production cleanup..."
+npm run cleanup:production
+
+# Production verification
+echo "🔍 Starting production verification..."
+npm run verify:production
+
+# Production completion
 echo "✅ Deployment completed successfully!"
-echo "🌐 Application ready at: http://localhost:3004"
+echo "🌐 Application ready at: http://localhost:3000"
 ```
 
 ### **Production Package.json Scripts**
@@ -379,50 +426,51 @@ echo "🌐 Application ready at: http://localhost:3004"
 
 ```javascript
 // scripts/health-check.js (production implementation)
-const { GoogleAuth } = require('google-auth-library');
-const { google } = require('googleapis');
+const { GoogleAuth } = require("google-auth-library");
+const { google } = require("googleapis");
 
 class ProductionHealthChecker {
   constructor() {
     this.checks = {
       timestamp: new Date().toISOString(),
-      status: 'unknown',
+      status: "unknown",
       services: {
-        googleSheets: { status: false, responseTime: 0, details: '' },
-        googleDrive: { status: false, responseTime: 0, details: '' },
-        authentication: { status: false, responseTime: 0, details: '' },
-        emailService: { status: false, responseTime: 0, details: '' },
-        telegramBot: { status: false, responseTime: 0, details: '' }
+        googleSheets: { status: false, responseTime: 0, details: "" },
+        googleDrive: { status: false, responseTime: 0, details: "" },
+        authentication: { status: false, responseTime: 0, details: "" },
+        emailService: { status: false, responseTime: 0, details: "" },
+        telegramBot: { status: false, responseTime: 0, details: "" },
       },
       performance: {
         averageResponseTime: 0,
         systemUptime: process.uptime(),
-        memoryUsage: process.memoryUsage()
-      }
+        memoryUsage: process.memoryUsage(),
+      },
     };
   }
 
   async runComprehensiveHealthCheck() {
-    console.log('🏥 Starting comprehensive production health check...');
+    console.log("🏥 Starting comprehensive production health check...");
 
     try {
       // Google Authentication Check
       const authStart = Date.now();
       const auth = new GoogleAuth({
         keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
-        scopes: ['https://www.googleapis.com/auth/spreadsheets']
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
       });
 
       await auth.getClient();
       this.checks.services.authentication.status = true;
       this.checks.services.authentication.responseTime = Date.now() - authStart;
-      this.checks.services.authentication.details = 'Service account authenticated successfully';
+      this.checks.services.authentication.details =
+        "Service account authenticated successfully";
 
       // Google Sheets API Check
       const sheetsStart = Date.now();
-      const sheets = google.sheets({ version: 'v4', auth });
+      const sheets = google.sheets({ version: "v4", auth });
       const response = await sheets.spreadsheets.get({
-        spreadsheetId: process.env.REACT_APP_GOOGLE_SHEET_ID
+        spreadsheetId: process.env.REACT_APP_GOOGLE_SHEET_ID,
       });
 
       this.checks.services.googleSheets.status = true;
@@ -431,10 +479,10 @@ class ProductionHealthChecker {
 
       // Google Drive API Check
       const driveStart = Date.now();
-      const drive = google.drive({ version: 'v3', auth });
+      const drive = google.drive({ version: "v3", auth });
       const driveResponse = await drive.files.list({
         q: `'${process.env.REACT_APP_GOOGLE_DRIVE_FOLDER_ID}' in parents`,
-        pageSize: 1
+        pageSize: 1,
       });
 
       this.checks.services.googleDrive.status = true;
@@ -443,36 +491,48 @@ class ProductionHealthChecker {
 
       // Calculate overall health
       const allServices = Object.values(this.checks.services);
-      const healthyServices = allServices.filter(service => service.status).length;
+      const healthyServices = allServices.filter(
+        (service) => service.status
+      ).length;
       const totalServices = allServices.length;
 
-      this.checks.status = healthyServices === totalServices ? 'healthy' :
-                          healthyServices > totalServices * 0.7 ? 'degraded' : 'unhealthy';
+      this.checks.status =
+        healthyServices === totalServices
+          ? "healthy"
+          : healthyServices > totalServices * 0.7
+            ? "degraded"
+            : "unhealthy";
 
       this.checks.performance.averageResponseTime =
-        allServices.reduce((sum, service) => sum + service.responseTime, 0) / totalServices;
+        allServices.reduce((sum, service) => sum + service.responseTime, 0) /
+        totalServices;
 
       return this.checks;
-
     } catch (error) {
-      console.error('❌ Health check failed:', error);
-      this.checks.status = 'unhealthy';
+      console.error("❌ Health check failed:", error);
+      this.checks.status = "unhealthy";
       throw error;
     }
   }
 
   generateHealthReport() {
-    console.log('\n📊 PRODUCTION HEALTH REPORT');
-    console.log('================================');
+    console.log("\n📊 PRODUCTION HEALTH REPORT");
+    console.log("================================");
     console.log(`🕐 Timestamp: ${this.checks.timestamp}`);
     console.log(`🏥 Overall Status: ${this.checks.status.toUpperCase()}`);
-    console.log(`⚡ Average Response: ${this.checks.performance.averageResponseTime}ms`);
-    console.log(`🔄 System Uptime: ${Math.floor(this.checks.performance.systemUptime / 3600)}h`);
+    console.log(
+      `⚡ Average Response: ${this.checks.performance.averageResponseTime}ms`
+    );
+    console.log(
+      `🔄 System Uptime: ${Math.floor(this.checks.performance.systemUptime / 3600)}h`
+    );
 
-    console.log('\n🔧 SERVICE STATUS:');
+    console.log("\n🔧 SERVICE STATUS:");
     Object.entries(this.checks.services).forEach(([service, details]) => {
-      const icon = details.status ? '✅' : '❌';
-      console.log(`${icon} ${service}: ${details.status ? 'HEALTHY' : 'FAILED'} (${details.responseTime}ms)`);
+      const icon = details.status ? "✅" : "❌";
+      console.log(
+        `${icon} ${service}: ${details.status ? "HEALTHY" : "FAILED"} (${details.responseTime}ms)`
+      );
       if (details.details) console.log(`   └─ ${details.details}`);
     });
   }
@@ -493,7 +553,7 @@ class ProductionPerformanceMonitor {
       responses: 0,
       averageResponseTime: 0,
       errors: 0,
-      startTime: Date.now()
+      startTime: Date.now(),
     };
   }
 
@@ -507,15 +567,19 @@ class ProductionPerformanceMonitor {
     this.metrics.responses++;
 
     // Update rolling average
-    const totalTime = this.metrics.averageResponseTime * (this.metrics.responses - 1) + responseTime;
-    this.metrics.averageResponseTime = Math.round(totalTime / this.metrics.responses);
+    const totalTime =
+      this.metrics.averageResponseTime * (this.metrics.responses - 1) +
+      responseTime;
+    this.metrics.averageResponseTime = Math.round(
+      totalTime / this.metrics.responses
+    );
 
     return responseTime;
   }
 
   trackError(error) {
     this.metrics.errors++;
-    console.error('🔴 Production Error:', error);
+    console.error("🔴 Production Error:", error);
   }
 
   getMetrics() {
@@ -523,8 +587,13 @@ class ProductionPerformanceMonitor {
     return {
       ...this.metrics,
       uptime: Math.floor(uptime / 1000),
-      successRate: ((this.metrics.responses / this.metrics.requests) * 100).toFixed(2),
-      errorRate: ((this.metrics.errors / this.metrics.requests) * 100).toFixed(2)
+      successRate: (
+        (this.metrics.responses / this.metrics.requests) *
+        100
+      ).toFixed(2),
+      errorRate: ((this.metrics.errors / this.metrics.requests) * 100).toFixed(
+        2
+      ),
     };
   }
 }
@@ -536,7 +605,7 @@ const monitor = new ProductionPerformanceMonitor();
 const trackPerformance = (req, res, next) => {
   const start = monitor.trackRequest();
 
-  res.on('finish', () => {
+  res.on("finish", () => {
     monitor.trackResponse(start);
   });
 
@@ -554,42 +623,48 @@ module.exports = { monitor, trackPerformance };
 
 ```javascript
 // Production security configuration
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
 // Security headers middleware
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
-      fontSrc: ["'self'", "fonts.gstatic.com"],
-      scriptSrc: ["'self'"],
-      connectSrc: ["'self'", "https://sheets.googleapis.com", "https://www.googleapis.com"],
-      imgSrc: ["'self'", "data:", "https:"],
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
+        fontSrc: ["'self'", "fonts.gstatic.com"],
+        scriptSrc: ["'self'"],
+        connectSrc: [
+          "'self'",
+          "https://sheets.googleapis.com",
+          "https://www.googleapis.com",
+        ],
+        imgSrc: ["'self'", "data:", "https:"],
+      },
     },
-  },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true
-  }
-}));
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: true,
+    },
+  })
+);
 
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.'
+  message: "Too many requests from this IP, please try again later.",
 });
 
-app.use('/api/', limiter);
+app.use("/api/", limiter);
 
 // HTTPS redirect in production
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https') {
-      res.redirect(`https://${req.get('Host')}${req.url}`);
+    if (req.header("x-forwarded-proto") !== "https") {
+      res.redirect(`https://${req.get("Host")}${req.url}`);
     } else {
       next();
     }
@@ -601,25 +676,26 @@ if (process.env.NODE_ENV === 'production') {
 
 ```javascript
 // Production service account configuration
-const { GoogleAuth } = require('google-auth-library');
+const { GoogleAuth } = require("google-auth-library");
 
 const auth = new GoogleAuth({
   credentials: {
-    type: 'service_account',
-    project_id: 'mia-logistics-469406',
+    type: "service_account",
+    project_id: "mia-logistics-469406",
     private_key_id: process.env.REACT_APP_GOOGLE_PRIVATE_KEY_ID,
-    private_key: process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    client_email: 'mia-logistics-service@mia-logistics-469406.iam.gserviceaccount.com',
+    private_key: process.env.REACT_APP_GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    client_email:
+      "mia-logistics-service@mia-logistics-469406.iam.gserviceaccount.com",
     client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-    auth_uri: 'https://accounts.google.com/o/oauth2/auth',
-    token_uri: 'https://oauth2.googleapis.com/token',
-    auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
-    client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/mia-logistics-service%40mia-logistics-469406.iam.gserviceaccount.com`
+    auth_uri: "https://accounts.google.com/o/oauth2/auth",
+    token_uri: "https://oauth2.googleapis.com/token",
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+    client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/mia-logistics-service%40mia-logistics-469406.iam.gserviceaccount.com`,
   },
   scopes: [
-    'https://www.googleapis.com/auth/spreadsheets',
-    'https://www.googleapis.com/auth/drive'
-  ]
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive",
+  ],
 });
 ```
 
@@ -633,30 +709,30 @@ const auth = new GoogleAuth({
 
 ```javascript
 // craco.config.js (production optimization)
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   webpack: {
     configure: (webpackConfig, { env, paths }) => {
-      if (env === 'production') {
+      if (env === "production") {
         // Bundle splitting for better caching
         webpackConfig.optimization.splitChunks = {
-          chunks: 'all',
+          chunks: "all",
           cacheGroups: {
             vendor: {
               test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
+              name: "vendors",
+              chunks: "all",
             },
             google: {
               test: /[\\/]node_modules[\\/](googleapis|google-auth-library)[\\/]/,
-              name: 'google-apis',
-              chunks: 'all',
+              name: "google-apis",
+              chunks: "all",
             },
             antd: {
               test: /[\\/]node_modules[\\/]antd[\\/]/,
-              name: 'antd-ui',
-              chunks: 'all',
+              name: "antd-ui",
+              chunks: "all",
             },
           },
         };
@@ -676,7 +752,7 @@ module.exports = {
   babel: {
     plugins: [
       // Tree shaking optimization
-      ['import', { libraryName: 'antd', style: 'css' }],
+      ["import", { libraryName: "antd", style: "css" }],
     ],
   },
 };
@@ -709,7 +785,7 @@ class ProductionCacheManager {
     this.cacheStats = {
       hits: 0,
       misses: 0,
-      totalRequests: 0
+      totalRequests: 0,
     };
   }
 
@@ -734,16 +810,19 @@ class ProductionCacheManager {
     this.cache.set(key, {
       data,
       timestamp: Date.now(),
-      ttl: ttlMinutes * 60 * 1000
+      ttl: ttlMinutes * 60 * 1000,
     });
   }
 
   getCacheStats() {
-    const hitRate = ((this.cacheStats.hits / this.cacheStats.totalRequests) * 100).toFixed(1);
+    const hitRate = (
+      (this.cacheStats.hits / this.cacheStats.totalRequests) *
+      100
+    ).toFixed(1);
     return {
       ...this.cacheStats,
       hitRate: `${hitRate}%`,
-      cacheSize: this.cache.size
+      cacheSize: this.cache.size,
     };
   }
 }
@@ -802,10 +881,10 @@ console.log('Sheet ID:', process.env.REACT_APP_GOOGLE_SHEET_ID);
 ```javascript
 // Performance debugging utility
 const debugPerformance = () => {
-  console.log('🔍 Performance Debug Info:');
-  console.log('Memory Usage:', process.memoryUsage());
-  console.log('Uptime:', process.uptime());
-  console.log('CPU Usage:', process.cpuUsage());
+  console.log("🔍 Performance Debug Info:");
+  console.log("Memory Usage:", process.memoryUsage());
+  console.log("Uptime:", process.uptime());
+  console.log("CPU Usage:", process.cpuUsage());
 
   // Network timing for Google APIs
   const start = Date.now();
@@ -854,27 +933,72 @@ class ProductionMonitoringDashboard {
         uptime: 0,
         memoryUsage: 0,
         cpuUsage: 0,
-        activeConnections: 0
+        activeConnections: 0,
       },
       api: {
         totalRequests: 0,
         successfulRequests: 0,
         failedRequests: 0,
-        averageResponseTime: 0
+        averageResponseTime: 0,
       },
       services: {
-        googleSheetsStatus: 'unknown',
-        googleDriveStatus: 'unknown',
-        emailServiceStatus: 'unknown',
-        telegramBotStatus: 'unknown'
-      }
+        googleSheetsStatus: "unknown",
+        googleDriveStatus: "unknown",
+        emailServiceStatus: "unknown",
+        telegramBotStatus: "unknown",
+      },
     };
+  }
+  checkGoogleServices() {
+    return new Promise((resolve, reject) => {
+      googleSheetsService.getSheetData().then(() => {
+        this.metrics.googleSheetsStatus = "healthy";
+        this.metrics.googleSheetsStatus = "healthy";
+        resolve();
+      }).catch((error) => {
+        this.metrics.googleSheetsStatus = "unhealthy";
+        reject(error);
+        });
+      });
+    });
+  }
+  checkCommunicationServices() {
+    return new Promise((resolve, reject) => {
+      emailService.sendEmail().then(() => {
+        this.metrics.emailServiceStatus = "healthy";
+        this.metrics.emailServiceStatus = "healthy";
+        resolve();
+      }).catch((error) => {
+        this.metrics.emailServiceStatus = "unhealthy";
+      });
+    });
+  }
+  checkTelegramBot() {
+    return new Promise((resolve, reject) => {
+      telegramBotService.sendMessage().then(() => {
+        this.metrics.telegramBotStatus = "healthy";
+        resolve();
+      }).catch((error) => {
+        this.metrics.telegramBotStatus = "unhealthy";
+        reject(error);
+      });
+    });
+  }
+  checkForAlerts() {
+    return new Promise((resolve, reject) => {
+      if (this.metrics.googleSheetsStatus === "unhealthy" || this.metrics.emailServiceStatus === "unhealthy" || this.metrics.telegramBotStatus === "unhealthy") {
+        reject(new Error("Alerts detected"));
+      } else {
+        resolve();
+      }
+    });
   }
 
   async collectMetrics() {
     // System metrics
     this.metrics.system.uptime = process.uptime();
-    this.metrics.system.memoryUsage = process.memoryUsage().heapUsed / 1024 / 1024; // MB
+    this.metrics.system.memoryUsage =
+      process.memoryUsage().heapUsed / 1024 / 1024; // MB
 
     // Service health checks
     try {
@@ -882,21 +1006,24 @@ class ProductionMonitoringDashboard {
       await this.checkCommunicationServices();
       await this.generateHealthReport();
     } catch (error) {
-      console.error('❌ Monitoring error:', error);
+      console.error("❌ Monitoring error:", error);
     }
   }
 
   generateHealthReport() {
     const report = {
       timestamp: new Date().toISOString(),
-      environment: 'production',
-      version: 'v2025.09.29',
+      environment: "production",
+      version: "v2025.09.29",
       status: this.calculateOverallStatus(),
       metrics: this.metrics,
-      alerts: this.checkForAlerts()
+      alerts: this.checkForAlerts(),
     };
 
-    console.log('📊 Production Health Report:', JSON.stringify(report, null, 2));
+    console.log(
+      "📊 Production Health Report:",
+      JSON.stringify(report, null, 2)
+    );
     return report;
   }
 }
@@ -906,32 +1033,32 @@ class ProductionMonitoringDashboard {
 
 ```javascript
 // utils/productionLogger.js (enterprise logging)
-const winston = require('winston');
+const winston = require("winston");
 
 const productionLogger = winston.createLogger({
-  level: 'info',
+  level: "info",
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.errors({ stack: true }),
     winston.format.json()
   ),
   defaultMeta: {
-    service: 'mia-google-integration',
-    version: 'v2025.09.29',
-    environment: 'production'
+    service: "mia-google-integration",
+    version: "v2025.09.29",
+    environment: "production",
   },
   transports: [
-    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'logs/combined.log' }),
+    new winston.transports.File({ filename: "logs/error.log", level: "error" }),
+    new winston.transports.File({ filename: "logs/combined.log" }),
     new winston.transports.Console({
-      format: winston.format.simple()
-    })
-  ]
+      format: winston.format.simple(),
+    }),
+  ],
 });
 
 // Usage in production
-productionLogger.info('🚀 Production system started');
-productionLogger.error('❌ Google API error', { error: 'details' });
+productionLogger.info("🚀 Production system started");
+productionLogger.error("❌ Google API error", { error: "details" });
 ```
 
 ---

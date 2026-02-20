@@ -3,7 +3,7 @@
 # =============================================================================
 
 # Multi-stage build for production optimization
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
@@ -18,8 +18,10 @@ RUN npm install --legacy-peer-deps --no-audit
 # Copy source code
 COPY . .
 
-# Build the application
-RUN npm run build:prod
+# Build with Vite (nhẹ hơn Craco - ít RAM, phù hợp Docker)
+ENV NODE_OPTIONS="--max-old-space-size=1536"
+ENV GENERATE_SOURCEMAP=false
+RUN npm run build
 
 # Remove devDependencies after build to reduce image size (optional)
 RUN npm prune --production
@@ -36,10 +38,8 @@ COPY --from=builder /app/build /usr/share/nginx/html
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Create nginx user and set permissions
-RUN addgroup -g 1001 -S nginx && \
-  adduser -S -D -H -u 1001 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx && \
-  chown -R nginx:nginx /usr/share/nginx/html && \
+# Set permissions (nginx user/group already exist in nginx:alpine)
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
   chown -R nginx:nginx /var/cache/nginx && \
   chown -R nginx:nginx /var/log/nginx && \
   chown -R nginx:nginx /etc/nginx/conf.d

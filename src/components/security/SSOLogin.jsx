@@ -4,32 +4,32 @@ import {
   LoginOutlined,
   SafetyOutlined,
   WindowsOutlined,
-} from '@ant-design/icons';
-import { Alert, Button, Card, Divider, message, Space, Spin } from 'antd';
-import { useEffect, useState } from 'react';
-import securityService from '../../services/securityService';
-import './Security.css';
+} from "@ant-design/icons";
+import { Alert, Button, Card, Divider, message, Space, Spin } from "antd";
+import { useEffect, useState } from "react";
+import securityService from "../../services/securityService";
+import "./Security.css";
 
 const SSOLogin = () => {
   const [loading, setLoading] = useState(null);
   const [providers, setProviders] = useState([
     {
-      id: 'google',
-      name: 'Google',
+      id: "google",
+      name: "Google",
       icon: <GoogleOutlined />,
-      color: '#4285F4',
+      color: "#4285F4",
     },
     {
-      id: 'github',
-      name: 'GitHub',
+      id: "github",
+      name: "GitHub",
       icon: <GithubOutlined />,
-      color: '#24292e',
+      color: "#24292e",
     },
     {
-      id: 'microsoft',
-      name: 'Microsoft',
+      id: "microsoft",
+      name: "Microsoft",
       icon: <WindowsOutlined />,
-      color: '#00A1F1',
+      color: "#00A1F1",
     },
   ]);
 
@@ -55,14 +55,14 @@ const SSOLogin = () => {
 
   // Handle SSO callback from URL params
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location) {
+    if (typeof window !== "undefined" && window.location) {
       const urlParams = new (window.URLSearchParams || URLSearchParams)(
         window.location.search
       );
-      const code = urlParams.get('code');
-      const state = urlParams.get('state');
+      const code = urlParams.get("code");
+      const state = urlParams.get("state");
       const provider =
-        urlParams.get('provider') || (state ? state.split('_')[0] : null);
+        urlParams.get("provider") || (state ? state.split("_")[0] : null);
 
       if (code && provider) {
         handleSSOCallback(provider, code, state);
@@ -83,7 +83,7 @@ const SSOLogin = () => {
         message.success(`Đăng nhập ${provider} thành công!`);
         // Redirect to dashboard or home
         setTimeout(() => {
-          window.location.href = '/';
+          window.location.href = "/";
         }, 1000);
       } else {
         message.error(`Đăng nhập ${provider} thất bại`);
@@ -115,11 +115,11 @@ const SSOLogin = () => {
           type="info"
           icon={<SafetyOutlined />}
           showIcon
-          style={{ marginBottom: '24px' }}
+          style={{ marginBottom: "24px" }}
         />
 
         <div className="sso-buttons-container">
-          <Space orientation="vertical" size="middle" style={{ width: '100%' }}>
+          <Space orientation="vertical" size="middle" style={{ width: "100%" }}>
             {providers.map((provider) => (
               <Button
                 key={provider.id}
@@ -129,15 +129,15 @@ const SSOLogin = () => {
                 loading={loading === provider.id}
                 onClick={() => handleSSOLogin(provider.id)}
                 style={{
-                  width: '100%',
-                  height: '50px',
+                  width: "100%",
+                  height: "50px",
                   backgroundColor:
-                    loading === provider.id ? '#d9d9d9' : provider.color,
+                    loading === provider.id ? "#d9d9d9" : provider.color,
                   borderColor: provider.color,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
                 }}
                 disabled={loading !== null}
               >
@@ -149,17 +149,17 @@ const SSOLogin = () => {
 
         <Divider>Hoặc</Divider>
 
-        <div style={{ textAlign: 'center', color: '#666' }}>
+        <div style={{ textAlign: "center", color: "#666" }}>
           <p>
-            Bạn có thể sử dụng email và mật khẩu để đăng nhập{' '}
+            Bạn có thể sử dụng email và mật khẩu để đăng nhập{" "}
             <a href="/login">tại đây</a>
           </p>
         </div>
 
         {loading && (
-          <div style={{ textAlign: 'center', marginTop: '24px' }}>
+          <div style={{ textAlign: "center", marginTop: "24px" }}>
             <Spin size="large" />
-            <p style={{ marginTop: '16px', color: '#666' }}>
+            <p style={{ marginTop: "16px", color: "#666" }}>
               Đang chuyển hướng đến nhà cung cấp...
             </p>
           </div>

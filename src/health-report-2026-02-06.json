@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-02-06T07:51:09.868Z",
+  "overall": "unhealthy",
+  "services": {
+    "file-system": {
+      "status": "error",
+      "message": "Missing files/directories: package.json, .env, src/App.jsx, src, src/components, src/services, public",
+      "details": null,
+      "timestamp": "2026-02-06T07:51:09.869Z"
+    },
+    "dependencies": {
+      "status": "error",
+      "message": "Error checking dependencies: ENOENT: no such file or directory, open 'package.json'",
+      "details": null,
+      "timestamp": "2026-02-06T07:51:09.869Z"
+    },
+    "environment": {
+      "status": "error",
+      "message": "Missing required environment variables: GOOGLE_SERVICE_ACCOUNT_EMAIL, REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID, GOOGLE_PRIVATE_KEY",
+      "details": null,
+      "timestamp": "2026-02-06T07:51:09.869Z"
+    }
+  },
+  "errors": [
+    {
+      "service": "file-system",
+      "message": "Missing files/directories: package.json, .env, src/App.jsx, src, src/components, src/services, public",
+      "details": null
+    },
+    {
+      "service": "dependencies",
+      "message": "Error checking dependencies: ENOENT: no such file or directory, open 'package.json'",
+      "details": null
+    },
+    {
+      "service": "environment",
+      "message": "Missing required environment variables: GOOGLE_SERVICE_ACCOUNT_EMAIL, REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID, GOOGLE_PRIVATE_KEY",
+      "details": null
+    }
+  ],
+  "warnings": []
+}

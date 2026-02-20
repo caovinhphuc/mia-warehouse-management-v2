@@ -6,9 +6,14 @@
  * =============================================================================
  */
 
-import axios from 'axios';
+import axios from "axios";
+import importMetaEnv from "../../utils/importMetaEnv";
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_URL =
+  importMetaEnv.VITE_API_URL ||
+  importMetaEnv.REACT_APP_API_URL ||
+  process.env.REACT_APP_API_URL ||
+  "http://localhost:3001";
 const API_BASE = `${API_URL}/api`;
 
 /**
@@ -16,11 +21,11 @@ const API_BASE = `${API_URL}/api`;
  */
 const getAuthHeaders = () => {
   const token =
-    localStorage.getItem('authToken') || localStorage.getItem('token');
+    localStorage.getItem("authToken") || localStorage.getItem("token");
   return {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 };
@@ -36,7 +41,7 @@ export const getAllUsers = async (params = {}) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Get all users error:', error);
+    console.error("Get all users error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -52,7 +57,7 @@ export const getUserById = async (userId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get user by ID error:', error);
+    console.error("Get user by ID error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -65,7 +70,7 @@ export const getCurrentUser = async () => {
     const response = await axios.get(`${API_BASE}/users/me`, getAuthHeaders());
     return response.data;
   } catch (error) {
-    console.error('Get current user error:', error);
+    console.error("Get current user error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -82,7 +87,7 @@ export const createUser = async (userData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Create user error:', error);
+    console.error("Create user error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -99,7 +104,7 @@ export const updateUser = async (userId, userData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Update user error:', error);
+    console.error("Update user error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -116,7 +121,7 @@ export const updateProfile = async (profileData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Update profile error:', error);
+    console.error("Update profile error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -132,7 +137,7 @@ export const deleteUser = async (userId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Delete user error:', error);
+    console.error("Delete user error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -149,7 +154,7 @@ export const changePassword = async (passwordData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Change password error:', error);
+    console.error("Change password error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -164,7 +169,7 @@ export const resetPassword = async (email) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Reset password error:', error);
+    console.error("Reset password error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -181,7 +186,7 @@ export const toggleUserStatus = async (userId, isActive) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Toggle user status error:', error);
+    console.error("Toggle user status error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -198,7 +203,7 @@ export const assignRole = async (userId, roleId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Assign role error:', error);
+    console.error("Assign role error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -214,7 +219,7 @@ export const removeRole = async (userId, roleId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Remove role error:', error);
+    console.error("Remove role error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -230,7 +235,7 @@ export const getUserActivityLogs = async (userId, params = {}) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Get user activity logs error:', error);
+    console.error("Get user activity logs error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -246,7 +251,7 @@ export const searchUsers = async (query, filters = {}) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Search users error:', error);
+    console.error("Search users error:", error);
     throw error.response?.data || error.message;
   }
 };

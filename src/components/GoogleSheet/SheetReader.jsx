@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useGoogleSheets } from '../../hooks/useGoogleSheets';
+import React, { useState, useEffect } from "react";
+import { useGoogleSheets } from "../../hooks/useGoogleSheets";
 
-const SheetReader = ({ range = 'A1:Z1000', sheetId, onDataLoaded }) => {
+const SheetReader = ({ range = "A1:Z1000", sheetId, onDataLoaded }) => {
   const { data, loading, error, readSheet, clearError } = useGoogleSheets();
   const [customRange, setCustomRange] = useState(range);
 
@@ -13,7 +13,7 @@ const SheetReader = ({ range = 'A1:Z1000', sheetId, onDataLoaded }) => {
         onDataLoaded(result);
       }
     } catch (err) {
-      console.error('Failed to read sheet:', err);
+      console.error("Failed to read sheet:", err);
     }
   }, [customRange, sheetId, onDataLoaded, readSheet, clearError]);
 
@@ -29,11 +29,11 @@ const SheetReader = ({ range = 'A1:Z1000', sheetId, onDataLoaded }) => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: "20px" }}>
       <h3>📊 Sheet Reader</h3>
 
       {/* Range Input */}
-      <div style={{ marginBottom: '15px' }}>
+      <div style={{ marginBottom: "15px" }}>
         <label htmlFor="range-input">Range:</label>
         <input
           id="range-input"
@@ -41,14 +41,14 @@ const SheetReader = ({ range = 'A1:Z1000', sheetId, onDataLoaded }) => {
           value={customRange}
           onChange={(e) => handleRangeChange(e.target.value)}
           placeholder="A1:Z1000"
-          style={{ marginLeft: '10px', padding: '5px', width: '200px' }}
+          style={{ marginLeft: "10px", padding: "5px", width: "200px" }}
         />
         <button
           onClick={handleReadSheet}
           disabled={loading}
-          style={{ marginLeft: '10px', padding: '5px 10px' }}
+          style={{ marginLeft: "10px", padding: "5px 10px" }}
         >
-          {loading ? 'Loading...' : 'Read'}
+          {loading ? "Loading..." : "Read"}
         </button>
       </div>
 
@@ -56,12 +56,12 @@ const SheetReader = ({ range = 'A1:Z1000', sheetId, onDataLoaded }) => {
       {error && (
         <div
           style={{
-            backgroundColor: '#ffebee',
-            border: '1px solid #f44336',
-            borderRadius: '4px',
-            padding: '10px',
-            marginBottom: '15px',
-            color: '#f44336',
+            backgroundColor: "#ffebee",
+            border: "1px solid #f44336",
+            borderRadius: "4px",
+            padding: "10px",
+            marginBottom: "15px",
+            color: "#f44336",
           }}
         >
           <strong>Error:</strong> {error}
@@ -74,12 +74,12 @@ const SheetReader = ({ range = 'A1:Z1000', sheetId, onDataLoaded }) => {
           <h4>Data ({data.length} rows):</h4>
           <div
             style={{
-              overflowX: 'auto',
-              maxHeight: '400px',
-              border: '1px solid #ddd',
+              overflowX: "auto",
+              maxHeight: "400px",
+              border: "1px solid #ddd",
             }}
           >
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
               <tbody>
                 {data.map((row, rowIndex) => (
                   <tr key={rowIndex}>
@@ -87,10 +87,10 @@ const SheetReader = ({ range = 'A1:Z1000', sheetId, onDataLoaded }) => {
                       <td
                         key={cellIndex}
                         style={{
-                          border: '1px solid #ddd',
-                          padding: '8px',
-                          backgroundColor: rowIndex === 0 ? '#f5f5f5' : 'white',
-                          fontWeight: rowIndex === 0 ? 'bold' : 'normal',
+                          border: "1px solid #ddd",
+                          padding: "8px",
+                          backgroundColor: rowIndex === 0 ? "#f5f5f5" : "white",
+                          fontWeight: rowIndex === 0 ? "bold" : "normal",
                         }}
                       >
                         {cell}
@@ -107,11 +107,11 @@ const SheetReader = ({ range = 'A1:Z1000', sheetId, onDataLoaded }) => {
       {data && data.length === 0 && !loading && (
         <div
           style={{
-            backgroundColor: '#fff3cd',
-            border: '1px solid #ffc107',
-            borderRadius: '4px',
-            padding: '10px',
-            color: '#856404',
+            backgroundColor: "#fff3cd",
+            border: "1px solid #ffc107",
+            borderRadius: "4px",
+            padding: "10px",
+            color: "#856404",
           }}
         >
           No data found in the specified range.

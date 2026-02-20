@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 /**
  * useDriveOperations
@@ -14,7 +14,7 @@ const useDriveOperations = () => {
     setError(null);
     try {
       // TODO: Implement actual API call
-      const response = await fetch('/api/drive/files');
+      const response = await fetch("/api/drive/files");
       const data = await response.json();
       setFiles(data.files);
     } catch (err) {
@@ -26,7 +26,7 @@ const useDriveOperations = () => {
 
   const uploadFile = useCallback(async (file) => {
     // TODO: Implement upload logic
-    console.log('Uploading:', file.name);
+    console.log("Uploading:", file.name);
   }, []);
 
   const deleteFile = useCallback(async (fileId) => {

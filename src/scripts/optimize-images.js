@@ -5,31 +5,31 @@
  * Optimizes images in public/ and src/ directories
  */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+const fs = require("fs");
+const path = require("path");
+const { execSync } = require("child_process");
 
 const colors = {
-  reset: '\x1b[0m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  red: '\x1b[31m',
-  cyan: '\x1b[36m',
+  reset: "\x1b[0m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  red: "\x1b[31m",
+  cyan: "\x1b[36m",
 };
 
-function log(message, color = 'reset') {
+function log(message, color = "reset") {
   console.log(`${colors[color]}${message}${colors.reset}`);
 }
 
 function checkImageOptimizer() {
   // Check for sharp (recommended) or imagemin
   try {
-    execSync('npx sharp --version', { stdio: 'ignore' });
-    return 'sharp';
+    execSync("npx sharp --version", { stdio: "ignore" });
+    return "sharp";
   } catch (error) {
     try {
-      execSync('npx imagemin --version', { stdio: 'ignore' });
-      return 'imagemin';
+      execSync("npx imagemin --version", { stdio: "ignore" });
+      return "imagemin";
     } catch (error) {
       return null;
     }
@@ -38,7 +38,7 @@ function checkImageOptimizer() {
 
 function findImages(
   dir,
-  extensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg']
+  extensions = [".png", ".jpg", ".jpeg", ".gif", ".svg"]
 ) {
   const images = [];
 
@@ -52,8 +52,8 @@ function findImages(
         const stat = fs.statSync(fullPath);
         if (
           stat.isDirectory() &&
-          !item.startsWith('.') &&
-          item !== 'node_modules'
+          !item.startsWith(".") &&
+          item !== "node_modules"
         ) {
           traverse(fullPath);
         } else if (extensions.some((ext) => item.toLowerCase().endsWith(ext))) {
@@ -78,9 +78,9 @@ function getFileSize(filePath) {
 }
 
 function formatBytes(bytes) {
-  if (bytes === 0) return '0 Bytes';
+  if (bytes === 0) return "0 Bytes";
   const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const sizes = ["Bytes", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
 }
@@ -93,29 +93,29 @@ function optimizeWithSharp(imagePath) {
 }
 
 function optimizeImages() {
-  log('🖼️  Image Optimization Script', 'cyan');
-  log('================================', 'cyan');
-  console.log('');
+  log("🖼️  Image Optimization Script", "cyan");
+  log("================================", "cyan");
+  console.log("");
 
   // Check for optimizer
   const optimizer = checkImageOptimizer();
   if (!optimizer) {
-    log('⚠️  No image optimizer found. Installing sharp...', 'yellow');
+    log("⚠️  No image optimizer found. Installing sharp...", "yellow");
     try {
-      execSync('npm install --save-dev sharp', { stdio: 'inherit' });
-      log('✅ Sharp installed successfully', 'green');
+      execSync("npm install --save-dev sharp", { stdio: "inherit" });
+      log("✅ Sharp installed successfully", "green");
     } catch (error) {
       log(
-        '❌ Failed to install sharp. Please install manually: npm install --save-dev sharp',
-        'red'
+        "❌ Failed to install sharp. Please install manually: npm install --save-dev sharp",
+        "red"
       );
-      log('💡 You can also use online tools like TinyPNG or Squoosh', 'yellow');
+      log("💡 You can also use online tools like TinyPNG or Squoosh", "yellow");
       return;
     }
   }
 
   // Find images
-  const directories = ['public', 'src'];
+  const directories = ["public", "src"];
   const allImages = [];
 
   directories.forEach((dir) => {
@@ -126,23 +126,23 @@ function optimizeImages() {
   });
 
   if (allImages.length === 0) {
-    log('ℹ️  No images found to optimize', 'cyan');
+    log("ℹ️  No images found to optimize", "cyan");
     return;
   }
 
-  log(`📁 Found ${allImages.length} images to optimize`, 'cyan');
-  console.log('');
+  log(`📁 Found ${allImages.length} images to optimize`, "cyan");
+  console.log("");
 
   // Group by type
   const byType = {
-    png: allImages.filter((img) => img.toLowerCase().endsWith('.png')),
+    png: allImages.filter((img) => img.toLowerCase().endsWith(".png")),
     jpg: allImages.filter(
       (img) =>
-        img.toLowerCase().endsWith('.jpg') ||
-        img.toLowerCase().endsWith('.jpeg')
+        img.toLowerCase().endsWith(".jpg") ||
+        img.toLowerCase().endsWith(".jpeg")
     ),
-    gif: allImages.filter((img) => img.toLowerCase().endsWith('.gif')),
-    svg: allImages.filter((img) => img.toLowerCase().endsWith('.svg')),
+    gif: allImages.filter((img) => img.toLowerCase().endsWith(".gif")),
+    svg: allImages.filter((img) => img.toLowerCase().endsWith(".svg")),
   };
 
   // Statistics
@@ -156,7 +156,7 @@ function optimizeImages() {
 
     log(
       `🔄 Processing ${images.length} ${type.toUpperCase()} images...`,
-      'cyan'
+      "cyan"
     );
 
     images.forEach((imagePath, index) => {
@@ -176,7 +176,7 @@ function optimizeImages() {
         // Files larger than 100KB
         log(
           `  ⚠️  ${relativePath}: ${formatBytes(originalSize)} (consider optimization)`,
-          'yellow'
+          "yellow"
         );
       }
 
@@ -189,24 +189,24 @@ function optimizeImages() {
     });
   });
 
-  console.log('');
-  log('📊 Optimization Summary:', 'cyan');
-  log(`  Total images: ${allImages.length}`, 'cyan');
-  log(`  Total size: ${formatBytes(totalOriginal)}`, 'cyan');
+  console.log("");
+  log("📊 Optimization Summary:", "cyan");
+  log(`  Total images: ${allImages.length}`, "cyan");
+  log(`  Total size: ${formatBytes(totalOriginal)}`, "cyan");
   log(
     `  Estimated savings: ~${formatBytes(totalOriginal * 0.4)} (40% average)`,
-    'cyan'
+    "cyan"
   );
-  console.log('');
+  console.log("");
 
   // Recommendations
-  log('💡 Recommendations:', 'yellow');
-  log('  • Use WebP format for modern browsers', 'yellow');
-  log('  • Implement lazy loading for images', 'yellow');
-  log('  • Use responsive images (srcset)', 'yellow');
-  log('  • Consider using CDN for images', 'yellow');
-  log('  • Compress images before uploading', 'yellow');
-  console.log('');
+  log("💡 Recommendations:", "yellow");
+  log("  • Use WebP format for modern browsers", "yellow");
+  log("  • Implement lazy loading for images", "yellow");
+  log("  • Use responsive images (srcset)", "yellow");
+  log("  • Consider using CDN for images", "yellow");
+  log("  • Compress images before uploading", "yellow");
+  console.log("");
 
   // Save report
   const report = {
@@ -218,11 +218,11 @@ function optimizeImages() {
   };
 
   fs.writeFileSync(
-    'image-optimization-report.json',
+    "image-optimization-report.json",
     JSON.stringify(report, null, 2)
   );
-  log('📄 Report saved to image-optimization-report.json', 'cyan');
-  log('✅ Image analysis completed', 'green');
+  log("📄 Report saved to image-optimization-report.json", "cyan");
+  log("✅ Image analysis completed", "green");
 }
 
 if (require.main === module) {

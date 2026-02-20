@@ -6,9 +6,9 @@
  * =============================================================================
  */
 
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 const API_BASE = `${API_URL}/api`;
 
 /**
@@ -16,11 +16,11 @@ const API_BASE = `${API_URL}/api`;
  */
 const getAuthHeaders = () => {
   const token =
-    localStorage.getItem('authToken') || localStorage.getItem('token');
+    localStorage.getItem("authToken") || localStorage.getItem("token");
   return {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 };
@@ -33,7 +33,7 @@ export const getAllRoles = async () => {
     const response = await axios.get(`${API_BASE}/roles`, getAuthHeaders());
     return response.data;
   } catch (error) {
-    console.error('Get all roles error:', error);
+    console.error("Get all roles error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -49,7 +49,7 @@ export const getRoleById = async (roleId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get role by ID error:', error);
+    console.error("Get role by ID error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -66,7 +66,7 @@ export const createRole = async (roleData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Create role error:', error);
+    console.error("Create role error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -83,7 +83,7 @@ export const updateRole = async (roleId, roleData) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Update role error:', error);
+    console.error("Update role error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -99,7 +99,7 @@ export const deleteRole = async (roleId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Delete role error:', error);
+    console.error("Delete role error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -116,7 +116,7 @@ export const assignPermissions = async (roleId, permissionIds) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Assign permissions error:', error);
+    console.error("Assign permissions error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -132,7 +132,7 @@ export const removePermission = async (roleId, permissionId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Remove permission error:', error);
+    console.error("Remove permission error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -148,7 +148,7 @@ export const getUsersByRole = async (roleId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get users by role error:', error);
+    console.error("Get users by role error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -164,7 +164,7 @@ export const getRolePermissions = async (roleId) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get role permissions error:', error);
+    console.error("Get role permissions error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -183,7 +183,7 @@ export const checkRolePermission = async (roleId, permissionName) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Check role permission error:', error);
+    console.error("Check role permission error:", error);
     throw error.response?.data || error.message;
   }
 };
@@ -199,7 +199,7 @@ export const getDefaultRoles = async () => {
     );
     return response.data;
   } catch (error) {
-    console.error('Get default roles error:', error);
+    console.error("Get default roles error:", error);
     throw error.response?.data || error.message;
   }
 };

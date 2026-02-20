@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "mia-google-integration",
   "builds": [
     {
       "src": "package.json",
@@ -12,6 +11,16 @@
   ],
   "routes": [
     {
+      "src": "/login.html",
+      "dest": "/login.html"
+    },
+    {
+      "src": "/assets/(.*)",
+      "headers": {
+        "cache-control": "s-maxage=31536000,immutable"
+      }
+    },
+    {
       "src": "/static/(.*)",
       "headers": {
         "cache-control": "s-maxage=31536000,immutable"
@@ -21,10 +30,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "functions": {
-    "app/api/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }

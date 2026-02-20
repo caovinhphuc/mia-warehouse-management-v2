@@ -7,20 +7,20 @@
  * Bao gồm: Google APIs, Email service, Telegram, Database connections
  */
 
-const fs = require('fs');
-const path = require('path');
-require('dotenv').config();
+const fs = require("fs");
+const path = require("path");
+require("dotenv").config();
 
 // Colors for console output
 const colors = {
-  reset: '\x1b[0m',
-  bright: '\x1b[1m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  magenta: '\x1b[35m',
-  cyan: '\x1b[36m',
+  reset: "\x1b[0m",
+  bright: "\x1b[1m",
+  red: "\x1b[31m",
+  green: "\x1b[32m",
+  yellow: "\x1b[33m",
+  blue: "\x1b[34m",
+  magenta: "\x1b[35m",
+  cyan: "\x1b[36m",
 };
 
 // Console logging functions
@@ -37,7 +37,7 @@ const log = {
 // Health check results
 const healthResults = {
   timestamp: new Date().toISOString(),
-  overall: 'healthy',
+  overall: "healthy",
   services: {},
   errors: [],
   warnings: [],
@@ -52,38 +52,38 @@ const addResult = (service, status, message, details = null) => {
     timestamp: new Date().toISOString(),
   };
 
-  if (status === 'error') {
+  if (status === "error") {
     healthResults.errors.push({ service, message, details });
-    healthResults.overall = 'unhealthy';
-  } else if (status === 'warning') {
+    healthResults.overall = "unhealthy";
+  } else if (status === "warning") {
     healthResults.warnings.push({ service, message, details });
-    if (healthResults.overall === 'healthy') {
-      healthResults.overall = 'degraded';
+    if (healthResults.overall === "healthy") {
+      healthResults.overall = "degraded";
     }
   }
 };
 
 const checkEnvironmentVariables = () => {
-  log.step('Kiểm tra Environment Variables...');
+  log.step("Kiểm tra Environment Variables...");
 
   // Check if using JSON file or env variables
   const usingJsonFile = !!process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH;
 
   const requiredVars = [
-    'GOOGLE_SERVICE_ACCOUNT_EMAIL',
-    'REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID',
+    "GOOGLE_SERVICE_ACCOUNT_EMAIL",
+    "REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID",
   ];
 
   // If not using JSON file, require private key
   if (!usingJsonFile) {
-    requiredVars.push('GOOGLE_PRIVATE_KEY');
+    requiredVars.push("GOOGLE_PRIVATE_KEY");
   } else {
     // If using JSON file, check if it exists
     const jsonPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH;
     if (!fs.existsSync(jsonPath)) {
       addResult(
-        'environment',
-        'error',
+        "environment",
+        "error",
         `Service Account JSON file not found: ${jsonPath}`
       );
       return false;
@@ -91,14 +91,14 @@ const checkEnvironmentVariables = () => {
   }
 
   const optionalVars = [
-    'REACT_APP_GOOGLE_MAPS_API_KEY',
-    'TELEGRAM_BOT_TOKEN',
-    'TELEGRAM_CHAT_ID',
-    'SENDGRID_API_KEY',
-    'EMAIL_FROM',
-    'SMTP_USER',
-    'SMTP_PASS',
-    'REDIS_URL',
+    "REACT_APP_GOOGLE_MAPS_API_KEY",
+    "TELEGRAM_BOT_TOKEN",
+    "TELEGRAM_CHAT_ID",
+    "SENDGRID_API_KEY",
+    "EMAIL_FROM",
+    "SMTP_USER",
+    "SMTP_PASS",
+    "REDIS_URL",
   ];
 
   const missingRequired = requiredVars.filter(
@@ -110,32 +110,32 @@ const checkEnvironmentVariables = () => {
 
   if (missingRequired.length > 0) {
     addResult(
-      'environment',
-      'error',
-      `Missing required environment variables: ${missingRequired.join(', ')}`
+      "environment",
+      "error",
+      `Missing required environment variables: ${missingRequired.join(", ")}`
     );
     return false;
   }
 
   if (missingOptional.length > 0) {
     addResult(
-      'environment',
-      'warning',
-      `Missing optional environment variables: ${missingOptional.join(', ')}`
+      "environment",
+      "warning",
+      `Missing optional environment variables: ${missingOptional.join(", ")}`
     );
   } else {
-    addResult('environment', 'healthy', 'All environment variables configured');
+    addResult("environment", "healthy", "All environment variables configured");
   }
 
   return true;
 };
 
 const checkGoogleSheetsAPI = async () => {
-  log.step('Kiểm tra Google Sheets API...');
+  log.step("Kiểm tra Google Sheets API...");
 
   try {
-    const { GoogleAuth } = require('google-auth-library');
-    const { google } = require('googleapis');
+    const { GoogleAuth } = require("google-auth-library");
+    const { google } = require("googleapis");
 
     // Load credentials from JSON file or env variables
     let credentials;
@@ -143,18 +143,18 @@ const checkGoogleSheetsAPI = async () => {
 
     if (usingJsonFile) {
       const jsonPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH;
-      const serviceAccountContent = fs.readFileSync(jsonPath, 'utf8');
+      const serviceAccountContent = fs.readFileSync(jsonPath, "utf8");
       credentials = JSON.parse(serviceAccountContent);
     } else {
       // Create credentials object from env variables
-      let privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+      let privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
       // Remove quotes if present
       if (privateKey) {
-        privateKey = privateKey.replace(/^["']|["']$/g, '');
+        privateKey = privateKey.replace(/^["']|["']$/g, "");
       }
 
       credentials = {
-        type: 'service_account',
+        type: "service_account",
         project_id: process.env.GOOGLE_PROJECT_ID,
         private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
         private_key: privateKey,
@@ -162,23 +162,23 @@ const checkGoogleSheetsAPI = async () => {
         client_id: process.env.GOOGLE_CLIENT_ID,
         auth_uri:
           process.env.GOOGLE_AUTH_URI ||
-          'https://accounts.google.com/o/oauth2/auth',
+          "https://accounts.google.com/o/oauth2/auth",
         token_uri:
-          process.env.GOOGLE_TOKEN_URI || 'https://oauth2.googleapis.com/token',
+          process.env.GOOGLE_TOKEN_URI || "https://oauth2.googleapis.com/token",
         auth_provider_x509_cert_url:
           process.env.GOOGLE_AUTH_PROVIDER_X509_CERT_URL ||
-          'https://www.googleapis.com/oauth2/v1/certs',
+          "https://www.googleapis.com/oauth2/v1/certs",
       };
     }
 
     // Initialize auth
     const auth = new GoogleAuth({
       credentials: credentials,
-      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
     });
 
     const authClient = await auth.getClient();
-    const sheets = google.sheets({ version: 'v4', auth: authClient });
+    const sheets = google.sheets({ version: "v4", auth: authClient });
 
     // Test connection
     const sheetId = process.env.REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID;
@@ -187,8 +187,8 @@ const checkGoogleSheetsAPI = async () => {
     });
 
     addResult(
-      'google-sheets',
-      'healthy',
+      "google-sheets",
+      "healthy",
       `Connected to Google Sheets: "${response.data.properties.title}"`,
       {
         sheetId,
@@ -200,8 +200,8 @@ const checkGoogleSheetsAPI = async () => {
     return true;
   } catch (error) {
     addResult(
-      'google-sheets',
-      'error',
+      "google-sheets",
+      "error",
       `Google Sheets API connection failed: ${error.message}`,
       {
         error: error.message,
@@ -213,11 +213,11 @@ const checkGoogleSheetsAPI = async () => {
 };
 
 const checkGoogleDriveAPI = async () => {
-  log.step('Kiểm tra Google Drive API...');
+  log.step("Kiểm tra Google Drive API...");
 
   try {
-    const { GoogleAuth } = require('google-auth-library');
-    const { google } = require('googleapis');
+    const { GoogleAuth } = require("google-auth-library");
+    const { google } = require("googleapis");
 
     // Load credentials from JSON file or env variables
     let credentials;
@@ -225,18 +225,18 @@ const checkGoogleDriveAPI = async () => {
 
     if (usingJsonFile) {
       const jsonPath = process.env.GOOGLE_SERVICE_ACCOUNT_KEY_PATH;
-      const serviceAccountContent = fs.readFileSync(jsonPath, 'utf8');
+      const serviceAccountContent = fs.readFileSync(jsonPath, "utf8");
       credentials = JSON.parse(serviceAccountContent);
     } else {
       // Create credentials object from env variables
-      let privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+      let privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
       // Remove quotes if present
       if (privateKey) {
-        privateKey = privateKey.replace(/^["']|["']$/g, '');
+        privateKey = privateKey.replace(/^["']|["']$/g, "");
       }
 
       credentials = {
-        type: 'service_account',
+        type: "service_account",
         project_id: process.env.GOOGLE_PROJECT_ID,
         private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
         private_key: privateKey,
@@ -244,30 +244,30 @@ const checkGoogleDriveAPI = async () => {
         client_id: process.env.GOOGLE_CLIENT_ID,
         auth_uri:
           process.env.GOOGLE_AUTH_URI ||
-          'https://accounts.google.com/o/oauth2/auth',
+          "https://accounts.google.com/o/oauth2/auth",
         token_uri:
-          process.env.GOOGLE_TOKEN_URI || 'https://oauth2.googleapis.com/token',
+          process.env.GOOGLE_TOKEN_URI || "https://oauth2.googleapis.com/token",
         auth_provider_x509_cert_url:
           process.env.GOOGLE_AUTH_PROVIDER_X509_CERT_URL ||
-          'https://www.googleapis.com/oauth2/v1/certs',
+          "https://www.googleapis.com/oauth2/v1/certs",
       };
     }
 
     // Initialize auth
     const auth = new GoogleAuth({
       credentials: credentials,
-      scopes: ['https://www.googleapis.com/auth/drive.file'],
+      scopes: ["https://www.googleapis.com/auth/drive.file"],
     });
 
     const authClient = await auth.getClient();
-    const drive = google.drive({ version: 'v3', auth: authClient });
+    const drive = google.drive({ version: "v3", auth: authClient });
 
     // Test connection
-    const response = await drive.about.get({ fields: 'user' });
+    const response = await drive.about.get({ fields: "user" });
 
     addResult(
-      'google-drive',
-      'healthy',
+      "google-drive",
+      "healthy",
       `Connected to Google Drive: ${response.data.user.displayName}`,
       {
         user: response.data.user.displayName,
@@ -278,8 +278,8 @@ const checkGoogleDriveAPI = async () => {
     return true;
   } catch (error) {
     addResult(
-      'google-drive',
-      'error',
+      "google-drive",
+      "error",
       `Google Drive API connection failed: ${error.message}`,
       {
         error: error.message,
@@ -291,20 +291,20 @@ const checkGoogleDriveAPI = async () => {
 };
 
 const checkEmailService = async () => {
-  log.step('Kiểm tra Email Service...');
+  log.step("Kiểm tra Email Service...");
 
   // Check SendGrid first (preferred method)
   const sendgridApiKey = process.env.SENDGRID_API_KEY;
   if (sendgridApiKey) {
     try {
-      const axios = require('axios');
+      const axios = require("axios");
 
       const response = await axios.get(
-        'https://api.sendgrid.com/v3/user/profile',
+        "https://api.sendgrid.com/v3/user/profile",
         {
           headers: {
             Authorization: `Bearer ${sendgridApiKey}`,
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           timeout: 10000,
         }
@@ -312,11 +312,11 @@ const checkEmailService = async () => {
 
       if (response.status === 200) {
         addResult(
-          'email-service',
-          'healthy',
-          'SendGrid API connection successful',
+          "email-service",
+          "healthy",
+          "SendGrid API connection successful",
           {
-            service: 'SendGrid',
+            service: "SendGrid",
             username: response.data.username,
             email: response.data.email,
           }
@@ -326,8 +326,8 @@ const checkEmailService = async () => {
     } catch (error) {
       // If SendGrid fails, try SMTP as fallback
       addResult(
-        'email-service',
-        'warning',
+        "email-service",
+        "warning",
         `SendGrid API failed: ${error.message}, trying SMTP fallback`,
         { error: error.message }
       );
@@ -337,12 +337,12 @@ const checkEmailService = async () => {
   // Fallback to SMTP if SendGrid not available or failed
   if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
     try {
-      const nodemailer = require('nodemailer');
+      const nodemailer = require("nodemailer");
 
       const transporter = nodemailer.createTransporter({
         host: process.env.SMTP_HOST,
         port: process.env.SMTP_PORT || 587,
-        secure: process.env.SMTP_SECURE === 'true',
+        secure: process.env.SMTP_SECURE === "true",
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
@@ -353,11 +353,11 @@ const checkEmailService = async () => {
       await transporter.verify();
 
       addResult(
-        'email-service',
-        'healthy',
-        'SMTP email service connection successful',
+        "email-service",
+        "healthy",
+        "SMTP email service connection successful",
         {
-          service: 'SMTP',
+          service: "SMTP",
           host: process.env.SMTP_HOST,
           user: process.env.SMTP_USER,
         }
@@ -365,8 +365,8 @@ const checkEmailService = async () => {
       return true;
     } catch (error) {
       addResult(
-        'email-service',
-        'error',
+        "email-service",
+        "error",
         `SMTP connection failed: ${error.message}`,
         {
           error: error.message,
@@ -378,9 +378,9 @@ const checkEmailService = async () => {
 
   // No email service configured
   addResult(
-    'email-service',
-    'warning',
-    'No email service configured (neither SendGrid nor SMTP)',
+    "email-service",
+    "warning",
+    "No email service configured (neither SendGrid nor SMTP)",
     {
       sendgrid_configured: !!sendgridApiKey,
       smtp_configured: !!(
@@ -394,15 +394,15 @@ const checkEmailService = async () => {
 };
 
 const checkTelegramService = async () => {
-  log.step('Kiểm tra Telegram Service...');
+  log.step("Kiểm tra Telegram Service...");
 
   if (!process.env.TELEGRAM_BOT_TOKEN) {
-    addResult('telegram-service', 'warning', 'Telegram service not configured');
+    addResult("telegram-service", "warning", "Telegram service not configured");
     return false;
   }
 
   try {
-    const axios = require('axios');
+    const axios = require("axios");
 
     const response = await axios.get(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/getMe`
@@ -410,8 +410,8 @@ const checkTelegramService = async () => {
 
     if (response.data.ok) {
       addResult(
-        'telegram-service',
-        'healthy',
+        "telegram-service",
+        "healthy",
         `Telegram bot connected: ${response.data.result.first_name}`,
         {
           botName: response.data.result.first_name,
@@ -420,12 +420,12 @@ const checkTelegramService = async () => {
       );
       return true;
     } else {
-      throw new Error('Invalid bot token');
+      throw new Error("Invalid bot token");
     }
   } catch (error) {
     addResult(
-      'telegram-service',
-      'error',
+      "telegram-service",
+      "error",
       `Telegram service connection failed: ${error.message}`,
       {
         error: error.message,
@@ -436,50 +436,50 @@ const checkTelegramService = async () => {
 };
 
 const checkFileSystem = () => {
-  log.step('Kiểm tra File System...');
+  log.step("Kiểm tra File System...");
 
-  const requiredFiles = ['package.json', '.env', 'src/App.jsx'];
+  const requiredFiles = ["package.json", ".env", "src/App.jsx"];
 
-  const requiredDirs = ['src', 'src/components', 'src/services', 'public'];
+  const requiredDirs = ["src", "src/components", "src/services", "public"];
 
   const missingFiles = requiredFiles.filter((file) => !fs.existsSync(file));
   const missingDirs = requiredDirs.filter((dir) => !fs.existsSync(dir));
 
   if (missingFiles.length > 0 || missingDirs.length > 0) {
     addResult(
-      'file-system',
-      'error',
-      `Missing files/directories: ${[...missingFiles, ...missingDirs].join(', ')}`
+      "file-system",
+      "error",
+      `Missing files/directories: ${[...missingFiles, ...missingDirs].join(", ")}`
     );
     return false;
   }
 
   addResult(
-    'file-system',
-    'healthy',
-    'All required files and directories present'
+    "file-system",
+    "healthy",
+    "All required files and directories present"
   );
   return true;
 };
 
 const checkDependencies = () => {
-  log.step('Kiểm tra Dependencies...');
+  log.step("Kiểm tra Dependencies...");
 
   try {
-    const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-    const nodeModulesExists = fs.existsSync('node_modules');
+    const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
+    const nodeModulesExists = fs.existsSync("node_modules");
 
     if (!nodeModulesExists) {
       addResult(
-        'dependencies',
-        'error',
-        'node_modules directory not found. Run npm install'
+        "dependencies",
+        "error",
+        "node_modules directory not found. Run npm install"
       );
       return false;
     }
 
     // Check for critical dependencies
-    const criticalDeps = ['react', 'googleapis', 'google-auth-library'];
+    const criticalDeps = ["react", "googleapis", "google-auth-library"];
     const missingDeps = criticalDeps.filter(
       (dep) =>
         !packageJson.dependencies[dep] && !packageJson.devDependencies[dep]
@@ -487,19 +487,19 @@ const checkDependencies = () => {
 
     if (missingDeps.length > 0) {
       addResult(
-        'dependencies',
-        'warning',
-        `Missing critical dependencies: ${missingDeps.join(', ')}`
+        "dependencies",
+        "warning",
+        `Missing critical dependencies: ${missingDeps.join(", ")}`
       );
     } else {
-      addResult('dependencies', 'healthy', 'All critical dependencies present');
+      addResult("dependencies", "healthy", "All critical dependencies present");
     }
 
     return true;
   } catch (error) {
     addResult(
-      'dependencies',
-      'error',
+      "dependencies",
+      "error",
       `Error checking dependencies: ${error.message}`
     );
     return false;
@@ -507,7 +507,7 @@ const checkDependencies = () => {
 };
 
 const generateHealthReport = () => {
-  log.header('🏥 HEALTH CHECK REPORT');
+  log.header("🏥 HEALTH CHECK REPORT");
 
   const statusColor = {
     healthy: colors.green,
@@ -526,9 +526,9 @@ ${colors.cyan}📊 Service Status:${colors.reset}
 
   Object.entries(healthResults.services).forEach(([service, result]) => {
     const statusIcon = {
-      healthy: '✅',
-      warning: '⚠️',
-      error: '❌',
+      healthy: "✅",
+      warning: "⚠️",
+      error: "❌",
     };
 
     console.log(`${statusIcon[result.status]} ${service}: ${result.message}`);
@@ -554,20 +554,20 @@ ${colors.cyan}📊 Service Status:${colors.reset}
   // Recommendations
   console.log(`\n${colors.cyan}💡 Recommendations:${colors.reset}`);
 
-  if (healthResults.overall === 'unhealthy') {
-    console.log('   - Fix all errors before deploying to production');
-    console.log('   - Check environment variables configuration');
-    console.log('   - Verify Google Service Account permissions');
-  } else if (healthResults.overall === 'degraded') {
-    console.log('   - Address warnings for optimal performance');
-    console.log('   - Consider configuring optional services');
+  if (healthResults.overall === "unhealthy") {
+    console.log("   - Fix all errors before deploying to production");
+    console.log("   - Check environment variables configuration");
+    console.log("   - Verify Google Service Account permissions");
+  } else if (healthResults.overall === "degraded") {
+    console.log("   - Address warnings for optimal performance");
+    console.log("   - Consider configuring optional services");
   } else {
-    console.log('   - All systems are healthy! Ready for production');
-    console.log('   - Consider setting up monitoring and alerts');
+    console.log("   - All systems are healthy! Ready for production");
+    console.log("   - Consider setting up monitoring and alerts");
   }
 
   // Save report to file
-  const reportFile = `health-report-${new Date().toISOString().split('T')[0]}.json`;
+  const reportFile = `health-report-${new Date().toISOString().split("T")[0]}.json`;
   fs.writeFileSync(reportFile, JSON.stringify(healthResults, null, 2));
   console.log(
     `\n${colors.blue}📄 Health report saved to: ${reportFile}${colors.reset}`
@@ -575,7 +575,7 @@ ${colors.cyan}📊 Service Status:${colors.reset}
 };
 
 const main = async () => {
-  log.header('🏥 REACT GOOGLE INTEGRATION - HEALTH CHECK');
+  log.header("🏥 REACT GOOGLE INTEGRATION - HEALTH CHECK");
 
   try {
     // Run all health checks
@@ -584,7 +584,7 @@ const main = async () => {
     checkEnvironmentVariables();
 
     // Only run API checks if environment is configured
-    if (healthResults.services.environment?.status !== 'error') {
+    if (healthResults.services.environment?.status !== "error") {
       await checkGoogleSheetsAPI();
       await checkGoogleDriveAPI();
       await checkEmailService();
@@ -595,7 +595,7 @@ const main = async () => {
     generateHealthReport();
 
     // Exit with appropriate code
-    process.exit(healthResults.overall === 'unhealthy' ? 1 : 0);
+    process.exit(healthResults.overall === "unhealthy" ? 1 : 0);
   } catch (error) {
     log.error(`Health check failed: ${error.message}`);
     process.exit(1);
@@ -603,8 +603,8 @@ const main = async () => {
 };
 
 // Handle process termination
-process.on('SIGINT', () => {
-  log.warning('\nHealth check interrupted');
+process.on("SIGINT", () => {
+  log.warning("\nHealth check interrupted");
   process.exit(0);
 });
 

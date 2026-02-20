@@ -1,0 +1,229 @@
+/* LayoutConfigManager - Modal cấu hình layout */
+.layout-config-modal .ant-modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.layout-config-modal .ant-modal-body {
+  padding: 0;
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-config-manager {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.layout-config-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.layout-config-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.layout-config-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 480px;
+  flex: 1;
+}
+
+.layout-config-sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #f0f0f0;
+  padding: 16px;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.layout-config-search {
+  flex-shrink: 0;
+}
+
+.layout-config-page-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.layout-config-category {
+  margin-bottom: 16px;
+}
+
+.layout-config-category-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8c8c8c;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding: 0 8px;
+}
+
+.layout-config-page-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-bottom: 4px;
+}
+
+.layout-config-page-item:hover {
+  background: #f5f5f5;
+}
+
+.layout-config-page-item.active {
+  background: #e6f4ff;
+  border-left: 4px solid #1677ff;
+}
+
+.page-icon {
+  font-size: 18px;
+}
+
+.page-label {
+  font-size: 14px;
+}
+
+.layout-config-reset-all {
+  margin-top: 8px;
+}
+
+.layout-config-main {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow-y: auto;
+  gap: 24px;
+}
+
+.layout-config-view-modes {
+  display: flex;
+  gap: 8px;
+}
+
+.view-mode-btn.mobile.ant-btn-primary {
+  background: #52c41a;
+}
+
+.view-mode-btn.tablet.ant-btn-primary {
+  background: #1677ff;
+}
+
+.view-mode-btn.desktop.ant-btn-primary {
+  background: #722ed1;
+}
+
+.layout-config-widgets h4,
+.layout-config-preview h4 {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #262626;
+}
+
+.widget-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.widget-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  transition: all 0.15s ease;
+}
+
+.widget-card.visible {
+  background: #f6ffed;
+  border-color: #b7eb8f;
+}
+
+.widget-card.hidden {
+  background: #fafafa;
+  border-color: #d9d9d9;
+  opacity: 0.85;
+}
+
+.widget-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.widget-icon {
+  font-size: 18px;
+}
+
+.widget-card.visible .widget-icon {
+  color: #52c41a;
+}
+
+.widget-card.hidden .widget-icon {
+  color: #8c8c8c;
+}
+
+.widget-label {
+  font-weight: 500;
+}
+
+.widget-meta {
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+.layout-config-preview {
+  flex: 1;
+  min-height: 120px;
+}
+
+.layout-preview-grid {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 8px;
+  min-height: 160px;
+}
+
+.layout-preview-cell {
+  background: #e6f4ff;
+  border: 1px dashed #91caff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #1677ff;
+}
+
+.layout-config-empty {
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .layout-config-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-config-sidebar {
+    max-height: 200px;
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+  }
+}

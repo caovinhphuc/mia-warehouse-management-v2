@@ -1,0 +1,71 @@
+{
+  "title": "Telegram Integration Test Report",
+  "timestamp": "2026-02-05T22:29:06.440Z",
+  "summary": {
+    "total_tests": 6,
+    "passed": 1,
+    "failed": 5,
+    "warnings": 0
+  },
+  "configuration": {
+    "bot_token": "configured",
+    "chat_id": "configured",
+    "api_url": "https://api.telegram.org/botyour_telegram_bot_token"
+  },
+  "results": [
+    {
+      "test": "environment-check",
+      "status": "success",
+      "message": "Tất cả environment variables cần thiết đã có",
+      "details": {
+        "required_count": 2
+      },
+      "timestamp": "2026-02-05T22:29:04.536Z"
+    },
+    {
+      "test": "bot-info",
+      "status": "error",
+      "message": "Không thể lấy thông tin bot: Request failed with status code 404",
+      "details": {
+        "error": "Request failed with status code 404"
+      },
+      "timestamp": "2026-02-05T22:29:05.322Z"
+    },
+    {
+      "test": "webhook-info",
+      "status": "error",
+      "message": "Không thể kiểm tra webhook: Request failed with status code 404",
+      "details": {
+        "error": "Request failed with status code 404"
+      },
+      "timestamp": "2026-02-05T22:29:05.621Z"
+    },
+    {
+      "test": "chat-info",
+      "status": "error",
+      "message": "Không thể lấy thông tin chat: Request failed with status code 404",
+      "details": {
+        "error": "Request failed with status code 404"
+      },
+      "timestamp": "2026-02-05T22:29:05.850Z"
+    },
+    {
+      "test": "send-message",
+      "status": "error",
+      "message": "Không thể gửi tin nhắn test: Request failed with status code 404",
+      "details": {
+        "error": "Request failed with status code 404"
+      },
+      "timestamp": "2026-02-05T22:29:06.114Z"
+    },
+    {
+      "test": "file-upload",
+      "status": "error",
+      "message": "Không thể upload file test: Request failed with status code 404",
+      "details": {
+        "error": "Request failed with status code 404"
+      },
+      "timestamp": "2026-02-05T22:29:06.440Z"
+    }
+  ]
+}

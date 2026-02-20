@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+const { execSync } = require("child_process");
+const fs = require("fs");
+const path = require("path");
 
-console.log('📊 Analyzing bundle size...\n');
+console.log("📊 Analyzing bundle size...\n");
 
-const buildDir = path.join(process.cwd(), 'build', 'static');
-const jsDir = path.join(buildDir, 'js');
-const cssDir = path.join(buildDir, 'css');
+const buildDir = path.join(process.cwd(), "build", "static");
+const jsDir = path.join(buildDir, "js");
+const cssDir = path.join(buildDir, "css");
 
 // Check if build exists
 if (!fs.existsSync(jsDir)) {
@@ -18,12 +18,12 @@ if (!fs.existsSync(jsDir)) {
 }
 
 // List all JS files
-const jsFiles = fs.readdirSync(jsDir).filter((f) => f.endsWith('.js'));
+const jsFiles = fs.readdirSync(jsDir).filter((f) => f.endsWith(".js"));
 const cssFiles = fs.existsSync(cssDir)
-  ? fs.readdirSync(cssDir).filter((f) => f.endsWith('.css'))
+  ? fs.readdirSync(cssDir).filter((f) => f.endsWith(".css"))
   : [];
 
-console.log('📦 JavaScript bundles:');
+console.log("📦 JavaScript bundles:");
 jsFiles.forEach((file) => {
   const filePath = path.join(jsDir, file);
   const stats = fs.statSync(filePath);
@@ -35,7 +35,7 @@ jsFiles.forEach((file) => {
 });
 
 if (cssFiles.length > 0) {
-  console.log('\n🎨 CSS bundles:');
+  console.log("\n🎨 CSS bundles:");
   cssFiles.forEach((file) => {
     const filePath = path.join(cssDir, file);
     const stats = fs.statSync(filePath);
@@ -74,7 +74,7 @@ if (cssFiles.length > 0) {
 // Try to use source-map-explorer if source maps exist
 if (hasSourceMaps) {
   console.log(
-    '\n🔍 Attempting detailed analysis with source-map-explorer...\n'
+    "\n🔍 Attempting detailed analysis with source-map-explorer...\n"
   );
   console.log(
     "ℹ️  Note: Source maps có thể có warnings về 'column Infinity' - đây là bình thường và không ảnh hưởng đến phân tích.\n"
@@ -82,8 +82,8 @@ if (hasSourceMaps) {
 
   // Find main bundle
   const mainBundle =
-    jsFiles.find((f) => f.includes('main')) ||
-    jsFiles.find((f) => !f.includes('chunk')) ||
+    jsFiles.find((f) => f.includes("main")) ||
+    jsFiles.find((f) => !f.includes("chunk")) ||
     jsFiles[0];
 
   if (mainBundle) {
@@ -100,31 +100,31 @@ if (hasSourceMaps) {
 
         // Validate source map file exists and is valid JSON
         try {
-          const mapContent = fs.readFileSync(mapPath, 'utf8');
+          const mapContent = fs.readFileSync(mapPath, "utf8");
           JSON.parse(mapContent); // Validate it's valid JSON
         } catch (jsonError) {
           console.log(
-            '\n⚠️  Source map file không hợp lệ (JSON syntax error).'
+            "\n⚠️  Source map file không hợp lệ (JSON syntax error)."
           );
-          console.log('   Đang sử dụng phương pháp phân tích đơn giản...\n');
-          throw new Error('Invalid JSON in source map');
+          console.log("   Đang sử dụng phương pháp phân tích đơn giản...\n");
+          throw new Error("Invalid JSON in source map");
         }
 
         // Use --no-open to prevent browser opening
         // Suppress stderr warnings about column Infinity but keep stdout
         try {
           execSync(`npx source-map-explorer "${mainPath}" --no-open`, {
-            stdio: ['inherit', 'inherit', 'pipe'], // Suppress stderr warnings
+            stdio: ["inherit", "inherit", "pipe"], // Suppress stderr warnings
             timeout: 30000,
           });
-          console.log('\n✅ Analysis completed successfully!');
+          console.log("\n✅ Analysis completed successfully!");
         } catch (execError) {
           // Check if it's a JSON syntax error
           const errorMsg = execError.message || execError.toString();
-          if (errorMsg.includes('SyntaxError') || errorMsg.includes('JSON')) {
-            console.log('\n⚠️  Source map có vấn đề về format JSON.');
-            console.log('   Sử dụng phương pháp phân tích đơn giản...\n');
-            throw new Error('JSON syntax error in source map');
+          if (errorMsg.includes("SyntaxError") || errorMsg.includes("JSON")) {
+            console.log("\n⚠️  Source map có vấn đề về format JSON.");
+            console.log("   Sử dụng phương pháp phân tích đơn giản...\n");
+            throw new Error("JSON syntax error in source map");
           }
           // If exit code is non-zero but just warnings, still show fallback
           throw execError;
@@ -134,38 +134,38 @@ if (hasSourceMaps) {
 
         // Check if it's a source map corruption issue
         if (
-          errorMsg.includes('column Infinity') ||
-          errorMsg.includes('source map') ||
+          errorMsg.includes("column Infinity") ||
+          errorMsg.includes("source map") ||
           errorMsg.includes(
-            'Check that you are using the correct source map'
+            "Check that you are using the correct source map"
           ) ||
-          errorMsg.includes('only contains') ||
-          errorMsg.includes('Command failed') ||
-          errorMsg.includes('SyntaxError') ||
-          errorMsg.includes('JSON') ||
-          errorMsg.includes('Invalid source map') ||
-          errorMsg.includes('JSON syntax error')
+          errorMsg.includes("only contains") ||
+          errorMsg.includes("Command failed") ||
+          errorMsg.includes("SyntaxError") ||
+          errorMsg.includes("JSON") ||
+          errorMsg.includes("Invalid source map") ||
+          errorMsg.includes("JSON syntax error")
         ) {
           // Check specific error type
           if (
-            errorMsg.includes('SyntaxError') ||
-            errorMsg.includes('JSON') ||
-            errorMsg.includes('Invalid JSON')
+            errorMsg.includes("SyntaxError") ||
+            errorMsg.includes("JSON") ||
+            errorMsg.includes("Invalid JSON")
           ) {
             console.log(
-              '\n⚠️  Source map có lỗi JSON syntax (corrupted or invalid format).'
+              "\n⚠️  Source map có lỗi JSON syntax (corrupted or invalid format)."
             );
-            console.log('   Đang sử dụng phương pháp phân tích đơn giản...\n');
+            console.log("   Đang sử dụng phương pháp phân tích đơn giản...\n");
           } else {
-            console.log('\n⚠️  Source map có vấn đề (corrupted or invalid).');
+            console.log("\n⚠️  Source map có vấn đề (corrupted or invalid).");
             console.log(
               "   Source maps có warnings về 'column Infinity' - đây là vấn đề phổ biến."
             );
-            console.log('   Đang sử dụng phương pháp phân tích đơn giản...\n');
+            console.log("   Đang sử dụng phương pháp phân tích đơn giản...\n");
           }
 
           // Fallback: Show bundle breakdown without source maps
-          console.log('📦 Bundle Breakdown by Size:');
+          console.log("📦 Bundle Breakdown by Size:");
 
           // Sort files by size
           const sortedFiles = jsFiles
@@ -191,7 +191,7 @@ if (hasSourceMaps) {
           });
 
           // Show top largest bundles
-          console.log('\n🔝 Top 5 Largest Bundles:');
+          console.log("\n🔝 Top 5 Largest Bundles:");
           sortedFiles.slice(0, 5).forEach((file, index) => {
             const sizeDisplay =
               file.sizeMB > 1 ? `${file.sizeMB} MB` : `${file.sizeKB} KB`;
@@ -201,18 +201,18 @@ if (hasSourceMaps) {
           });
 
           console.log("\n💡 Lưu ý về warnings 'column Infinity':");
-          console.log('   - Đây là warnings phổ biến từ webpack source maps');
-          console.log('   - Không ảnh hưởng đến việc phân tích bundle');
+          console.log("   - Đây là warnings phổ biến từ webpack source maps");
+          console.log("   - Không ảnh hưởng đến việc phân tích bundle");
           console.log(
-            '   - Để tránh warnings, dùng: npm run analyze:webpack (không cần source maps)'
+            "   - Để tránh warnings, dùng: npm run analyze:webpack (không cần source maps)"
           );
-          console.log('   - Hoặc: npm run analyze:size (phân tích đơn giản)');
+          console.log("   - Hoặc: npm run analyze:size (phân tích đơn giản)");
         } else {
           console.log(
-            '\n⚠️  source-map-explorer failed:',
-            errorMsg.split('\n')[0]
+            "\n⚠️  source-map-explorer failed:",
+            errorMsg.split("\n")[0]
           );
-          console.log('   Using fallback analysis method...\n');
+          console.log("   Using fallback analysis method...\n");
 
           // Show bundle breakdown as fallback
           const sortedFiles = jsFiles
@@ -229,7 +229,7 @@ if (hasSourceMaps) {
             })
             .sort((a, b) => b.size - a.size);
 
-          console.log('📦 Bundle Breakdown (Top 10):');
+          console.log("📦 Bundle Breakdown (Top 10):");
           sortedFiles.slice(0, 10).forEach((file) => {
             const sizeDisplay =
               file.sizeMB > 1 ? `${file.sizeMB} MB` : `${file.sizeKB} KB`;
@@ -240,11 +240,11 @@ if (hasSourceMaps) {
         }
       }
     } else {
-      console.log('\n⚠️  Source map file not found for main bundle.');
+      console.log("\n⚠️  Source map file not found for main bundle.");
     }
   }
 } else {
-  console.log('\n📦 Bundle Breakdown by Size (sorted):');
+  console.log("\n📦 Bundle Breakdown by Size (sorted):");
 
   // Sort files by size for better analysis
   const sortedFiles = jsFiles
@@ -270,7 +270,7 @@ if (hasSourceMaps) {
   });
 
   // Show top largest bundles
-  console.log('\n🔝 Top 5 Largest Bundles:');
+  console.log("\n🔝 Top 5 Largest Bundles:");
   sortedFiles.slice(0, 5).forEach((file, index) => {
     const sizeDisplay =
       file.sizeMB > 1 ? `${file.sizeMB} MB` : `${file.sizeKB} KB`;
@@ -280,12 +280,12 @@ if (hasSourceMaps) {
   });
 
   console.log(
-    '\n💡 Tip: Build with GENERATE_SOURCEMAP=true for detailed analysis'
+    "\n💡 Tip: Build with GENERATE_SOURCEMAP=true for detailed analysis"
   );
   console.log(
-    '   Run: npm run analyze (it will automatically enable source maps)'
+    "   Run: npm run analyze (it will automatically enable source maps)"
   );
   console.log(
-    '   This will show which packages/modules are taking up space in each bundle'
+    "   This will show which packages/modules are taking up space in each bundle"
   );
 }

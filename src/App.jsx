@@ -1,101 +1,102 @@
-import React, { Suspense, lazy } from 'react';
-import { Provider } from 'react-redux';
+import React, { Suspense, lazy } from "react";
+import { Provider } from "react-redux";
 import {
   Navigate,
   Route,
   BrowserRouter as Router,
   Routes,
   Outlet,
-} from 'react-router-dom';
-import { ConfigProvider, theme, App as AntdApp } from 'antd';
-import viVN from 'antd/locale/vi_VN';
-import './global.css'; /* ✅ Import global styles first */
-import './App.css';
-import Loading from './components/Common/Loading';
-import Layout from './components/layout/Layout';
-import { store } from './store/store';
-import { BRAND_CONFIG } from './config/brand';
-import ProtectedRoute from './components/auth/ProtectedRoute';
+} from "react-router-dom";
+import { ConfigProvider, theme, App as AntdApp } from "antd";
+import viVN from "antd/locale/vi_VN";
+import "./global.css"; /* ✅ Import global styles first */
+import "./App.css";
+import Loading from "./components/Common/Loading";
+import Layout from "./components/layout/Layout";
+import { LayoutProvider } from "./contexts/LayoutContext";
+import { store } from "./store/store";
+import { BRAND_CONFIG } from "./config/brand";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 // Enhanced lazy loading with preloading strategy
 const LiveDashboard = lazy(
   () =>
     import(
-      /* webpackChunkName: "dashboard" */ './components/Dashboard/LiveDashboard'
+      /* webpackChunkName: "dashboard" */ "./components/Dashboard/LiveDashboard"
     )
 );
 const AIDashboard = lazy(
   () =>
-    import(/* webpackChunkName: "ai-dashboard" */ './components/ai/AIDashboard')
+    import(/* webpackChunkName: "ai-dashboard" */ "./components/ai/AIDashboard")
 );
 const GoogleSheetsIntegration = lazy(
   () =>
     import(
-      /* webpackChunkName: "google-sheets" */ './components/google/GoogleSheetsIntegration'
+      /* webpackChunkName: "google-sheets" */ "./components/google/GoogleSheetsIntegration"
     )
 );
 const GoogleDriveIntegration = lazy(
   () =>
     import(
-      /* webpackChunkName: "google-drive" */ './components/google/GoogleDriveIntegration'
+      /* webpackChunkName: "google-drive" */ "./components/google/GoogleDriveIntegration"
     )
 );
 const GoogleAppsScriptIntegration = lazy(
   () =>
     import(
-      /* webpackChunkName: "google-apps-script" */ './components/google/GoogleAppsScriptIntegration'
+      /* webpackChunkName: "google-apps-script" */ "./components/google/GoogleAppsScriptIntegration"
     )
 );
 const TelegramIntegration = lazy(
   () =>
     import(
-      /* webpackChunkName: "telegram" */ './components/telegram/TelegramIntegration'
+      /* webpackChunkName: "telegram" */ "./components/telegram/TelegramIntegration"
     )
 );
 const AutomationDashboard = lazy(
   () =>
     import(
-      /* webpackChunkName: "automation" */ './components/automation/AutomationDashboard'
+      /* webpackChunkName: "automation" */ "./components/automation/AutomationDashboard"
     )
 );
 const MIARetailDashboard = lazy(
   () =>
     import(
-      /* webpackChunkName: "retail-dashboard" */ './components/custom/MIARetailDashboard'
+      /* webpackChunkName: "retail-dashboard" */ "./components/custom/MIARetailDashboard"
     )
 );
 const AlertsManagement = lazy(
   () =>
     import(
-      /* webpackChunkName: "alerts-management" */ './components/alerts/AlertsManagement'
+      /* webpackChunkName: "alerts-management" */ "./components/alerts/AlertsManagement"
     )
 );
 const AdvancedAnalyticsDashboard = lazy(
   () =>
     import(
-      /* webpackChunkName: "advanced-analytics" */ './components/analytics/AdvancedAnalyticsDashboard'
+      /* webpackChunkName: "advanced-analytics" */ "./components/analytics/AdvancedAnalyticsDashboard"
     )
 );
 const SmartAutomationDashboard = lazy(
   () =>
     import(
-      /* webpackChunkName: "smart-automation" */ './components/smart-automation/SmartAutomationDashboard'
+      /* webpackChunkName: "smart-automation" */ "./components/smart-automation/SmartAutomationDashboard"
     )
 );
 const NLPDashboard = lazy(
   () =>
     import(
-      /* webpackChunkName: "nlp-dashboard" */ './components/nlp/NLPDashboard'
+      /* webpackChunkName: "nlp-dashboard" */ "./components/nlp/NLPDashboard"
     )
 );
 const SecurityDashboard = lazy(
   () =>
     import(
-      /* webpackChunkName: "security-dashboard" */ './components/security/SecurityDashboard'
+      /* webpackChunkName: "security-dashboard" */ "./components/security/SecurityDashboard"
     )
 );
 const Login = lazy(
-  () => import(/* webpackChunkName: "login" */ './components/auth/Login')
+  () => import(/* webpackChunkName: "login" */ "./components/auth/Login")
 );
 
 // Preload critical components
@@ -104,9 +105,9 @@ const preloadComponent = (componentLoader) => {
 };
 
 // Preload dashboard on app start
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   setTimeout(() => {
-    preloadComponent(() => import('./components/Dashboard/LiveDashboard'));
+    preloadComponent(() => import("./components/Dashboard/LiveDashboard"));
   }, 2000);
 }
 
@@ -210,12 +211,12 @@ const Home = () => (
         <h3>🎯 Tính năng mới v3.0</h3>
         <div className="feature-tags">
           {[
-            '📡 Tích hợp WebSocket thời gian thực',
-            '📊 Dashboard hiệu suất trực tiếp',
-            '⚡ Cải thiện hiệu suất 50%',
-            '🎨 Thiết kế UI/UX hiện đại',
-            '📱 Hỗ trợ di động responsive',
-            '🔒 Tính năng bảo mật nâng cao',
+            "📡 Tích hợp WebSocket thời gian thực",
+            "📊 Dashboard hiệu suất trực tiếp",
+            "⚡ Cải thiện hiệu suất 50%",
+            "🎨 Thiết kế UI/UX hiện đại",
+            "📱 Hỗ trợ di động responsive",
+            "🔒 Tính năng bảo mật nâng cao",
           ].map((feature, index) => (
             <span key={index} className="feature-tag">
               {feature}
@@ -257,127 +258,129 @@ function App() {
               v7_relativeSplatPath: true,
             }}
           >
-            <div className="App">
-              <Suspense fallback={<Loading />}>
-                <Routes>
-                  {/* Login route - NO Layout (chỉ hiển thị trang đăng nhập) */}
-                  <Route path="/login" element={<Login />} />
+            <LayoutProvider>
+              <div className="App">
+                <Suspense fallback={<Loading />}>
+                  <Routes>
+                    {/* Login route - NO Layout (chỉ hiển thị trang đăng nhập) */}
+                    <Route path="/login" element={<Login />} />
 
-                  {/* Routes với Layout - tất cả routes khác */}
-                  <Route element={<LayoutWrapper />}>
-                    <Route path="/" element={<Home />} />
+                    {/* Routes với Layout - tất cả routes khác */}
+                    <Route element={<LayoutWrapper />}>
+                      <Route path="/" element={<Home />} />
 
-                    {/* Protected Routes - Yêu cầu authentication */}
-                    <Route
-                      path="/dashboard"
-                      element={
-                        <ProtectedRoute>
-                          <LiveDashboard />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/ai-analytics"
-                      element={
-                        <ProtectedRoute>
-                          <AIDashboard />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/retail"
-                      element={
-                        <ProtectedRoute>
-                          <MIARetailDashboard />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/google-sheets"
-                      element={
-                        <ProtectedRoute>
-                          <GoogleSheetsIntegration />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/google-drive"
-                      element={
-                        <ProtectedRoute>
-                          <GoogleDriveIntegration />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/google-apps-script"
-                      element={
-                        <ProtectedRoute>
-                          <GoogleAppsScriptIntegration />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/telegram"
-                      element={
-                        <ProtectedRoute>
-                          <TelegramIntegration />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/automation"
-                      element={
-                        <ProtectedRoute>
-                          <AutomationDashboard />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/alerts"
-                      element={
-                        <ProtectedRoute>
-                          <AlertsManagement />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/advanced-analytics"
-                      element={
-                        <ProtectedRoute>
-                          <AdvancedAnalyticsDashboard />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/smart-automation"
-                      element={
-                        <ProtectedRoute>
-                          <SmartAutomationDashboard />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/nlp"
-                      element={
-                        <ProtectedRoute>
-                          <NLPDashboard />
-                        </ProtectedRoute>
-                      }
-                    />
-                    <Route
-                      path="/security"
-                      element={
-                        <ProtectedRoute>
-                          <SecurityDashboard />
-                        </ProtectedRoute>
-                      }
-                    />
+                      {/* Protected Routes - Yêu cầu authentication */}
+                      <Route
+                        path="/dashboard"
+                        element={
+                          <ProtectedRoute>
+                            <LiveDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/ai-analytics"
+                        element={
+                          <ProtectedRoute>
+                            <AIDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/retail"
+                        element={
+                          <ProtectedRoute>
+                            <MIARetailDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/google-sheets"
+                        element={
+                          <ProtectedRoute>
+                            <GoogleSheetsIntegration />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/google-drive"
+                        element={
+                          <ProtectedRoute>
+                            <GoogleDriveIntegration />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/google-apps-script"
+                        element={
+                          <ProtectedRoute>
+                            <GoogleAppsScriptIntegration />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/telegram"
+                        element={
+                          <ProtectedRoute>
+                            <TelegramIntegration />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/automation"
+                        element={
+                          <ProtectedRoute>
+                            <AutomationDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/alerts"
+                        element={
+                          <ProtectedRoute>
+                            <AlertsManagement />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/advanced-analytics"
+                        element={
+                          <ProtectedRoute>
+                            <AdvancedAnalyticsDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/smart-automation"
+                        element={
+                          <ProtectedRoute>
+                            <SmartAutomationDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/nlp"
+                        element={
+                          <ProtectedRoute>
+                            <NLPDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
+                      <Route
+                        path="/security"
+                        element={
+                          <ProtectedRoute>
+                            <SecurityDashboard />
+                          </ProtectedRoute>
+                        }
+                      />
 
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                  </Route>
-                </Routes>
-              </Suspense>
-            </div>
+                      <Route path="*" element={<Navigate to="/" replace />} />
+                    </Route>
+                  </Routes>
+                </Suspense>
+              </div>
+            </LayoutProvider>
           </Router>
         </ConfigProvider>
       </AntdApp>

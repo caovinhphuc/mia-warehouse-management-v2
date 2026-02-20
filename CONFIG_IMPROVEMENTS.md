@@ -56,6 +56,20 @@
 
 ## 📊 Current Status
 
+### Integrations Health (2026-02-06)
+
+| Integration     | Health check                          | UI                     |
+| --------------- | ------------------------------------- | ---------------------- |
+| Google Sheets   | `/health` + `./scripts/check/health.sh` | Sidebar "Trạng thái kết nối" |
+| Google Drive    | ✅                                    | ✅                     |
+| Telegram Bot    | ✅ (bot name, chat reachable)          | ✅                     |
+| Email (SendGrid)| ✅                                    | -                      |
+| Apps Script     | ✅                                    | ✅                     |
+
+- **Backend** `/health`: chi tiết từng service (Sheets metadata, Drive info, Telegram bot).
+- **scripts/check/health.sh** v1.1: hiển thị integrations khi có `jq`.
+- **UI**: Layout sidebar fetch `/health` mỗi phút, cập nhật trạng thái real-time.
+
 ### Dependencies Health
 
 ```bash

@@ -1,4 +1,4 @@
-import importMetaEnv from '../utils/importMetaEnv';
+import importMetaEnv from "../utils/importMetaEnv";
 /**
  * 🛒 MIA Retail Service
  *
@@ -8,7 +8,7 @@ import importMetaEnv from '../utils/importMetaEnv';
 const API_BASE_URL =
   importMetaEnv.VITE_API_URL ||
   importMetaEnv.REACT_APP_API_URL ||
-  'http://localhost:3001';
+  "http://localhost:3001";
 
 /**
  * Fetch retail dashboard summary
@@ -17,12 +17,12 @@ export const fetchRetailDashboard = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/retail/dashboard`);
     if (!response.ok) {
-      throw new Error('Failed to fetch retail dashboard');
+      throw new Error("Failed to fetch retail dashboard");
     }
     const data = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
-    console.error('Error fetching retail dashboard:', error);
+    console.error("Error fetching retail dashboard:", error);
     throw error;
   }
 };
@@ -30,18 +30,18 @@ export const fetchRetailDashboard = async () => {
 /**
  * Fetch sales metrics
  */
-export const fetchSalesMetrics = async (timeframe = '30d') => {
+export const fetchSalesMetrics = async (timeframe = "30d") => {
   try {
     const response = await fetch(
       `${API_BASE_URL}/api/retail/sales?timeframe=${timeframe}`
     );
     if (!response.ok) {
-      throw new Error('Failed to fetch sales metrics');
+      throw new Error("Failed to fetch sales metrics");
     }
     const data = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
-    console.error('Error fetching sales metrics:', error);
+    console.error("Error fetching sales metrics:", error);
     throw error;
   }
 };
@@ -53,12 +53,12 @@ export const fetchInventoryStatus = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/retail/inventory`);
     if (!response.ok) {
-      throw new Error('Failed to fetch inventory status');
+      throw new Error("Failed to fetch inventory status");
     }
     const data = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
-    console.error('Error fetching inventory status:', error);
+    console.error("Error fetching inventory status:", error);
     throw error;
   }
 };
@@ -66,18 +66,18 @@ export const fetchInventoryStatus = async () => {
 /**
  * Fetch customer analytics
  */
-export const fetchCustomerAnalytics = async (timeframe = '30d') => {
+export const fetchCustomerAnalytics = async (timeframe = "30d") => {
   try {
     const response = await fetch(
       `${API_BASE_URL}/api/retail/customers?timeframe=${timeframe}`
     );
     if (!response.ok) {
-      throw new Error('Failed to fetch customer analytics');
+      throw new Error("Failed to fetch customer analytics");
     }
     const data = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
-    console.error('Error fetching customer analytics:', error);
+    console.error("Error fetching customer analytics:", error);
     throw error;
   }
 };
@@ -89,12 +89,12 @@ export const fetchStorePerformance = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/retail/stores`);
     if (!response.ok) {
-      throw new Error('Failed to fetch store performance');
+      throw new Error("Failed to fetch store performance");
     }
     const data = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
-    console.error('Error fetching store performance:', error);
+    console.error("Error fetching store performance:", error);
     throw error;
   }
 };
@@ -104,7 +104,7 @@ export const fetchStorePerformance = async () => {
  */
 export const fetchProductPerformance = async (
   category = null,
-  timeframe = '30d'
+  timeframe = "30d"
 ) => {
   try {
     let url = `${API_BASE_URL}/api/retail/products?timeframe=${timeframe}`;
@@ -113,12 +113,12 @@ export const fetchProductPerformance = async (
     }
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('Failed to fetch product performance');
+      throw new Error("Failed to fetch product performance");
     }
     const data = await response.json();
     return data.success ? data.data : null;
   } catch (error) {
-    console.error('Error fetching product performance:', error);
+    console.error("Error fetching product performance:", error);
     throw error;
   }
 };
@@ -127,9 +127,9 @@ export const fetchProductPerformance = async (
  * Format currency for Vietnamese Dong
  */
 export const formatVND = (amount) => {
-  return new Intl.NumberFormat('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
   }).format(amount);
 };
 
@@ -137,7 +137,7 @@ export const formatVND = (amount) => {
  * Format number with Vietnamese locale
  */
 export const formatNumber = (number) => {
-  return new Intl.NumberFormat('vi-VN').format(number);
+  return new Intl.NumberFormat("vi-VN").format(number);
 };
 
 /**
@@ -155,10 +155,10 @@ export const getStatusColor = (
   value,
   thresholds = { good: 0.8, excellent: 1.2 }
 ) => {
-  if (value >= thresholds.excellent) return '#06a77d'; // Green - Excellent
-  if (value >= thresholds.good) return '#3b82f6'; // Blue - Good
-  if (value >= 0.5) return '#f59e0b'; // Orange - Average
-  return '#d62828'; // Red - Poor
+  if (value >= thresholds.excellent) return "#06a77d"; // Green - Excellent
+  if (value >= thresholds.good) return "#3b82f6"; // Blue - Good
+  if (value >= 0.5) return "#f59e0b"; // Orange - Average
+  return "#d62828"; // Red - Poor
 };
 
 export default {
