@@ -1,0 +1,22 @@
+{
+  "currentEnvironment": "dev",
+  "currentTarget": "local",
+
+  "customSettings": {
+    "autoBackup": true,
+    "autoTest": false,
+    "autoMigrate": false,
+    "skipHealthCheck": false,
+    "forceRebuild": false,
+    "verbose": true
+  },
+
+  "override": {
+    "backend": {
+      "port": 5050
+    },
+    "frontend": {
+      "port": 5173
+    }
+  }
+}
