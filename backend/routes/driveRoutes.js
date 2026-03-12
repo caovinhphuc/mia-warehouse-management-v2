@@ -28,6 +28,11 @@ router.get("/files", async (req, res) => {
     });
   } catch (error) {
     console.error("Error listing files:", error);
+    console.error("Error details:", {
+      message: error.message,
+      code: error.code,
+      status: error.status,
+    });
     res.status(500).json({
       success: false,
       error: error.message || "Failed to list files",

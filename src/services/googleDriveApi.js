@@ -32,6 +32,23 @@ class GoogleDriveApiService {
       };
     } catch (error) {
       console.error("Error listing files:", error);
+
+      // Xử lý lỗi authentication cụ thể
+      if (
+        error.response?.status === 401 ||
+        error.response?.data?.code === "AUTH_ERROR" ||
+        error.response?.data?.error?.includes("invalid_grant") ||
+        error.response?.data?.error?.includes("Service account")
+      ) {
+        const authError = new Error(
+          error.response?.data?.error ||
+            "Lỗi xác thực Google Drive. Service account không hợp lệ. " +
+              "Vui lòng kiểm tra cấu hình service account trong backend."
+        );
+        authError.isAuthError = true;
+        throw authError;
+      }
+
       throw new Error(
         error.response?.data?.error || `Failed to list files: ${error.message}`
       );

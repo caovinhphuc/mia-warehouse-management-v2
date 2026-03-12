@@ -63,6 +63,12 @@ router.post("/verify-one-tga", async (req, res) => {
       });
     } catch (axiosError) {
       console.error("AI Service request error:", axiosError.message);
+      console.error("Error details:", {
+        code: axiosError.code,
+        status: axiosError.response?.status,
+        statusText: axiosError.response?.statusText,
+        data: axiosError.response?.data,
+      });
 
       // Nếu là lỗi 401 (unauthorized), credentials không đúng
       if (axiosError.response && axiosError.response.status === 401) {
@@ -73,32 +79,63 @@ router.post("/verify-one-tga", async (req, res) => {
           error:
             errorData.detail ||
             errorData.error ||
-            "Đăng nhập one.tga.com.vn không thành công",
+            "Đăng nhập one.tga.com.vn không thành công. Vui lòng kiểm tra lại email và password.",
         });
       }
 
-      // Nếu AI Service không chạy, skip trong development
+      // Nếu AI Service không chạy hoặc không khả dụng, skip trong development
+      const isConnectionError =
+        axiosError.code === "ECONNREFUSED" ||
+        axiosError.code === "ETIMEDOUT" ||
+        axiosError.code === "ENOTFOUND" ||
+        axiosError.message?.includes("connect") ||
+        axiosError.message?.includes("timeout");
+
       if (
         process.env.NODE_ENV === "development" ||
-        axiosError.code === "ECONNREFUSED" ||
-        axiosError.code === "ETIMEDOUT"
+        isConnectionError ||
+        !axiosError.response
       ) {
         console.warn(
-          `AI Service không khả dụng tại ${AI_SERVICE_URL}, skipping in development mode`
+          `⚠️ AI Service không khả dụng tại ${AI_SERVICE_URL}, skipping verification`
+        );
+        console.warn(
+          "💡 Để sử dụng One TGA verification, vui lòng start AI Service:"
+        );
+        console.warn(
+          "   cd ai-service && python -m uvicorn ai_service:app --port 8000"
         );
         return res.json({
           success: true,
           valid: true,
-          message: "Skipped in development mode - AI Service không chạy",
+          message: "Skipped - AI Service không chạy (development mode)",
+          skipped: true,
         });
       }
 
+      // Nếu là lỗi 500 từ AI Service, trả về lỗi chi tiết
+      if (axiosError.response && axiosError.response.status === 500) {
+        const errorData = axiosError.response.data || {};
+        return res.status(500).json({
+          success: false,
+          valid: false,
+          error:
+            errorData.detail ||
+            errorData.error ||
+            "Lỗi từ AI Service khi verify one.tga.com.vn. Vui lòng kiểm tra log AI Service.",
+        });
+      }
+
+      // Lỗi khác
       res.status(500).json({
         success: false,
         valid: false,
         error:
           `Không thể kết nối đến AI Service tại ${AI_SERVICE_URL}. ` +
-          `Vui lòng kiểm tra AI Service có đang chạy không.`,
+          `Vui lòng kiểm tra:\n` +
+          `1. AI Service có đang chạy không? (cd ai-service && python -m uvicorn ai_service:app --port 8000)\n` +
+          `2. Port 8000 có đang được sử dụng không?\n` +
+          `3. Kiểm tra biến môi trường AI_SERVICE_URL`,
       });
     }
   } catch (error) {

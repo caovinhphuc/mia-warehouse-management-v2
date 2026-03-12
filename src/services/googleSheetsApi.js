@@ -149,7 +149,15 @@ class GoogleSheetsApiService {
       const networkError = handleNetworkError(error, "getting sheet metadata");
       if (networkError) throw networkError;
 
-      console.error("Error getting sheet metadata:", error);
+      // Only log non-auth errors to avoid console spam
+      const isAuthError =
+        error.response?.data?.error?.includes("invalid_grant") ||
+        error.response?.data?.error?.includes("account not found");
+
+      if (!isAuthError && process.env.NODE_ENV === "development") {
+        console.error("Error getting sheet metadata:", error);
+      }
+
       throw new Error(
         error.response?.data?.error ||
           `Failed to get sheet metadata: ${error.message}`
