@@ -1,0 +1,11 @@
+NODE_ENV=production
+PORT=3001
+
+GOOGLE_SERVICE_ACCOUNT_EMAIL=mia-logistics-service@mia-logistics-469406.iam.gserviceaccount.com
+GOOGLE_PROJECT_ID=mia-logistics-469406
+GOOGLE_PRIVATE_KEY_ID=8c5a7e92ccf2c9ccab07577b5d4e52e0b097e835
+GOOGLE_SPREADSHEET_ID=18B1PIhCDmBWyHZytvOcfj_1QbYBwczLf1x1Qbu0E5As
+
+JWT_SECRET=mia-warehouse-super-secret-jwt-key-production-2025-change-this
+
+CORS_ORIGIN=https://mia-warehouse-management-c79vgqusg.vercel.app,https://mia-warehouse-management.vercel.app,https://mia-warehouse-management-*.vercel.app

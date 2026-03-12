@@ -1,0 +1,128 @@
+version: "3.8"
+
+services:
+  # React Frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mia-vn-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_URL=http://localhost:8000
+    networks:
+      - mia-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+        reservations:
+          memory: 256M
+          cpus: "0.25"
+
+  # Backend API (if needed)
+  backend:
+    build:
+      context: ./src/components/automation/one_automation_system
+      dockerfile: Dockerfile
+    container_name: mia-vn-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - HEADLESS=true
+    env_file:
+      - ./src/components/automation/one_automation_system/.env
+    volumes:
+      - automation-data:/app/data
+      - automation-logs:/app/logs
+      - automation-reports:/app/reports
+    networks:
+      - mia-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import os; exit(0 if os.path.exists('/app/logs/automation.log') else 1)",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "1.0"
+        reservations:
+          memory: 512M
+          cpus: "0.5"
+
+  # Monitoring Dashboard
+  monitoring:
+    image: nginx:alpine
+    container_name: mia-vn-monitoring
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - automation-reports:/usr/share/nginx/html/reports:ro
+      - ./src/components/automation/one_automation_system/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - mia-network
+    depends_on:
+      - backend
+    healthcheck:
+      test:
+        ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Redis Cache (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: mia-vn-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - mia-network
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.25"
+
+networks:
+  mia-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  automation-data:
+    driver: local
+  automation-logs:
+    driver: local
+  automation-reports:
+    driver: local
+  redis-data:
+    driver: local

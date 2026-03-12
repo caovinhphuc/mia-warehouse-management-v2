@@ -1,0 +1,6 @@
+# Update these 3 variables in Vercel Dashboard:
+# https://vercel.com/dashboard → mia-warehouse-management → Settings → Environment Variables
+
+REACT_APP_API_URL=https://mia-warehouse-management-v2-production.up.railway.app
+VITE_API_URL=https://mia-warehouse-management-v2-production.up.railway.app
+VITE_API_BASE_URL=https://mia-warehouse-management-v2-production.up.railway.app/api
