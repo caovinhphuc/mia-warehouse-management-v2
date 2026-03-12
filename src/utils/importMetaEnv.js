@@ -22,7 +22,7 @@ const getEnv = (key) => {
     return viteEnv?.PROD ?? process.env.NODE_ENV === "production";
   }
   if (key === "MODE") {
-    return viteEnv?.MODE ?? process.env.NODE_ENV || "development";
+    return (viteEnv?.MODE ?? process.env.NODE_ENV) || "development";
   }
   // Direct access to REACT_APP_* or process.env
   return process.env[key] || process.env[`REACT_APP_${key}`] || "";
