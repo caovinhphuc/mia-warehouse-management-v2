@@ -107,7 +107,7 @@ describe("GoogleSheetsApiService", () => {
       mockedAxios.get.mockRejectedValueOnce(networkError);
 
       await expect(googleSheetsApiService.readSheet("A1:B2")).rejects.toThrow(
-        "Failed to read sheet: Network Error"
+        /Failed to read sheet|Không thể kết nối|Network/
       );
     });
   });

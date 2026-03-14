@@ -8,11 +8,12 @@ import {
   Outlet,
 } from "react-router-dom";
 import { ConfigProvider, theme, App as AntdApp } from "antd";
-import viVN from "antd/locale/vi_VN";
+import viVN from "antd/es/locale/vi_VN";
 import "./global.css"; /* ✅ Import global styles first */
 import "./App.css";
 import Loading from "./components/Common/Loading";
 import Layout from "./components/layout/Layout";
+import PWAUpdatePrompt from "./components/Common/PWAUpdatePrompt";
 import { LayoutProvider } from "./contexts/LayoutContext";
 import { store } from "./store/store";
 import { BRAND_CONFIG } from "./config/brand";
@@ -379,6 +380,7 @@ function App() {
                     </Route>
                   </Routes>
                 </Suspense>
+                <PWAUpdatePrompt />
               </div>
             </LayoutProvider>
           </Router>

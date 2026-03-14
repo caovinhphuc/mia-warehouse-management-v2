@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { preloadRoute } from "../../utils/routePreload";
 
 const NavItem = ({
   item,
@@ -39,10 +40,14 @@ const NavItem = ({
     );
   }
 
-  // Nếu có path (cho navigation items), render Link
+  // Nếu có path (cho navigation items), render Link + preload on hover
   if (path) {
     return (
-      <Link to={path} className={navItemClasses}>
+      <Link
+        to={path}
+        className={navItemClasses}
+        onMouseEnter={() => preloadRoute(path)}
+      >
         {content}
       </Link>
     );

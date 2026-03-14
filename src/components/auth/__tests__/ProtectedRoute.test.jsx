@@ -4,9 +4,9 @@
  */
 
 import { screen, waitFor } from "@testing-library/react";
-import { renderWithProvidersAndRouter } from "../../utils/test-utils";
-import { mockUser } from "../../__fixtures__/mockData";
-import ProtectedRoute from "./ProtectedRoute";
+import { renderWithProvidersAndRouter } from "@utils/test-utils";
+import { mockUser } from "../../../__fixtures__/mockData";
+import ProtectedRoute from "../ProtectedRoute";
 
 // Mock child component
 const TestComponent = () => <div>Protected Content</div>;

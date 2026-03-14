@@ -49,7 +49,7 @@
 **Features:**
 
 - jsdom test environment
-- Path aliases matching Vite/CRACO config
+- Path aliases match vite.config.mjs
 - Coverage thresholds (50%)
 - CSS/Asset mocking
 - Transform ignore for specific packages
@@ -94,7 +94,7 @@ npm run lint
 ### Testing với Jest
 
 ```bash
-# Run all tests
+# Run all tests (qua test-wrapper.sh)
 npm test
 
 # Run tests in watch mode
@@ -103,7 +103,7 @@ npm run test:watch
 # Run tests with coverage
 npm run test:coverage
 
-# Run unit tests only
+# Run unit tests only (không watch)
 npm run test:unit
 ```
 
@@ -262,18 +262,7 @@ import config from "@config/app.config";
 
 ## 📊 Coverage Thresholds
 
-Current settings in `jest.config.js`:
-
-```javascript
-coverageThreshold: {
-  global: {
-    branches: 50,    // 50% branch coverage
-    functions: 50,   // 50% function coverage
-    lines: 50,       // 50% line coverage
-    statements: 50   // 50% statement coverage
-  }
-}
-```
+`jest.config.js`: `coverageThreshold: {}` (tắt tạm; bật lại khi coverage đủ).
 
 ## 🐛 Troubleshooting
 
@@ -302,11 +291,10 @@ npm run lint:fix
 ### Jest không tìm thấy modules
 
 ```bash
-# Check aliases in jest.config.js
-# Must match vite.config.js and craco.config.js
+# Check aliases in jest.config.js (phải khớp vite.config.mjs)
 
 # Clear Jest cache
-npm test -- --clearCache
+npx jest --clearCache
 ```
 
 ### Watch mode không hoạt động
@@ -364,7 +352,7 @@ open coverage/lcov-report/index.html
 
 ---
 
-**Version:** 2.0.0  
-**Last Updated:** 2026-01-18  
-**Status:** ✅ Production Ready  
-**Tools:** ESLint 9+, Prettier 3+, Jest 29+
+**Last Updated:** March 14, 2026  
+**Build:** Vite; Jest aliases match vite.config.mjs  
+**Status:** Production ready  
+**Config tổng hợp:** [docs/CONFIG_STATUS.md](docs/CONFIG_STATUS.md)

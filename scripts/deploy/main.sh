@@ -52,8 +52,8 @@ echo ""
 # Build projects
 log_step "BƯỚC 4/7: BUILD PROJECTS"
 
-# Build frontend
-if [ -f "package.json" ] && grep -q "react-scripts" package.json; then
+# Build frontend (Vite hoặc CRA)
+if [ -f "package.json" ] && grep -q '"build"' package.json; then
     log_info "Building frontend..."
     npm run build:prod
     if [ $? -eq 0 ]; then

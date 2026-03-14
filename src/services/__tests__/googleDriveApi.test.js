@@ -134,96 +134,53 @@ describe("GoogleDriveApiService", () => {
     });
   });
 
-  describe("createFile", () => {
-    it("should create file successfully", async () => {
+  describe("createFolder", () => {
+    it("should create folder successfully", async () => {
       const mockData = {
         data: {
           success: true,
           data: {
-            id: "new-file-id",
-            name: "New Document.pdf",
+            id: "new-folder-id",
+            name: "New Folder",
           },
         },
       };
 
       mockedAxios.post.mockResolvedValueOnce(mockData);
 
-      const fileData = {
-        name: "New Document.pdf",
-        mimeType: "application/pdf",
-      };
-
-      const result = await googleDriveApiService.createFile(
-        fileData,
-        "folder-id"
+      const result = await googleDriveApiService.createFolder(
+        "New Folder",
+        "parent-folder-id"
       );
 
       expect(mockedAxios.post).toHaveBeenCalledWith(
-        "http://localhost:8000/api/drive/files",
-        {
-          ...fileData,
-          folderId: "folder-id",
-        }
+        "http://localhost:8000/api/drive/folders",
+        { folderName: "New Folder", parentFolderId: "parent-folder-id" }
       );
-      expect(result.id).toBe("new-file-id");
-    });
-
-    it("should handle create file errors", async () => {
-      const errorResponse = {
-        response: {
-          data: { error: "Permission denied" },
-        },
-        message: "Request failed",
-      };
-
-      mockedAxios.post.mockRejectedValueOnce(errorResponse);
-
-      await expect(
-        googleDriveApiService.createFile({ name: "test.pdf" }, "folder-id")
-      ).rejects.toThrow("Permission denied");
+      expect(result.name).toBe("New Folder");
     });
   });
 
-  describe("updateFile", () => {
-    it("should update file successfully", async () => {
+  describe("renameFile", () => {
+    it("should rename file successfully", async () => {
       const mockData = {
         data: {
           success: true,
           data: {
             id: "file-id",
-            name: "Updated Document.pdf",
+            name: "Renamed Document.pdf",
           },
         },
       };
 
       mockedAxios.put.mockResolvedValueOnce(mockData);
 
-      const result = await googleDriveApiService.updateFile("file-id", {
-        name: "Updated Document.pdf",
-      });
-
-      expect(mockedAxios.put).toHaveBeenCalledWith(
-        "http://localhost:8000/api/drive/files/file-id",
-        {
-          name: "Updated Document.pdf",
-        }
+      const result = await googleDriveApiService.renameFile(
+        "file-id",
+        "Renamed Document.pdf"
       );
-      expect(result.name).toBe("Updated Document.pdf");
-    });
 
-    it("should handle update errors", async () => {
-      const errorResponse = {
-        response: {
-          data: { error: "File not found" },
-        },
-        message: "Request failed",
-      };
-
-      mockedAxios.put.mockRejectedValueOnce(errorResponse);
-
-      await expect(
-        googleDriveApiService.updateFile("invalid-id", { name: "test.pdf" })
-      ).rejects.toThrow("File not found");
+      expect(result.name).toBe("Renamed Document.pdf");
     });
   });
 

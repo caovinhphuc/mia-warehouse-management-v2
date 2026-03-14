@@ -3,24 +3,8 @@
  * Tests authentication, MFA, and security functions
  */
 
-// Mock localStorage
-const localStorageMock = (() => {
-  let store = {};
-  return {
-    getItem: jest.fn((key) => store[key] || null),
-    setItem: jest.fn((key, value) => {
-      store[key] = value.toString();
-    }),
-    removeItem: jest.fn((key) => {
-      delete store[key];
-    }),
-    clear: jest.fn(() => {
-      store = {};
-    }),
-  };
-})();
-
-global.localStorage = localStorageMock;
+// Use shared store from setupTests (global.__localStorageStore)
+const store = global.__localStorageStore || {};
 
 // Mock fetch
 global.fetch = jest.fn();
@@ -34,12 +18,15 @@ jest.mock("../../utils/importMetaEnv", () => ({
   },
 }));
 
-import * as securityService from "../securityService";
+// Import after mocks
+const securityService = require("../securityService");
 
 describe("SecurityService", () => {
   beforeEach(() => {
+    if (store && typeof store === "object") {
+      Object.keys(store).forEach((k) => delete store[k]);
+    }
     jest.clearAllMocks();
-    localStorageMock.clear();
     fetch.mockClear();
     console.error = jest.fn();
   });
@@ -56,6 +43,7 @@ describe("SecurityService", () => {
 
       fetch.mockResolvedValueOnce({
         ok: true,
+        headers: { get: () => "application/json" },
         json: async () => mockResponse,
       });
 
@@ -80,8 +68,7 @@ describe("SecurityService", () => {
         }
       );
       expect(result).toEqual(mockResponse.data);
-      // registerUser doesn't set token, only loginUser does
-      expect(localStorageMock.setItem).not.toHaveBeenCalled();
+      expect(store.authToken).toBeUndefined();
     });
 
     it("should handle registration errors", async () => {
@@ -92,6 +79,7 @@ describe("SecurityService", () => {
 
       fetch.mockResolvedValueOnce({
         ok: false,
+        headers: { get: () => "application/json" },
         json: async () => mockResponse,
       });
 
@@ -119,10 +107,15 @@ describe("SecurityService", () => {
         },
       };
 
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      // checkBackendConnection + verifyOneTGALogin + login
+      fetch
+        .mockResolvedValueOnce({ ok: true }) // health check
+        .mockRejectedValueOnce(new TypeError("Failed to fetch")) // verify-one-tga skip
+        .mockResolvedValueOnce({
+          ok: true,
+          headers: { get: () => "application/json" },
+          json: async () => mockResponse,
+        });
 
       const result = await securityService.loginUser(
         "test@example.com",
@@ -131,23 +124,18 @@ describe("SecurityService", () => {
 
       expect(fetch).toHaveBeenCalledWith(
         "http://localhost:8000/api/auth/login",
-        {
+        expect.objectContaining({
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: "test@example.com",
             password: "password123",
             mfaToken: null,
           }),
-        }
+        })
       );
       expect(result).toEqual(mockResponse.data);
-      expect(localStorageMock.setItem).toHaveBeenCalledWith(
-        "authToken",
-        "login-token"
-      );
+      expect(store.authToken).toBe("login-token");
     });
 
     it("should handle MFA requirement", async () => {
@@ -157,10 +145,14 @@ describe("SecurityService", () => {
         message: "MFA token required",
       };
 
-      fetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      });
+      fetch
+        .mockResolvedValueOnce({ ok: true }) // health
+        .mockRejectedValueOnce(new TypeError("Failed to fetch")) // verify skip
+        .mockResolvedValueOnce({
+          ok: true,
+          headers: { get: () => "application/json" },
+          json: async () => mockResponse,
+        });
 
       const result = await securityService.loginUser(
         "test@example.com",
@@ -177,10 +169,14 @@ describe("SecurityService", () => {
         error: "Invalid credentials",
       };
 
-      fetch.mockResolvedValueOnce({
-        ok: false,
-        json: async () => mockResponse,
-      });
+      fetch
+        .mockResolvedValueOnce({ ok: true }) // health
+        .mockRejectedValueOnce(new TypeError("Failed to fetch")) // verify skip
+        .mockResolvedValueOnce({
+          ok: false,
+          headers: { get: () => "application/json" },
+          json: async () => mockResponse,
+        });
 
       await expect(
         securityService.loginUser("test@example.com", "wrong-password")
@@ -189,20 +185,21 @@ describe("SecurityService", () => {
   });
 
   describe("logoutUser", () => {
-    it("should logout user and clear token", () => {
-      localStorageMock.setItem("authToken", "test-token");
-      localStorageMock.setItem("token", "test-token");
+    it("should logout user and clear token", async () => {
+      store.authToken = "test-token";
+      store.token = "test-token";
+      fetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) });
 
-      securityService.logoutUser();
+      await securityService.logoutUser();
 
-      expect(localStorageMock.removeItem).toHaveBeenCalledWith("authToken");
-      expect(localStorageMock.removeItem).toHaveBeenCalledWith("token");
+      expect(store.authToken).toBeUndefined();
+      expect(store.token).toBeUndefined();
     });
   });
 
   describe("getCurrentUser", () => {
     it("should get current user successfully", async () => {
-      localStorageMock.setItem("authToken", "valid-token");
+      store.authToken = "valid-token";
 
       const mockResponse = {
         success: true,
@@ -218,18 +215,21 @@ describe("SecurityService", () => {
 
       const result = await securityService.getCurrentUser();
 
-      expect(fetch).toHaveBeenCalledWith("http://localhost:8000/api/auth/me", {
-        headers: {
-          Authorization: "Bearer valid-token",
-          "Content-Type": "application/json",
-        },
-      });
+      expect(fetch).toHaveBeenCalledWith(
+        "http://localhost:8000/api/auth/me",
+        expect.objectContaining({
+          headers: expect.objectContaining({
+            Authorization: "Bearer valid-token",
+            "Content-Type": "application/json",
+          }),
+        })
+      );
       // getCurrentUser returns data.data (which is { user: {...} } in this case)
       expect(result).toEqual(mockResponse.data);
     });
 
     it("should return null if no token", async () => {
-      localStorageMock.getItem.mockReturnValue(null);
+      // store is empty - no token
 
       // getCurrentUser will still call fetch, but without Authorization header
       // It will throw error if fetch fails, so we need to mock it
@@ -239,7 +239,7 @@ describe("SecurityService", () => {
     });
 
     it("should handle unauthorized errors", async () => {
-      localStorageMock.getItem.mockReturnValue("invalid-token");
+      store.authToken = "invalid-token";
 
       fetch.mockResolvedValueOnce({
         ok: false,
@@ -250,14 +250,13 @@ describe("SecurityService", () => {
       await expect(securityService.getCurrentUser()).rejects.toThrow(
         "Unauthorized"
       );
-      expect(localStorageMock.removeItem).toHaveBeenCalledWith("authToken");
+      expect(store.authToken).toBeUndefined();
     });
   });
 
   describe("isAuthenticated", () => {
     it("should return true if token exists", () => {
-      localStorageMock.setItem("authToken", "test-token");
-      localStorageMock.getItem.mockReturnValue("test-token");
+      store.authToken = "test-token";
 
       const result = securityService.isAuthenticated();
 
@@ -265,8 +264,7 @@ describe("SecurityService", () => {
     });
 
     it("should return false if no token", () => {
-      localStorageMock.getItem.mockReturnValue(null);
-
+      // store is empty
       const result = securityService.isAuthenticated();
 
       expect(result).toBe(false);

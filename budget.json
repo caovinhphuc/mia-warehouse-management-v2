@@ -1,0 +1,13 @@
+{
+  "bundleSize": {
+    "maxUncompressed": "2.5MB",
+    "maxCompressed": "800KB",
+    "maxInitialLoad": "500KB"
+  },
+  "chunks": {
+    "vendor": "800KB",
+    "vendor-antd": "600KB",
+    "vendor-charts": "350KB",
+    "main": "150KB"
+  }
+}

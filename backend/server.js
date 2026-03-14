@@ -8,10 +8,12 @@ const express = require("express");
 const http = require("http");
 const cors = require("cors");
 const path = require("path");
+// Load backend/.env first (has PORT=3001), then root .env for shared vars
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const { formatVietnameseDateTime } = require("./utils/dateUtils");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.BACKEND_PORT || process.env.PORT || 3001;
 
 // Cleanup expired sessions periodically (every hour)
 const authService = require("./services/authService");
@@ -70,13 +72,26 @@ const io = socketService.init(server);
 const wsService = require("./services/wsService");
 wsService.init(server);
 
-// Middleware
+// Middleware - CORS: support ALLOWED_ORIGINS (comma-separated) for Netlify + localhost
+const getAllowedOrigins = () => {
+  const allowed = process.env.ALLOWED_ORIGINS;
+  if (allowed) {
+    return allowed.split(",").map((o) => o.trim()).filter(Boolean);
+  }
+  const single =
+    process.env.FRONTEND_URL ||
+    process.env.CORS_ORIGIN ||
+    "http://localhost:3000";
+  return [single];
+};
+const corsOrigins = getAllowedOrigins();
 app.use(
   cors({
     origin:
-      process.env.FRONTEND_URL ||
-      process.env.CORS_ORIGIN ||
-      "http://localhost:3000",
+      corsOrigins.length === 1
+        ? corsOrigins[0]
+        : (origin, cb) =>
+            cb(null, !origin || corsOrigins.includes(origin)),
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],

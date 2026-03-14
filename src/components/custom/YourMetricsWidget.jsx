@@ -14,28 +14,15 @@ import {
   CircularProgress,
   Alert,
 } from "@mui/material";
-import { Line } from "react-chartjs-2";
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
   Tooltip,
-  Legend,
-} from "chart.js";
-
-// Register Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+  ResponsiveContainer,
+} from "recharts";
 
 const YourMetricsWidget = () => {
   const [salesData, setSalesData] = useState(null);
@@ -119,19 +106,16 @@ const YourMetricsWidget = () => {
     }
   };
 
-  // Chart data for sales trend
-  const salesChartData = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [12000, 15000, 18000, 14000, 16000, 20000, 22000],
-        borderColor: "rgb(102, 126, 234)",
-        backgroundColor: "rgba(102, 126, 234, 0.1)",
-        tension: 0.4,
-      },
-    ],
-  };
+  // Chart data for sales trend (Recharts format)
+  const salesChartData = [
+    { name: "Mon", sales: 12000 },
+    { name: "Tue", sales: 15000 },
+    { name: "Wed", sales: 18000 },
+    { name: "Thu", sales: 14000 },
+    { name: "Fri", sales: 16000 },
+    { name: "Sat", sales: 20000 },
+    { name: "Sun", sales: 22000 },
+  ];
 
   if (loading && !salesData && !userMetrics) {
     return (
@@ -249,33 +233,23 @@ const YourMetricsWidget = () => {
             📈 Sales Trend (Last 7 Days)
           </Typography>
           <Box sx={{ height: "300px" }}>
-            <Line
-              data={salesChartData}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    display: true,
-                    position: "top",
-                  },
-                  tooltip: {
-                    mode: "index",
-                    intersect: false,
-                  },
-                },
-                scales: {
-                  y: {
-                    beginAtZero: true,
-                    ticks: {
-                      callback: function (value) {
-                        return `$${value.toLocaleString()}`;
-                      },
-                    },
-                  },
-                },
-              }}
-            />
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={salesChartData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis tickFormatter={(v) => `$${v.toLocaleString()}`} />
+                <Tooltip
+                  formatter={(v) => [`$${v.toLocaleString()}`, "Sales"]}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="sales"
+                  stroke="rgb(102, 126, 234)"
+                  strokeWidth={2}
+                  dot={{ fill: "rgb(102, 126, 234)" }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </Box>
         </CardContent>
       </Card>

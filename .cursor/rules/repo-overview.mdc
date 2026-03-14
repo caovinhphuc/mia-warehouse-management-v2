@@ -1,0 +1,25 @@
+---
+description: Tổng quan repo - best practice Claude Code & Cursor
+alwaysApply: true
+---
+
+# Repo Overview
+
+Đây là **reference repo** cho Claude Code và Cursor: Commands, Agents, Skills, Hooks, MCP.
+
+## Cấu trúc chính
+
+- `.claude/` — cấu hình Claude Code (commands, agents, skills, hooks)
+- `best-practice/` — tài liệu best practice
+- `implementation/` — ví dụ triển khai
+- `orchestration-workflow/` — flow Command → Agent → Skill (weather demo)
+- `reports/` — báo cáo kỹ thuật
+
+## Dùng Cursor vs Claude Code
+
+- **Cursor**: rules (đây), MCP; không dùng hooks của Claude Code
+- **Claude Code**: chạy đầy đủ `/weather-orchestrator`, hooks, agents
+
+## MCP servers (.mcp.json)
+
+Playwright, reddit, tavily, context7, deepwiki. Kiểm tra API keys và endpoints khi cần.

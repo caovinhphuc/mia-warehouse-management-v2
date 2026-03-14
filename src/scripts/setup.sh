@@ -1,4 +1,4 @@
-chmod +x scripts/setup.sh#!/bin/bash
+#!/bin/bash
 
 ## OneAutomation System - Setup Script
 ## Tự động cài đặt và cấu hình hệ thống

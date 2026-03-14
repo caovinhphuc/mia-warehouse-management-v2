@@ -8,13 +8,13 @@ This guide implements comprehensive bundle optimization strategies that can redu
 
 ### Current Status
 
-✅ **Implemented Optimizations:**
+✅ **Đã triển khai:**
 
-1. ✅ Migrated from moment.js to dayjs (~68KB saved)
-2. ✅ Configured babel-plugin-import for Ant Design tree-shaking
-3. ✅ Added babel-plugin-lodash for optimal lodash imports
-4. ✅ Created code splitting utilities with React.lazy()
-5. ✅ Configured webpack optimizations in craco.config.js
+1. ✅ moment.js → dayjs (dateUtils.js)
+2. ✅ Vite manualChunks (vendor splits)
+3. ✅ lodashUtils.js, lazyLoad.js
+4. ✅ Gzip + Brotli (vite-plugin-compression)
+5. ✅ PWA (vite-plugin-pwa)
 
 ### Expected Impact
 
@@ -32,34 +32,30 @@ This guide implements comprehensive bundle optimization strategies that can redu
 ### 1. Install Required Dependencies
 
 ```bash
-# Install dayjs plugins
+# dayjs (đã có)
 npm install dayjs
 
-# Install babel plugins (already in devDependencies)
-npm install --save-dev babel-plugin-import babel-plugin-lodash
+# Vite build - không cần babel-plugin-import/lodash (Vite xử lý ESM)
 ```
 
 ### 2. Verify Configuration
 
-Check that [craco.config.js](../craco.config.js) includes:
-
-```javascript
-babel: {
-  plugins: [["import", { libraryName: "antd", style: true }, "antd"], "lodash"];
-}
-```
+Build dùng **Vite** (`vite.config.mjs`). Các tối ưu đã có trong `vite.config.mjs`:
+- `manualChunks` - Chia vendor (react, antd, redux, recharts...)
+- `vite-plugin-compression` - Gzip + Brotli
+- `optimizeDeps` - Pre-bundling
 
 ### 3. Run Bundle Analysis
 
 ```bash
-# Analyze current bundle
+# Phân tích dependencies (không cần build)
 npm run analyze:deps
 
-# Build and analyze with webpack
-npm run analyze
+# Build Vite + xem kích thước
+npm run build:prod && npm run analyze:size
 
-# Check bundle sizes
-npm run analyze:size
+# Phân tích đầy đủ (dùng craco - có thể cần cấu hình riêng)
+npm run analyze
 ```
 
 ---
@@ -109,18 +105,10 @@ npm run analyze:deps | grep moment
 
 #### Configuration
 
-Already configured in [craco.config.js](../craco.config.js):
+Ant Design v5 tree-shake tốt với named imports. Vite xử lý ESM tự động. Dùng named imports:
 
 ```javascript
-[
-  "import",
-  {
-    libraryName: "antd",
-    libraryDirectory: "es",
-    style: false, // Ant Design v6 uses CSS-in-JS
-  },
-  "antd",
-];
+// Ant Design v5 - tree-shaking qua ESM
 ```
 
 #### Usage
@@ -164,22 +152,11 @@ import debounce from "lodash/debounce";
 import get from "lodash/get";
 ```
 
-#### Method 3: Babel Plugin (Auto-optimization)
+#### Method 3: Vite / ESM
 
-With babel-plugin-lodash, this:
+Vite + lodash ESM tree-shake tốt. Hoặc dùng `@utils/lodashUtils` để centralize.
 
-```javascript
-import { debounce, get } from "lodash";
-```
-
-Automatically becomes:
-
-```javascript
-import debounce from "lodash/debounce";
-import get from "lodash/get";
-```
-
-📖 **See:** [docs/LODASH_OPTIMIZATION.md](./LODASH_OPTIMIZATION.md) for complete guide
+📖 **See:** [LODASH_OPTIMIZATION.md](./LODASH_OPTIMIZATION.md)
 
 ---
 
@@ -257,37 +234,20 @@ useEffect(() => {
 
 ---
 
-### 5. Webpack Optimizations
+### 5. Vite Chunk Splitting
 
-Already configured in [craco.config.js](../craco.config.js):
+Đã cấu hình trong [vite.config.mjs](../vite.config.mjs) - `manualChunks`:
 
-```javascript
-optimization: {
-  splitChunks: {
-    chunks: 'all',
-    cacheGroups: {
-      // React vendor chunk
-      react: {
-        test: /[\\/]node_modules[\\/](react|react-dom|react-router)[\\/]/,
-        name: 'vendor-react',
-        priority: 20,
-      },
-      // Ant Design chunk
-      antd: {
-        test: /[\\/]node_modules[\\/](antd|@ant-design)[\\/]/,
-        name: 'vendor-antd',
-        priority: 15,
-      },
-      // Other vendors
-      vendors: {
-        test: /[\\/]node_modules[\\/]/,
-        name: 'vendor',
-        priority: 10,
-      }
-    }
-  }
-}
-```
+- `vendor-react` - react, react-dom
+- `vendor-antd` - antd, @ant-design, rc-*
+- `vendor-recharts` - recharts, d3-*
+- `vendor-redux` - redux, react-redux
+- `vendor-router` - react-router
+- `vendor-mui` - @mui, @emotion
+- `vendor-utils` - lodash, dayjs
+- `vendor-socket` - socket.io
+
+Xem `vite.config.mjs` → `build.rollupOptions.output.manualChunks`.
 
 ---
 
@@ -295,34 +255,22 @@ optimization: {
 
 ### Analysis Scripts
 
-```bash
-# Complete bundle analysis
-npm run analyze
+| Script | Mô tả |
+|--------|-------|
+| `npm run analyze:deps` | Kiểm tra deps lớn, gợi ý tối ưu |
+| `npm run analyze:size` | Build + hiển thị kích thước file (build/assets/) |
+| `npm run analyze:performance` | Phân tích hiệu năng |
+| `npm run analyze:sourcemap` | Source map (cần GENERATE_SOURCEMAP=true) |
+| `npm run analyze` | Full (craco build - legacy) |
 
-# Check large dependencies
-npm run analyze:deps
-
-# Size breakdown
-npm run analyze:size
-
-# Performance analysis
-npm run analyze:performance
-
-# Source map analysis
-npm run analyze:sourcemap
-```
-
-### Build Scripts
+### Build Scripts (Vite)
 
 ```bash
-# Production build (optimized)
+# Production (Vite)
 npm run build:prod
 
-# Build without source maps
-npm run build:no-sourcemap
-
-# Minimal build (fastest)
-npm run build:minimal
+# Hoặc
+npm run build
 ```
 
 ---
@@ -457,24 +405,11 @@ npm ls react
 npm update react react-dom
 ```
 
-### Issue: Module not found error with Ant Design
+### Issue: Module not found
 
-**Problem:** `Can't resolve 'antd/es/theme/style'`
-
-**Check:**
-babel-plugin-import configuration:
-
-```javascript
-[
-  "import",
-  {
-    libraryName: "antd",
-    libraryDirectory: "es",
-    style: false, // ← For Ant Design v6 (uses CSS-in-JS)
-  },
-  "antd",
-];
-```
+**Vite** resolve ESM trực tiếp. Kiểm tra:
+- Path alias trong `vite.config.mjs` → `resolve.alias`
+- `@utils`, `@services` trỏ đúng `./src/`
 
 ---
 
@@ -512,43 +447,31 @@ babel-plugin-import configuration:
 
 ### Internal Docs
 
-- [LODASH_OPTIMIZATION.md](./LODASH_OPTIMIZATION.md) - Lodash optimization guide
-- [lazyRoutes.example.js](../src/routes/lazyRoutes.example.js) - Code splitting examples
-- [lazyLoad.js](../src/utils/lazyLoad.js) - Lazy loading utilities
+- [LODASH_OPTIMIZATION.md](./LODASH_OPTIMIZATION.md) - Lodash optimization
+- [BUNDLE_PHASE2_IMPLEMENTATION.md](./BUNDLE_PHASE2_IMPLEMENTATION.md) - PurgeCSS, Chart audit
+- [BUNDLE_PHASE3_IMAGES.md](./BUNDLE_PHASE3_IMAGES.md) - Images, LazyImage, PWA
+- [lazyLoad.js](../src/utils/lazyLoad.js) - Lazy loading
+- [lazyRoutes.example.js](../src/routes/lazyRoutes.example.js) - Code splitting mẫu
 
 ---
 
 ## ✅ Checklist
 
-### Initial Setup
+### Đã triển khai
 
-- [ ] Install babel-plugin-import
-- [ ] Install babel-plugin-lodash
-- [ ] Configure craco.config.js
-- [ ] Update package.json scripts
+- [x] moment.js → dayjs (dateUtils.js)
+- [x] lodashUtils.js
+- [x] lazyLoad.js
+- [x] Vite manualChunks (vite.config.mjs)
+- [x] Gzip + Brotli (vite-plugin-compression)
+- [x] PWA (vite-plugin-pwa)
+- [x] lazyRoutes.example.js
 
-### Migration Tasks
+### Tùy chọn
 
-- [x] Migrate moment.js to dayjs
-- [ ] Update all date-related code
-- [ ] Create lodash utility module
-- [ ] Implement code splitting
-- [ ] Update route configuration
-
-### Testing
-
-- [ ] Run bundle analysis
-- [ ] Test all features
-- [ ] Check loading times
-- [ ] Verify Lighthouse scores
-- [ ] Test on slow connections
-
-### Monitoring
-
-- [ ] Set up CI/CD bundle size alerts
-- [ ] Monitor performance metrics
-- [ ] Regular dependency audits
-- [ ] Update documentation
+- [ ] Code splitting cho routes (áp dụng lazyRoutes pattern)
+- [ ] Run `npm run analyze:size` để baseline
+- [ ] CI/CD bundle size alerts
 
 ---
 
@@ -563,5 +486,7 @@ For questions or issues:
 
 ---
 
-**Last Updated:** December 25, 2025
-**Status:** ✅ All optimizations implemented and documented
+**Last Updated:** March 14, 2026  
+**Build:** Vite (vite.config.mjs)  
+**Status:** Tối ưu chính đã triển khai; moment đã thay dayjs  
+**Config tổng hợp:** [docs/CONFIG_STATUS.md](CONFIG_STATUS.md)

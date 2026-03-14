@@ -37,14 +37,7 @@ import {
   DeleteOutlined,
   EditOutlined,
 } from "@ant-design/icons";
-import {
-  LineChartComponent,
-  BarChartComponent,
-  PieChartComponent,
-  AreaChartComponent,
-  HeatMapComponent,
-  ChartTypeSelector,
-} from "./ChartComponents";
+// Lazy load ChartComponents (Recharts ~200KB) → tách chunk riêng, load khi cần
 import { DataFilterPanel } from "./DataFilterPanel";
 import {
   exportToPDF,
@@ -88,6 +81,13 @@ const generateSampleData = (type = "line", count = 10) => {
 };
 
 const AdvancedAnalyticsDashboard = () => {
+  const [ChartModule, setChartModule] = useState(null);
+  useEffect(() => {
+    import(/* webpackChunkName: "chart-components" */ "./ChartComponents").then(
+      (m) => setChartModule(m)
+    );
+  }, []);
+
   const [layouts, setLayouts] = useState({
     lg: [
       { i: "chart-1", x: 0, y: 0, w: 6, h: 3 },
@@ -243,27 +243,50 @@ const AdvancedAnalyticsDashboard = () => {
     }
   };
 
-  // Render chart based on type
+  // Render chart based on type (ChartModule lazy loaded)
   const renderChart = (widget) => {
+    if (!ChartModule) {
+      return (
+        <div
+          style={{
+            height: 300,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#fafafa",
+            borderRadius: 8,
+          }}
+        >
+          <Text type="secondary">Đang tải biểu đồ...</Text>
+        </div>
+      );
+    }
     const commonProps = {
       title: widget.title,
       data: widget.data,
       dataKey: widget.dataKey,
       height: 300,
     };
+    const {
+      LineChartComponent: Line,
+      BarChartComponent: Bar,
+      PieChartComponent: Pie,
+      AreaChartComponent: Area,
+      HeatMapComponent: HeatMap,
+    } = ChartModule;
 
     switch (widget.type) {
       case "line":
-        return <LineChartComponent {...commonProps} />;
+        return <Line {...commonProps} />;
       case "bar":
-        return <BarChartComponent {...commonProps} />;
+        return <Bar {...commonProps} />;
       case "pie":
-        return <PieChartComponent {...commonProps} />;
+        return <Pie {...commonProps} />;
       case "area":
-        return <AreaChartComponent {...commonProps} />;
+        return <Area {...commonProps} />;
       case "heatmap":
         return (
-          <HeatMapComponent
+          <HeatMap
             data={widget.data}
             xKey="x"
             yKey="y"
@@ -272,7 +295,7 @@ const AdvancedAnalyticsDashboard = () => {
           />
         );
       default:
-        return <LineChartComponent {...commonProps} />;
+        return <Line {...commonProps} />;
     }
   };
 

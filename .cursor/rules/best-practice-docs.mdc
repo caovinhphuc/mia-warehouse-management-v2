@@ -1,0 +1,13 @@
+---
+description: best-practice/ — chỉ tham khảo, không sửa nội dung
+globs: best-practice/**/*
+alwaysApply: false
+---
+
+# best-practice/
+
+Đây là **tài liệu best practice** của repo.
+
+- **Chỉ tham khảo** — dùng để trả lời câu hỏi, áp dụng pattern vào chỗ khác
+- **Không sửa** nội dung best practice trừ khi user yêu cầu rõ ràng (ví dụ: cập nhật theo docs mới)
+- Khi user hỏi về commands, agents, skills, settings, memory, MCP, CLI — trích dẫn từ đây

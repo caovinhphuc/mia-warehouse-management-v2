@@ -1,0 +1,22 @@
+---
+description: Workflow best practices
+alwaysApply: true
+---
+
+# Workflow Best Practices
+
+- **Rule files**: Dưới 200 dòng mỗi file — dễ tuân thủ
+- **Tasks**: Chia nhỏ, mỗi subtask hoàn thành trong &lt; 50% context
+- **Plan mode**: Bắt đầu với plan cho task phức tạp
+- **Manual compact**: ~50% context usage
+
+## Subagent / Task
+
+- Dùng `Task` tool hoặc `mcp_task` — không invoke agent qua bash
+- Rõ ràng về tools; tránh từ mơ hồ như "launch"
+
+## Debugging
+
+- Chạy terminal dài hạn ở background để xem logs
+- Dùng MCP browser (Playwright, Chrome DevTools) để inspect console
+- Gửi screenshot khi báo lỗi UI

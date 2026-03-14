@@ -14,7 +14,7 @@ The MIA.vn Google Integration Platform has been **successfully deployed** and is
 ### ✅ **Current Production Status**
 
 - 🏥 **System Health**: ✅ **OPERATIONAL** (99.9% uptime verified)
-- 🌐 **Production URL**: ✅ **LIVE** (https://fabulous-klepon-ad4aa7.netlify.app)
+- 🌐 **Production URL**: ✅ **LIVE** (<https://fabulous-klepon-ad4aa7.netlify.app>)
 - 🔗 **Google Integration**: ✅ **ACTIVE** (22 Sheets + Drive operational)
 - 📊 **Performance**: ✅ **OPTIMIZED** (178ms average response time)
 - 🔐 **Security**: ✅ **ENTERPRISE-GRADE** (Service account authenticated)
@@ -299,11 +299,30 @@ echo "✅ Deployed to AWS successfully!"
 
 ## � **Production Deployment Scripts** _(Working Automation)_
 
+### **Stack thực tế**
+
+- **Frontend**: Vite + React (port 3000)
+- **Backend**: Express (port 3001)
+- **Deploy chính**: `./deploy.sh` hoặc `npm run deploy:production`
+
+### ⚠️ Lưu ý trước khi deploy Docker
+
+**Port 3001 bị chiếm** → Docker deploy lỗi `bind: address already in use`
+
+```bash
+# Kiểm tra process đang dùng port 3001
+lsof -i :3001
+
+# Dừng process (thường là backend dev)
+kill <PID>
+# Hoặc tắt backend dev ở terminal khác (Ctrl+C)
+```
+
 ### **Automated Production Deployment**
 
 ```bash
 #!/bin/bash
-# deploy-production.sh (verified working script)
+# deploy-production.sh (reference - thực tế dùng ./deploy.sh)
 
 echo "🚀 Starting MIA.vn production deployment..."
 
@@ -331,7 +350,7 @@ npm run test:telegram
 
 # Build optimized production version
 echo "🔨 Building production application..."
-npm run build
+npm run build:prod
 if [ $? -ne 0 ]; then
   echo "❌ Production build failed"
   exit 1
@@ -371,14 +390,6 @@ echo "🔧 Starting production performance optimization..."
 npm run optimize:build
 npm run optimize:runtime
 
-# Production rollback
-echo "🔄 Starting production rollback..."
-npm run rollback:production
-
-# Production cleanup
-echo "🧹 Starting production cleanup..."
-npm run cleanup:production
-
 # Production verification
 echo "🔍 Starting production verification..."
 npm run verify:production
@@ -388,13 +399,13 @@ echo "✅ Deployment completed successfully!"
 echo "🌐 Application ready at: http://localhost:3000"
 ```
 
-### **Production Package.json Scripts**
+### **Production Package.json Scripts** _(tham khảo - project dùng Vite)_
 
 ```json
 {
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "vite",
+    "build": "vite build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
 
@@ -411,7 +422,7 @@ echo "🌐 Application ready at: http://localhost:3000"
     "health:full": "npm run health:check && npm run test:all",
     "health:monitor": "node scripts/health-check.js --monitor",
 
-    "deploy:production": "./deploy-production.sh",
+    "deploy:production": "./scripts/deploy/production.sh",
     "deploy:docker": "docker-compose up --build -d",
     "deploy:netlify": "npm run build:production && netlify deploy --prod --dir=build"
   }
@@ -834,6 +845,41 @@ const cacheManager = new ProductionCacheManager();
 ---
 
 ## 🐛 **Production Troubleshooting Guide** _(Real Solutions)_
+
+### **Netlify: Trang trắng / Chỉ hiển thị loading mãi**
+
+**Triệu chứng**: Deploy Netlify thành công nhưng https://yoursite.netlify.app/ chỉ thấy loading spinner hoặc màn hình trắng.
+
+**Nguyên nhân thường gặp & cách xử lý:**
+
+| Nguyên nhân | Cách kiểm tra | Cách sửa |
+|-------------|---------------|----------|
+| **1. Lỗi JS runtime** | Mở DevTools (F12) → Console → xem lỗi màu đỏ | Sửa lỗi trong code hoặc dependency |
+| **2. Asset 404** | DevTools → Network → filter `.js`, `.css` → xem request 404 | Kiểm tra `base` trong `vite.config.mjs`, `netlify.toml` publish dir |
+| **3. Thiếu biến môi trường** | Console có lỗi liên quan `VITE_API_URL`, `fetch`, CORS | Thêm biến môi trường trong Netlify Dashboard → Site settings → Environment variables (vd: `VITE_API_URL`) |
+| **4. Node phiên bản cũ** | Build log Netlify có warning/error | Đặt `NODE_VERSION = "18"` trong `netlify.toml` (hoặc 20) |
+| **5. PWA cache cũ** | Đã deploy fix nhưng vẫn lỗi | Xóa cache: DevTools → Application → Storage → Clear site data |
+| **6. base path sai** | Asset 404 khi truy cập qua URL có subpath | Thử `base: "/"` thay vì `base: "./"` trong `vite.config.mjs` |
+
+**Checklist nhanh:**
+1. Mở https://yoursite.netlify.app/ → F12 → Console: ghi lại lỗi.
+2. Tab Network: xem `index.html`, `main-xxx.js`, `vendor-xxx.js` load 200 hay 404.
+3. Netlify Dashboard → Deploys → xem Build log có fail không.
+4. Environment variables: có `VITE_API_URL` (hoặc các `VITE_*` cần thiết) chưa.
+
+**Cấu hình Netlify đã dùng:**
+- `publish = "build"` (Vite output)
+- `NODE_VERSION = "18"`
+- Redirect `/*` → `/index.html` (status 200) cho SPA routing
+- Static `/assets/*` được serve trước redirect
+
+**⚠️ Backend CORS (Render/backend):** Nếu đăng nhập vẫn báo "Backend không khả dụng" dù env Netlify đã đúng → **backend** chưa cho phép domain Netlify. Trên Render Dashboard → Backend service → Environment → thêm:
+
+```
+ALLOWED_ORIGINS=http://localhost:3000,https://your-site.netlify.app
+```
+
+---
 
 ### **Common Production Issues & Solutions**
 

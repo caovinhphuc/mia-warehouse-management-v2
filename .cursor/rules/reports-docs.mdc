@@ -1,0 +1,13 @@
+---
+description: reports/ — tài liệu kỹ thuật, chỉ tham khảo
+globs: reports/**/*
+alwaysApply: false
+---
+
+# reports/
+
+Đây là **báo cáo / tài liệu kỹ thuật** (MCP, settings, memory, tool use, usage...).
+
+- **Chỉ tham khảo** — dùng để giải thích, so sánh, trích dẫn
+- **Không sửa** nội dung reports trừ khi user yêu cầu cập nhật/correct
+- Các report: agent-sdk-vs-cli, browser MCP, global-vs-project settings, skills monorepos, agent memory, advanced tool use, usage/rate limits

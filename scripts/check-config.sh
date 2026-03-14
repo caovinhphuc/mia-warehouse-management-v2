@@ -10,12 +10,12 @@ echo ""
 
 # Check main files
 echo "📁 Configuration Files:"
-for file in package.json vite.config.js craco.config.js craco-plugin-fix-devserver.js babel.config.js postcss.config.js; do
-    if [ -f "$file" ]; then
-        echo "  ✅ $file"
-    else
-        echo "  ❌ $file - NOT FOUND"
-    fi
+# package.json
+[ -f "package.json" ] && echo "  ✅ package.json" || echo "  ❌ package.json - NOT FOUND"
+# vite: accept .js or .mjs (project uses vite.config.mjs)
+[ -f "vite.config.js" ] || [ -f "vite.config.mjs" ] && echo "  ✅ vite.config (js|mjs)" || echo "  ❌ vite.config - NOT FOUND"
+for file in craco.config.js craco-plugin-fix-devserver.js babel.config.js postcss.config.js; do
+    [ -f "$file" ] && echo "  ✅ $file" || echo "  ❌ $file - NOT FOUND"
 done
 
 echo ""

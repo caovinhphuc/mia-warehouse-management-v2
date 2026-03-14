@@ -82,7 +82,7 @@
 ### **Build & Development**
 
 - **package.json** - React dependencies (React 19.1.1, Ant Design 5.27.4)
-- **backend-package.json** - Node.js backend dependencies
+- **backend/package.json** - Node.js backend dependencies
 - **craco.config.js** - Create React App configuration override
 - **package-lock.json** - Locked dependency versions
 

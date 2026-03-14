@@ -1,4 +1,6 @@
-# Cải thiện Dependencies & Docker Build (2026-02-06)
+# Cải thiện Dependencies & Docker Build
+
+**Cập nhật:** March 14, 2026
 
 ## Đã thực hiện
 
@@ -24,11 +26,10 @@
 | lucide-react    | Không dùng trong src       |
 | assert, process, url, util | Chỉ cần trong môi trường build (Node) |
 
-### 3. Sửa import `@utils/lazyLoad`
+### 3. Import `lazyLoad` trong example
 
-- **File**: `src/routes/lazyRoutes.example.js`
-- **Thay**: `@utils/lazyLoad` → `../utils/lazyLoad` (relative path)
-- **Lý do**: Không có alias `@utils` trong config
+- **File**: `src/routes/lazyRoutes.example.js` dùng `../utils/lazyLoad` (relative path)
+- **Lưu ý**: `@utils` alias có trong vite.config.mjs và jest.config.js; cả hai đều hợp lệ
 
 ### 4. Cập nhật .npmrc
 
@@ -44,7 +45,7 @@ npm install
 # Chạy depcheck
 npx depcheck
 
-# Build (local)
+# Build (local, Vite)
 npm run build:minimal
 
 # Docker
@@ -55,3 +56,4 @@ npm run build:minimal
 
 - Nếu Docker vẫn thiếu RAM: tăng memory cho Docker Desktop (Settings → Resources → Memory, ví dụ 4GB+)
 - `build:prod` vẫn dùng sourcemap cho development; Docker dùng `build:minimal`
+- **Port 3001**: Trước khi `./deploy.sh docker`, tắt backend dev (hoặc `lsof -i :3001` → `kill <PID>`) nếu bị lỗi `address already in use`

@@ -19,6 +19,14 @@ module.exports = {
     // cssnano will be added in production builds
     ...(process.env.NODE_ENV === "production"
       ? [
+          require("@fullhuman/postcss-purgecss")({
+            content: [
+              "./index.html",
+              "./login.html",
+              "./src/**/*.{js,jsx,ts,tsx}",
+            ],
+            safelist: { greedy: [/^ant-/, /^rc-/, /^css-/, /^adm-/, /^antd-/] },
+          }),
           require("cssnano")({
             preset: [
               "default",

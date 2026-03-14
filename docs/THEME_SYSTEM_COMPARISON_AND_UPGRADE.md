@@ -10,7 +10,7 @@
 | Hạng mục | MIA-REACT-THEME-SYSTEM.md (Chuẩn) | Dự án hiện tại | Khác biệt |
 |----------|-----------------------------------|----------------|-----------|
 | **Theme Context** | `ThemeProvider` + `useTheme()` → theme, toggleTheme, setTheme, colors, spacing, breakpoints, setThemePreferences | Không có. Chỉ có `LayoutContext` (layout/widget), `ConfigProvider` Ant Design | Thiếu layer theme React, không có hook useTheme |
-| **Dark/Light** | `data-theme="light"|"dark"` trên `<html>`, localStorage + `prefers-color-scheme`, ThemeToggle component | Chưa có. `BRAND_CONFIG.theme.mode` và `features.darkMode: true` không được dùng | Không có dark mode thực tế |
+| **Dark/Light** | `data-theme="light"|"dark"` trên `<html>`, localStorage +`prefers-color-scheme`, ThemeToggle component | Chưa có. `BRAND_CONFIG.theme.mode` và `features.darkMode: true` không được dùng | Không có dark mode thực tế |
 | **CSS Variables** | `:root` và `[data-theme="dark"]` với palette đầy đủ (primary 50–900, semantic, surface, text, border), typography, spacing, shadow, transition | `global.css` dùng màu hex/rgba cố định (#1e293b, #f8fafc, #e2e8f0, rgba(...)) | Không có design tokens, khó đổi theme/accessibility |
 | **Cấu trúc CSS** | `main.css` → base (reset, typography, layout) → themes (light.css, dark.css) → components → utilities | Một `global.css` + từng component có file .css riêng, không tách base/themes/utilities | Không tách lớp, khó bảo trì |
 | **Ant Design** | Doc không nói rõ tích hợp Ant Design | Dùng `ConfigProvider` với `theme.defaultAlgorithm`, `token.colorPrimary`, `token.borderRadius` từ BRAND_CONFIG | Chỉ light; không đổi algorithm theo dark |

@@ -7,40 +7,28 @@
 
 import React, { useState, useEffect } from "react";
 import { Card, Typography, Spin, Alert, Row, Col, Tag, Space } from "antd";
-import { Line, Bar, Pie } from "react-chartjs-2";
+import {
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import {
   fetchRetailDashboard,
   fetchSalesMetrics,
   fetchInventoryStatus,
   fetchCustomerAnalytics,
   formatVND,
-  formatNumber,
 } from "../../services/retailService";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-// Register Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  BarElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 const MIARetailDashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
@@ -82,56 +70,34 @@ const MIARetailDashboard = () => {
     }
   };
 
-  // Sales trend chart data
-  const salesChartData = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    datasets: [
-      {
-        label: "Revenue (VND)",
-        data: [120000, 150000, 180000, 140000, 160000, 200000, 220000],
-        borderColor: "#3b82f6",
-        backgroundColor: "rgba(59, 130, 246, 0.1)",
-        tension: 0.4,
-      },
-    ],
-  };
+  // Sales trend chart data (Recharts format)
+  const salesChartData = [
+    { name: "Mon", revenue: 120000 },
+    { name: "Tue", revenue: 150000 },
+    { name: "Wed", revenue: 180000 },
+    { name: "Thu", revenue: 140000 },
+    { name: "Fri", revenue: 160000 },
+    { name: "Sat", revenue: 200000 },
+    { name: "Sun", revenue: 220000 },
+  ];
 
-  // Top products chart
+  // Top products chart (Recharts format)
   const topProductsData = salesData?.topProducts
-    ? {
-        labels: salesData.topProducts.map((p) => p.name),
-        datasets: [
-          {
-            label: "Sales (VND)",
-            data: salesData.topProducts.map((p) => p.sales),
-            backgroundColor: [
-              "#3b82f6",
-              "#60a5fa",
-              "#2563eb",
-              "#06a77d",
-              "#1d4ed8",
-            ],
-          },
-        ],
-      }
-    : null;
+    ? salesData.topProducts.map((p) => ({ name: p.name, sales: p.sales }))
+    : [];
 
-  // Inventory status pie chart
+  // Inventory status pie chart (Recharts format)
   const inventoryStatusData = inventoryData
-    ? {
-        labels: ["In Stock", "Low Stock", "Out of Stock"],
-        datasets: [
-          {
-            data: [
-              inventoryData.inStock,
-              inventoryData.lowStock,
-              inventoryData.outOfStock,
-            ],
-            backgroundColor: ["#06a77d", "#f59e0b", "#d62828"],
-          },
-        ],
-      }
-    : null;
+    ? [
+        { name: "In Stock", value: inventoryData.inStock, color: "#06a77d" },
+        { name: "Low Stock", value: inventoryData.lowStock, color: "#f59e0b" },
+        {
+          name: "Out of Stock",
+          value: inventoryData.outOfStock,
+          color: "#d62828",
+        },
+      ]
+    : [];
 
   if (loading && !dashboardData) {
     return (
@@ -326,35 +292,27 @@ const MIARetailDashboard = () => {
               📈 Sales Trend (Last 7 Days)
             </Typography.Title>
             <div style={{ height: "300px" }}>
-              <Line
-                data={salesChartData}
-                options={{
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  plugins: {
-                    legend: { display: true },
-                    tooltip: {
-                      callbacks: {
-                        label: function (context) {
-                          return `Revenue: ${context.parsed.y.toLocaleString(
-                            "vi-VN"
-                          )}₫`;
-                        },
-                      },
-                    },
-                  },
-                  scales: {
-                    y: {
-                      beginAtZero: true,
-                      ticks: {
-                        callback: function (value) {
-                          return `${value.toLocaleString("vi-VN")}₫`;
-                        },
-                      },
-                    },
-                  },
-                }}
-              />
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={salesChartData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis
+                    tickFormatter={(v) => `${v.toLocaleString("vi-VN")}₫`}
+                  />
+                  <Tooltip
+                    formatter={(v) => [
+                      `${v.toLocaleString("vi-VN")}₫`,
+                      "Revenue",
+                    ]}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="revenue"
+                    stroke="#3b82f6"
+                    strokeWidth={2}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
             </div>
           </Card>
         </Col>
@@ -365,18 +323,27 @@ const MIARetailDashboard = () => {
             <Typography.Title level={4} style={{ marginBottom: 16 }}>
               📦 Inventory Status
             </Typography.Title>
-            {inventoryStatusData && (
+            {inventoryStatusData.length > 0 && (
               <div style={{ height: "300px" }}>
-                <Pie
-                  data={inventoryStatusData}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: { position: "bottom" },
-                    },
-                  }}
-                />
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={inventoryStatusData}
+                      dataKey="value"
+                      nameKey="name"
+                      cx="50%"
+                      cy="50%"
+                      outerRadius={100}
+                      label
+                    >
+                      {inventoryStatusData.map((entry, i) => (
+                        <Cell key={i} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
               </div>
             )}
           </Card>
@@ -388,37 +355,29 @@ const MIARetailDashboard = () => {
             <Typography.Title level={4} style={{ marginBottom: 16 }}>
               🏆 Top Selling Products
             </Typography.Title>
-            {topProductsData && (
+            {topProductsData.length > 0 && (
               <div style={{ height: "300px" }}>
-                <Bar
-                  data={topProductsData}
-                  options={{
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                      legend: { display: false },
-                      tooltip: {
-                        callbacks: {
-                          label: function (context) {
-                            return `Sales: ${context.parsed.y.toLocaleString(
-                              "vi-VN"
-                            )}₫`;
-                          },
-                        },
-                      },
-                    },
-                    scales: {
-                      y: {
-                        beginAtZero: true,
-                        ticks: {
-                          callback: function (value) {
-                            return `${value.toLocaleString("vi-VN")}₫`;
-                          },
-                        },
-                      },
-                    },
-                  }}
-                />
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart
+                    data={topProductsData}
+                    layout="vertical"
+                    margin={{ left: 60 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis
+                      type="number"
+                      tickFormatter={(v) => `${v.toLocaleString("vi-VN")}₫`}
+                    />
+                    <YAxis type="category" dataKey="name" width={100} />
+                    <Tooltip
+                      formatter={(v) => [
+                        `${v.toLocaleString("vi-VN")}₫`,
+                        "Sales",
+                      ]}
+                    />
+                    <Bar dataKey="sales" fill="#3b82f6" radius={[0, 4, 4, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
               </div>
             )}
           </Card>

@@ -1,3 +1,9 @@
+// ResizeObserver polyfill - fix "x is not a constructor" (Recharts/rc-* + Vite build)
+import ResizeObserver from "resize-observer-polyfill";
+if (typeof window !== "undefined") {
+  window.ResizeObserver = ResizeObserver;
+}
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";

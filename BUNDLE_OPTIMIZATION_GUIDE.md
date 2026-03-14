@@ -1,5 +1,8 @@
 # 📦 Bundle Size Optimization Guide - Implementation Complete
 
+> **Lưu ý**: Project dùng **Vite** (không CRA). Build output: `build/assets/` (không phải `build/static/js/`).
+> Config: `vite.config.mjs`
+
 ## 📊 Current Status (Updated: 2026-01-18)
 
 | Metric                | Before  | After Optimization | Target | Status |
@@ -34,14 +37,14 @@ Split monolithic vendor bundle into 10+ optimized chunks:
 | `vendor-redux-D240y4DL.js`      | 36 KB  | 11 KB               | Redux            |
 | `vendor-utils-rqF6Ota7.js`      | 20 KB  | 6 KB                | Utilities        |
 
-**Configuration**: [vite.config.js](vite.config.js) - `manualChunks` strategy
+**Configuration**: [vite.config.mjs](vite.config.mjs) - `manualChunks` strategy
 
 ### 2. Compression Pipeline ✅
 
 Implemented dual compression strategy:
 
 ```javascript
-// vite.config.js
+// vite.config.mjs
 plugins: [
   viteCompression({ algorithm: "gzip", ext: ".gz" }),
   viteCompression({ algorithm: "brotliCompress", ext: ".br" }),
@@ -58,6 +61,7 @@ plugins: [
 Enhanced minification with production optimizations:
 
 ```javascript
+// vite.config.mjs - build.terserOptions
 terserOptions: {
   compress: {
     drop_console: true,      // Remove console.log
@@ -273,19 +277,18 @@ module.exports = {
 
 ### 1. Analyze Current Bundle
 
-## 🚀 Quick Implementation Commands
-
-### 1. Analyze Current Bundle
-
 ```bash
 # Build production bundle
 npm run build
 
-# Check sizes
-du -sh build/assets/*.{js,css,br}
+# Check sizes (Vite output: build/assets/)
+du -sh build/assets/*.js build/assets/*.css build/assets/*.br 2>/dev/null || true
 
 # Run performance analysis
 node scripts/performance-bundle.js
+
+# Quick check (Vite build)
+npm run bundle:check
 
 # Visualize bundle
 npm run analyze:sourcemap
@@ -336,13 +339,16 @@ npm list chart.js recharts @ant-design/icons
 ### Built-in Scripts
 
 ```bash
+# Quick bundle check (Vite)
+npm run bundle:check
+
 # Performance bundle check
 npm run perf:bundle
 
 # Analyze bundle dependencies
 npm run analyze:deps
 
-# Source map explorer
+# Source map explorer (Vite: build/assets/*.js)
 npm run analyze:sourcemap
 
 # Simple size analysis
@@ -352,14 +358,14 @@ npm run analyze:size
 ### Manual Analysis
 
 ```bash
-# List all chunks by size
-ls -lhS build/assets/*.js | head -10
+# List all chunks by size (Vite: build/assets/)
+ls -lhS build/assets/*.js 2>/dev/null | head -10
 
 # Total uncompressed size
-du -ch build/assets/*.{js,css} | grep total
+du -ch build/assets/*.js build/assets/*.css 2>/dev/null | grep total
 
 # Total compressed size (Brotli)
-du -ch build/assets/*.br | grep total
+du -ch build/assets/*.br 2>/dev/null | grep total
 
 # Compression ratio
 echo "Compression: $((100 - $(du -s build/assets/*.br | awk '{print $1}') * 100 / $(du -s build/assets/*.{js,css} 2>/dev/null | awk '{s+=$1} END {print s}'))
@@ -396,7 +402,7 @@ jobs:
       - name: Check bundle size
         run: |
           node scripts/performance-bundle.js
-          BUNDLE_SIZE=$(du -s build/assets/*.br | awk '{s+=$1} END {print s}')
+          BUNDLE_SIZE=$(du -s build/assets/*.br 2>/dev/null | awk '{s+=$1} END {print s+0}')
           if [ $BUNDLE_SIZE -gt 700000 ]; then
             echo "❌ Bundle size exceeded: ${BUNDLE_SIZE}KB > 700KB"
             exit 1
@@ -508,19 +514,21 @@ npm run analyze:sourcemap
 
 ### Phase 2 (Next Sprint)
 
-- [ ] Optimize Ant Design icon imports (11 files)
-- [ ] Choose and consolidate chart library
-- [ ] Add PurgeCSS for unused CSS
-- [ ] Implement dynamic imports for charts
-- [ ] Set up CI/CD bundle checks
+- [ ] Optimize Ant Design icon imports (23 files) – `npm run optimize:images` để list
+- [x] Migrate Chart.js → Recharts (2 files) – Done, đã gỡ chart.js
+- [x] Add PurgeCSS – đã thêm vào `postcss.config.js`
+- [ ] Implement dynamic imports cho charts – xem `docs/BUNDLE_PHASE2_IMPLEMENTATION.md`
+- [x] CI/CD bundle checks – `.github/workflows/bundle-check.yml`
 
 ### Phase 3 (Future)
 
-- [ ] Image optimization and lazy loading
-- [ ] Service Worker for caching
-- [ ] Progressive Web App features
+- [x] Image lazy loading – `loading="lazy"`, `LazyImage` component
+- [x] Service Worker for caching – vite-plugin-pwa + Workbox
+- [x] Progressive Web App features – PWAUpdatePrompt (có phiên bản mới / offline)
 - [ ] Advanced code splitting strategies
 - [ ] Consider micro-frontends for large modules
+
+→ Chi tiết: [docs/BUNDLE_PHASE3_IMAGES.md](docs/BUNDLE_PHASE3_IMAGES.md)
 
 ## 🎉 Results Summary
 
@@ -572,9 +580,9 @@ npm run analyze:sourcemap
 
 ---
 
-**Last Updated**: 2026-01-18  
-**Version**: 2.0.0 - Implementation Complete  
-**Status**: ✅ Production Ready  
+**Last Updated**: 2026-01-18
+**Version**: 2.0.0 - Implementation Complete
+**Status**: ✅ Production Ready
 **Next Review**: 2026-02-18
 
 **Optimizations Applied**:

@@ -1,9 +1,9 @@
 # 🔧 BACKEND STRUCTURE ANALYSIS
 
-**Backend Location:** `/Users/phuccao/Projects/mia-warehouse-management-v2/backend/`  
+**Backend Location:** `backend/`  
 **Server:** Express.js + Socket.io + Native WebSocket  
-**Port:** 3001 (currently running ✅)  
-**Analysis Date:** January 19, 2026
+**Port:** 3001 (hoặc `process.env.PORT` trên Render/Railway)  
+**Analysis Date:** March 2026
 
 ---
 
@@ -90,6 +90,7 @@ backend/
 ├── 📄 server.js               → Main server entry point ✅
 ├── 📄 package.json            → Dependencies & scripts
 ├── 📄 Dockerfile              → Docker configuration
+├── 📄 render.yaml             → Render deployment config
 ├── 📄 railway.json            → Railway deployment config
 ├── 📄 check_env.js            → Environment checker
 ├── 📄 test-google-auth.js     → Google auth test
@@ -352,7 +353,7 @@ GET    /api/scraper/data           → Get scraped data
 ### **Socket.io** (Port 3001)
 
 ```javascript
-Connection: ws://localhost:3001
+Connection: ws://localhost:3001 (local) | wss://your-backend.onrender.com (prod)
 Namespaces: /
 Events:
   - connection
@@ -372,7 +373,7 @@ Events:
 ### **Native WebSocket** (Port 3001/ws)
 
 ```javascript
-Connection: ws://localhost:3001/ws
+Connection: ws://localhost:3001/ws (local) | wss://your-backend.onrender.com/ws (prod)
 Protocol: Native WebSocket (RFC 6455)
 ```
 
@@ -474,9 +475,18 @@ eslint: 8.42.0               → Linting
 - ✅ Protected routes with middleware
 - ✅ User permissions system
 
+### **CORS Configuration**
+
+```javascript
+// server.js - Hỗ trợ nhiều origins (Netlify + localhost)
+// ALLOWED_ORIGINS: comma-separated (ưu tiên)
+// Hoặc FRONTEND_URL / CORS_ORIGIN: single origin
+ALLOWED_ORIGINS=http://localhost:3000,https://your-site.netlify.app
+```
+
 ### **Security Measures**
 
-- ✅ CORS configuration
+- ✅ CORS configuration (ALLOWED_ORIGINS, FRONTEND_URL)
 - ✅ Helmet security headers
 - ✅ Rate limiting (100 req/min for AI routes)
 - ✅ Input validation
@@ -824,14 +834,63 @@ node check_env.js           → Verify environment variables
 
 ---
 
+## 🚀 DEPLOYMENT
+
+### **Backend (Render / Railway)**
+
+| Platform | Config File | Env Vars Required |
+|----------|-------------|-------------------|
+| **Render** | `backend/render.yaml` | `NODE_ENV`, `PORT`, `ALLOWED_ORIGINS`, `JWT_SECRET`, Google credentials |
+| **Railway** | `backend/railway.json` | Same as Render |
+
+**render.yaml:**
+```yaml
+services:
+  - type: web
+    name: mia-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+```
+
+**Bắt buộc trên Render/Railway:**
+- `ALLOWED_ORIGINS` – domain frontend (vd: `http://localhost:3000,https://xxx.netlify.app`)
+- `JWT_SECRET` – chuỗi bảo mật
+- Google credentials – `GOOGLE_*` (service account)
+
+### **Frontend (Netlify)**
+
+- **netlify.toml** – `command: npm run build`, `publish: build`
+- **Env vars:** `VITE_API_URL`, `VITE_API_BASE_URL` = URL backend production
+- Set env qua Netlify Dashboard hoặc CLI: `netlify env:set VITE_API_URL "https://your-backend.onrender.com"`
+
+### **Flow triển khai**
+
+1. Deploy backend → Render/Railway (lấy URL)
+2. Deploy frontend → Netlify
+3. Set trên backend: `ALLOWED_ORIGINS` chứa domain Netlify
+4. Set trên Netlify: `VITE_API_URL` = URL backend
+
+### **Lưu ý Render**
+
+- **Free tier:** Cold start ~30–60s sau 15 phút không hoạt động
+- **Login:** Frontend gọi login trực tiếp (không pre-check `/health`) để tránh lỗi CORS/timeout
+
+---
+
 ## 📚 NEXT STEPS
 
 ### **Immediate Actions**
 
-1. Configure SendGrid email service
-2. Add Swagger API documentation
-3. Create comprehensive test suites
-4. Set up environment configs
+1. Set `ALLOWED_ORIGINS` trên Render/Railway khi deploy (CORS cho Netlify)
+2. Configure SendGrid email service
+3. Add Swagger API documentation
+4. Create comprehensive test suites
 
 ### **Short-term Goals**
 

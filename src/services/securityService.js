@@ -44,14 +44,16 @@ export const checkBackendConnection = async () => {
     }
   }
 
-  // Production mode - strict check
+  // Production mode - timeout 60s (Render cold start có thể mất 30-60s)
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const timeoutMs = 60000; // 60s cho Render free tier cold start
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
     const response = await fetch(`${API_BASE_URL}/health`, {
       method: "GET",
       signal: controller.signal,
+      mode: "cors",
     });
 
     clearTimeout(timeoutId);
@@ -83,6 +85,11 @@ const removeAuthToken = () => {
   localStorage.removeItem("authToken");
   localStorage.removeItem("token");
 };
+
+/**
+ * Check if user has valid token (sync)
+ */
+export const isAuthenticated = () => !!getAuthToken();
 
 /**
  * Make authenticated API request
@@ -279,20 +286,11 @@ export const loginUser = async (email, password, mfaToken = null) => {
       );
     }
 
-    // Step 3: Backend phải chạy để tiếp tục đăng nhập
-    if (!isBackendAvailable) {
-      throw new Error(
-        `Backend server không khả dụng tại ${API_BASE_URL}. ` +
-          `Vui lòng kiểm tra:\n` +
-          `1. Backend có đang chạy không? (Chạy: npm start trong thư mục backend)\n` +
-          `2. Port ${API_BASE_URL.split(":").pop()} có đang được sử dụng không?\n` +
-          `3. Kiểm tra kết nối mạng và firewall settings`
-      );
-    }
+    // Bỏ block health check - gọi login trực tiếp. Nếu fail (CORS, timeout) sẽ có lỗi rõ ràng ở catch
 
     // eslint-disable-next-line no-undef
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s - Render cold start
 
     const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: "POST",
@@ -343,19 +341,18 @@ export const loginUser = async (email, password, mfaToken = null) => {
     // Handle specific error types
     if (error.name === "AbortError") {
       throw new Error(
-        `Request timeout: Backend không phản hồi trong 10 giây. ` +
+        `Request timeout: Backend không phản hồi trong 60 giây (Render có thể đang cold start). ` +
           `Vui lòng kiểm tra backend server tại ${API_BASE_URL}`
       );
     }
 
     if (error.message === "Failed to fetch" || error.name === "TypeError") {
+      const isProd = API_BASE_URL.includes("render.com") || API_BASE_URL.includes("netlify");
+      const hints = isProd
+        ? `1. Render cold start: đợi 30-60s rồi thử lại\n2. CORS: set ALLOWED_ORIGINS trên Render chứa domain Netlify\n3. Kiểm tra backend logs trên Render Dashboard`
+        : `1. Chạy: cd backend && npm start\n2. Port đúng? (${API_BASE_URL})\n3. Kiểm tra CORS trong backend`;
       throw new Error(
-        `Không thể kết nối đến backend server tại ${API_BASE_URL}. ` +
-          `Vui lòng kiểm tra:\n` +
-          `1. Backend có đang chạy không? (Chạy: cd backend && npm start)\n` +
-          `2. Port có đúng không? (Hiện tại: ${API_BASE_URL})\n` +
-          `3. Kiểm tra kết nối mạng\n` +
-          `4. Kiểm tra CORS settings trong backend`
+        `Không thể kết nối đến backend tại ${API_BASE_URL}.\n${hints}`
       );
     }
 
@@ -684,6 +681,7 @@ export default {
   getAuthToken,
   setAuthToken,
   removeAuthToken,
+  isAuthenticated,
   checkBackendConnection,
 
   // MFA

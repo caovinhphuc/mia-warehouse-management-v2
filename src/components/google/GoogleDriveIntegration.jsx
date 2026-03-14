@@ -916,6 +916,8 @@ const GoogleDriveIntegration = () => {
             <img
               src={previewUrl}
               alt="Preview"
+              loading="lazy"
+              decoding="async"
               style={{
                 width: "100%",
                 height: "auto",

@@ -28,11 +28,8 @@ class ErrorBoundary extends React.Component {
       });
     }
 
-    // Log to console in development
-    if (importMetaEnv.DEV || importMetaEnv.MODE === "development") {
-      // eslint-disable-next-line no-console
-      console.error("Error Boundary caught an error:", error, errorInfo);
-    }
+    // Bỏ log console - dễ gây lỗi thứ cấp trong test/prod (Jest mock, drop_console)
+    // Chi tiết lỗi vẫn hiển thị trong fallback UI khi DEV
 
     // Send to error tracking service
     if (importMetaEnv.VITE_SENTRY_DSN || importMetaEnv.REACT_APP_SENTRY_DSN) {

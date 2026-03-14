@@ -1,0 +1,14 @@
+---
+description: Presentation system - delegate qua curator agent
+globs: presentation/**/*
+alwaysApply: false
+---
+
+# Presentation System
+
+**Quy tắc**: Mọi chỉnh sửa `presentation/index.html` phải qua `presentation-curator` agent.
+
+- **Claude Code**: Delegate qua Task tool → `presentation-curator`
+- **Cursor**: Delegate qua mcp_task (subagent explore/generalPurpose) với prompt yêu cầu curator pattern
+
+Agent curator có 3 skills: vibe-to-agentic-framework, presentation-structure, presentation-styling. Tự cập nhật skills sau mỗi lần chạy.

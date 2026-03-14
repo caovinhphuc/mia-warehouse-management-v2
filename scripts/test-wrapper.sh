@@ -63,7 +63,7 @@ export CI=true
 # If src is in root, run tests directly
 if [ "$REACT_SRC_DIR" = "src" ]; then
     log_info "Running tests from root directory..."
-    if npx react-scripts test --coverage --watchAll=false --testTimeout=10000 --passWithNoTests --testPathIgnorePatterns=node_modules 2>/dev/null; then
+    if npx jest --coverage --watchAll=false --testTimeout=10000 --passWithNoTests 2>/dev/null; then
         log_success "Tests completed successfully!"
         exit 0
     fi
@@ -85,7 +85,7 @@ elif [ "$REACT_SRC_DIR" = "google-sheets-project/src" ]; then
     TEST_RESULT=0
     if [ -L "$PROJECT_ROOT/src" ] || [ -d "$PROJECT_ROOT/src" ]; then
         log_info "Running tests..."
-        npx react-scripts test --coverage --watchAll=false --testTimeout=10000 --passWithNoTests --testPathIgnorePatterns=node_modules 2>/dev/null || TEST_RESULT=$?
+        npx jest --coverage --watchAll=false --testTimeout=10000 --passWithNoTests 2>/dev/null || TEST_RESULT=$?
         if [ $TEST_RESULT -eq 0 ]; then
             log_success "Tests completed successfully!"
         fi

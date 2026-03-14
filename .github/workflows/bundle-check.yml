@@ -1,0 +1,37 @@
+name: Bundle Size Check
+
+on:
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "src/**"
+      - "package.json"
+      - "vite.config.mjs"
+      - "postcss.config.js"
+
+jobs:
+  bundle-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Bundle size check
+        run: |
+          node scripts/performance-bundle.js
+          BROTLI_SIZE=$(du -s build/assets/*.br 2>/dev/null | awk '{s+=$1} END {print s+0}')
+          if [ "$BROTLI_SIZE" -gt 800000 ]; then
+            echo "❌ Brotli bundle > 800KB: ${BROTLI_SIZE} bytes"
+            exit 1
+          fi
+          echo "✅ Brotli bundle OK: ${BROTLI_SIZE} bytes"

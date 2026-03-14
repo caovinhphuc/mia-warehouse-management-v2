@@ -2,17 +2,26 @@
 /**
  * Authentication Service
  * Handles user authentication, MFA, SSO, and role management
+ *
+ * Thay đổi so với phiên bản cũ:
+ * - hashPassword: SHA256 → bcrypt (an toàn hơn)
+ * - users/sessions/mfaSecrets: in-memory Map → persistent JSON store
+ *   (data không mất khi restart server)
  */
 
 const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 const speakeasy = require("speakeasy");
 const QRCode = require("qrcode");
 const { formatVietnameseDateTime } = require("../utils/dateUtils");
+const { createPersistentStore } = require("./persistenceStore");
 
-// In-memory user store (replace with database in production)
-const users = new Map();
-const mfaSecrets = new Map();
-const sessions = new Map();
+const BCRYPT_ROUNDS = parseInt(process.env.BCRYPT_ROUNDS) || 12;
+
+// Persistent stores — survives server restarts
+const users = createPersistentStore("users.json");
+const mfaSecrets = createPersistentStore("mfa-secrets.json");
+const sessions = createPersistentStore("sessions.json");
 
 // Default roles and permissions
 const ROLES = {
@@ -85,11 +94,33 @@ const ROLE_PERMISSIONS = {
 };
 
 /**
+ * Hash password dùng bcrypt (thay thế SHA256 cũ)
+ */
+const hashPassword = async (password) => {
+  return bcrypt.hash(password, BCRYPT_ROUNDS);
+};
+
+/**
+ * So sánh password với hash (bcrypt-aware: hỗ trợ cả hash cũ SHA256 để backward compat)
+ * @param {string} password - plain text password
+ * @param {string} hash - stored hash
+ */
+const comparePassword = async (password, hash) => {
+  // Nếu hash bắt đầu bằng $2b$ hoặc $2a$ → bcrypt
+  if (hash && (hash.startsWith("$2b$") || hash.startsWith("$2a$"))) {
+    return bcrypt.compare(password, hash);
+  }
+  // Backward compat: SHA256 hash cũ (hex 64 chars)
+  const sha256Hash = crypto.createHash("sha256").update(password).digest("hex");
+  return sha256Hash === hash;
+};
+
+/**
  * Create a new user
  */
 const createUser = async (email, password, role = ROLES.USER) => {
   const userId = crypto.randomUUID();
-  const hashedPassword = hashPassword(password);
+  const hashedPassword = await hashPassword(password);
 
   const user = {
     id: userId,
@@ -105,7 +136,7 @@ const createUser = async (email, password, role = ROLES.USER) => {
   };
 
   users.set(userId, user);
-  users.set(email, user); // Also index by email
+  users.set(email, user); // index by email for fast lookup
 
   return {
     id: user.id,
@@ -126,10 +157,18 @@ const authenticateUser = async (email, password) => {
     return null;
   }
 
-  const hashedPassword = hashPassword(password);
+  const isValid = await comparePassword(password, user.password);
 
-  if (user.password !== hashedPassword) {
+  if (!isValid) {
     return null;
+  }
+
+  // Nếu password hash cũ (SHA256), tự động re-hash sang bcrypt
+  if (!user.password.startsWith("$2b$") && !user.password.startsWith("$2a$")) {
+    const newHash = await hashPassword(password);
+    user.password = newHash;
+    users.set(user.id, user);
+    users.set(email, user);
   }
 
   return {
@@ -139,13 +178,6 @@ const authenticateUser = async (email, password) => {
     permissions: user.permissions,
     mfaEnabled: user.mfaEnabled,
   };
-};
-
-/**
- * Hash password (simple hash for demo, use bcrypt in production)
- */
-const hashPassword = (password) => {
-  return crypto.createHash("sha256").update(password).digest("hex");
 };
 
 /**
@@ -159,7 +191,6 @@ const generateMFASecret = async (userId, email) => {
 
   mfaSecrets.set(userId, secret.base32);
 
-  // Generate QR code URL
   const qrCodeUrl = await QRCode.toDataURL(secret.otpauth_url);
 
   return {
@@ -183,7 +214,7 @@ const verifyMFAToken = (userId, token) => {
     secret,
     encoding: "base32",
     token,
-    window: 2, // Allow 2 time steps (60 seconds) before/after
+    window: 2,
   });
 };
 
@@ -197,7 +228,6 @@ const enableMFA = async (userId, token) => {
     return false;
   }
 
-  // Verify token before enabling
   const isValid = verifyMFAToken(userId, token);
 
   if (!isValid) {
@@ -208,6 +238,7 @@ const enableMFA = async (userId, token) => {
   const now = new Date();
   user.updatedAt = now.toISOString();
   user.updatedAtFormatted = formatVietnameseDateTime(now);
+  users.set(userId, user);
 
   return true;
 };
@@ -227,6 +258,7 @@ const disableMFA = async (userId) => {
   const now = new Date();
   user.updatedAt = now.toISOString();
   user.updatedAtFormatted = formatVietnameseDateTime(now);
+  users.set(userId, user);
 
   return true;
 };
@@ -236,11 +268,7 @@ const disableMFA = async (userId) => {
  */
 const getUserRoles = async (userId) => {
   const user = users.get(userId);
-
-  if (!user) {
-    return [];
-  }
-
+  if (!user) return [];
   return [user.role];
 };
 
@@ -249,11 +277,7 @@ const getUserRoles = async (userId) => {
  */
 const getUserPermissions = async (userId) => {
   const user = users.get(userId);
-
-  if (!user) {
-    return [];
-  }
-
+  if (!user) return [];
   return user.permissions || ROLE_PERMISSIONS[user.role] || [];
 };
 
@@ -275,6 +299,7 @@ const createSession = (userId, sessionData = {}) => {
   const sessionId = crypto.randomUUID();
   const now = new Date();
   const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
   const session = {
     id: sessionId,
     userId,
@@ -331,7 +356,6 @@ const validateSession = (sessionId) => {
   const expiresAt = new Date(session.expiresAt);
 
   if (now > expiresAt) {
-    // Session expired, delete it
     sessions.delete(sessionId);
     return { valid: false, reason: "Session expired" };
   }
@@ -362,24 +386,26 @@ const cleanupExpiredSessions = () => {
  */
 const getUserById = (userId) => {
   const user = users.get(userId);
-  if (!user) {
-    return null;
-  }
-
-  // Return user without password
+  if (!user) return null;
   const { password, ...userWithoutPassword } = user;
   return userWithoutPassword;
 };
 
 /**
- * Get all users
+ * Get all users (without duplicates from email index)
  */
 const getAllUsers = () => {
+  const seen = new Set();
   const allUsers = [];
+
   users.forEach((user) => {
-    const { password, ...userWithoutPassword } = user;
-    allUsers.push(userWithoutPassword);
+    if (user && user.id && !seen.has(user.id)) {
+      seen.add(user.id);
+      const { password, ...userWithoutPassword } = user;
+      allUsers.push(userWithoutPassword);
+    }
   });
+
   return allUsers;
 };
 
@@ -388,13 +414,12 @@ const getAllUsers = () => {
  */
 const updateUserRole = (userId, newRole) => {
   const user = users.get(userId);
-  if (!user) {
-    return null;
-  }
+  if (!user) return null;
 
   user.role = newRole;
   user.permissions = ROLE_PERMISSIONS[newRole] || [];
   users.set(userId, user);
+  if (user.email) users.set(user.email, user); // keep email index in sync
 
   const { password, ...userWithoutPassword } = user;
   return userWithoutPassword;
@@ -404,19 +429,13 @@ const updateUserRole = (userId, newRole) => {
  * Delete user
  */
 const deleteUser = (userId) => {
-  if (!users.has(userId)) {
-    return false;
-  }
+  const user = users.get(userId);
+  if (!user) return false;
 
-  // Delete user
+  if (user.email) users.delete(user.email); // remove email index
   users.delete(userId);
+  mfaSecrets.delete(userId);
 
-  // Delete MFA secret if exists
-  if (mfaSecrets.has(userId)) {
-    mfaSecrets.delete(userId);
-  }
-
-  // Delete all sessions for this user
   sessions.forEach((session, sessionId) => {
     if (session.userId === userId) {
       sessions.delete(sessionId);

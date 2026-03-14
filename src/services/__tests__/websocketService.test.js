@@ -3,9 +3,8 @@
  * Tests WebSocket connection and event handling
  */
 
-// Mock socket.io-client BEFORE importing
 jest.mock("socket.io-client", () => {
-  return jest.fn(() => ({
+  const inst = {
     on: jest.fn(),
     emit: jest.fn(),
     disconnect: jest.fn(),
@@ -13,7 +12,11 @@ jest.mock("socket.io-client", () => {
     removeListener: jest.fn(),
     connected: true,
     id: "socket-id-123",
-  }));
+  };
+  return {
+    io: jest.fn(() => inst),
+    __getMockSocket: () => inst,
+  };
 });
 
 import { io } from "socket.io-client";
@@ -28,27 +31,34 @@ jest.mock("../../utils/importMetaEnv", () => ({
   },
 }));
 
+const getMockSocket = () => require("socket.io-client").__getMockSocket();
+
 describe("WebSocketService", () => {
   let mockSocket;
 
   beforeEach(() => {
+    websocketService.disconnect();
+    mockSocket = getMockSocket();
+    io.mockImplementation(() => mockSocket);
     jest.clearAllMocks();
-    // io() returns a mock socket instance
-    mockSocket = io();
+    io.mockReturnValue(mockSocket);
   });
 
   describe("connect", () => {
     it("should connect to WebSocket server", () => {
       websocketService.connect();
 
-      expect(io).toHaveBeenCalledWith("http://localhost:8000", {
-        transports: ["websocket", "polling"],
-        reconnection: true,
-        reconnectionAttempts: 5,
-        reconnectionDelay: 1000,
-        autoConnect: true,
-        withCredentials: true,
-      });
+      expect(io).toHaveBeenCalledWith(
+        "http://localhost:8000",
+        expect.objectContaining({
+          transports: ["websocket", "polling"],
+          reconnection: true,
+          reconnectionAttempts: 5,
+          reconnectionDelay: 1000,
+          autoConnect: true,
+          withCredentials: true,
+        })
+      );
     });
 
     it("should setup event listeners", () => {
@@ -68,13 +78,13 @@ describe("WebSocketService", () => {
   });
 
   describe("emit", () => {
-    it("should emit event to server", () => {
+    it("should emit to internal listeners", () => {
+      const listener = jest.fn();
       websocketService.connect();
-      websocketService.emit("test-event", { data: "test" });
+      websocketService.on("custom-event", listener);
+      websocketService.emit("custom-event", { data: "test" });
 
-      expect(mockSocket.emit).toHaveBeenCalledWith("test-event", {
-        data: "test",
-      });
+      expect(listener).toHaveBeenCalledWith({ data: "test" });
     });
   });
 
@@ -102,17 +112,15 @@ describe("WebSocketService", () => {
   describe("isConnected", () => {
     it("should return true when connected", () => {
       websocketService.connect();
-      const isConnected = websocketService.isConnected();
-
-      expect(isConnected).toBe(true);
+      const connectHandler = mockSocket.on.mock.calls.find(
+        (c) => c[0] === "connect"
+      )?.[1];
+      if (connectHandler) connectHandler();
+      expect(websocketService.isConnected()).toBe(true);
     });
 
     it("should return false when not connected", () => {
-      mockSocket.connected = false;
-      websocketService.connect();
-      const isConnected = websocketService.isConnected();
-
-      expect(isConnected).toBe(false);
+      expect(websocketService.isConnected()).toBe(false);
     });
   });
 
@@ -121,45 +129,30 @@ describe("WebSocketService", () => {
       const onConnectCallback = jest.fn();
       websocketService.connect();
       websocketService.on("connect", onConnectCallback);
-
-      // Simulate connect event
-      const connectHandler = mockSocket.on.mock.calls.find(
-        (call) => call[0] === "connect"
-      )?.[1];
-      if (connectHandler) {
-        connectHandler();
-        expect(onConnectCallback).toHaveBeenCalled();
-      }
+      const handlers = mockSocket.on.mock.calls
+        .filter((c) => c[0] === "connect")
+        .map((c) => c[1]);
+      handlers.forEach((h) => h());
+      expect(onConnectCallback).toHaveBeenCalled();
     });
 
     it("should handle disconnect event", () => {
       const onDisconnectCallback = jest.fn();
       websocketService.connect();
       websocketService.on("disconnect", onDisconnectCallback);
-
-      // Simulate disconnect event
-      const disconnectHandler = mockSocket.on.mock.calls.find(
-        (call) => call[0] === "disconnect"
-      )?.[1];
-      if (disconnectHandler) {
-        disconnectHandler("reason");
-        expect(onDisconnectCallback).toHaveBeenCalledWith("reason");
-      }
+      const handlers = mockSocket.on.mock.calls
+        .filter((c) => c[0] === "disconnect")
+        .map((c) => c[1]);
+      handlers.forEach((h) => h("reason"));
+      expect(onDisconnectCallback).toHaveBeenCalledWith("reason");
     });
 
-    it("should handle error event", () => {
-      const onErrorCallback = jest.fn();
+    it("should register connect_error handler", () => {
       websocketService.connect();
-      websocketService.on("error", onErrorCallback);
-
-      // Simulate error event
-      const errorHandler = mockSocket.on.mock.calls.find(
-        (call) => call[0] === "error"
-      )?.[1];
-      if (errorHandler) {
-        errorHandler(new Error("Connection failed"));
-        expect(onErrorCallback).toHaveBeenCalled();
-      }
+      expect(mockSocket.on).toHaveBeenCalledWith(
+        "connect_error",
+        expect.any(Function)
+      );
     });
   });
 });

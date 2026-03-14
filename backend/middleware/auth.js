@@ -12,8 +12,14 @@ const {
   validateSession,
 } = require("../services/authService");
 
+if (!process.env.JWT_SECRET && process.env.NODE_ENV === "production") {
+  throw new Error(
+    "[FATAL] JWT_SECRET environment variable must be set in production. " +
+    "Generate one with: node -e \"console.log(require('crypto').randomBytes(64).toString('hex'))\""
+  );
+}
 const JWT_SECRET =
-  process.env.JWT_SECRET || "your-secret-key-change-in-production";
+  process.env.JWT_SECRET || "dev-only-secret-NOT-for-production";
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "24h";
 
 /**

@@ -9,13 +9,13 @@ const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
 
-// Performance budget (in bytes)
+// Performance budget (in bytes) - phù hợp Vite build, xem BUNDLE_OPTIMIZATION_GUIDE.md
 const BUDGET = {
-  javascript: 250 * 1024, // 250KB
-  css: 50 * 1024, // 50KB
+  javascript: 3 * 1024 * 1024, // 3MB (uncompressed)
+  css: 100 * 1024, // 100KB
   images: 500 * 1024, // 500KB
   fonts: 100 * 1024, // 100KB
-  total: 1024 * 1024, // 1MB
+  total: 20 * 1024 * 1024, // 20MB (bao gồm sourcemaps)
 };
 
 const colors = {

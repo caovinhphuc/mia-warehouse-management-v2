@@ -5,17 +5,17 @@
 
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { renderWithProvidersAndRouter } from "../../utils/test-utils";
+import { renderWithProvidersAndRouter } from "@utils/test-utils";
 import {
   mockUser,
   mockAuthResponse,
   mockUnauthorizedError,
-} from "../../__fixtures__/mockData";
-import Login from "./Login";
-import * as securityService from "../../services/securityService";
+} from "../../../__fixtures__/mockData";
+import Login from "../Login";
+import * as securityService from "@services/securityService";
 
 // Mock the security service
-jest.mock("../../services/securityService");
+jest.mock("@services/securityService");
 
 // Mock react-router-dom navigation
 const mockNavigate = jest.fn();

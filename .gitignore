@@ -160,6 +160,9 @@ ENV/
 *.tsbuildinfo
 .vercel
 
+# Persistence data (chứa user credentials — không commit lên git)
+backend/data/*.json
+
 # Secrets (CRITICAL)
 **/service_account.json
 **/*credentials*.json

@@ -33,7 +33,7 @@
 ### Package Management
 
 - package.json - Dependencies cho React frontend
-- backend-package.json - Dependencies cho Node.js backend
+- backend/package.json - Dependencies cho Node.js backend
 
 ### Environment
 

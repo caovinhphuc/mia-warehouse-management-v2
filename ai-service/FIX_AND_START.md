@@ -60,7 +60,7 @@ source venv/bin/activate
 
 ```bash
 # Health check
-curl http://localhost:5000/health
+curl http://localhost:8000/health
 
 # Xem logs
 tail -f logs/ai-service.log

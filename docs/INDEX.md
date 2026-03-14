@@ -95,7 +95,7 @@
 ### 📦 **Package Management**
 
 - **[package.json](../package.json)** - React frontend dependencies (19.1.1)
-- **[backend-package.json](../backend-package.json)** - Node.js backend dependencies
+- **[backend/package.json](../backend/package.json)** - Node.js backend dependencies
 
 ---
 

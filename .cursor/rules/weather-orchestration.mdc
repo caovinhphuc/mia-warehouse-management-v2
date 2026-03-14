@@ -1,0 +1,15 @@
+---
+description: Weather orchestration workflow
+globs: orchestration-workflow/**/*
+alwaysApply: false
+---
+
+# Weather Orchestration
+
+Flow: **Command → Agent → Skill**
+
+- `weather-orchestrator` (command): Entry, hỏi C/F, gọi agent + skill
+- `weather-agent`: Lấy nhiệt độ qua skill `weather-fetcher` (wttr.in API)
+- `weather-svg-creator`: Tạo SVG card → `orchestration-workflow/weather.svg` và `output.md`
+
+Xem chi tiết: `orchestration-workflow/orchestration-workflow.md`

@@ -40,7 +40,7 @@ src/
 ```
 server.js                        # Backend server Express
 package.json                     # Dependencies frontend
-backend-package.json             # Dependencies backend
+backend/package.json             # Dependencies backend
 .env.example                     # Template biến môi trường
 ```
 

@@ -1,6 +1,7 @@
 # Dependency Cleanup Report
 
-**Date:** January 19, 2026
+**Date:** January 19, 2026  
+**Lưu ý:** Một số mục "Removed" có thể đã revert. Jest vẫn dùng: babel-jest, identity-obj-proxy, jest-transform-stub, jest-watch-typeahead. Xem [docs/CONFIG_STATUS.md](docs/CONFIG_STATUS.md) để biết config hiện tại.
 
 ## Summary
 
@@ -22,17 +23,9 @@ Cleaned up unused dependencies and fixed missing dependency issues based on `npm
 
 **Note:** `cors`, `express`, `node-cron` are backend dependencies and should remain in backend-specific package.json files only.
 
-### Dev Dependencies Removed:
+### Dev Dependencies (cần giữ cho Jest):
 
-- ❌ `@fullhuman/postcss-purgecss` - Not configured/used
-- ❌ `@testing-library/user-event` - Not used in tests
-- ❌ `babel-jest` - Using Vite for testing instead
-- ❌ `http-proxy-middleware` - Not configured
-- ❌ `identity-obj-proxy` - Not used in Jest config
-- ❌ `jest-transform-stub` - Not used in Jest config
-- ❌ `jest-watch-typeahead` - Not used in Jest config
-- ❌ `prettier-plugin-organize-imports` - Not configured
-- ❌ `sharp` - Image optimization done elsewhere
+- ✅ `babel-jest`, `identity-obj-proxy`, `jest-transform-stub`, `jest-watch-typeahead` - Jest dùng
 
 ## Fixed Issues
 
@@ -60,14 +53,12 @@ Cleaned up unused dependencies and fixed missing dependency issues based on `npm
 
 ### Dev Dependencies:
 
-- ✅ `@babel/*` packages - Transpilation
-- ✅ `@craco/craco` - CRA override
+- ✅ `@babel/*` - Transpilation (Jest)
 - ✅ `@testing-library/*` - Testing utilities
 - ✅ `@vitejs/plugin-react` - Vite React plugin
 - ✅ `eslint` ecosystem - Linting
 - ✅ `prettier` - Code formatting
-- ✅ `vite` - Build tool
-- ✅ `webpack` ecosystem - Bundling
+- ✅ `vite` - Build tool chính
 
 ## Bundle Size Impact
 

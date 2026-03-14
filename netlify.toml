@@ -4,19 +4,22 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  NODE_ENV = "production"
+  CI = "true"
+  # VITE_* vars: set in Netlify Dashboard > Site settings > Environment variables
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  force = false
+  # Static files (/assets/*) are served first; redirect applies only for non-file paths (SPA)
 
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    cache-control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/*.html"
   [headers.values]
-    cache-control = "no-cache"
+    Cache-Control = "no-cache"
