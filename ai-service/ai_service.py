@@ -1,26 +1,50 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from typing import Optional
-import uvicorn
+import os
 import random
 import time
-import os
-import sys
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+import uvicorn
+from fastapi import FastAPI, HTTPException, Response
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 # Import one.tga.com.vn verification
 try:
     from selenium import webdriver
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.support.wait import WebDriverWait
-    from selenium.webdriver.support import expected_conditions as EC
-    from selenium.webdriver.chrome.service import Service
     from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.chrome.service import Service
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support import expected_conditions as EC
+    from selenium.webdriver.support.wait import WebDriverWait
     SELENIUM_AVAILABLE = True
 except ImportError:
     SELENIUM_AVAILABLE = False
 
-app = FastAPI(title="MIA.vn AI Service", version="4.1", description="AI Service with One TGA Verification")
+try:
+    from optimization import COBYQA_AVAILABLE, cobyqa_minimize
+except Exception:
+    COBYQA_AVAILABLE = False
+    try:
+        from scipy.optimize import minimize as _scipy_minimize
+
+        def cobyqa_minimize(*args, **kwargs):
+            return _scipy_minimize(*args, **kwargs)
+    except Exception:
+        cobyqa_minimize = None
+
+if cobyqa_minimize is None:
+    OPTIMIZATION_ENGINE_NAME = "unavailable"
+elif COBYQA_AVAILABLE:
+    OPTIMIZATION_ENGINE_NAME = "COBYQA"
+else:
+    OPTIMIZATION_ENGINE_NAME = "scipy.optimize (fallback)"
+
+app = FastAPI(
+    title="MIA.vn AI Service",
+    version="4.1",
+    description="AI Service with One TGA Verification",
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -32,9 +56,11 @@ app.add_middleware(
 
 # ==================== Pydantic Models ====================
 
+
 class VerifyOneTGARequest(BaseModel):
     email: str
     password: str
+
 
 class VerifyOneTGAResponse(BaseModel):
     success: bool
@@ -42,12 +68,23 @@ class VerifyOneTGAResponse(BaseModel):
     message: Optional[str] = None
     error: Optional[str] = None
 
+
+class OptimizationSolveRequest(BaseModel):
+    objective_type: str = "minimize"  # minimize | maximize
+    initial_guess: List[float]
+    bounds: Optional[List[List[float]]] = None  # [[min, max], ...]
+    constraints: Optional[List[Dict[str, Any]]] = None
+    options: Optional[Dict[str, Any]] = None
+
 # ==================== One TGA Verification ====================
+
 
 def setup_chrome_driver():
     """Setup Chrome WebDriver với headless mode"""
     if not SELENIUM_AVAILABLE:
-        raise Exception("Selenium không được cài đặt. Vui lòng chạy: pip install selenium")
+        raise Exception(
+            "Selenium không được cài đặt. Vui lòng chạy: pip install selenium"
+        )
 
     options = Options()
     options.add_argument('--no-sandbox')
@@ -60,18 +97,26 @@ def setup_chrome_driver():
     options.add_argument('--log-level=3')
 
     # Chrome binary path (Mac)
-    chrome_binary_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    chrome_binary_path = (
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    )
     if os.path.exists(chrome_binary_path):
         options.binary_location = chrome_binary_path
 
     try:
         service = Service('/opt/homebrew/bin/chromedriver')
         driver = webdriver.Chrome(service=service, options=options)
-    except:
+    except Exception:
         # Fallback: không cần service
         driver = webdriver.Chrome(options=options)
 
     return driver
+
+
+def _objective_sum_squares(x: np.ndarray, maximize: bool = False) -> float:
+    value = float(np.sum(np.asarray(x, dtype=float) ** 2))
+    return -value if maximize else value
+
 
 async def verify_one_tga_login(email: str, password: str) -> dict:
     """
@@ -98,7 +143,10 @@ async def verify_one_tga_login(email: str, password: str) -> dict:
         username_field = wait.until(
             EC.element_to_be_clickable((
                 By.CSS_SELECTOR,
-                "input[type='text'], input[name='username'], input[name='email']"
+                (
+                    "input[type='text'], input[name='username'], "
+                    "input[name='email']"
+                )
             ))
         )
         username_field.clear()
@@ -135,7 +183,10 @@ async def verify_one_tga_login(email: str, password: str) -> dict:
             }
 
         # Nếu URL thay đổi và không phải trang login -> đăng nhập thành công
-        if "one.tga.com.vn" in current_url and "login" not in current_url.lower():
+        if (
+            "one.tga.com.vn" in current_url
+            and "login" not in current_url.lower()
+        ):
             return {
                 "success": True,
                 "valid": True,
@@ -146,7 +197,8 @@ async def verify_one_tga_login(email: str, password: str) -> dict:
         try:
             logged_in_indicators = driver.find_elements(
                 By.CSS_SELECTOR,
-                ".user-info, .logout, [href*='logout'], .sidebar-menu, .dashboard"
+                ".user-info, .logout, [href*='logout'], .sidebar-menu, "
+                ".dashboard"
             )
             if len(logged_in_indicators) > 0:
                 return {
@@ -154,7 +206,7 @@ async def verify_one_tga_login(email: str, password: str) -> dict:
                     "valid": True,
                     "message": "Đăng nhập one.tga.com.vn thành công"
                 }
-        except:
+        except Exception:
             pass
 
         # Nếu không xác định được, trả về false
@@ -174,10 +226,11 @@ async def verify_one_tga_login(email: str, password: str) -> dict:
         if driver:
             try:
                 driver.quit()
-            except:
+            except Exception:
                 pass
 
 # ==================== API Endpoints ====================
+
 
 @app.get("/")
 async def root():
@@ -193,6 +246,12 @@ async def root():
         }
     }
 
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return Response(status_code=204)
+
+
 @app.get("/health")
 async def health_check():
     return {
@@ -206,6 +265,7 @@ async def health_check():
             "one_tga_verification": SELENIUM_AVAILABLE
         }
     }
+
 
 @app.post("/api/auth/verify-one-tga", response_model=VerifyOneTGAResponse)
 async def verify_one_tga_endpoint(request: VerifyOneTGARequest):
@@ -224,13 +284,20 @@ async def verify_one_tga_endpoint(request: VerifyOneTGARequest):
         return VerifyOneTGAResponse(
             success=True,
             valid=True,
-            message=result.get("message", "Đăng nhập one.tga.com.vn thành công")
+            message=result.get(
+                "message",
+                "Đăng nhập one.tga.com.vn thành công",
+            ),
         )
     else:
         raise HTTPException(
             status_code=401,
-            detail=result.get("error", "Đăng nhập one.tga.com.vn không thành công")
+            detail=result.get(
+                "error",
+                "Đăng nhập one.tga.com.vn không thành công",
+            ),
         )
+
 
 @app.get("/ai/predictions")
 async def get_predictions():
@@ -245,6 +312,7 @@ async def get_predictions():
         }
     }
 
+
 @app.get("/ai/anomalies")
 async def detect_anomalies():
     return {
@@ -253,15 +321,90 @@ async def detect_anomalies():
         "recommendations": ["System is running optimally"]
     }
 
+
 @app.get("/ai/optimization")
 async def get_optimization():
     return {
         "optimizations": [
-            {"action": "Optimize database queries", "impact": "15%", "priority": "high"},
+            {
+                "action": "Optimize database queries",
+                "impact": "15%",
+                "priority": "high",
+            },
             {"action": "Enable caching", "impact": "20%", "priority": "medium"}
         ],
-        "overall_score": 89
+        "overall_score": 89,
+        "optimization_engine": OPTIMIZATION_ENGINE_NAME,
     }
+
+
+@app.get("/ai/optimization/status")
+async def get_optimization_status():
+    return {
+        "cobyqa_available": COBYQA_AVAILABLE,
+        "engine": OPTIMIZATION_ENGINE_NAME,
+        "status": "ready" if cobyqa_minimize is not None else "unavailable",
+    }
+
+
+@app.post("/ai/optimization/solve")
+async def solve_optimization(request: OptimizationSolveRequest):
+    if not request.initial_guess:
+        raise HTTPException(status_code=400, detail="initial_guess không được rỗng")
+
+    if cobyqa_minimize is None:
+        raise HTTPException(status_code=503, detail="Optimization engine unavailable")
+
+    objective_type = (request.objective_type or "minimize").lower().strip()
+    if objective_type not in {"minimize", "maximize"}:
+        raise HTTPException(status_code=400, detail="objective_type phải là minimize hoặc maximize")
+
+    try:
+        x0 = np.asarray(request.initial_guess, dtype=float)
+
+        bounds_obj = None
+        if request.bounds is not None:
+            if len(request.bounds) != len(x0):
+                raise HTTPException(status_code=400, detail="Số chiều bounds phải bằng initial_guess")
+            for pair in request.bounds:
+                if not isinstance(pair, list) or len(pair) != 2:
+                    raise HTTPException(status_code=400, detail="Mỗi bound phải có dạng [min, max]")
+            from scipy.optimize import Bounds
+            bounds_arr = np.asarray(request.bounds, dtype=float)
+            bounds_obj = Bounds(bounds_arr[:, 0], bounds_arr[:, 1])
+
+        maximize = objective_type == "maximize"
+        result = cobyqa_minimize(
+            fun=lambda x: _objective_sum_squares(x, maximize=maximize),
+            x0=x0,
+            bounds=bounds_obj,
+            constraints=request.constraints or (),
+            options=request.options or {},
+        )
+
+        x_opt = result.x.tolist() if hasattr(result, "x") else None
+        objective_value = None
+        if x_opt is not None:
+            objective_value = float(_objective_sum_squares(np.asarray(x_opt), maximize=False))
+
+        return {
+            "status": "success",
+            "method": OPTIMIZATION_ENGINE_NAME,
+            "result": {
+                "optimal_point": x_opt,
+                "objective_value": objective_value,
+                "success": bool(getattr(result, "success", False)),
+                "message": str(getattr(result, "message", "Optimization completed")),
+                "iterations": int(getattr(result, "nit", 0)) if getattr(result, "nit", None) is not None else None,
+                "function_evaluations": int(getattr(result, "nfev", 0)) if getattr(result, "nfev", None) is not None else None,
+            },
+            "timestamp": time.time(),
+        }
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Optimization failed: {str(exc)}")
+
 
 if __name__ == "__main__":
     # Port 8000 - khớp với Dockerfile.ai

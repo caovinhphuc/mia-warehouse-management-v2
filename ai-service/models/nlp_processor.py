@@ -3,10 +3,10 @@ Natural Language Processing Model
 NLP capabilities for chat, voice, summaries, and search
 """
 
-from typing import List, Dict, Any, Optional
-from datetime import datetime
 import re
 from collections import Counter
+from datetime import datetime
+from typing import Any, Dict, List, Optional
 
 try:
     import numpy as np
@@ -218,7 +218,7 @@ class NLPProcessor:
             structure["action"] = "aggregate"
             structure["aggregations"] = [{
                 "function": "sum",
-                "column": entities.get("columns", [None])[0] or "value",
+                "column": next(iter(entities.get("columns") or []), None) or "value",
             }]
 
         elif intent == "compare":
@@ -227,8 +227,9 @@ class NLPProcessor:
 
         elif intent == "trend":
             structure["action"] = "trend_analysis"
-            structure["time_column"] = entities.get("columns", [None])[0] or "date"
-            structure["value_column"] = entities.get("columns", [None])[1] or "value"
+            _cols = entities.get("columns") or []
+            structure["time_column"] = _cols[0] if len(_cols) > 0 else "date"
+            structure["value_column"] = _cols[1] if len(_cols) > 1 else "value"
 
         elif intent == "search":
             structure["action"] = "search"

@@ -5,24 +5,31 @@ Google Sheets Verification and Logging Test
 Chạy test xác nhận Google Sheets và các tính năng logging
 """
 
-import sys
-import os
 import logging
+import os
+import sys
 from datetime import datetime
 
-# Add current directory to path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Resolve stable paths regardless of current working directory
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+CONFIG_PATH = os.path.join(BASE_DIR, 'config', 'config.json')
+
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 
 from google_sheets_config import GoogleSheetsConfigService
 
+
 def setup_logging():
     """Setup logging cho test"""
+    os.makedirs(LOGS_DIR, exist_ok=True)
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
             logging.StreamHandler(),
-            logging.FileHandler(f'logs/sheets_verification_{datetime.now().strftime("%Y%m%d")}.log')
+            logging.FileHandler(os.path.join(LOGS_DIR, f'sheets_verification_{datetime.now().strftime("%Y%m%d")}.log'))
         ]
     )
     return logging.getLogger('SheetsVerification')
@@ -76,7 +83,7 @@ def test_sheets_config_loading():
             print(f"   📁 {section}: {len(values) if isinstance(values, dict) else 1} keys")
 
         # Test merged config
-        merged_config = sheets_service.get_config_merged('config/config.json')
+        merged_config = sheets_service.get_config_merged(CONFIG_PATH)
         print(f"✅ Merged config source: {merged_config.get('_metadata', {}).get('config_source', 'unknown')}")
 
         # Test SLA rules
@@ -218,7 +225,7 @@ def test_config_backup():
         sheets_service = GoogleSheetsConfigService()
 
         # Backup local config
-        success = sheets_service.backup_local_config_to_sheets('config/config.json')
+        success = sheets_service.backup_local_config_to_sheets(CONFIG_PATH)
         print(f"✅ Config backup: {'Success' if success else 'Failed'}")
 
         return True

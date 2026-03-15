@@ -39,7 +39,6 @@ class TelegramService {
 
       return await response.json();
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error("Error sending Telegram message:", error);
       throw error;
     }
@@ -87,7 +86,6 @@ class TelegramService {
 
       return await response.json();
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error("Error testing Telegram connection:", error);
       throw error;
     }

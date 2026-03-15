@@ -1,8 +1,13 @@
 # 📦 TESTING IMPLEMENTATION - COMPLETION SUMMARY
 
-**Date:** March 14, 2026  
-**Phase:** Phase 1 - Foundation  
+**Date:** March 14, 2026
+**Phase:** Phase 1 - Foundation
 **Status:** ✅ CI Pass - 68 tests
+
+**Canonical docs:**
+
+- `GUIDE/TESTING.md` (source of truth)
+- `GUIDE/COMPLETE_TEST_GUIDE.md` (quick reference)
 
 ---
 
@@ -25,6 +30,7 @@ Implement testing cho project, sửa và bật lại tests: websocketService, se
 
 - **Location:** `src/utils/test-utils.js`
 - **Functions:**
+
   ```javascript
   renderWithProviders(); // Redux wrapper
   renderWithRouter(); // Router wrapper
@@ -33,6 +39,7 @@ Implement testing cho project, sửa và bật lại tests: websocketService, se
   mockLocalStorage; // localStorage mock
   mockSessionStorage; // sessionStorage mock
   ```
+
 - **Re-exports:** All @testing-library/react utilities + userEvent
 
 #### 2. Mock Data Fixtures
@@ -59,7 +66,7 @@ Implement testing cho project, sửa và bật lại tests: websocketService, se
 ### 🧪 Tests Đang Chạy (68 pass)
 
 | File | Tests | Status |
-|------|-------|--------|
+| --- | --- | --- |
 | **websocketService.test.js** | 11 | ✅ PASS |
 | **securityService.test.js** | 12 | ✅ PASS |
 | **ErrorBoundary.test.jsx** | 21 | ✅ PASS |
@@ -84,7 +91,7 @@ Implement testing cho project, sửa và bật lại tests: websocketService, se
 
 ### Test Files
 
-```
+```text
 ✅ Đang chạy:
    ├─ src/services/__tests__/websocketService.test.js (11)
    ├─ src/services/__tests__/securityService.test.js (12)
@@ -176,18 +183,17 @@ Implement testing cho project, sửa và bật lại tests: websocketService, se
 ## 🚀 HOW TO RUN TESTS
 
 ```bash
-# Tất cả
-npx jest --no-coverage
+# Unit (khuyen nghi qua scripts)
+npm run test:unit
 
-# Từng file
-npx jest src/services/__tests__/securityService.test.js
-npx jest src/components/Common/__tests__/ErrorBoundary.test.jsx
+# Integration
+npm run test:integration
 
 # Coverage
-npx jest --coverage
+npm run test:coverage
 
-# Watch
-npx jest --watch
+# Full gate
+npm run test:all
 ```
 
 ---
@@ -234,7 +240,7 @@ npx jest --watch
 
 ## 📈 ROADMAP
 
-```
+```text
 Phase 1 - Foundation
 ├─ ✅ websocketService, securityService, ErrorBoundary (DONE)
 ├─ ⏸️ Login, ProtectedRoute (ignored)
@@ -254,4 +260,4 @@ Phase 2+ - Google, Dashboard, Backend, E2E
 
 ---
 
-**Cập nhật - March 14, 2026**
+## Cập nhật - March 14, 2026

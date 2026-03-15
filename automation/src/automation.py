@@ -7,31 +7,34 @@ Created: 2025-06-15
 Version: 1.0.0
 """
 
-import os
-import sys
 import json
 import logging
-import time
+import os
 import pickle
-import schedule
-import pandas as pd
-from datetime import datetime
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import TimeoutException
-from webdriver_manager.chrome import ChromeDriverManager
-from dotenv import load_dotenv
 import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.base import MIMEBase
+import sys
+import time
+from datetime import datetime
 from email import encoders
-from selenium.webdriver.common.keys import Keys
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 import numpy as np
+import pandas as pd
+from dotenv import load_dotenv
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
+
+import src.modules.schedule as schedule
+
 
 class SessionManager:
     """Quản lý session để tránh login lại"""

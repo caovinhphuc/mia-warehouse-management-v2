@@ -1,34 +1,34 @@
 # 📊 Bundle Optimization Report
 
-**Generated:** 01:53:33 10/2/2026
+**Generated:** 02:20:21 16/3/2026
 
 ## 📦 Bundle Sizes
 
 | Type | Current | Budget | Status |
 |------|---------|--------|--------|
-| JavaScript | 0 Bytes | 250 KB | ✅ OK |
-| CSS | 0 Bytes | 50 KB | ✅ OK |
+| JavaScript | 2.09 MB | 4 MB | ✅ OK |
+| CSS | 71.78 KB | 200 KB | ✅ OK |
 | Images | 0 Bytes | 500 KB | ✅ OK |
-| Total | 0 Bytes | 1 MB | ✅ OK |
+| Total | 2.16 MB | 20 MB | ✅ OK |
 
 ## 📁 Top Largest Files
 
 ```
-1. assets/vendor-C7BSvB0W.js - 663.7 KB
-2. assets/vendor-antd-HC56gY9Y.js - 622.93 KB
-3. assets/vendor-recharts-B0jLgzcr.js - 256.13 KB
-4. assets/vendor-react-zV7Bptx5.js - 243.6 KB
-5. assets/vendor-C7BSvB0W.js.gz - 216.42 KB
-6. assets/vendor-C7BSvB0W.js.br - 182.25 KB
-7. assets/vendor-antd-HC56gY9Y.js.gz - 169.25 KB
-8. assets/vendor-chartjs-BRqP4Ssd.js - 163.11 KB
-9. assets/vendor-antd-HC56gY9Y.js.br - 134.38 KB
-10. assets/vendor-react-zV7Bptx5.js.gz - 71.69 KB
-11. assets/vendor-antd-icons-BAbhBvQK.js - 69.96 KB
-12. assets/vendor-recharts-B0jLgzcr.js.gz - 64.3 KB
-13. assets/vendor-react-zV7Bptx5.js.br - 62.22 KB
-14. assets/vendor-chartjs-BRqP4Ssd.js.gz - 54.68 KB
-15. assets/vendor-recharts-B0jLgzcr.js.br - 54.23 KB
+1. assets/vendor-antd-m1fCbcGN.js.map - 4.39 MB
+2. assets/vendor-recharts-BF5rU-au.js.map - 1.5 MB
+3. assets/vendor-BBZyFSju.js.map - 1.39 MB
+4. assets/vendor-antd-m1fCbcGN.js - 1.02 MB
+5. assets/vendor-react-CluYj9lr.js.map - 360.3 KB
+6. assets/vendor-recharts-BF5rU-au.js - 327.05 KB
+7. assets/vendor-redux-DOrB60IC.js.map - 326.53 KB
+8. assets/vendor-antd-m1fCbcGN.js.gz - 312.21 KB
+9. assets/vendor-BBZyFSju.js - 275.25 KB
+10. assets/vendor-antd-m1fCbcGN.js.br - 244.12 KB
+11. assets/vendor-socket-BPF2ajrA.js.map - 179.72 KB
+12. workbox-8c29f6e4.js.map - 145.14 KB
+13. assets/vendor-react-CluYj9lr.js - 141.88 KB
+14. assets/vendor-router-B1cm9IrD.js.map - 137.47 KB
+15. assets/main-HTyKp4S8.js.map - 98.12 KB
 ```
 
 ## 💡 Recommendations

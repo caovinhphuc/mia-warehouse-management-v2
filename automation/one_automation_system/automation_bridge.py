@@ -3,13 +3,14 @@
 Simple Automation Bridge - Kết nối automation.py với frontend
 """
 
+import json
 import os
 import sys
-import json
 from datetime import datetime
+
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
 
 # Add current directory to Python path
 sys.path.append('.')

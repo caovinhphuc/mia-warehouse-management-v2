@@ -62,7 +62,6 @@ const MIARetailDashboard = () => {
       if (inventory) setInventoryData(inventory);
       if (customers) setCustomerData(customers);
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error("Error fetching retail data:", err);
       setError(err.message);
     } finally {

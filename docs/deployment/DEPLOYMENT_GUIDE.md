@@ -852,22 +852,24 @@ const cacheManager = new ProductionCacheManager();
 
 **Nguyên nhân thường gặp & cách xử lý:**
 
-| Nguyên nhân | Cách kiểm tra | Cách sửa |
-|-------------|---------------|----------|
-| **1. Lỗi JS runtime** | Mở DevTools (F12) → Console → xem lỗi màu đỏ | Sửa lỗi trong code hoặc dependency |
-| **2. Asset 404** | DevTools → Network → filter `.js`, `.css` → xem request 404 | Kiểm tra `base` trong `vite.config.mjs`, `netlify.toml` publish dir |
-| **3. Thiếu biến môi trường** | Console có lỗi liên quan `VITE_API_URL`, `fetch`, CORS | Thêm biến môi trường trong Netlify Dashboard → Site settings → Environment variables (vd: `VITE_API_URL`) |
-| **4. Node phiên bản cũ** | Build log Netlify có warning/error | Đặt `NODE_VERSION = "18"` trong `netlify.toml` (hoặc 20) |
-| **5. PWA cache cũ** | Đã deploy fix nhưng vẫn lỗi | Xóa cache: DevTools → Application → Storage → Clear site data |
-| **6. base path sai** | Asset 404 khi truy cập qua URL có subpath | Thử `base: "/"` thay vì `base: "./"` trong `vite.config.mjs` |
+| Nguyên nhân                  | Cách kiểm tra                                               | Cách sửa                                                                                                  |
+| ---------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **1. Lỗi JS runtime**        | Mở DevTools (F12) → Console → xem lỗi màu đỏ                | Sửa lỗi trong code hoặc dependency                                                                        |
+| **2. Asset 404**             | DevTools → Network → filter `.js`, `.css` → xem request 404 | Kiểm tra `base` trong `vite.config.mjs`, `netlify.toml` publish dir                                       |
+| **3. Thiếu biến môi trường** | Console có lỗi liên quan `VITE_API_URL`, `fetch`, CORS      | Thêm biến môi trường trong Netlify Dashboard → Site settings → Environment variables (vd: `VITE_API_URL`) |
+| **4. Node phiên bản cũ**     | Build log Netlify có warning/error                          | Đặt `NODE_VERSION = "18"` trong `netlify.toml` (hoặc 20)                                                  |
+| **5. PWA cache cũ**          | Đã deploy fix nhưng vẫn lỗi                                 | Xóa cache: DevTools → Application → Storage → Clear site data                                             |
+| **6. base path sai**         | Asset 404 khi truy cập qua URL có subpath                   | Thử `base: "/"` thay vì `base: "./"` trong `vite.config.mjs`                                              |
 
 **Checklist nhanh:**
+
 1. Mở https://yoursite.netlify.app/ → F12 → Console: ghi lại lỗi.
 2. Tab Network: xem `index.html`, `main-xxx.js`, `vendor-xxx.js` load 200 hay 404.
 3. Netlify Dashboard → Deploys → xem Build log có fail không.
 4. Environment variables: có `VITE_API_URL` (hoặc các `VITE_*` cần thiết) chưa.
 
 **Cấu hình Netlify đã dùng:**
+
 - `publish = "build"` (Vite output)
 - `NODE_VERSION = "18"`
 - Redirect `/*` → `/index.html` (status 200) cho SPA routing

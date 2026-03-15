@@ -1,0 +1,12 @@
+# AI Service Dependencies - Updated for Python 3.11 compatibility
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.5
+python-multipart==0.0.9
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dotenv==1.0.0
+
+# Optimization dependencies
+numpy>=1.24.0
+scipy>=1.10.0

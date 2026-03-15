@@ -77,6 +77,15 @@ if [ -z "$SERVER_HOST" ]; then
     exit 1
 fi
 
+# Reject common placeholders
+case "$SERVER_HOST" in
+    YOUR_SERVER_IP|YOUR_IP|example.com)
+        echo -e "${RED}❌ Sai host: '$SERVER_HOST' là placeholder, cần nhập IP/domain thật${NC}"
+        echo -e "${YELLOW}   Ví dụ: 192.168.1.100 hoặc ai-service.mia.vn${NC}"
+        exit 1
+        ;;
+esac
+
 echo -e "${BLUE}📋 Configuration:${NC}"
 echo -e "   Host: ${GREEN}$SERVER_HOST${NC}"
 echo -e "   User: ${GREEN}$SERVER_USER${NC}"

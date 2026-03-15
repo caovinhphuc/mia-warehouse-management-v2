@@ -5,20 +5,21 @@
 Strategy: Login → Extract + Analyze Products → Save → Logout → Repeat
 """
 
+import json
+import os
+import re
 import sys
 import time
-import os
-import json
-import requests
-import re
 from datetime import datetime
+
+import requests
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from scripts.login_manager import CompleteLoginManager
 from scripts.date_customizer import DateCustomizer
-from scripts.pagination_handler import PaginationHandler
 from scripts.enhanced_scraper import EnhancedScraper
+from scripts.login_manager import CompleteLoginManager
+from scripts.pagination_handler import PaginationHandler
 
 
 class JuneFreshSessionWithProducts:
@@ -262,6 +263,16 @@ class JuneFreshSessionWithProducts:
             response = requests.get(api_url, cookies=cookies, timeout=15)
 
             if response.status_code == 200:
+                content_type = (response.headers.get('Content-Type') or '').lower()
+                raw_text = response.text.strip() if response.text else ''
+
+                if not raw_text:
+                    print("⚠️ API response empty body")
+                    return {}
+                if 'json' not in content_type and raw_text.startswith('<'):
+                    print("⚠️ API returned HTML/non-JSON (possible session timeout)")
+                    return {}
+
                 data = response.json()
                 if not data.get('error', True) and data.get('data'):
                     print(f"✅ API success: Got {len(data['data'])} orders")

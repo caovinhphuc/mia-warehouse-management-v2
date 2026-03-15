@@ -5,21 +5,22 @@ Enhanced Warehouse Automation System v2.1
 Hệ thống tự động hóa warehouse với tính năng SLA monitoring và product details
 """
 
-import json
-import requests
-import pandas as pd
-from datetime import datetime
-import time
-import re
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 import argparse
-import sys
-from dotenv import load_dotenv
+import json
 import logging
 import os
+import re
+import sys
+import time
+from datetime import datetime
+
+import pandas as pd
+import requests
+from dotenv import load_dotenv
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 # Import base automation
 from automation import OneAutomationSystem, SessionManager
@@ -67,6 +68,7 @@ class EnhancedOneAutomationSystem(OneAutomationSystem):
 
         try:
             from google_sheets_config import GoogleSheetsConfigService
+
             # Use the specific Google Sheets ID from user's link
             sheets_id = '1xdfAEgbvDee_oJFwzb8bWW9ONmYO3RbQJ3Oscbmm5Uc'  # Updated ID from config.json
             service = GoogleSheetsConfigService(spreadsheet_id=sheets_id)
@@ -189,10 +191,26 @@ class EnhancedOneAutomationSystem(OneAutomationSystem):
             response = requests.get(api_url, cookies=cookies, timeout=10)
 
             if response.status_code == 200:
+                content_type = (response.headers.get('Content-Type') or '').lower()
+                raw_text = response.text.strip() if response.text else ''
+
+                # invoiceJSON đôi lúc trả về HTML login hoặc body rỗng dù status=200
+                if not raw_text:
+                    self.logger.warning("⚠️ API Direct: empty response body")
+                    return {}
+                if 'json' not in content_type and raw_text.startswith('<'):
+                    self.logger.warning("⚠️ API Direct: non-JSON response (possible session timeout/login page)")
+                    return {}
+
                 data = response.json()
                 if not data.get('error', True) and data.get('data'):
                     self.logger.info(f"✅ API Direct: Lấy được {len(data['data'])} đơn hàng")
                     return self.parse_json_response(data['data'])
+
+                self.logger.warning(f"⚠️ API Direct: invalid payload format - keys={list(data.keys())[:5]}")
+                return {}
+
+            self.logger.warning(f"⚠️ API Direct: HTTP {response.status_code}")
 
             return {}
 

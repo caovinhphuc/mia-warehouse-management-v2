@@ -12,7 +12,11 @@
     "test:ws:health": "node ws-health-check.js",
     "format": "prettier --write .",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build:production": "NODE_ENV=production webpack --mode production",
+    "deploy:docker": "docker-compose up --build -d",
     "lint:check": "eslint . --max-warnings=0",
+    "deploy:netlify": "npm run build:production && netlify deploy --prod --dir=build",
     "build": "npm run test"
   },
   "dependencies": {
@@ -43,7 +47,6 @@
     "socket.io": "^4.8.1",
     "speakeasy": "^2.0.0",
     "supertest": "^6.3.3",
-    "webpack-cli": "^6.0.1",
     "ws": "^8.18.3"
   },
   "devDependencies": {
@@ -60,7 +63,8 @@
     "prettier": "^2.8.8",
     "style-loader": "^4.0.0",
     "supertest": "^6.3.3",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.17",
+    "webpack-cli": "^7.0.0"
   },
   "keywords": [
     "business",

@@ -1,5 +1,5 @@
 import importMetaEnv from "../utils/importMetaEnv";
-/* eslint-disable */
+
 /**
  * Smart Automation Service
  * AI-powered data analysis, predictive alerts, categorization, and reports

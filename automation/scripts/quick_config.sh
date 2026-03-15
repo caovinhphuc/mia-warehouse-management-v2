@@ -16,13 +16,14 @@ echo -e "${CYAN}║              Cấu hình nhanh credentials                  
 echo -e "${CYAN}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
-# Change to script directory
+# Change to script directory then resolve automation root
 cd "$(dirname "$0")"
+AUTOMATION_ROOT="$(cd .. && pwd)"
 
 # Create .env file if not exists
-if [ ! -f ".env" ]; then
+if [ ! -f "$AUTOMATION_ROOT/.env" ]; then
     echo -e "${BLUE}📝 Tạo file .env từ template...${NC}"
-    cp .env.example .env
+    cp "$AUTOMATION_ROOT/.env.example" "$AUTOMATION_ROOT/.env" 2>/dev/null || touch "$AUTOMATION_ROOT/.env"
     echo -e "${GREEN}✅ Đã tạo file .env${NC}"
 fi
 
@@ -40,17 +41,17 @@ echo ""
 echo -e "${BLUE}💾 Lưu credentials vào .env...${NC}"
 
 # Backup current .env
-cp .env .env.backup.$(date +%Y%m%d_%H%M%S)
+cp "$AUTOMATION_ROOT/.env" "$AUTOMATION_ROOT/.env.backup.$(date +%Y%m%d_%H%M%S)"
 
 # Update credentials in .env
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    sed -i '' "s/ONE_USERNAME=.*/ONE_USERNAME=$one_username/" .env
-    sed -i '' "s/ONE_PASSWORD=.*/ONE_PASSWORD=$one_password/" .env
+    sed -i '' "s/ONE_USERNAME=.*/ONE_USERNAME=$one_username/" "$AUTOMATION_ROOT/.env"
+    sed -i '' "s/ONE_PASSWORD=.*/ONE_PASSWORD=$one_password/" "$AUTOMATION_ROOT/.env"
 else
     # Linux
-    sed -i "s/ONE_USERNAME=.*/ONE_USERNAME=$one_username/" .env
-    sed -i "s/ONE_PASSWORD=.*/ONE_PASSWORD=$one_password/" .env
+    sed -i "s/ONE_USERNAME=.*/ONE_USERNAME=$one_username/" "$AUTOMATION_ROOT/.env"
+    sed -i "s/ONE_PASSWORD=.*/ONE_PASSWORD=$one_password/" "$AUTOMATION_ROOT/.env"
 fi
 
 echo -e "${GREEN}✅ Đã lưu credentials${NC}"
@@ -72,15 +73,15 @@ if [[ $setup_sheets =~ ^[Yy] ]]; then
     read -p "📎 Đường dẫn đến file credentials JSON: " json_path
 
     if [ -f "$json_path" ]; then
-        mkdir -p config
-        cp "$json_path" config/service_account.json
+        mkdir -p "$AUTOMATION_ROOT/config"
+        cp "$json_path" "$AUTOMATION_ROOT/config/service_account.json"
         echo -e "${GREEN}✅ Đã sao chép file credentials${NC}"
 
         # Update .env
         if [[ "$OSTYPE" == "darwin"* ]]; then
-            sed -i '' "s/GOOGLE_SHEETS_ENABLED=.*/GOOGLE_SHEETS_ENABLED=true/" .env
+            sed -i '' "s/GOOGLE_SHEETS_ENABLED=.*/GOOGLE_SHEETS_ENABLED=true/" "$AUTOMATION_ROOT/.env"
         else
-            sed -i "s/GOOGLE_SHEETS_ENABLED=.*/GOOGLE_SHEETS_ENABLED=true/" .env
+            sed -i "s/GOOGLE_SHEETS_ENABLED=.*/GOOGLE_SHEETS_ENABLED=true/" "$AUTOMATION_ROOT/.env"
         fi
     else
         echo -e "${RED}❌ File không tồn tại: $json_path${NC}"
@@ -102,29 +103,29 @@ if [[ $setup_email =~ ^[Yy] ]]; then
 
     # Update .env
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "s/EMAIL_ENABLED=.*/EMAIL_ENABLED=true/" .env
-        sed -i '' "s/EMAIL_USERNAME=.*/EMAIL_USERNAME=$email_from/" .env
-        sed -i '' "s/EMAIL_PASSWORD=.*/EMAIL_PASSWORD=$email_password/" .env
-        sed -i '' "s/EMAIL_FROM=.*/EMAIL_FROM=$email_from/" .env
-        sed -i '' "s/EMAIL_TO=.*/EMAIL_TO=$email_to/" .env
-    else
-        sed -i "s/EMAIL_ENABLED=.*/EMAIL_ENABLED=true/" .env
-        sed -i "s/EMAIL_USERNAME=.*/EMAIL_USERNAME=$email_from/" .env
-        sed -i "s/EMAIL_PASSWORD=.*/EMAIL_PASSWORD=$email_password/" .env
-        sed -i "s/EMAIL_FROM=.*/EMAIL_FROM=$email_from/" .env
-        sed -i "s/EMAIL_TO=.*/EMAIL_TO=$email_to/" .env
-    fi
+            sed -i '' "s/EMAIL_ENABLED=.*/EMAIL_ENABLED=true/" "$AUTOMATION_ROOT/.env"
+            sed -i '' "s/EMAIL_USERNAME=.*/EMAIL_USERNAME=$email_from/" "$AUTOMATION_ROOT/.env"
+            sed -i '' "s/EMAIL_PASSWORD=.*/EMAIL_PASSWORD=$email_password/" "$AUTOMATION_ROOT/.env"
+            sed -i '' "s/EMAIL_FROM=.*/EMAIL_FROM=$email_from/" "$AUTOMATION_ROOT/.env"
+            sed -i '' "s/EMAIL_TO=.*/EMAIL_TO=$email_to/" "$AUTOMATION_ROOT/.env"
+        else
+            sed -i "s/EMAIL_ENABLED=.*/EMAIL_ENABLED=true/" "$AUTOMATION_ROOT/.env"
+            sed -i "s/EMAIL_USERNAME=.*/EMAIL_USERNAME=$email_from/" "$AUTOMATION_ROOT/.env"
+            sed -i "s/EMAIL_PASSWORD=.*/EMAIL_PASSWORD=$email_password/" "$AUTOMATION_ROOT/.env"
+            sed -i "s/EMAIL_FROM=.*/EMAIL_FROM=$email_from/" "$AUTOMATION_ROOT/.env"
+            sed -i "s/EMAIL_TO=.*/EMAIL_TO=$email_to/" "$AUTOMATION_ROOT/.env"
+        fi
 
     echo -e "${GREEN}✅ Đã cấu hình email notifications${NC}"
 fi
 
 echo ""
-echo -e "${GREEN}🎉 CÁU HÌNH HOÀN THÀNH!${NC}"
+echo -e "${GREEN}🎉 CẤU HÌNH HOÀN THÀNH!${NC}"
 echo ""
 echo -e "${BLUE}📁 File đã tạo/cập nhật:${NC}"
-echo "   ✅ .env (credentials)"
-if [ -f "config/service_account.json" ]; then
-    echo "   ✅ config/service_account.json (Google Sheets)"
+echo "   ✅ $AUTOMATION_ROOT/.env (credentials)"
+if [ -f "$AUTOMATION_ROOT/config/service_account.json" ]; then
+    echo "   ✅ $AUTOMATION_ROOT/config/service_account.json (Google Sheets)"
 fi
 echo ""
 echo -e "${YELLOW}🔒 BẢO MẬT:${NC}"

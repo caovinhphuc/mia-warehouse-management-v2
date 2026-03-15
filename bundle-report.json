@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-14T01:19:24.753Z",
+  "timestamp": "2026-03-15T19:20:54.923Z",
   "budget": {
     "javascript": 3145728,
     "css": 102400,
@@ -9,15 +9,15 @@
   },
   "sizes": {
     "javascript": {
-      "size": 2876749,
+      "size": 2207883,
       "budget": 3145728,
-      "percentage": "91.4",
+      "percentage": "70.2",
       "status": true
     },
     "css": {
-      "size": 83010,
+      "size": 73503,
       "budget": 102400,
-      "percentage": "81.1",
+      "percentage": "71.8",
       "status": true
     },
     "images": {
@@ -33,52 +33,52 @@
       "status": true
     },
     "total": {
-      "size": 15707008,
+      "size": 13090664,
       "budget": 20971520,
-      "percentage": "74.9",
+      "percentage": "62.4",
       "status": true
     }
   },
   "largestFiles": [
     {
-      "path": "assets/vendor-antd-vd89Y6zf.js",
-      "size": 1112038
+      "path": "assets/vendor-antd-m1fCbcGN.js",
+      "size": 1073192
     },
     {
-      "path": "assets/vendor-react-Dh9cyHcp.js",
-      "size": 330042
+      "path": "assets/vendor-recharts-BF5rU-au.js",
+      "size": 334895
     },
     {
-      "path": "assets/vendor-recharts-pX6b3_im.js",
-      "size": 326526
+      "path": "assets/vendor-BBZyFSju.js",
+      "size": 281854
     },
     {
-      "path": "assets/vendor-DGqXCx1y.js",
-      "size": 314564
+      "path": "assets/vendor-react-CluYj9lr.js",
+      "size": 145280
     },
     {
-      "path": "workbox-5a5d9309.js",
-      "size": 129523
+      "path": "assets/vendor-redux-DOrB60IC.js",
+      "size": 40726
     },
     {
-      "path": "assets/main-DzNk-Ype.js",
-      "size": 72618
+      "path": "assets/vendor-socket-BPF2ajrA.js",
+      "size": 40025
     },
     {
-      "path": "assets/SecurityDashboard-7KPhqsMk.js",
-      "size": 68907
+      "path": "assets/main-HTyKp4S8.js",
+      "size": 37554
     },
     {
-      "path": "assets/vendor-redux-Q0HY3iRW.js",
-      "size": 67640
+      "path": "assets/SecurityDashboard-CQhKpaE8.js",
+      "size": 27281
     },
     {
-      "path": "assets/AIDashboard-CD7d9ZFt.js",
-      "size": 44717
+      "path": "assets/AIDashboard-DtkzmOTh.js",
+      "size": 20863
     },
     {
-      "path": "assets/GoogleDriveIntegration-B67RNJL4.js",
-      "size": 40492
+      "path": "assets/GoogleDriveIntegration-vTq9PYEp.js",
+      "size": 17543
     }
   ]
 }

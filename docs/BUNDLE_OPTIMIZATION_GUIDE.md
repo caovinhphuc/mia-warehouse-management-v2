@@ -41,6 +41,7 @@ npm install dayjs
 ### 2. Verify Configuration
 
 Build dùng **Vite** (`vite.config.mjs`). Các tối ưu đã có trong `vite.config.mjs`:
+
 - `manualChunks` - Chia vendor (react, antd, redux, recharts...)
 - `vite-plugin-compression` - Gzip + Brotli
 - `optimizeDeps` - Pre-bundling
@@ -239,8 +240,8 @@ useEffect(() => {
 Đã cấu hình trong [vite.config.mjs](../vite.config.mjs) - `manualChunks`:
 
 - `vendor-react` - react, react-dom
-- `vendor-antd` - antd, @ant-design, rc-*
-- `vendor-recharts` - recharts, d3-*
+- `vendor-antd` - antd, @ant-design, rc-\*
+- `vendor-recharts` - recharts, d3-\*
 - `vendor-redux` - redux, react-redux
 - `vendor-router` - react-router
 - `vendor-mui` - @mui, @emotion
@@ -255,13 +256,13 @@ Xem `vite.config.mjs` → `build.rollupOptions.output.manualChunks`.
 
 ### Analysis Scripts
 
-| Script | Mô tả |
-|--------|-------|
-| `npm run analyze:deps` | Kiểm tra deps lớn, gợi ý tối ưu |
-| `npm run analyze:size` | Build + hiển thị kích thước file (build/assets/) |
-| `npm run analyze:performance` | Phân tích hiệu năng |
-| `npm run analyze:sourcemap` | Source map (cần GENERATE_SOURCEMAP=true) |
-| `npm run analyze` | Full (craco build - legacy) |
+| Script                        | Mô tả                                            |
+| ----------------------------- | ------------------------------------------------ |
+| `npm run analyze:deps`        | Kiểm tra deps lớn, gợi ý tối ưu                  |
+| `npm run analyze:size`        | Build + hiển thị kích thước file (build/assets/) |
+| `npm run analyze:performance` | Phân tích hiệu năng                              |
+| `npm run analyze:sourcemap`   | Source map (cần GENERATE_SOURCEMAP=true)         |
+| `npm run analyze`             | Full (craco build - legacy)                      |
 
 ### Build Scripts (Vite)
 
@@ -408,6 +409,7 @@ npm update react react-dom
 ### Issue: Module not found
 
 **Vite** resolve ESM trực tiếp. Kiểm tra:
+
 - Path alias trong `vite.config.mjs` → `resolve.alias`
 - `@utils`, `@services` trỏ đúng `./src/`
 
@@ -486,7 +488,7 @@ For questions or issues:
 
 ---
 
-**Last Updated:** March 14, 2026  
-**Build:** Vite (vite.config.mjs)  
-**Status:** Tối ưu chính đã triển khai; moment đã thay dayjs  
+**Last Updated:** March 14, 2026
+**Build:** Vite (vite.config.mjs)
+**Status:** Tối ưu chính đã triển khai; moment đã thay dayjs
 **Config tổng hợp:** [docs/CONFIG_STATUS.md](CONFIG_STATUS.md)

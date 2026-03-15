@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual envs and backups
+venv/
+.venv/
+venv.backup*/
+
+# Runtime artifacts
+logs/
+*.log
+ai-service.pid
+
+# Git/editor
+.git/
+.gitignore
+.vscode/
+.DS_Store
+
+# Local docs and reports not needed in container
+*.md
+coverage/
+
+# Build caches
+.pytest_cache/
+.mypy_cache/
+
+# Keep Docker and app files only

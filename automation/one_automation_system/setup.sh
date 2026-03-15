@@ -3,6 +3,9 @@
 echo "=== ONE Automation System - Production Setup ==="
 echo "Thiết lập hệ thống tự động hóa ONE cho môi trường production"
 
+# Đảm bảo chạy trong thư mục chứa script này
+cd "$(dirname "$0")"
+
 # Kiểm tra Python
 echo "Kiểm tra Python..."
 if ! command -v python3 &> /dev/null; then
@@ -82,34 +85,33 @@ fi
 # Kiểm tra automation files
 echo "Kiểm tra automation files..."
 
-if [ -f "../src/automation.py" ]; then
+if [ -f "automation.py" ]; then
     echo "✅ automation.py đã tồn tại"
 else
-    echo "❌ ../src/automation.py không tồn tại"
+    echo "❌ automation.py không tồn tại"
 fi
 
-if [ -f "../src/automation_bridge.py" ]; then
+if [ -f "automation_bridge.py" ]; then
     echo "✅ automation_bridge.py đã tồn tại"
 else
-    echo "❌ ../src/automation_bridge.py không tồn tại"
+    echo "❌ automation_bridge.py không tồn tại"
 fi
 
 echo ""
 echo "=== SETUP HOÀN TẤT ==="
 echo ""
 echo "📋 BƯỚC TIẾP THEO:"
-echo "1. Cập nhật thông tin đăng nhập trong file ../config/.env:"
-echo "   - ONE_USERNAME=your_username"
-echo "   - ONE_PASSWORD=your_password"
-echo "   - LOGIN_URL=your_login_url"
+echo "1. Cập nhật thông tin đăng nhập trong file .env:"
+echo "   ONE_USERNAME=your_username"
+echo "   ONE_PASSWORD=your_password"
+echo "   LOGIN_URL=your_login_url"
 echo ""
-echo "2. Khởi động hệ thống:"
-echo "   Backend: ./start_backend.sh"
-echo "   Frontend: npm start"
-echo ""
-echo "3. Test automation:"
+echo "2. Kích hoạt virtual environment:"
 echo "   source venv/bin/activate"
-echo "   python ../src/automation.py"
+echo ""
+echo "3. Chạy automation:"
+echo "   python automation.py --run-once"
+echo "   python automation.py --schedule"
 echo ""
 echo "⚠️  QUAN TRỌNG: Đây là môi trường PRODUCTION - không có demo mode!"
 echo "   Hệ thống sẽ kết nối trực tiếp với hệ thống ONE thật."

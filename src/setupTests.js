@@ -21,9 +21,15 @@ const storageStore = {};
 global.__localStorageStore = storageStore;
 const storageApi = {
   getItem: (k) => storageStore[k] ?? null,
-  setItem: (k, v) => { storageStore[k] = String(v); },
-  removeItem: (k) => { delete storageStore[k]; },
-  clear: () => { Object.keys(storageStore).forEach((k) => delete storageStore[k]); },
+  setItem: (k, v) => {
+    storageStore[k] = String(v);
+  },
+  removeItem: (k) => {
+    delete storageStore[k];
+  },
+  clear: () => {
+    Object.keys(storageStore).forEach((k) => delete storageStore[k]);
+  },
 };
 try {
   Object.defineProperty(global, "localStorage", {

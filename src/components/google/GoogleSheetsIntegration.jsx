@@ -53,7 +53,6 @@ const GoogleSheetsIntegration = () => {
         // Error message đã được format trong googleSheetsApiService
         // Chỉ log trong development mode
         if (process.env.NODE_ENV === "development") {
-          // eslint-disable-next-line no-console
           console.error("Failed to load sheet metadata:", err.message);
         }
         setMetadataError(err.message);
@@ -212,7 +211,6 @@ const GoogleSheetsIntegration = () => {
       // Error message đã được format trong googleSheetsApiService
       // Chỉ log trong development mode
       if (process.env.NODE_ENV === "development") {
-        // eslint-disable-next-line no-console
         console.error("Error creating sheet:", error.message);
       }
       alert(`Lỗi tạo sheet: ${error.message}`);

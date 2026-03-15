@@ -1,80 +1,45 @@
-# 🔧 Fix & Start AI Service
+# Fix And Start AI Service
 
-## 🐛 Vấn Đề Đã Gặp
+## Lỗi Thường Gặp
 
-1. **Port 5000 đã được sử dụng** - Có process khác đang dùng port
-2. **FastAPI chưa được cài đặt** - Dependencies thiếu
-3. **Virtual environment chưa được kích hoạt** - Script không sử dụng venv đúng cách
+1. Port `8000` đang bị chiếm.
+2. Virtual environment chưa có hoặc chưa kích hoạt.
+3. Dependencies Python cài chưa đủ.
 
-## ✅ Giải Pháp
-
-### **Cách 1: Dùng Script Tự Động (Khuyến nghị)**
+## Cách Khởi Động Chuẩn
 
 ```bash
 cd ai-service
 ./install_and_start.sh
 ```
 
-Script này sẽ:
+Script này sẽ tạo `venv`, cài dependencies, dừng process cũ và khởi động `ai_service.py` trên port mặc định `8000`.
 
-- ✅ Tạo virtual environment (nếu chưa có)
-- ✅ Cài đặt tất cả dependencies
-- ✅ Dừng service cũ (nếu có)
-- ✅ Khởi động service mới
-
-### **Cách 2: Thủ Công**
-
-#### **Bước 1: Dừng Process Cũ**
+## Cách Làm Thủ Công
 
 ```bash
 cd ai-service
-
-# Dừng service cũ
 ./stop_background.sh
-
-# Hoặc kill process trên port 5000
-lsof -ti:5000 | xargs kill -9
-```
-
-#### **Bước 2: Cài Đặt Dependencies**
-
-```bash
-# Kích hoạt virtual environment
+python3 -m venv venv
 source venv/bin/activate
-
-# Cài đặt dependencies
 pip install -r requirements.txt
-```
-
-#### **Bước 3: Khởi Động Service**
-
-```bash
-# Đảm bảo virtual environment được kích hoạt
-source venv/bin/activate
-
-# Start service
 ./start_background.sh
 ```
 
-## 🔍 Kiểm Tra
+## Khi Port 8000 Bị Chiếm
 
 ```bash
-# Health check
-curl http://localhost:8000/health
-
-# Xem logs
-tail -f logs/ai-service.log
-
-# Xem error logs
-tail -f logs/ai-service-error.log
+cd ai-service
+PORT=8001 ./start_background.sh
+curl http://localhost:8001/health
 ```
 
-## 📝 Notes
+Với local backend, nhớ đổi `AI_SERVICE_URL=http://localhost:8001`.
 
-- **Virtual environment**: Luôn kích hoạt `source venv/bin/activate` trước khi chạy
-- **Port conflict**: Nếu port 5000 bị dùng, dùng `./stop_background.sh` để dừng
-- **Dependencies**: Nếu thiếu, chạy `pip install -r requirements.txt` trong venv
+## Kiểm Tra Sau Khi Chạy
 
----
-
-**✨ Service sẵn sàng sau khi chạy `./install_and_start.sh`!**
+```bash
+curl http://localhost:8000/health
+tail -f logs/ai-service.log
+tail -f logs/ai-service-error.log
+```

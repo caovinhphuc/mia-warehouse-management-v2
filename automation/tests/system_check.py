@@ -3,13 +3,19 @@
 System Check - Kiểm tra toàn bộ hệ thống warehouse automation
 """
 
-import os
-import sys
 import json
+import os
+import platform
+import subprocess
+import sys
 import time
 from pathlib import Path
-import subprocess
-import platform
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+def _p(*parts):
+    return BASE_DIR.joinpath(*parts)
 
 
 def check_dependencies():
@@ -59,7 +65,7 @@ def check_project_structure():
 
     # Kiểm tra thư mục
     for dir_name in required_dirs:
-        if os.path.exists(dir_name):
+        if _p(dir_name).exists():
             print(f"✅ {dir_name}/")
         else:
             print(f"❌ {dir_name}/ - THIẾU")
@@ -67,8 +73,9 @@ def check_project_structure():
 
     # Kiểm tra files
     for file_name in required_files:
-        if os.path.exists(file_name):
-            size = os.path.getsize(file_name)
+        file_path = _p(file_name)
+        if file_path.exists():
+            size = file_path.stat().st_size
             print(f"✅ {file_name} ({size:,} bytes)")
         else:
             print(f"❌ {file_name} - THIẾU")
@@ -83,11 +90,12 @@ def check_config():
     print("-" * 40)
 
     # Kiểm tra .env
-    if os.path.exists('.env'):
+    env_path = _p('.env')
+    if env_path.exists():
         print("✅ .env file tồn tại")
         # Kiểm tra các biến cần thiết
         try:
-            with open('.env', 'r') as f:
+            with open(env_path, 'r', encoding='utf-8') as f:
                 env_content = f.read()
                 if 'ONE_USERNAME' in env_content and 'ONE_PASSWORD' in env_content:
                     print("✅ Credentials đã cấu hình")
@@ -103,9 +111,10 @@ def check_config():
         return False
 
     # Kiểm tra config.json
-    if os.path.exists('config/config.json'):
+    config_path = _p('config', 'config.json')
+    if config_path.exists():
         try:
-            with open('config/config.json', 'r') as f:
+            with open(config_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
             print("✅ config/config.json hợp lệ")
         except:

@@ -37,7 +37,7 @@ if [ -f "$PID_FILE" ]; then
     rm -f "$PID_FILE"
 fi
 
-# 2. Dừng tất cả process trên port 5000
+# 2. Dừng tất cả process trên port đang cấu hình
 if lsof -ti:$PORT > /dev/null 2>&1; then
     echo -e "${BLUE}Đang dừng tất cả process trên port $PORT...${NC}"
     PIDS=$(lsof -ti:$PORT)

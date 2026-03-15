@@ -4,6 +4,8 @@ import { defineConfig } from "vite";
 import viteCompression from "vite-plugin-compression";
 import { VitePWA } from "vite-plugin-pwa";
 
+const DEV_PORT = Number(process.env.PORT || 3000);
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -31,7 +33,12 @@ export default defineConfig({
     // PWA: Service Worker + caching
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "logo192.png", "logo512.png", "manifest.json"],
+      includeAssets: [
+        "favicon.ico",
+        "logo192.png",
+        "logo512.png",
+        "manifest.json",
+      ],
       manifest: {
         name: "MIA.vn Google Integration Platform",
         short_name: "MIA.vn",
@@ -41,9 +48,24 @@ export default defineConfig({
         start_url: ".",
         display: "standalone",
         icons: [
-          { src: "favicon.ico", sizes: "64x64 32x32 24x24 16x16", type: "image/x-icon", purpose: "any" },
-          { src: "logo192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
-          { src: "logo512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
+          {
+            src: "favicon.ico",
+            sizes: "64x64 32x32 24x24 16x16",
+            type: "image/x-icon",
+            purpose: "any",
+          },
+          {
+            src: "logo192.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+          {
+            src: "logo512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any maskable",
+          },
         ],
       },
       workbox: {
@@ -183,16 +205,16 @@ export default defineConfig({
 
   // Development server
   server: {
-    port: 3000,
+    port: DEV_PORT,
     host: "localhost",
     open: false,
     cors: true,
-    strictPort: true, // Fail nếu 3000 bận → tránh nhầm app khác (MIA retail...) trên 3000
+    strictPort: true, // Root mode chạy kèm backend: tránh fallback sang 3001 gây đụng backend
     // ✅ ENABLE HMR for hot reload
     hmr: {
       protocol: "ws",
       host: "localhost",
-      port: 3000,
+      port: DEV_PORT,
     },
     watch: {
       usePolling: true,
@@ -210,7 +232,7 @@ export default defineConfig({
 
   // Preview server
   preview: {
-    port: 3000,
+    port: DEV_PORT,
     host: "localhost",
   },
 

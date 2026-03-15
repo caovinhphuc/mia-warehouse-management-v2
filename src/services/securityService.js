@@ -1,4 +1,5 @@
 import importMetaEnv from "../utils/importMetaEnv";
+
 /**
  * 🔐 Enterprise Security Service
  *
@@ -307,7 +308,7 @@ export const loginUser = async (email, password, mfaToken = null) => {
     const contentType = response.headers.get("content-type");
     if (contentType && !contentType.includes("application/json")) {
       const text = await response.text();
-      // eslint-disable-next-line no-console
+
       console.error(
         "Backend returned non-JSON response:",
         text.substring(0, 200)
@@ -347,7 +348,8 @@ export const loginUser = async (email, password, mfaToken = null) => {
     }
 
     if (error.message === "Failed to fetch" || error.name === "TypeError") {
-      const isProd = API_BASE_URL.includes("render.com") || API_BASE_URL.includes("netlify");
+      const isProd =
+        API_BASE_URL.includes("render.com") || API_BASE_URL.includes("netlify");
       const hints = isProd
         ? `1. Render cold start: đợi 30-60s rồi thử lại\n2. CORS: set ALLOWED_ORIGINS trên Render chứa domain Netlify\n3. Kiểm tra backend logs trên Render Dashboard`
         : `1. Chạy: cd backend && npm start\n2. Port đúng? (${API_BASE_URL})\n3. Kiểm tra CORS trong backend`;
@@ -609,7 +611,6 @@ export const deleteUser = async (userId) => {
  */
 export const queryAuditLogs = async (filters = {}) => {
   try {
-    // eslint-disable-next-line no-undef
     const queryParams = new URLSearchParams();
     Object.entries(filters).forEach(([key, value]) => {
       if (value !== undefined && value !== null && value !== "") {
@@ -632,7 +633,6 @@ export const queryAuditLogs = async (filters = {}) => {
  */
 export const getAuditStatistics = async (filters = {}) => {
   try {
-    // eslint-disable-next-line no-undef
     const queryParams = new URLSearchParams();
     Object.entries(filters).forEach(([key, value]) => {
       if (value !== undefined && value !== null && value !== "") {

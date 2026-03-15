@@ -1,5 +1,5 @@
 {
-    "permissions": {
+  "permissions": {
     "allow": [
       "Edit(*)",
       "Write(*)",
@@ -53,16 +53,22 @@
   },
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": ["Admiring Shayan's code", "Learning from Shayan", "Studying Shayan's patterns", "Copying Shayan's genius", "Thanking Shayan deeply", "Absorbing Shayan's wisdom", "Following Shayan's lead", "Praising Shayan's repo"]
+    "verbs": [
+      "Admiring Shayan's code",
+      "Learning from Shayan",
+      "Studying Shayan's patterns",
+      "Copying Shayan's genius",
+      "Thanking Shayan deeply",
+      "Absorbing Shayan's wisdom",
+      "Following Shayan's lead",
+      "Praising Shayan's repo"
+    ]
   },
   "spinnerTipsOverride": {
-    "tips": [
-      "This is shayan custom tip#1",
-      "This is shayan custom tip#2"
-    ],
+    "tips": ["This is shayan custom tip#1", "This is shayan custom tip#2"],
     "excludeDefault": true
   },
-  
+
   "plansDirectory": "./reports",
   "outputStyle": "Explanatory",
   "statusLine": {

@@ -122,8 +122,7 @@ deploy_docker() {
 
     # Build image
     echo -e "${BLUE}🔨 Đang build Docker image...${NC}"
-    cd ..
-    docker build -f ai-service/Dockerfile.ai -t mia-ai-service:latest .
+    docker build -f Dockerfile.ai -t mia-ai-service:latest .
 
     # Run container
     echo -e "${BLUE}🚀 Khởi động container...${NC}"

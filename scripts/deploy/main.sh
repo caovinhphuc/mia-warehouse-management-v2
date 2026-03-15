@@ -97,8 +97,13 @@ case $DEPLOY_METHOD in
             exit 1
         fi
 
-        if [ ! -f "docker-compose.yml" ]; then
-            log_error "docker-compose.yml không tồn tại"
+        COMPOSE_FILE="docker-compose.production.yml"
+        if [ ! -f "$COMPOSE_FILE" ]; then
+            COMPOSE_FILE="docker-compose.yml"
+        fi
+
+        if [ ! -f "$COMPOSE_FILE" ]; then
+            log_error "Không tìm thấy docker-compose.production.yml hoặc docker-compose.yml"
             exit 1
         fi
 
@@ -124,8 +129,9 @@ case $DEPLOY_METHOD in
             exit 1
         fi
         log_info "Deploying với Docker Compose..."
-        if $DOCKER_COMPOSE -f docker-compose.yml up -d --build; then
+        if $DOCKER_COMPOSE -f "$COMPOSE_FILE" up -d --build; then
             log_success "Docker deployment thành công"
+            log_info "Compose file: $COMPOSE_FILE"
         else
             log_error "Docker deployment thất bại"
             exit 1
@@ -203,7 +209,11 @@ log_info "Kiểm tra health status..."
 if [ "$DEPLOY_METHOD" = "docker" ]; then
     sleep 10
     DOCKER_COMPOSE=$(get_docker_compose_cmd)
-    [ -n "$DOCKER_COMPOSE" ] && $DOCKER_COMPOSE -f docker-compose.yml ps
+    COMPOSE_FILE="docker-compose.production.yml"
+    if [ ! -f "$COMPOSE_FILE" ]; then
+        COMPOSE_FILE="docker-compose.yml"
+    fi
+    [ -n "$DOCKER_COMPOSE" ] && [ -f "$COMPOSE_FILE" ] && $DOCKER_COMPOSE -f "$COMPOSE_FILE" ps
 fi
 
 echo ""

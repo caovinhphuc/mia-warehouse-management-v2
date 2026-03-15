@@ -19,24 +19,25 @@ echo -e "${CYAN}║                     Click & Run System                      
 echo -e "${CYAN}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
-# Change to script directory
+# Change to script directory then resolve automation root
 cd "$(dirname "$0")"
+AUTOMATION_ROOT="$(cd .. && pwd)"
 
 # Check if virtual environment exists
-if [ ! -d "venv" ]; then
+if [ ! -d "$AUTOMATION_ROOT/venv" ]; then
     echo -e "${RED}❌ Virtual environment chưa được tạo${NC}"
     echo -e "${YELLOW}🔧 Chạy setup trước...${NC}"
     ./setup.sh
 fi
 
 # Activate virtual environment
-source venv/bin/activate
+source "$AUTOMATION_ROOT/venv/bin/activate"
 
 # Load environment from .env if exists
-if [ -f .env ]; then
+if [ -f "$AUTOMATION_ROOT/.env" ]; then
     set -a
     # shellcheck disable=SC1091
-    source .env
+    source "$AUTOMATION_ROOT/.env"
     set +a
 fi
 
@@ -73,7 +74,7 @@ while true; do
             ;;
         3)
             echo -e "${BLUE}🧪 Test hệ thống...${NC}"
-            python quick_test.py
+            python "$AUTOMATION_ROOT/tests/quick_test.py"
             ;;
         4)
             echo -e "${BLUE}⚡ Chạy automation nhanh...${NC}"
@@ -82,24 +83,24 @@ while true; do
             ;;
         5)
             echo -e "${BLUE}🚀 Chạy automation đầy đủ...${NC}"
-            python automation.py
+            (cd "$AUTOMATION_ROOT" && python automation.py)
             ;;
         6)
             echo -e "${BLUE}📊 Chạy với SLA monitoring...${NC}"
             echo -e "${CYAN}⚙️ Sử dụng config từ: config/config.json${NC}"
-            python automation_enhanced.py --mode sla --config config/config.json
+            (cd "$AUTOMATION_ROOT" && python automation_enhanced.py --mode sla --config config/config.json)
             ;;
         7)
             echo -e "${BLUE}📈 Xem kết quả data...${NC}"
-            if [ -f "data/orders_latest.csv" ]; then
+            if [ -f "$AUTOMATION_ROOT/data/orders_latest.csv" ]; then
                 echo -e "${GREEN}📁 File data mới nhất:${NC}"
-                ls -la data/orders_latest.csv
+                ls -la "$AUTOMATION_ROOT/data/orders_latest.csv"
                 echo ""
                 echo -e "${GREEN}📊 Số dòng dữ liệu:${NC}"
-                wc -l data/orders_latest.csv
+                wc -l "$AUTOMATION_ROOT/data/orders_latest.csv"
                 echo ""
                 echo -e "${GREEN}🔍 Preview 5 dòng đầu:${NC}"
-                head -5 data/orders_latest.csv
+                head -5 "$AUTOMATION_ROOT/data/orders_latest.csv"
             else
                 echo -e "${YELLOW}⚠️ Chưa có dữ liệu. Chạy automation trước.${NC}"
             fi
@@ -110,7 +111,7 @@ while true; do
             ;;
         9)
             echo -e "${BLUE}🏭 Mở Enterprise Dashboard Real-time...${NC}"
-            if [ -f "warehouse-dashboard-enterprise.html" ]; then
+            if [ -f "$AUTOMATION_ROOT/warehouse-dashboard-enterprise.html" ]; then
                 echo -e "${GREEN}📊 Khởi động Enterprise Dashboard...${NC}"
                 echo -e "${CYAN}🌐 Dashboard Features:${NC}"
                 echo -e "   • Real-time SLA monitoring"
@@ -122,96 +123,54 @@ while true; do
 
                 # Mở dashboard trong browser mặc định
                 if command -v open >/dev/null 2>&1; then
-                    # macOS
-                    open "warehouse-dashboard-enterprise.html"
+                    open "$AUTOMATION_ROOT/warehouse-dashboard-enterprise.html"
                 elif command -v xdg-open >/dev/null 2>&1; then
-                    # Linux
-                    xdg-open "warehouse-dashboard-enterprise.html"
-                elif command -v start >/dev/null 2>&1; then
-                    # Windows
-                    start "warehouse-dashboard-enterprise.html"
+                    xdg-open "$AUTOMATION_ROOT/warehouse-dashboard-enterprise.html"
                 else
                     echo -e "${YELLOW}⚠️ Không thể tự động mở browser${NC}"
                     echo -e "${CYAN}💡 Thủ công mở file:${NC}"
-                    echo "   $(pwd)/warehouse-dashboard-enterprise.html"
+                    echo "   $AUTOMATION_ROOT/warehouse-dashboard-enterprise.html"
                 fi
 
                 echo -e "${GREEN}✅ Enterprise Dashboard đã được mở!${NC}"
-                echo -e "${CYAN}📋 Dashboard URL:${NC} file://$(pwd)/warehouse-dashboard-enterprise.html"
             else
                 echo -e "${RED}❌ File dashboard không tìm thấy!${NC}"
-                echo -e "${YELLOW}💡 Đảm bảo file warehouse-dashboard-enterprise.html có trong thư mục này${NC}"
+                echo -e "${YELLOW}💡 File: $AUTOMATION_ROOT/warehouse-dashboard-enterprise.html${NC}"
             fi
             ;;
         10)
             echo -e "${BLUE}📊 Mở Shopee Analysis Report...${NC}"
-            if [ -f "shopee_analysis_report.html" ]; then
+            if [ -f "$AUTOMATION_ROOT/shopee_analysis_report.html" ]; then
                 echo -e "${GREEN}📈 Khởi động Shopee Analysis Report...${NC}"
-                echo -e "${CYAN}📊 Report Features:${NC}"
-                echo -e "   • Shopee event impact analysis (15-16/06/2025)"
-                echo -e "   • Sales performance tracking"
-                echo -e "   • Order trend analysis by hour"
-                echo -e "   • Top products & colors analysis"
-                echo -e "   • Regional performance insights"
-                echo -e "   • Predictive analytics for 24/06/2025"
-                echo ""
-
-                # Mở report trong browser mặc định
                 if command -v open >/dev/null 2>&1; then
-                    # macOS
-                    open "shopee_analysis_report.html"
+                    open "$AUTOMATION_ROOT/shopee_analysis_report.html"
                 elif command -v xdg-open >/dev/null 2>&1; then
-                    # Linux
-                    xdg-open "shopee_analysis_report.html"
-                elif command -v start >/dev/null 2>&1; then
-                    # Windows
-                    start "shopee_analysis_report.html"
+                    xdg-open "$AUTOMATION_ROOT/shopee_analysis_report.html"
                 else
-                    echo -e "${YELLOW}⚠️ Không thể tự động mở browser${NC}"
-                    echo -e "${CYAN}💡 Thủ công mở file:${NC}"
-                    echo "   $(pwd)/shopee_analysis_report.html"
+                    echo "   $AUTOMATION_ROOT/shopee_analysis_report.html"
                 fi
-
                 echo -e "${GREEN}✅ Shopee Analysis Report đã được mở!${NC}"
-                echo -e "${CYAN}📋 Report URL:${NC} file://$(pwd)/shopee_analysis_report.html"
             else
                 echo -e "${RED}❌ File report không tìm thấy!${NC}"
-                echo -e "${YELLOW}💡 Đảm bảo file shopee_analysis_report.html có trong thư mục này${NC}"
+                echo -e "${YELLOW}💡 File: $AUTOMATION_ROOT/shopee_analysis_report.html${NC}"
             fi
             ;;
         11)
             echo -e "${BLUE}🔍 Kiểm tra system health...${NC}"
-            python system_check.py
+            python "$AUTOMATION_ROOT/tests/system_check.py"
             ;;
         12)
             echo -e "${BLUE}🌐 Mở MIA Dynamic Dashboard...${NC}"
-            if [ -f "mia_dynamic_dashboard.html" ]; then
-                echo -e "${GREEN}📊 Khởi động Dynamic Dashboard...${NC}"
-                echo -e "${CYAN}🔄 Features:${NC}"
-                echo -e "   • Real-time data từ automation"
-                echo -e "   • Auto-refresh mỗi 30s"
-                echo -e "   • Google Sheets integration"
-                echo -e "   • SLA monitoring alerts"
-                echo -e "   • Export functionality"
-                echo ""
-
-                # Mở dashboard trong browser mặc định
+            if [ -f "$AUTOMATION_ROOT/mia_dynamic_dashboard.html" ]; then
                 if command -v open >/dev/null 2>&1; then
-                    open "mia_dynamic_dashboard.html"
+                    open "$AUTOMATION_ROOT/mia_dynamic_dashboard.html"
                 elif command -v xdg-open >/dev/null 2>&1; then
-                    xdg-open "mia_dynamic_dashboard.html"
-                elif command -v start >/dev/null 2>&1; then
-                    start "mia_dynamic_dashboard.html"
-                else
-                    echo -e "${YELLOW}⚠️ Không thể tự động mở browser${NC}"
-                    echo -e "${CYAN}💡 Thủ công mở file:${NC}"
-                    echo "   $(pwd)/mia_dynamic_dashboard.html"
+                    xdg-open "$AUTOMATION_ROOT/mia_dynamic_dashboard.html"
                 fi
-
                 echo -e "${GREEN}✅ Dynamic Dashboard đã được mở!${NC}"
             else
                 echo -e "${RED}❌ File dashboard không tìm thấy!${NC}"
-                echo -e "${YELLOW}💡 Đảm bảo file mia_dynamic_dashboard.html có trong thư mục này${NC}"
+                echo -e "${YELLOW}💡 File: $AUTOMATION_ROOT/mia_dynamic_dashboard.html${NC}"
             fi
             ;;
         0)

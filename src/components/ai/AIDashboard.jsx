@@ -130,7 +130,6 @@ const AIDashboard = () => {
         setTrendChartData(trendData);
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error("AI Analysis Error:", err);
       setError("Không thể phân tích dữ liệu. Vui lòng thử lại.");
 
@@ -277,7 +276,6 @@ const AIDashboard = () => {
 
       setChatMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.error("AI Chat Error:", err);
       const errorMessage = {
         id: Date.now() + 1,

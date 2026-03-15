@@ -9,26 +9,50 @@
       }
     }
   ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ],
   "routes": [
     {
-      "src": "/login.html",
-      "dest": "/login.html"
+      "src": "/sw.js",
+      "dest": "/sw.js",
+      "headers": { "cache-control": "s-maxage=0,no-cache" }
     },
     {
+      "src": "/manifest.json",
+      "dest": "/manifest.json",
+      "headers": { "cache-control": "s-maxage=86400" }
+    },
+    {
+      "src": "/manifest.webmanifest",
+      "dest": "/manifest.webmanifest",
+      "headers": { "cache-control": "s-maxage=86400" }
+    },
+    { "src": "/login.html", "dest": "/login.html" },
+    {
       "src": "/assets/(.*)",
-      "headers": {
-        "cache-control": "s-maxage=31536000,immutable"
-      }
+      "headers": { "cache-control": "s-maxage=31536000,immutable" }
+    },
+    {
+      "src": "/login/(.*)",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" }
     },
     {
       "src": "/static/(.*)",
-      "headers": {
-        "cache-control": "s-maxage=31536000,immutable"
-      }
+      "headers": { "cache-control": "s-maxage=31536000,immutable" }
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|svg|woff2))",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" }
+    },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

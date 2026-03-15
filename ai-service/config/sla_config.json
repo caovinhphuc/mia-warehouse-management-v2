@@ -1,0 +1,19 @@
+{
+  "shopee": {
+    "cutoff_time": "18:00",
+    "confirm_deadline": "09:00",
+    "handover_deadline": "12:00"
+  },
+  "tiktok": {
+    "cutoff_time": "14:00",
+    "handover_deadline": "21:00"
+  },
+  "other_platforms": {
+    "default_deadline": "17:00"
+  },
+  "warning_hours": [
+    2,
+    1,
+    0.5
+  ]
+}

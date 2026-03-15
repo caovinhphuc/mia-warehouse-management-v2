@@ -1,128 +1,85 @@
-version: "3.8"
-
 services:
-  # React Frontend
+  reverse-proxy:
+    image: nginx:1.27-alpine
+    container_name: mia-reverse-proxy
+    restart: unless-stopped
+    depends_on:
+      frontend:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+      ai-service:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      # Enable when SSL certs are mounted and configured in nginx file.
+      # - "443:443"
+    volumes:
+      - ./deploy/nginx/reverse-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - public-net
+      - app-net
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
   frontend:
     build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: mia-vn-frontend
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      args:
+        VITE_API_URL: /api
+        VITE_API_BASE_URL: /api
+    container_name: mia-frontend
     restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - REACT_APP_API_URL=http://localhost:8000
     networks:
-      - mia-network
+      - app-net
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/health"]
       interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: "0.5"
-        reservations:
-          memory: 256M
-          cpus: "0.25"
+      timeout: 5s
+      retries: 5
 
-  # Backend API (if needed)
   backend:
     build:
-      context: ./src/components/automation/one_automation_system
+      context: ./backend
       dockerfile: Dockerfile
-    container_name: mia-vn-backend
+    container_name: mia-backend
     restart: unless-stopped
-    ports:
-      - "8000:8000"
     environment:
-      - NODE_ENV=production
-      - HEADLESS=true
+      NODE_ENV: production
+      PORT: 3001
+      AI_SERVICE_URL: http://ai-service:8000
+      # Fallback for local deploy; set JWT_SECRET in environment for real production.
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-real-production}
     env_file:
-      - ./src/components/automation/one_automation_system/.env
-    volumes:
-      - automation-data:/app/data
-      - automation-logs:/app/logs
-      - automation-reports:/app/reports
+      - ./backend/.env
     networks:
-      - mia-network
+      - app-net
     healthcheck:
-      test:
-        [
-          "CMD",
-          "python",
-          "-c",
-          "import os; exit(0 if os.path.exists('/app/logs/automation.log') else 1)",
-        ]
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3001/ready"]
       interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-          cpus: "1.0"
-        reservations:
-          memory: 512M
-          cpus: "0.5"
+      timeout: 5s
+      retries: 5
 
-  # Monitoring Dashboard
-  monitoring:
-    image: nginx:alpine
-    container_name: mia-vn-monitoring
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile.ai
+    container_name: mia-ai-service
     restart: unless-stopped
-    ports:
-      - "8080:80"
-    volumes:
-      - automation-reports:/usr/share/nginx/html/reports:ro
-      - ./src/components/automation/one_automation_system/nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
-      - mia-network
-    depends_on:
-      - backend
+      - app-net
     healthcheck:
-      test:
-        ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
-      timeout: 10s
-      retries: 3
-
-  # Redis Cache (optional)
-  redis:
-    image: redis:7-alpine
-    container_name: mia-vn-redis
-    restart: unless-stopped
-    ports:
-      - "6379:6379"
-    networks:
-      - mia-network
-    volumes:
-      - redis-data:/data
-    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
-    deploy:
-      resources:
-        limits:
-          memory: 256M
-          cpus: "0.25"
+      timeout: 8s
+      retries: 5
 
 networks:
-  mia-network:
+  public-net:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16
-
-volumes:
-  automation-data:
-    driver: local
-  automation-logs:
-    driver: local
-  automation-reports:
-    driver: local
-  redis-data:
-    driver: local
+  app-net:
+    driver: bridge

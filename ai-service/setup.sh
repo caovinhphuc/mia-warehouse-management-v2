@@ -1,116 +1,61 @@
 #!/bin/bash
 
-echo "=== ONE Automation System - Production Setup ==="
-echo "Thiết lập hệ thống tự động hóa ONE cho môi trường production"
+set -e
 
-# Kiểm tra Python
-echo "Kiểm tra Python..."
-if ! command -v python3 &> /dev/null; then
-    echo "❌ Python3 không được tìm thấy. Vui lòng cài đặt Python3."
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+echo -e "${BLUE}=== MIA AI Service Setup ===${NC}"
+
+if ! command -v python3 > /dev/null 2>&1; then
+    echo -e "${RED}❌ Python3 không được tìm thấy.${NC}"
     exit 1
 fi
 
-echo "✅ Python3 đã được cài đặt: $(python3 --version)"
+echo -e "${GREEN}✅ Python: $(python3 --version)${NC}"
 
-# Kiểm tra Node.js
-echo "Kiểm tra Node.js..."
-if ! command -v node &> /dev/null; then
-    echo "❌ Node.js không được tìm thấy. Vui lòng cài đặt Node.js."
-    exit 1
-fi
-
-echo "✅ Node.js đã được cài đặt: $(node --version)"
-
-# Tạo virtual environment cho Python
-echo "Tạo Python virtual environment..."
 if [ ! -d "venv" ]; then
+    echo -e "${BLUE}📦 Tạo virtual environment...${NC}"
     python3 -m venv venv
-    echo "✅ Virtual environment đã được tạo"
-else
-    echo "✅ Virtual environment đã tồn tại"
 fi
 
-# Kích hoạt virtual environment
-echo "Kích hoạt virtual environment..."
 source venv/bin/activate
 
-# Cài đặt Python dependencies
-echo "Cài đặt Python dependencies..."
-pip install --upgrade pip
-pip install -r requirements.txt
-echo "✅ Python dependencies đã được cài đặt"
+echo -e "${BLUE}📦 Nâng cấp pip và cài dependencies...${NC}"
+python3 -m pip install --upgrade pip >/dev/null
+python3 -m pip install -r requirements.txt
 
-# Kiểm tra và cài đặt Node dependencies nếu cần
-echo "Kiểm tra Node.js dependencies..."
-if [ ! -d "node_modules" ]; then
-    echo "Cài đặt Node.js dependencies..."
-    npm install
-    echo "✅ Node.js dependencies đã được cài đặt"
-else
-    echo "✅ Node.js dependencies đã tồn tại"
-fi
+mkdir -p logs data exports
 
-# Tạo file .env từ template
-echo "Thiết lập file cấu hình..."
-if [ ! -f ".env" ]; then
-    if [ -f ".env.template" ]; then
-        cp .env.template .env
-        echo "✅ File .env đã được tạo từ template"
-        echo "⚠️  VUI LÒNG CẬP NHẬT THÔNG TIN ĐĂNG NHẬP TRONG FILE .env"
-    else
-        echo "❌ File .env.template không tồn tại"
-    fi
-else
-    echo "✅ File .env đã tồn tại"
-fi
+echo -e "${BLUE}🔎 Kiểm tra dependencies chính...${NC}"
+python3 - <<'PY'
+from importlib.util import find_spec
+import sys
 
-# Tạo các thư mục cần thiết
-echo "Tạo các thư mục cần thiết..."
-mkdir -p logs
-mkdir -p data
-mkdir -p exports
-echo "✅ Các thư mục đã được tạo"
+required_modules = ["fastapi", "uvicorn", "pydantic"]
+optional_modules = ["selenium", "numpy", "pandas", "sklearn"]
 
-# Kiểm tra cấu hình
-echo "Kiểm tra cấu hình..."
-if [ -f "config/config.json" ]; then
-    echo "✅ File config.json đã tồn tại"
-else
-    echo "❌ File config/config.json không tồn tại"
-fi
+missing_required = [name for name in required_modules if find_spec(name) is None]
+missing_optional = [name for name in optional_modules if find_spec(name) is None]
 
-# Kiểm tra automation files
-echo "Kiểm tra automation files..."
-if [ -f "automation.py" ]; then
-    echo "✅ automation.py đã tồn tại"
-else
-    echo "❌ automation.py không tồn tại"
-fi
+if missing_required:
+    print("Missing required modules:", ", ".join(missing_required))
+    sys.exit(1)
 
-if [ -f "automation_bridge.py" ]; then
-    echo "✅ automation_bridge.py đã tồn tại"
-else
-    echo "❌ automation_bridge.py không tồn tại"
-fi
+if missing_optional:
+    print("Missing optional modules:", ", ".join(missing_optional))
+PY
 
 echo ""
-echo "=== SETUP HOÀN TẤT ==="
-echo ""
-echo "📋 BƯỚC TIẾP THEO:"
-echo "1. Cập nhật thông tin đăng nhập trong file .env:"
-echo "   - ONE_USERNAME=your_username"
-echo "   - ONE_PASSWORD=your_password"
-echo "   - LOGIN_URL=your_login_url"
-echo ""
-echo "2. Khởi động hệ thống:"
-echo "   Backend: ./start_backend.sh"
-echo "   Frontend: npm start"
-echo ""
-echo "3. Test automation:"
-echo "   source venv/bin/activate"
-echo "   python automation.py"
-echo ""
-echo "⚠️  QUAN TRỌNG: Đây là môi trường PRODUCTION - không có demo mode!"
-echo "   Hệ thống sẽ kết nối trực tiếp với hệ thống ONE thật."
-echo ""
-echo "✅ Hệ thống đã sẵn sàng cho production!"
+echo -e "${GREEN}✅ Setup hoàn tất.${NC}"
+echo -e "${BLUE}Bước tiếp theo:${NC}"
+echo "1. Kích hoạt môi trường: source venv/bin/activate"
+echo "2. Chạy service nền: ./start_background.sh"
+echo "3. Hoặc chạy foreground: ./run_ai_service.sh"
+echo "4. Health check: curl http://localhost:${PORT:-8000}/health"

@@ -1,0 +1,134 @@
+/* ========================================
+   Empty States Component Styles
+   ======================================== */
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl) var(--spacing-xl);
+  min-height: 300px;
+}
+
+.empty__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  max-width: 400px;
+  text-align: center;
+  animation: fade-in 0.5s ease-out;
+}
+
+.empty__image {
+  width: 200px;
+  height: 200px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.empty__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.empty__title {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--color-gray-900);
+}
+
+.empty__description {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--color-gray-600);
+  line-height: var(--leading-relaxed);
+}
+
+.empty__action {
+  margin-top: var(--spacing-md);
+}
+
+/* ========================================
+   Empty Variants
+   ======================================== */
+
+.empty--default .empty__image {
+  opacity: 0.8;
+}
+
+.empty--search .empty__image {
+  opacity: 0.8;
+}
+
+.empty--error .empty__title {
+  color: var(--color-error-600);
+}
+
+.empty--success .empty__title {
+  color: var(--color-success-600);
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+  .empty {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    min-height: 250px;
+  }
+
+  .empty__image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .empty__title {
+    font-size: var(--text-lg);
+  }
+
+  .empty__description {
+    font-size: var(--text-sm);
+  }
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .empty__content {
+    animation: none;
+  }
+
+  .empty__image {
+    animation: none;
+  }
+}

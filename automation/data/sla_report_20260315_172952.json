@@ -1,0 +1,80 @@
+{
+  "analysis_time": "2026-03-15T17:29:52.277628",
+  "total_orders": 3,
+  "shopee": {
+    "total_orders": 1,
+    "after_cutoff": 1,
+    "need_confirm": 1,
+    "need_handover": 1,
+    "overdue_confirm": 1,
+    "overdue_handover": 1,
+    "sla_status": [
+      {
+        "order_id": "503313",
+        "platform": "shopee",
+        "created_time": "2026-03-15T07:29:52.277630",
+        "needs_confirm": true,
+        "needs_handover": true,
+        "confirm_overdue": true,
+        "handover_overdue": true,
+        "time_to_confirm": null,
+        "time_to_handover": null
+      }
+    ],
+    "cutoff_time": "2026-03-14T18:00:00",
+    "confirm_deadline": "2026-03-15T09:00:00",
+    "handover_deadline": "2026-03-15T12:00:00"
+  },
+  "tiktok": {
+    "total_orders": 1,
+    "after_cutoff": 1,
+    "need_handover": 1,
+    "overdue_handover": 0,
+    "sla_status": [
+      {
+        "order_id": "503314",
+        "platform": "tiktok",
+        "created_time": "2026-03-15T09:29:52.277634",
+        "needs_confirm": false,
+        "needs_handover": true,
+        "confirm_overdue": false,
+        "handover_overdue": false,
+        "time_to_confirm": null,
+        "time_to_handover": 27.502145103333334
+      }
+    ],
+    "cutoff_time": "2026-03-14T14:00:00",
+    "handover_deadline": "2026-03-16T21:00:00"
+  },
+  "other_platforms": {
+    "total_orders": 1,
+    "today_orders": 1,
+    "platforms": {
+      "other": {
+        "total_orders": 1,
+        "orders": [
+          {
+            "id": "503315",
+            "platform": "Other",
+            "created_datetime": "2026-03-15 15:29:52.277635",
+            "platform_clean": "other"
+          }
+        ]
+      }
+    }
+  },
+  "alerts": [
+    {
+      "type": "CRITICAL",
+      "platform": "Shopee",
+      "message": "🚨 1 đơn hàng QUÁ HẠN xác nhận (9h sáng)",
+      "count": 1
+    },
+    {
+      "type": "CRITICAL",
+      "platform": "Shopee",
+      "message": "🚨 1 đơn hàng QUÁ HẠN bàn giao (12h trước)",
+      "count": 1
+    }
+  ]
+}

@@ -36,7 +36,6 @@ class ScriptService {
 
       return await response.json();
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error("Error executing script:", error);
       throw error;
     }
@@ -72,7 +71,6 @@ class ScriptService {
 
       return await response.json();
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error("Error executing inline script:", error);
       throw error;
     }
@@ -97,7 +95,6 @@ class ScriptService {
 
       return await response.json();
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error("Error getting script status:", error);
       throw error;
     }
@@ -119,7 +116,6 @@ class ScriptService {
 
       return await response.json();
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error("Error listing projects:", error);
       throw error;
     }
@@ -151,7 +147,6 @@ class ScriptService {
 
       return await response.json();
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.error("Error testing script:", error);
       throw error;
     }

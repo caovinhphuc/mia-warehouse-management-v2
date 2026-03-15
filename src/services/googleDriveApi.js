@@ -1,4 +1,3 @@
-/* eslint-disable */
 /**
  * Google Drive API Service - Frontend
  * Calls backend API instead of direct Google APIs

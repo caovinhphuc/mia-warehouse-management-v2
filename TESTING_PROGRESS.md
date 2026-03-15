@@ -1,7 +1,12 @@
 # 🧪 TESTING IMPLEMENTATION PROGRESS
 
-**Last Updated:** March 14, 2026  
+**Last Updated:** March 14, 2026
 **Status:** Phase 1 - Foundation (CI passing)
+
+**Canonical docs:**
+
+- `GUIDE/TESTING.md` (source of truth)
+- `GUIDE/COMPLETE_TEST_GUIDE.md` (quick reference)
 
 ---
 
@@ -16,7 +21,7 @@
 
 ### Current Coverage
 
-```
+```text
 Test Suites: 6 passed
 Tests: 68 passed
 CI: ✅ PASS
@@ -52,7 +57,7 @@ Ignored (need setup): Login.test.jsx, ProtectedRoute.test.jsx
 ### 🧪 Tests Đang Chạy (68 tests pass)
 
 | File | Tests | Status |
-|------|-------|--------|
+| --- | --- | --- |
 | **websocketService.test.js** | 11 | ✅ PASS |
 | **securityService.test.js** | 12 | ✅ PASS |
 | **ErrorBoundary.test.jsx** | 21 | ✅ PASS |
@@ -211,16 +216,14 @@ Ignored (need setup): Login.test.jsx, ProtectedRoute.test.jsx
 ### 1. Verify Current Tests ✅
 
 ```bash
-# Run all tests
-npx jest --no-coverage
+# Run unit tests
+npm run test:unit
 
-# Specific suites
-npx jest src/services/__tests__/websocketService.test.js
-npx jest src/services/__tests__/securityService.test.js
-npx jest src/components/Common/__tests__/ErrorBoundary.test.jsx
+# Run integration checks
+npm run test:integration
 
 # With coverage
-npx jest --coverage
+npm run test:coverage
 ```
 
 ### 2. Week 1 Days 3-5: Auth Store Tests
@@ -513,4 +516,4 @@ node --inspect-brk node_modules/.bin/jest --runInBand
 
 ---
 
-**End of Testing Progress Report**
+## End of Testing Progress Report

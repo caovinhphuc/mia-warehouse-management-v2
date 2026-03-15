@@ -8,6 +8,7 @@ python-dotenv>=1.0.0
 
 # Data processing
 numpy>=1.24.0
+scipy>=1.10.0
 pandas>=2.0.0
 scikit-learn>=1.3.0
 
@@ -16,3 +17,10 @@ selenium>=4.15.0
 
 # Optional: for better performance
 # orjson>=3.9.0  # Commented out due to Python 3.14 compatibility
+
+# ===== DOCS & MARKDOWN =====
+markdown==3.5.1  # Markdown processing
+
+# Flask API (api/api_server.py)
+flask>=3.1.0
+flask-cors>=6.0.0

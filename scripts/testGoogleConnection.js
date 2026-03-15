@@ -2,22 +2,50 @@ const { google } = require("googleapis");
 const { GoogleAuth } = require("google-auth-library");
 require("dotenv").config();
 
+const {
+  hasGooglePrivateKey,
+  isConfigured,
+  isProbablyEmail,
+} = require("./utils/envStatus");
+
 async function testGoogleConnection() {
   try {
     console.log("Testing Google Service Account connection...");
 
-    // Validate environment variables
-    const requiredVars = [
-      "GOOGLE_SERVICE_ACCOUNT_EMAIL",
-      "GOOGLE_PRIVATE_KEY",
-      "REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID",
+    const configChecks = [
+      {
+        key: "GOOGLE_SERVICE_ACCOUNT_EMAIL",
+        valid: isConfigured(
+          process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+          isProbablyEmail
+        ),
+      },
+      {
+        key: "GOOGLE_PRIVATE_KEY",
+        valid: isConfigured(
+          process.env.GOOGLE_PRIVATE_KEY,
+          hasGooglePrivateKey
+        ),
+      },
+      {
+        key: "REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID",
+        valid: isConfigured(process.env.REACT_APP_GOOGLE_SHEETS_SPREADSHEET_ID),
+      },
     ];
 
-    const missingVars = requiredVars.filter((varName) => !process.env[varName]);
-    if (missingVars.length > 0) {
-      throw new Error(
-        `Missing environment variables: ${missingVars.join(", ")}`
+    const missingOrPlaceholderVars = configChecks
+      .filter((entry) => !entry.valid)
+      .map((entry) => entry.key);
+
+    if (missingOrPlaceholderVars.length > 0) {
+      console.warn("⚠️ Google integration test skipped.");
+      console.warn(
+        `Missing or placeholder configuration: ${missingOrPlaceholderVars.join(", ")}`
       );
+      console.warn(
+        "Provide real service-account credentials in .env to run the live Google integration test."
+      );
+      process.exit(0);
     }
 
     // Create credentials object
@@ -81,6 +109,8 @@ async function testGoogleConnection() {
         "3. Get the values from your Google Service Account JSON file"
       );
     }
+
+    process.exit(1);
   }
 }
 

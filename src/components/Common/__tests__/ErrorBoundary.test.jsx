@@ -321,7 +321,7 @@ describe("ErrorBoundary Component", () => {
       ).not.toBeInTheDocument();
     });
 
-    test.skip("handles errors with no message", async () => {
+    test("handles errors with no message", async () => {
       const ThrowEmptyError = () => {
         throw new Error();
       };
@@ -341,7 +341,7 @@ describe("ErrorBoundary Component", () => {
   });
 
   describe("State Management", () => {
-    test.skip("maintains error state until reset", async () => {
+    test("maintains error state until reset", async () => {
       let rerender;
       await act(async () => {
         const result = render(
@@ -370,7 +370,7 @@ describe("ErrorBoundary Component", () => {
       ).toBeGreaterThan(0);
     });
 
-    test.skip("clears error state on key change", async () => {
+    test("clears error state on key change", async () => {
       let rerender;
       await act(async () => {
         const result = render(

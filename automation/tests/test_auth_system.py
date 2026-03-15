@@ -6,11 +6,21 @@ Kiểm tra toàn bộ hệ thống xác thực trước khi chạy fullstack
 """
 
 import os
+import subprocess
 import sys
 import time
+
 import requests
-import subprocess
+
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+AUTH_API_DIR = os.path.join(BASE_DIR, 'one_automation_system', 'api')
+
+for path in (AUTH_API_DIR, BASE_DIR):
+    if path not in sys.path:
+        sys.path.insert(0, path)
+
 from auth_service import AuthenticationService
+
 
 def test_google_sheets_connection():
     """Test kết nối Google Sheets"""
@@ -97,8 +107,8 @@ def test_api_server():
     try:        # Start API server in background
         print("🚀 Starting API server...")
         server_process = subprocess.Popen([
-            sys.executable, "auth_api_server.py"
-        ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            sys.executable, os.path.join(AUTH_API_DIR, "auth_api_server.py")
+        ], cwd=AUTH_API_DIR, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         # Wait for server to start (increased timeout)
         time.sleep(8)

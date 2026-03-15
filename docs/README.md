@@ -10,14 +10,28 @@
 
 ## 🎯 **System Overview**
 
+## 📌 Repository Update (2026-03-14)
+
+Repository structure, flow, functionality, and duplication audit has been updated at:
+
+- `GUIDE/PROJECT_STRUCTURE_FLOW_FUNCTION_UPDATE.md`
+
+This document defines canonical folders, duplicated areas, and phased reorganization guidance.
+
+Cleanup execution status (safe phase) on 2026-03-14:
+
+- Archived empty folders into `legacy/old-empty-folders/`
+- Backed up duplicated scripts into `legacy/src-scripts-duplicates-backup-2026-03-14/`
+- Converted duplicated `src/scripts` entries into legacy shims delegating to canonical `scripts/`
+
 **MIA.vn Google Integration Platform** is a complete enterprise-grade Google Services integration system, **production-ready** with comprehensive features from authentication to automation. The platform has been **successfully tested** and is actively managing real business operations.
 
 ### ✅ **Current Production Status**
 
 - 🏥 **System Health**: ✅ **HEALTHY** (99.9% uptime)
-- 🌐 **Frontend**: https://fabulous-klepon-ad4aa7.netlify.app
-- 🔐 **Login**: https://fabulous-klepon-ad4aa7.netlify.app/login.html
-- 🧩 **Backend API**: https://react-google-backend.onrender.com
+- 🌐 **Frontend**: <https://fabulous-klepon-ad4aa7.netlify.app>
+- 🔐 **Login**: <https://fabulous-klepon-ad4aa7.netlify.app/login.html>
+- 🧩 **Backend API**: <https://react-google-backend.onrender.com>
 - 🔗 **Google Integration**: ✅ **CONNECTED** (22 Sheets + Drive active)
 - 📧 **Email Service**: ✅ **ACTIVE** (SendGrid 8.1.6 delivering)
 - 🤖 **Telegram Bot**: ✅ **ACTIVE** (@mia_logistics_manager_bot)
@@ -80,7 +94,7 @@
 
 ### 🤖 **Telegram Bot Integration** _(✅ LIVE SYSTEM)_
 
-**Bot: @mia_logistics_manager_bot**
+### Bot: @mia_logistics_manager_bot
 
 - **Real-time Messaging**: Instant alerts and status updates
 - **Rich Formatting**: Markdown support with interactive elements
@@ -206,7 +220,7 @@ npm run health:monitor     # Real-time system monitoring
 
 ### **Current File Structure** _(50+ Production Components)_
 
-```
+```text
 src/
 ├── components/                          # Professional UI Components
 │   ├── EnhancedUserProfile.jsx         # Advanced user management
@@ -235,7 +249,7 @@ src/
 
 ### **Production Infrastructure**
 
-```
+```text
 Infrastructure/
 ├── scripts/                            # Automation & Monitoring
 │   ├── health-check.js                 # 5-minute health monitoring

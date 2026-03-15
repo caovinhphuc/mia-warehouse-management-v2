@@ -141,7 +141,6 @@ const ProtectedRoute = ({ children }) => {
             // Network error - backend có thể chưa chạy hoặc không kết nối được
             // Chỉ log trong development mode
             if (process.env.NODE_ENV === "development") {
-              // eslint-disable-next-line no-console
               console.warn(
                 "Session verification error (backend may not be running):",
                 error.message

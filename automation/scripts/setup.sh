@@ -21,8 +21,9 @@ echo -e "${CYAN}║           Automated Installation & Configuration            
 echo -e "${CYAN}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
-# Change to script directory
+# Change to script directory then resolve automation root
 cd "$(dirname "$0")"
+AUTOMATION_ROOT="$(cd .. && pwd)"
 
 # Step 1: System Requirements Check
 echo -e "${BLUE}🔍 Checking system requirements...${NC}"
@@ -55,8 +56,8 @@ fi
 
 # Step 2: Virtual Environment Setup
 echo -e "${BLUE}📦 Setting up virtual environment...${NC}"
-if [ ! -d "venv" ]; then
-    python3 -m venv venv
+if [ ! -d "$AUTOMATION_ROOT/venv" ]; then
+    python3 -m venv "$AUTOMATION_ROOT/venv"
     echo -e "${GREEN}✅ Virtual environment created${NC}"
 else
     echo -e "${YELLOW}⚠️ Virtual environment exists - using existing${NC}"
@@ -64,7 +65,7 @@ fi
 
 # Step 3: Activate Virtual Environment
 echo -e "${BLUE}🔧 Activating virtual environment...${NC}"
-source venv/bin/activate
+source "$AUTOMATION_ROOT/venv/bin/activate"
 
 if [ "$VIRTUAL_ENV" != "" ]; then
     echo -e "${GREEN}✅ Virtual environment activated${NC}"
@@ -81,18 +82,18 @@ pip install --upgrade pip -q
 echo -e "${BLUE}📋 Installing dependencies...${NC}"
 
 # Prefer minimal requirements first for faster setup
-if [ -f "requirements-minimal.txt" ]; then
+if [ -f "$AUTOMATION_ROOT/requirements-minimal.txt" ]; then
     echo -e "${YELLOW}📦 Installing from requirements-minimal.txt...${NC}"
-    if pip install -r requirements-minimal.txt --upgrade; then
+    if pip install -r "$AUTOMATION_ROOT/requirements-minimal.txt" --upgrade; then
         echo -e "${GREEN}✅ Minimal dependencies installed successfully${NC}"
     else
         echo -e "${RED}❌ Error installing minimal requirements${NC}"
         echo -e "${YELLOW}🔧 Installing core packages manually...${NC}"
         pip install selenium webdriver-manager pandas requests python-dotenv openpyxl schedule loguru beautifulsoup4 lxml
     fi
-elif [ -f "requirements.txt" ]; then
+elif [ -f "$AUTOMATION_ROOT/requirements.txt" ]; then
     echo -e "${YELLOW}📦 Installing from requirements.txt...${NC}"
-    pip install -r requirements.txt
+    pip install -r "$AUTOMATION_ROOT/requirements.txt"
 else
     echo -e "${YELLOW}⚠️ No requirements file found${NC}"
     echo -e "${BLUE}📦 Installing essential packages...${NC}"
@@ -149,8 +150,8 @@ echo -e "${BLUE}📁 Setting up project structure...${NC}"
 # Create necessary directories
 directories=("logs" "data" "config")
 for dir in "${directories[@]}"; do
-    if [ ! -d "$dir" ]; then
-        mkdir -p "$dir"
+    if [ ! -d "$AUTOMATION_ROOT/$dir" ]; then
+        mkdir -p "$AUTOMATION_ROOT/$dir"
         echo -e "${GREEN}✅ Created: $dir/${NC}"
     else
         echo -e "${YELLOW}✓ Exists: $dir/${NC}"
@@ -158,24 +159,24 @@ for dir in "${directories[@]}"; do
 done
 
 # Check for main automation files (use automation.py as the primary entry)
-main_files=("automation.py" "system_check.py")
+main_files=("automation.py" "tests/system_check.py")
 for file in "${main_files[@]}"; do
-    if [ -f "$file" ]; then
-        file_size=$(du -h "$file" | cut -f1)
+    if [ -f "$AUTOMATION_ROOT/$file" ]; then
+        file_size=$(du -h "$AUTOMATION_ROOT/$file" | cut -f1)
         echo -e "${GREEN}  ✅ $file ($file_size)${NC}"
-else
+    else
         echo -e "${YELLOW}  ⚠️ $file not found${NC}"
-fi
+    fi
 done
 
 # Step 8: Environment Configuration
 echo -e "${BLUE}⚙️ Environment configuration...${NC}"
 
-if [ -f ".env" ]; then
+if [ -f "$AUTOMATION_ROOT/.env" ]; then
     echo -e "${GREEN}  ✅ .env file exists${NC}"
 else
     echo -e "${YELLOW}  ⚠️ Creating .env template...${NC}"
-    cat > .env.example << 'EOF'
+    cat > "$AUTOMATION_ROOT/.env.example" << 'EOF'
 # ONE System Environment Configuration
 # Copy this file to .env and configure
 
@@ -207,7 +208,7 @@ echo -e "${BLUE}⚡ Running system health check...${NC}"
 if python setup.py > /dev/null 2>&1; then
     echo -e "${GREEN}✅ System setup test passed${NC}"
 else
-    echo -e "${YELLOW}⚠️ System test warnings (run 'python setup.py' for details)${NC}"
+    echo -e "${YELLOW}⚠️ System test warnings (run 'python $AUTOMATION_ROOT/setup.py' for details)${NC}"
 fi
 
 # Step 11: Final Summary
@@ -226,10 +227,10 @@ echo ""
 echo -e "${GREEN}🎉 ONE SYSTEM SETUP COMPLETED!${NC}"
 echo ""
 echo -e "${YELLOW}📋 Next steps:${NC}"
-echo -e "${BLUE}  1. Configure: cp .env.example .env && nano .env${NC}"
-echo -e "${BLUE}  2. Test setup: python setup.py${NC}"
-echo -e "${BLUE}  3. Run automation: python automation.py${NC}"
-echo -e "${BLUE}  4. Check logs: tail -f logs/automation.log${NC}"
+echo -e "${BLUE}  1. Configure: cp $AUTOMATION_ROOT/.env.example $AUTOMATION_ROOT/.env && nano $AUTOMATION_ROOT/.env${NC}"
+echo -e "${BLUE}  2. Test setup: python $AUTOMATION_ROOT/setup.py${NC}"
+echo -e "${BLUE}  3. Run automation: python $AUTOMATION_ROOT/automation.py${NC}"
+echo -e "${BLUE}  4. Check logs: tail -f $AUTOMATION_ROOT/logs/automation.log${NC}"
 
 echo ""
 echo -e "${CYAN}🔧 Maintenance commands:${NC}"

@@ -16,21 +16,22 @@ echo -e "${CYAN}║                  Fast Automation (20-30s)                   
 echo -e "${CYAN}╚══════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
-# Change to script directory
+# Change to script directory then resolve automation root
 cd "$(dirname "$0")"
+AUTOMATION_ROOT="$(cd .. && pwd)"
 
 # Check if virtual environment exists
-if [ ! -d "venv" ]; then
+if [ ! -d "$AUTOMATION_ROOT/venv" ]; then
     echo -e "${RED}❌ Virtual environment chưa được tạo${NC}"
     echo -e "${YELLOW}🔧 Chạy './setup.sh' trước...${NC}"
     exit 1
 fi
 
 # Activate virtual environment
-source venv/bin/activate
+source "$AUTOMATION_ROOT/venv/bin/activate"
 
 # Check if .env exists
-if [ ! -f ".env" ]; then
+if [ ! -f "$AUTOMATION_ROOT/.env" ]; then
     echo -e "${RED}❌ File .env chưa tồn tại${NC}"
     echo -e "${YELLOW}🔧 Chạy './quick_config.sh' để cấu hình...${NC}"
     exit 1
@@ -41,7 +42,7 @@ echo ""
 
 # Run quick test first
 echo -e "${YELLOW}🧪 Quick system check...${NC}"
-python quick_test.py --quiet
+python "$AUTOMATION_ROOT/tests/quick_test.py" --quiet
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}❌ System check failed${NC}"
@@ -60,7 +61,7 @@ echo ""
 start_time=$(date +%s)
 
 # Run enhanced automation in test mode (faster)
-python automation_enhanced.py --mode test
+python "$AUTOMATION_ROOT/automation_enhanced.py" --mode test
 
 # Capture exit code
 automation_result=$?
@@ -78,8 +79,8 @@ if [ $automation_result -eq 0 ]; then
     echo ""
 
     # Show results
-    if [ -f "data/orders_latest.csv" ]; then
-        order_count=$(wc -l < data/orders_latest.csv)
+    if [ -f "$AUTOMATION_ROOT/data/orders_latest.csv" ]; then
+        order_count=$(wc -l < "$AUTOMATION_ROOT/data/orders_latest.csv")
         order_count=$((order_count - 1))  # Subtract header
         echo -e "${BLUE}📊 KẾT QUẢ:${NC}"
         echo -e "${GREEN}   📦 Đơn hàng: $order_count${NC}"
@@ -88,7 +89,7 @@ if [ $automation_result -eq 0 ]; then
 
         # Preview first 3 orders
         echo -e "${BLUE}🔍 Preview 3 đơn đầu:${NC}"
-        head -4 data/orders_latest.csv | tail -3
+        head -4 "$AUTOMATION_ROOT/data/orders_latest.csv" | tail -3
         echo ""
     fi
 

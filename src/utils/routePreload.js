@@ -22,7 +22,7 @@ const preloaders = {
   "/security": () => import("../components/security/SecurityDashboard"),
 };
 
-let preloaded = new Set();
+const preloaded = new Set();
 
 export const preloadRoute = (path) => {
   if (!path || preloaded.has(path)) return;

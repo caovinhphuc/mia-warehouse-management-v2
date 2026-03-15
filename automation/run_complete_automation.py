@@ -3,14 +3,20 @@
 Complete Automation Runner with Monitoring
 Chạy automation hoàn chỉnh với monitoring, logging và notifications
 """
+import logging
 import os
 import sys
 import time
-import logging
 from datetime import datetime
 
-# Add current path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+# Resolve paths independent of current working directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+DATA_DIR = os.path.join(BASE_DIR, 'data')
+CONFIG_PATH = os.path.join(BASE_DIR, 'config', 'config.json')
+
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 
 try:
     from google_sheets_config import GoogleSheetsConfigService
@@ -21,9 +27,10 @@ except ImportError as e:
 
 def setup_complete_logging():
     """Setup comprehensive logging"""
-    os.makedirs('logs', exist_ok=True)
+    os.makedirs(LOGS_DIR, exist_ok=True)
+    os.makedirs(DATA_DIR, exist_ok=True)
 
-    log_filename = f'logs/complete_automation_{datetime.now().strftime("%Y%m%d_%H%M")}.log'
+    log_filename = os.path.join(LOGS_DIR, f'complete_automation_{datetime.now().strftime("%Y%m%d_%H%M")}.log')
 
     logging.basicConfig(
         level=logging.INFO,
@@ -67,7 +74,7 @@ def run_complete_automation():
         # Load and display configuration
         print("\n🔧 Loading system configuration...")
         if monitoring_enabled:
-            config = sheets_service.get_config_merged('config/config.json')
+            config = sheets_service.get_config_merged(CONFIG_PATH)
             workspace_config = sheets_service.get_workspace_config()
             date_config = sheets_service.get_date_range_config()
             sla_rules = sheets_service.get_sla_rules()
@@ -196,10 +203,10 @@ def run_complete_automation():
             'start_time': start_time.strftime('%Y-%m-%d %H:%M:%S'),
             'end_time': end_time.strftime('%Y-%m-%d %H:%M:%S'),
             'export_files': {
-                'orders_csv': f'data/orders_{session_id}.csv',
-                'products_json': f'data/products_{session_id}.json',
-                'summary_excel': f'data/summary_{session_id}.xlsx',
-                'log_file': f'logs/complete_automation_{start_time.strftime("%Y%m%d_%H%M")}.log'
+                'orders_csv': os.path.join(DATA_DIR, f'orders_{session_id}.csv'),
+                'products_json': os.path.join(DATA_DIR, f'products_{session_id}.json'),
+                'summary_excel': os.path.join(DATA_DIR, f'summary_{session_id}.xlsx'),
+                'log_file': os.path.join(LOGS_DIR, f'complete_automation_{start_time.strftime("%Y%m%d_%H%M")}.log')
             }
         }
 
@@ -255,7 +262,8 @@ def run_complete_automation():
         if monitoring_enabled:
             print(f"🔗 View Results: https://docs.google.com/spreadsheets/d/{sheets_service.spreadsheet_id}")
 
-        print(f"📁 Log File: logs/complete_automation_{start_time.strftime('%Y%m%d_%H%M')}.log")
+        final_log_file = os.path.join(LOGS_DIR, f"complete_automation_{start_time.strftime('%Y%m%d_%H%M')}.log")
+        print(f"📁 Log File: {final_log_file}")
         print("=" * 80)
 
         logger.info("Automation completed successfully")

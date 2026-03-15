@@ -1,0 +1,531 @@
+﻿order_id,order_date,status,region,order_value,confirm_hours,delivery_hours,is_confirmed_ontime,is_delivered_ontime,customer_type,product_category,customer_name,shipping_method,platform
+SO15032026:1103649,2026-03-15 16:04:24.205894,confirmed,TP.HCM,1399000,17,28,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103645,2026-03-15 16:04:24.206535,confirmed,Khác,0,22,65,True,True,Regular,Beauty,Võ Thanh Nam,VN Post,Đơn 0 đồng
+SO15032026:1103635,2026-03-15 16:04:24.206545,confirmed,Hà Nội,899000,10,17,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103634,2026-03-15 16:04:24.206554,confirmed,Hà Nội,899000,13,13,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103612,2026-03-15 16:04:24.206562,confirmed,Hà Nội,679000,15,18,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103613,2026-03-15 16:04:24.206569,confirmed,Hà Nội,679000,4,36,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103614,2026-03-15 16:04:24.206577,confirmed,Hà Nội,879000,22,24,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103641,2026-03-15 16:04:24.206584,confirmed,TP.HCM,1216000,14,49,True,True,Regular,Beauty,Shopee,S - SPX Instant,Shopee
+SO15032026:1103615,2026-03-15 16:04:24.206596,confirmed,Hà Nội,2599000,8,16,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103616,2026-03-15 16:04:24.206604,confirmed,Hà Nội,679000,20,50,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103617,2026-03-15 16:04:24.206610,confirmed,Hà Nội,899000,9,37,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103642,2026-03-15 16:04:24.206617,confirmed,TP.HCM,2312000,17,29,True,True,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO15032026:1103639,2026-03-15 16:04:24.206624,confirmed,TP.HCM,1148000,15,33,False,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103618,2026-03-15 16:04:24.206631,confirmed,Hà Nội,1151040,21,54,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103619,2026-03-15 16:04:24.206639,confirmed,Hà Nội,2599000,14,34,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103620,2026-03-15 16:04:24.206645,confirmed,Hà Nội,899000,7,53,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103621,2026-03-15 16:04:24.206652,confirmed,Hà Nội,679000,22,44,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103622,2026-03-15 16:04:24.206659,confirmed,Hà Nội,1449000,10,24,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103640,2026-03-15 16:04:24.206666,confirmed,TP.HCM,899000,8,18,True,False,Regular,Fashion,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103623,2026-03-15 16:04:24.206673,confirmed,Hà Nội,818000,11,67,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103624,2026-03-15 16:04:24.206680,confirmed,Hà Nội,3840000,10,28,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103625,2026-03-15 16:04:24.206686,confirmed,Hà Nội,828000,12,70,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103626,2026-03-15 16:04:24.206693,confirmed,Hà Nội,879000,3,30,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103627,2026-03-15 16:04:24.206700,confirmed,Hà Nội,679000,20,41,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103643,2026-03-15 16:04:24.206707,confirmed,TP.HCM,2499000,23,44,True,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103629,2026-03-15 16:04:24.206714,confirmed,Hà Nội,679000,11,62,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103633,2026-03-15 16:04:24.206728,confirmed,Hà Nội,818000,4,53,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103644,2026-03-15 16:04:24.206735,confirmed,TP.HCM,919000,21,56,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103646,2026-03-15 16:04:24.206748,confirmed,TP.HCM,1129000,1,67,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103631,2026-03-15 16:04:24.206757,confirmed,TP.HCM,1598000,12,58,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103630,2026-03-15 16:04:24.206764,confirmed,TP.HCM,899000,21,58,False,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103632,2026-03-15 16:04:24.206770,confirmed,TP.HCM,799000,15,49,True,False,Regular,Electronics,Shopee,S - SPX Instant,Shopee
+SO15032026:1103636,2026-03-15 16:04:24.206783,confirmed,TP.HCM,1248000,19,27,True,True,Regular,Fashion,Shopee,S - SPX Instant,Shopee
+SO15032026:1103637,2026-03-15 16:04:24.206791,confirmed,TP.HCM,929000,17,32,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103586,2026-03-15 16:04:24.206798,confirmed,Hà Nội,679000,3,66,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103589,2026-03-15 16:04:24.206805,confirmed,Hà Nội,679000,21,28,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103590,2026-03-15 16:04:24.206818,confirmed,Hà Nội,679000,6,50,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103591,2026-03-15 16:04:24.206825,confirmed,Hà Nội,848000,19,16,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103592,2026-03-15 16:04:24.206832,confirmed,Hà Nội,848000,23,51,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103594,2026-03-15 16:04:24.206839,confirmed,Hà Nội,2099000,5,38,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103595,2026-03-15 16:04:24.206846,confirmed,Hà Nội,1449000,18,23,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103596,2026-03-15 16:04:24.206853,confirmed,Hà Nội,679000,18,25,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103597,2026-03-15 16:04:24.206860,confirmed,Hà Nội,679000,16,23,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103598,2026-03-15 16:04:24.206867,confirmed,Hà Nội,1055040,20,56,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103648,2026-03-15 16:04:24.206876,confirmed,TP.HCM,1199000,19,61,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103535,2026-03-15 16:04:24.206883,confirmed,Hà Nội,679000,3,71,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103582,2026-03-15 16:04:24.206889,confirmed,TP.HCM,430000,14,25,True,False,Regular,Books,Shopee,S - SPX Express,Shopee
+SO15032026:1103583,2026-03-15 16:04:24.206896,confirmed,TP.HCM,1238000,1,15,True,False,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103609,2026-03-15 16:04:24.206903,confirmed,TP.HCM,2599000,12,23,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103536,2026-03-15 16:04:24.206910,confirmed,Hà Nội,899000,16,42,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103581,2026-03-15 16:04:24.207308,confirmed,TP.HCM,598000,22,15,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103530,2026-03-15 16:04:24.207322,confirmed,Khác,1899000,11,20,True,False,Regular,Beauty,Lê Thị Hồng Thắm,VN Post,Facebook
+SO15032026:1103537,2026-03-15 16:04:24.207329,confirmed,Hà Nội,828000,7,58,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103529,2026-03-15 16:04:24.207337,confirmed,TP.HCM,1899000,13,44,True,True,VIP,Books,Mai Quốc Khánh,VN Post,MIA.vn website
+SO15032026:1103538,2026-03-15 16:04:24.207344,confirmed,Hà Nội,979000,2,23,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103540,2026-03-15 16:04:24.207354,confirmed,Hà Nội,899000,19,61,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103539,2026-03-15 16:04:24.207361,confirmed,Hà Nội,1151040,7,70,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103541,2026-03-15 16:04:24.207369,confirmed,Hà Nội,2598999,10,49,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103525,2026-03-15 16:04:24.207376,confirmed,TP.HCM,5160000,14,56,True,True,Regular,Home,Shopee,S - BEST Express,Shopee
+SO15032026:1103608,2026-03-15 16:04:24.207383,confirmed,TP.HCM,1299000,4,55,True,False,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103542,2026-03-15 16:04:24.207390,confirmed,Hà Nội,979000,3,35,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103605,2026-03-15 16:04:24.207396,confirmed,TP.HCM,598000,8,58,True,False,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103544,2026-03-15 16:04:24.207403,confirmed,Hà Nội,258000,12,63,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103533,2026-03-15 16:04:24.207410,confirmed,TP.HCM,929000,10,34,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103571,2026-03-15 16:04:24.207417,confirmed,TP.HCM,2099000,2,41,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103545,2026-03-15 16:04:24.207424,confirmed,Hà Nội,1028000,22,33,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103570,2026-03-15 16:04:24.207431,confirmed,TP.HCM,2599000,19,54,True,False,Regular,Electronics,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103549,2026-03-15 16:04:24.207438,confirmed,Hà Nội,818000,8,20,False,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103569,2026-03-15 16:04:24.207445,confirmed,TP.HCM,1129000,12,70,True,True,Regular,Home,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103547,2026-03-15 16:04:24.207451,confirmed,Hà Nội,898999,22,68,True,True,New,Books,TIktok,Tiktok - BeDelivery,Tiktok
+SO15032026:1103550,2026-03-15 16:04:24.207458,confirmed,Hà Nội,3878000,1,44,False,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO15032026:1103551,2026-03-15 16:04:24.207468,confirmed,Hà Nội,1449000,12,27,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103568,2026-03-15 16:04:24.207475,confirmed,TP.HCM,598000,1,39,False,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103567,2026-03-15 16:04:24.207484,confirmed,TP.HCM,1128000,22,67,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103552,2026-03-15 16:04:24.207491,confirmed,Hà Nội,1939000,14,23,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103563,2026-03-15 16:04:24.207498,confirmed,TP.HCM,3090000,19,12,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103558,2026-03-15 16:04:24.207504,confirmed,TP.HCM,598000,2,41,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103554,2026-03-15 16:04:24.207512,confirmed,TP.HCM,677000,20,69,True,False,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103574,2026-03-15 16:04:24.207518,confirmed,TP.HCM,2499000,12,52,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103523,2026-03-15 16:04:24.207524,confirmed,TP.HCM,1499000,22,54,True,True,VIP,Books,Trần Ngọc Hà,VN Post,MIA.vn website
+SO15032026:1103522,2026-03-15 16:04:24.207530,confirmed,TP.HCM,4928070,21,16,True,True,VIP,Home,PHAM PHI OANH,VN Post,MIA.vn website
+SO15032026:1103576,2026-03-15 16:04:24.207536,confirmed,TP.HCM,698000,11,55,False,False,Regular,Beauty,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103555,2026-03-15 16:04:24.207542,confirmed,Hà Nội,1151040,19,53,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103579,2026-03-15 16:04:24.207548,confirmed,TP.HCM,949000,13,35,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103602,2026-03-15 16:04:24.207554,confirmed,TP.HCM,1199000,4,42,True,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103556,2026-03-15 16:04:24.207561,confirmed,Hà Nội,1055040,21,27,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103521,2026-03-15 16:04:24.207566,confirmed,TP.HCM,558000,17,19,True,True,Regular,Home,Shopee,S - SPX Instant,Shopee
+SO15032026:1103557,2026-03-15 16:04:24.207573,confirmed,Hà Nội,818000,16,33,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103534,2026-03-15 16:04:24.207579,confirmed,TP.HCM,848000,10,53,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103559,2026-03-15 16:04:24.207585,confirmed,Hà Nội,679000,9,56,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103572,2026-03-15 16:04:24.207591,confirmed,TP.HCM,109000,10,55,True,False,Regular,Home,Shopee,S - SPX Express,Shopee
+SO15032026:1103578,2026-03-15 16:04:24.207600,confirmed,TP.HCM,848000,18,15,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103577,2026-03-15 16:04:24.207607,confirmed,TP.HCM,929000,10,68,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103573,2026-03-15 16:04:24.207619,confirmed,TP.HCM,179000,15,60,True,True,Regular,Sports,Shopee,S - SPX Express,Shopee
+SO15032026:1103604,2026-03-15 16:04:24.207625,confirmed,TP.HCM,949000,21,54,False,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103560,2026-03-15 16:04:24.207631,confirmed,Hà Nội,949000,20,16,True,True,New,Fashion,TIktok,Tiktok - Vietnam Post,Tiktok
+SO15032026:1103562,2026-03-15 16:04:24.207637,confirmed,Hà Nội,828000,20,42,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103564,2026-03-15 16:04:24.207643,confirmed,Hà Nội,1151040,22,17,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103565,2026-03-15 16:04:24.207650,confirmed,Hà Nội,489999,8,12,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103566,2026-03-15 16:04:24.207656,confirmed,Hà Nội,679000,11,71,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103584,2026-03-15 16:04:24.207699,confirmed,TP.HCM,2699000,1,69,True,False,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103585,2026-03-15 16:04:24.207706,confirmed,TP.HCM,2628000,23,55,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103465,2026-03-15 16:04:24.207712,confirmed,Hà Nội,899000,1,14,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103473,2026-03-15 16:04:24.207718,confirmed,Hà Nội,949000,21,28,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103599,2026-03-15 16:04:24.207724,confirmed,TP.HCM,899000,7,60,True,False,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103434,2026-03-15 16:04:24.207731,confirmed,TP.HCM,799000,1,57,True,True,VIP,Home,Bùi thị Hồng hạnh,VN Post,MIA.vn website
+SO15032026:1103603,2026-03-15 16:04:24.207736,confirmed,TP.HCM,1499000,22,19,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103588,2026-03-15 16:04:24.207743,confirmed,TP.HCM,3516000,8,68,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103476,2026-03-15 16:04:24.207749,confirmed,Hà Nội,899000,3,56,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103512,2026-03-15 16:04:24.207758,confirmed,TP.HCM,2699000,9,29,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103514,2026-03-15 16:04:24.207764,confirmed,TP.HCM,949000,6,52,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103600,2026-03-15 16:04:24.207770,confirmed,TP.HCM,169000,17,43,True,True,Regular,Fashion,Shopee,S - Giao Hàng Nhanh,Shopee
+SO15032026:1103481,2026-03-15 16:04:24.207776,confirmed,Hà Nội,818000,10,15,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103482,2026-03-15 16:04:24.207784,confirmed,Hà Nội,429999,2,24,False,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103515,2026-03-15 16:04:24.207790,confirmed,TP.HCM,1199000,7,57,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103453,2026-03-15 16:04:24.207796,confirmed,Hà Nội,869000,12,59,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103516,2026-03-15 16:04:24.207802,confirmed,TP.HCM,2499000,16,36,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103455,2026-03-15 16:04:24.207808,confirmed,Hà Nội,899000,4,44,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103454,2026-03-15 16:04:24.207815,confirmed,Hà Nội,869000,5,67,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103456,2026-03-15 16:04:24.207821,confirmed,Hà Nội,999000,10,36,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103498,2026-03-15 16:04:24.207827,confirmed,TP.HCM,999000,12,57,True,True,Regular,Home,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103499,2026-03-15 16:04:24.207833,confirmed,TP.HCM,2299000,20,69,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103457,2026-03-15 16:04:24.207839,confirmed,Hà Nội,818000,17,50,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103458,2026-03-15 16:04:24.207845,confirmed,Hà Nội,1148000,10,66,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103507,2026-03-15 16:04:24.207851,confirmed,TP.HCM,1499000,3,25,True,False,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103459,2026-03-15 16:04:24.207857,confirmed,Hà Nội,948000,2,68,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103444,2026-03-15 16:04:24.207864,confirmed,TP.HCM,2699000,13,26,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103451,2026-03-15 16:04:24.207872,confirmed,TP.HCM,3690000,5,16,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103467,2026-03-15 16:04:24.207878,confirmed,TP.HCM,1499000,14,48,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103517,2026-03-15 16:04:24.207889,confirmed,Hà Nội,869000,12,21,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103484,2026-03-15 16:04:24.207895,confirmed,TP.HCM,1499000,16,63,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103461,2026-03-15 16:04:24.207901,confirmed,Hà Nội,1768000,19,42,True,True,New,Sports,TIktok,Tiktok - BEST Express,Tiktok
+SO15032026:1103460,2026-03-15 16:04:24.207907,confirmed,Hà Nội,818000,20,67,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103462,2026-03-15 16:04:24.207913,confirmed,Hà Nội,1249000,2,42,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103447,2026-03-15 16:04:24.207921,confirmed,TP.HCM,2199000,21,13,True,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103464,2026-03-15 16:04:24.207927,confirmed,Hà Nội,1939000,8,42,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103501,2026-03-15 16:04:24.207933,confirmed,TP.HCM,2399000,5,29,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103470,2026-03-15 16:04:24.207939,confirmed,Hà Nội,899000,22,39,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103503,2026-03-15 16:04:24.207945,confirmed,TP.HCM,598000,21,20,True,True,Regular,Beauty,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103502,2026-03-15 16:04:24.207951,confirmed,TP.HCM,1128000,3,37,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103505,2026-03-15 16:04:24.207957,confirmed,TP.HCM,919000,18,27,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103506,2026-03-15 16:04:24.207963,confirmed,TP.HCM,1129000,2,62,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103443,2026-03-15 16:04:24.207969,confirmed,TP.HCM,1129000,20,28,True,False,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103493,2026-03-15 16:04:24.207976,confirmed,TP.HCM,929000,9,13,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103491,2026-03-15 16:04:24.207982,confirmed,TP.HCM,1899000,1,62,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103488,2026-03-15 16:04:24.207990,confirmed,TP.HCM,949000,17,41,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103495,2026-03-15 16:04:24.207996,confirmed,TP.HCM,1299000,12,41,True,False,Regular,Fashion,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103519,2026-03-15 16:04:24.208002,confirmed,TP.HCM,4238876,9,59,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103475,2026-03-15 16:04:24.208008,confirmed,Hà Nội,848000,18,43,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103494,2026-03-15 16:04:24.208022,confirmed,TP.HCM,2499000,10,58,True,False,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103477,2026-03-15 16:04:24.208060,confirmed,TP.HCM,949000,9,20,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103487,2026-03-15 16:04:24.208067,confirmed,TP.HCM,929000,1,44,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103497,2026-03-15 16:04:24.208073,confirmed,TP.HCM,928000,1,18,True,False,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103466,2026-03-15 16:04:24.208079,confirmed,TP.HCM,3590000,13,39,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103478,2026-03-15 16:04:24.208085,confirmed,TP.HCM,1129000,20,37,True,False,Regular,Fashion,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103480,2026-03-15 16:04:24.208094,confirmed,TP.HCM,1129000,20,28,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103474,2026-03-15 16:04:24.208100,confirmed,Hà Nội,869000,7,24,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103508,2026-03-15 16:04:24.208106,confirmed,TP.HCM,1129000,17,59,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103483,2026-03-15 16:04:24.208112,confirmed,TP.HCM,848000,18,15,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103468,2026-03-15 16:04:24.208118,confirmed,TP.HCM,799000,19,51,True,True,Regular,Fashion,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103431,2026-03-15 16:04:24.208124,confirmed,Hà Nội,1449000,17,17,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103436,2026-03-15 16:04:24.208130,confirmed,TP.HCM,929000,2,55,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103357,2026-03-15 16:04:24.208136,confirmed,TP.HCM,1799000,9,28,False,True,Regular,Sports,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103414,2026-03-15 16:04:24.208144,confirmed,Hà Nội,869000,21,38,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103415,2026-03-15 16:04:24.208151,confirmed,Hà Nội,818000,9,59,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103359,2026-03-15 16:04:24.208157,confirmed,TP.HCM,799000,14,63,True,True,Regular,Beauty,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103417,2026-03-15 16:04:24.208163,confirmed,Hà Nội,818000,15,58,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103418,2026-03-15 16:04:24.208169,confirmed,Hà Nội,869000,6,37,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103360,2026-03-15 16:04:24.208175,confirmed,TP.HCM,899000,8,40,True,True,Regular,Books,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103438,2026-03-15 16:04:24.208182,confirmed,TP.HCM,2399000,6,40,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103437,2026-03-15 16:04:24.208188,confirmed,TP.HCM,929000,10,65,True,False,Regular,Home,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103419,2026-03-15 16:04:24.208194,confirmed,Hà Nội,818000,14,25,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103439,2026-03-15 16:04:24.208200,confirmed,TP.HCM,2499000,16,38,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103420,2026-03-15 16:04:24.208211,confirmed,Hà Nội,818000,22,64,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103421,2026-03-15 16:04:24.208217,confirmed,Hà Nội,1699000,15,32,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103423,2026-03-15 16:04:24.208223,confirmed,Hà Nội,818000,1,29,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103422,2026-03-15 16:04:24.208230,confirmed,Hà Nội,679000,12,49,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103410,2026-03-15 16:04:24.208237,confirmed,TP.HCM,1129000,11,30,True,False,Regular,Home,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103424,2026-03-15 16:04:24.208243,confirmed,Hà Nội,899000,5,51,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103338,2026-03-15 16:04:24.208249,confirmed,TP.HCM,1129000,10,44,True,False,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103343,2026-03-15 16:04:24.208255,confirmed,TP.HCM,1129000,21,44,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103425,2026-03-15 16:04:24.208263,confirmed,Hà Nội,679000,17,28,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103426,2026-03-15 16:04:24.208269,confirmed,Hà Nội,899000,7,41,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103427,2026-03-15 16:04:24.208275,confirmed,Hà Nội,848000,2,38,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103345,2026-03-15 16:04:24.208281,confirmed,TP.HCM,828000,21,60,False,False,Regular,Home,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103428,2026-03-15 16:04:24.208287,confirmed,Hà Nội,1449000,8,68,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103430,2026-03-15 16:04:24.208293,confirmed,Hà Nội,1146244,21,29,False,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103372,2026-03-15 16:04:24.208299,confirmed,Hà Nội,818000,4,30,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103350,2026-03-15 16:04:24.208305,confirmed,TP.HCM,1299000,6,41,True,True,Regular,Books,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103373,2026-03-15 16:04:24.208311,confirmed,Hà Nội,828000,15,20,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103351,2026-03-15 16:04:24.208317,confirmed,TP.HCM,1799000,15,71,True,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103374,2026-03-15 16:04:24.208324,confirmed,Hà Nội,489999,16,38,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103375,2026-03-15 16:04:24.208330,confirmed,Hà Nội,879000,5,19,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103356,2026-03-15 16:04:24.208336,confirmed,TP.HCM,687000,11,22,True,True,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1103355,2026-03-15 16:04:24.208342,confirmed,TP.HCM,1128000,10,51,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103354,2026-03-15 16:04:24.208348,confirmed,TP.HCM,3590000,13,31,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103406,2026-03-15 16:04:24.208354,confirmed,TP.HCM,3190000,10,55,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103377,2026-03-15 16:04:24.208362,confirmed,Hà Nội,828000,8,28,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103378,2026-03-15 16:04:24.208368,confirmed,Hà Nội,818000,16,47,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103383,2026-03-15 16:04:24.208376,confirmed,Hà Nội,2598999,16,23,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103384,2026-03-15 16:04:24.208412,confirmed,Hà Nội,679000,20,14,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103385,2026-03-15 16:04:24.208424,confirmed,Hà Nội,1050644,5,22,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103387,2026-03-15 16:04:24.208431,confirmed,Hà Nội,818000,7,18,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103392,2026-03-15 16:04:24.208437,confirmed,Hà Nội,1249000,19,63,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103346,2026-03-15 16:04:24.208443,confirmed,TP.HCM,1038000,12,49,True,False,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103394,2026-03-15 16:04:24.208449,confirmed,Hà Nội,1099000,23,16,True,True,New,Books,TIktok,Tiktok - Vietnam Post,Tiktok
+SO15032026:1103395,2026-03-15 16:04:24.208455,confirmed,Hà Nội,1328000,18,54,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103397,2026-03-15 16:04:24.208462,confirmed,Hà Nội,1899000,16,45,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103342,2026-03-15 16:04:24.208468,confirmed,TP.HCM,2308000,19,46,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103341,2026-03-15 16:04:24.208474,confirmed,TP.HCM,598000,5,70,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1103349,2026-03-15 16:04:24.208480,confirmed,TP.HCM,929000,10,34,False,True,Regular,Electronics,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103367,2026-03-15 16:04:24.208486,confirmed,TP.HCM,1448000,22,37,True,True,Regular,Beauty,Shopee,S - BEST Express,Shopee
+SO15032026:1103400,2026-03-15 16:04:24.208492,confirmed,Hà Nội,1449000,21,61,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103370,2026-03-15 16:04:24.208498,confirmed,TP.HCM,1129000,13,25,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103401,2026-03-15 16:04:24.208504,confirmed,Hà Nội,818000,13,39,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103330,2026-03-15 16:04:24.208510,confirmed,TP.HCM,2499000,14,28,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103331,2026-03-15 16:04:24.208517,confirmed,TP.HCM,3790000,19,51,True,True,Regular,Beauty,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103402,2026-03-15 16:04:24.208525,confirmed,Hà Nội,1146244,16,21,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103403,2026-03-15 16:04:24.208533,confirmed,Hà Nội,679000,7,26,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103363,2026-03-15 16:04:24.208561,confirmed,TP.HCM,1129000,15,33,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103328,2026-03-15 16:04:24.208571,confirmed,Đà Nẵng,1299000,1,16,True,True,Regular,Fashion,Lazada,L - J&T VN,Lazada
+SO15032026:1103405,2026-03-15 16:04:24.208586,confirmed,Hà Nội,1707600,5,51,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO15032026:1103323,2026-03-15 16:04:24.208594,confirmed,TP.HCM,929000,23,66,False,True,Regular,Electronics,Shopee,S - SPX Instant,Shopee
+SO15032026:1103322,2026-03-15 16:04:24.208601,confirmed,TP.HCM,1592000,15,41,True,True,Regular,Beauty,Shopee,S - SPX Instant,Shopee
+SO15032026:1103325,2026-03-15 16:04:24.208607,confirmed,TP.HCM,1199000,12,44,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103380,2026-03-15 16:04:24.208613,confirmed,TP.HCM,1699000,13,25,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103255,2026-03-15 16:04:24.208619,confirmed,Hà Nội,679000,9,55,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103256,2026-03-15 16:04:24.208626,confirmed,Hà Nội,818000,10,15,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103257,2026-03-15 16:04:24.208632,confirmed,Hà Nội,879000,12,13,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103250,2026-03-15 16:04:24.208638,confirmed,TP.HCM,999000,17,64,False,True,VIP,Fashion,Phương Tuyền,VN Post,MIA.vn website
+SO15032026:1103258,2026-03-15 16:04:24.208644,confirmed,Hà Nội,869000,5,48,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103296,2026-03-15 16:04:24.208650,confirmed,TP.HCM,1448000,22,42,True,True,Regular,Home,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103382,2026-03-15 16:04:24.208656,confirmed,TP.HCM,1129000,5,44,True,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103304,2026-03-15 16:04:24.208663,confirmed,Hà Nội,818000,17,13,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103249,2026-03-15 16:04:24.208669,confirmed,TP.HCM,1790000,22,58,True,True,VIP,Books,Nguyễn Thu Tâm,VN Post,MIA.vn website
+SO15032026:1103283,2026-03-15 16:04:24.208677,confirmed,TP.HCM,1518000,5,69,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103248,2026-03-15 16:04:24.208683,confirmed,TP.HCM,1299000,8,20,True,True,VIP,Books,NGUYEN THI NGOC TRINH,VN Post,MIA.vn website
+SO15032026:1103280,2026-03-15 16:04:24.208689,confirmed,TP.HCM,4390000,1,39,True,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103305,2026-03-15 16:04:24.208695,confirmed,Hà Nội,818000,2,61,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103247,2026-03-15 16:04:24.208703,confirmed,Khác,0,16,47,True,True,Regular,Fashion,Trần Thị Hoài My,VN Post,Đơn 0 đồng
+SO15032026:1103307,2026-03-15 16:04:24.208709,confirmed,Hà Nội,828000,3,54,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103308,2026-03-15 16:04:24.208715,confirmed,Hà Nội,2598999,13,35,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103275,2026-03-15 16:04:24.208722,confirmed,TP.HCM,1899000,9,31,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103310,2026-03-15 16:04:24.208728,confirmed,Hà Nội,2598999,15,54,False,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103316,2026-03-15 16:04:24.208734,confirmed,TP.HCM,1699000,16,61,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103610,2026-03-15 16:04:24.208740,confirmed,TP.HCM,5315000,6,47,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103311,2026-03-15 16:04:24.208746,confirmed,Hà Nội,1050644,5,17,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103312,2026-03-15 16:04:24.208753,confirmed,Hà Nội,831534,15,32,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103277,2026-03-15 16:04:24.208761,confirmed,TP.HCM,1499000,3,26,True,True,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103230,2026-03-15 16:04:24.208767,confirmed,TP.HCM,1199000,2,24,True,True,VIP,Books,Ms tiên,VN Post,MIA.vn website
+SO15032026:1103313,2026-03-15 16:04:24.208805,confirmed,Hà Nội,679000,13,17,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103273,2026-03-15 16:04:24.208812,confirmed,TP.HCM,3590000,20,20,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103231,2026-03-15 16:04:24.208819,confirmed,Hà Nội,679000,13,52,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103303,2026-03-15 16:04:24.208827,confirmed,TP.HCM,1499000,20,42,True,False,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103227,2026-03-15 16:04:24.208833,confirmed,TP.HCM,1899000,3,34,True,True,VIP,Home,Bùi Anh Tuấn,VN Post,MIA.vn website
+SO15032026:1103232,2026-03-15 16:04:24.208839,confirmed,Hà Nội,679000,5,57,True,True,New,Sports,TIktok,Tiktok - BeDelivery,Tiktok
+SO15032026:1103240,2026-03-15 16:04:24.208845,confirmed,Hà Nội,0,3,36,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103233,2026-03-15 16:04:24.208864,confirmed,Hà Nội,429999,15,29,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103234,2026-03-15 16:04:24.208876,confirmed,Hà Nội,679000,5,37,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103235,2026-03-15 16:04:24.208883,confirmed,Hà Nội,999000,16,44,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103236,2026-03-15 16:04:24.208894,confirmed,Hà Nội,999000,10,54,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103237,2026-03-15 16:04:24.208901,confirmed,Hà Nội,869000,12,52,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103226,2026-03-15 16:04:24.208907,confirmed,TP.HCM,899000,17,42,False,True,VIP,Books,Xuân Yến,VN Post,MIA.vn website
+SO15032026:1103238,2026-03-15 16:04:24.208913,confirmed,Hà Nội,679000,4,53,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103225,2026-03-15 16:04:24.208919,confirmed,TP.HCM,849000,5,17,True,True,VIP,Home,Chị Hoà,VN Post,MIA.vn website
+SO15032026:1103243,2026-03-15 16:04:24.208925,confirmed,Hà Nội,1249000,22,27,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103293,2026-03-15 16:04:24.208931,confirmed,TP.HCM,1129000,15,59,True,False,Regular,Electronics,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103292,2026-03-15 16:04:24.208938,confirmed,TP.HCM,1099000,9,20,True,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103291,2026-03-15 16:04:24.208944,confirmed,TP.HCM,598000,18,21,True,True,Regular,Sports,Shopee,S - SPX Instant,Shopee
+SO15032026:1103223,2026-03-15 16:04:24.208951,confirmed,TP.HCM,1899000,8,29,True,True,VIP,Electronics,Do thi hoai thu,VN Post,MIA.vn website
+SO15032026:1103298,2026-03-15 16:04:24.208957,confirmed,TP.HCM,1129000,18,54,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103300,2026-03-15 16:04:24.208963,confirmed,TP.HCM,2099000,14,28,False,True,Regular,Beauty,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103299,2026-03-15 16:04:24.208972,confirmed,TP.HCM,729000,14,28,True,False,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103241,2026-03-15 16:04:24.208979,confirmed,TP.HCM,2312000,8,25,True,True,Regular,Electronics,Shopee,S - SPX Instant,Shopee
+SO15032026:1103263,2026-03-15 16:04:24.208985,confirmed,TP.HCM,2598000,17,57,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103244,2026-03-15 16:04:24.208991,confirmed,Hà Nội,679000,16,19,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103245,2026-03-15 16:04:24.208997,confirmed,Hà Nội,679000,21,40,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103246,2026-03-15 16:04:24.209004,confirmed,Hà Nội,822074,22,66,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103208,2026-03-15 16:04:24.209010,confirmed,Hà Nội,850454,13,18,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103262,2026-03-15 16:04:24.209016,confirmed,TP.HCM,4390000,12,65,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103265,2026-03-15 16:04:24.209022,confirmed,TP.HCM,2798000,7,68,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103221,2026-03-15 16:04:24.209031,confirmed,Đà Nẵng,116820,9,55,True,True,Regular,Beauty,Lazada,L - BEST Express,Lazada
+SO15032026:1103209,2026-03-15 16:04:24.209037,confirmed,Hà Nội,1055040,18,64,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103210,2026-03-15 16:04:24.209043,confirmed,Hà Nội,1055040,23,49,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103211,2026-03-15 16:04:24.209049,confirmed,Hà Nội,831534,1,44,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103212,2026-03-15 16:04:24.209055,confirmed,Hà Nội,1449000,15,71,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103213,2026-03-15 16:04:24.209062,confirmed,Hà Nội,822074,12,53,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103196,2026-03-15 16:04:24.209068,confirmed,TP.HCM,5099000,23,50,False,False,Regular,Beauty,Shopee,S - BEST Express,Shopee
+SO15032026:1103218,2026-03-15 16:04:24.209074,confirmed,Hà Nội,652000,21,33,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103198,2026-03-15 16:04:24.209080,confirmed,Hà Nội,2598999,21,61,True,True,New,Sports,TIktok,Tiktok - Vietnam Post,Tiktok
+SO15032026:1103177,2026-03-15 16:04:24.209088,confirmed,TP.HCM,2799000,2,39,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103179,2026-03-15 16:04:24.209094,confirmed,TP.HCM,949000,11,51,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103199,2026-03-15 16:04:24.209100,confirmed,Hà Nội,850454,20,42,True,False,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103200,2026-03-15 16:04:24.209107,confirmed,Hà Nội,869000,14,13,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103203,2026-03-15 16:04:24.209113,confirmed,Hà Nội,217000,23,47,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103134,2026-03-15 16:04:24.209119,confirmed,TP.HCM,799000,2,40,True,True,Regular,Books,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103205,2026-03-15 16:04:24.209125,confirmed,Hà Nội,822074,12,37,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103150,2026-03-15 16:04:24.209131,confirmed,Hà Nội,822074,11,58,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103152,2026-03-15 16:04:24.209137,confirmed,Hà Nội,1055040,16,50,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103153,2026-03-15 16:04:24.209144,confirmed,Hà Nội,652000,11,25,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103154,2026-03-15 16:04:24.209228,confirmed,Hà Nội,1514880,3,66,True,True,New,Home,TIktok,Tiktok - BEST Express,Tiktok
+SO15032026:1103155,2026-03-15 16:04:24.209236,confirmed,Hà Nội,949000,1,28,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103072,2026-03-15 16:04:24.209245,confirmed,Hà Nội,818000,14,58,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103041,2026-03-15 16:04:24.209253,confirmed,Hà Nội,818000,17,27,False,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103452,2026-03-15 16:04:24.209259,confirmed,Hà Nội,1050644,22,30,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103129,2026-03-15 16:04:24.209266,confirmed,TP.HCM,2799000,20,68,True,True,Regular,Electronics,Shopee,S - BEST Express,Shopee
+SO15032026:1103043,2026-03-15 16:04:24.209272,confirmed,Hà Nội,1089000,4,18,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102899,2026-03-15 16:04:24.209278,confirmed,TP.HCM,799000,5,65,True,True,Regular,Sports,Shopee,S - BEST Express,Shopee
+SO15032026:1103046,2026-03-15 16:04:24.209286,confirmed,Hà Nội,818000,9,42,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103049,2026-03-15 16:04:24.209299,confirmed,Hà Nội,818000,15,19,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102902,2026-03-15 16:04:24.209305,confirmed,TP.HCM,599000,15,64,True,True,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1102903,2026-03-15 16:04:24.209311,confirmed,TP.HCM,1129000,10,71,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103051,2026-03-15 16:04:24.209318,confirmed,Hà Nội,818000,13,24,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103056,2026-03-15 16:04:24.209324,confirmed,Hà Nội,159000,9,36,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103058,2026-03-15 16:04:24.209330,confirmed,Hà Nội,848000,14,61,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102919,2026-03-15 16:04:24.209336,confirmed,TP.HCM,1448000,5,66,True,False,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1102924,2026-03-15 16:04:24.209342,confirmed,TP.HCM,848000,5,36,True,False,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103059,2026-03-15 16:04:24.209349,confirmed,Hà Nội,1449000,13,50,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102927,2026-03-15 16:04:24.209355,confirmed,TP.HCM,1109000,1,21,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1103061,2026-03-15 16:04:24.209361,confirmed,Hà Nội,818000,18,68,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103173,2026-03-15 16:04:24.209367,confirmed,TP.HCM,799000,21,15,True,True,Regular,Sports,Shopee,S - SPX Instant,Shopee
+SO15032026:1103062,2026-03-15 16:04:24.209374,confirmed,Hà Nội,828000,8,42,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103063,2026-03-15 16:04:24.209380,confirmed,Hà Nội,848000,14,22,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103064,2026-03-15 16:04:24.209388,confirmed,Hà Nội,818000,8,41,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103065,2026-03-15 16:04:24.209394,confirmed,Hà Nội,828000,2,47,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102931,2026-03-15 16:04:24.209401,confirmed,TP.HCM,199000,12,32,True,True,Regular,Beauty,Shopee,S - SPX Express,Shopee
+SO15032026:1103066,2026-03-15 16:04:24.209409,confirmed,Hà Nội,210000,1,66,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102935,2026-03-15 16:04:24.209415,confirmed,TP.HCM,999000,19,52,True,True,Regular,Home,Shopee,S - BEST Express,Shopee
+SO15032026:1102939,2026-03-15 16:04:24.209421,confirmed,TP.HCM,2199000,20,64,True,True,Regular,Home,Shopee,S - BEST Express,Shopee
+SO15032026:1103067,2026-03-15 16:04:24.209427,confirmed,Hà Nội,828000,17,51,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103068,2026-03-15 16:04:24.209434,confirmed,Hà Nội,679000,14,35,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102947,2026-03-15 16:04:24.209440,confirmed,TP.HCM,1109000,19,17,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103445,2026-03-15 16:04:24.209446,confirmed,TP.HCM,1448000,15,58,True,True,Regular,Fashion,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103069,2026-03-15 16:04:24.209452,confirmed,Hà Nội,1699000,7,22,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102945,2026-03-15 16:04:24.209459,confirmed,TP.HCM,1448000,8,45,True,True,Regular,Beauty,Shopee,S - BEST Express,Shopee
+SO15032026:1103070,2026-03-15 16:04:24.209465,confirmed,Hà Nội,818000,11,57,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103077,2026-03-15 16:04:24.209471,confirmed,Đà Nẵng,771010,9,44,True,True,Regular,Electronics,Lazada,L - BEST Express,Lazada
+SO15032026:1102955,2026-03-15 16:04:24.209477,confirmed,TP.HCM,3690000,20,21,True,False,Regular,Electronics,Shopee,S - BEST Express,Shopee
+SO15032026:1103071,2026-03-15 16:04:24.209483,confirmed,Hà Nội,1146244,13,61,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102980,2026-03-15 16:04:24.209489,confirmed,TP.HCM,2499000,16,43,False,True,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1102979,2026-03-15 16:04:24.209496,confirmed,TP.HCM,598000,6,53,True,False,Regular,Electronics,Shopee,S - BEST Express,Shopee
+SO15032026:1103169,2026-03-15 16:04:24.209502,confirmed,TP.HCM,598000,11,14,True,True,Regular,Books,Shopee,S - SPX Instant,Shopee
+SO15032026:1103033,2026-03-15 16:04:24.209508,confirmed,Hà Nội,818000,21,25,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102987,2026-03-15 16:04:24.209515,confirmed,TP.HCM,949000,22,49,True,True,Regular,Beauty,Shopee,S - BEST Express,Shopee
+SO15032026:1102996,2026-03-15 16:04:24.209524,confirmed,TP.HCM,1198000,3,53,False,True,Regular,Beauty,Shopee,S - BEST Express,Shopee
+SO15032026:1102993,2026-03-15 16:04:24.209530,confirmed,TP.HCM,1129000,9,60,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1103034,2026-03-15 16:04:24.209537,confirmed,Hà Nội,818000,20,28,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103185,2026-03-15 16:04:24.209543,confirmed,TP.HCM,598000,18,62,True,True,Regular,Home,Shopee,S - SPX Instant,Shopee
+SO15032026:1103009,2026-03-15 16:04:24.209549,confirmed,TP.HCM,1556000,23,65,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1102992,2026-03-15 16:04:24.209555,confirmed,TP.HCM,1079000,6,34,True,False,Regular,Sports,Shopee,S - BEST Express,Shopee
+SO15032026:1103003,2026-03-15 16:04:24.209607,confirmed,TP.HCM,1799000,20,26,False,True,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1103005,2026-03-15 16:04:24.209615,confirmed,TP.HCM,2399000,4,45,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1103011,2026-03-15 16:04:24.209621,confirmed,TP.HCM,799000,11,20,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1103019,2026-03-15 16:04:24.209634,confirmed,TP.HCM,2790000,3,69,True,True,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1103029,2026-03-15 16:04:24.209640,confirmed,TP.HCM,929000,15,55,True,True,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1103028,2026-03-15 16:04:24.209647,confirmed,TP.HCM,928000,22,55,True,True,Regular,Electronics,Shopee,S - BEST Express,Shopee
+SO15032026:1103021,2026-03-15 16:04:24.209653,confirmed,TP.HCM,598000,7,56,True,True,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1103020,2026-03-15 16:04:24.209659,confirmed,TP.HCM,929000,7,51,False,True,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1103076,2026-03-15 16:04:24.209665,confirmed,Đà Nẵng,1187010,10,28,True,True,Regular,Beauty,Lazada,L - J&T VN,Lazada
+SO15032026:1102833,2026-03-15 16:04:24.209671,confirmed,TP.HCM,929000,13,59,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1102841,2026-03-15 16:04:24.209678,confirmed,TP.HCM,949000,23,71,True,True,Regular,Beauty,Shopee,S - BEST Express,Shopee
+SO15032026:1102835,2026-03-15 16:04:24.209688,confirmed,TP.HCM,1199000,23,26,True,True,Regular,Sports,Shopee,S - BEST Express,Shopee
+SO15032026:1102836,2026-03-15 16:04:24.209694,confirmed,TP.HCM,3190000,10,12,True,True,Regular,Electronics,Shopee,S - BEST Express,Shopee
+SO15032026:1103187,2026-03-15 16:04:24.209700,confirmed,TP.HCM,749000,17,38,True,True,Regular,Electronics,Shopee,S - SPX Instant,Shopee
+SO15032026:1103037,2026-03-15 16:04:24.209706,confirmed,Hà Nội,818000,5,29,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102848,2026-03-15 16:04:24.209714,confirmed,TP.HCM,949000,15,36,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1102844,2026-03-15 16:04:24.209721,confirmed,TP.HCM,1188600,2,20,True,True,Regular,Home,Shopee,S - BEST Express,Shopee
+SO15032026:1102858,2026-03-15 16:04:24.209727,confirmed,TP.HCM,1699000,18,67,False,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1102860,2026-03-15 16:04:24.209733,confirmed,TP.HCM,1599000,6,21,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1103190,2026-03-15 16:04:24.209739,confirmed,TP.HCM,1399000,16,36,True,True,Regular,Home,Shopee,S - SPX Instant,Shopee
+SO15032026:1102859,2026-03-15 16:04:24.209745,confirmed,TP.HCM,1358000,3,37,True,True,Regular,Electronics,Shopee,S - BEST Express,Shopee
+SO15032026:1103038,2026-03-15 16:04:24.209752,confirmed,Hà Nội,848000,9,52,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103039,2026-03-15 16:04:24.209758,confirmed,Hà Nội,828000,18,51,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102856,2026-03-15 16:04:24.209764,confirmed,TP.HCM,749000,14,49,True,False,Regular,Home,Shopee,S - BEST Express,Shopee
+SO15032026:1102877,2026-03-15 16:04:24.209770,confirmed,TP.HCM,1128000,7,15,True,False,Regular,Home,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1103040,2026-03-15 16:04:24.209776,confirmed,Hà Nội,818000,16,27,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102870,2026-03-15 16:04:24.209782,confirmed,TP.HCM,1499000,2,68,True,True,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1103079,2026-03-15 16:04:24.209789,confirmed,TP.HCM,919000,1,48,True,True,Regular,Books,Shopee,S - BEST Express,Shopee
+SO15032026:1103078,2026-03-15 16:04:24.209795,confirmed,TP.HCM,1129000,23,20,True,False,Regular,Home,Shopee,S - BEST Express,Shopee
+SO15032026:1103081,2026-03-15 16:04:24.209803,confirmed,TP.HCM,1499000,11,16,True,True,Regular,Electronics,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1103084,2026-03-15 16:04:24.209809,confirmed,TP.HCM,929000,11,32,True,False,Regular,Beauty,Shopee,S - BEST Express,Shopee
+SO15032026:1103082,2026-03-15 16:04:24.209815,confirmed,TP.HCM,199000,8,22,True,True,Regular,Beauty,Shopee,S - VNPost Nhanh,Shopee
+SO15032026:1103440,2026-03-15 16:04:24.209821,confirmed,TP.HCM,949000,22,50,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1103093,2026-03-15 16:04:24.209827,confirmed,TP.HCM,3840000,16,43,True,True,Regular,Sports,Shopee,S - BEST Express,Shopee
+SO15032026:1103042,2026-03-15 16:04:24.209833,confirmed,Hà Nội,822074,19,25,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103045,2026-03-15 16:04:24.209840,confirmed,Hà Nội,679000,5,50,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103048,2026-03-15 16:04:24.209847,confirmed,Hà Nội,822074,1,28,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103050,2026-03-15 16:04:24.209853,confirmed,Hà Nội,679000,10,21,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103052,2026-03-15 16:04:24.209859,confirmed,Hà Nội,822074,6,48,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103055,2026-03-15 16:04:24.209866,confirmed,Hà Nội,1449000,9,44,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103057,2026-03-15 16:04:24.209872,confirmed,Hà Nội,831534,10,49,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103060,2026-03-15 16:04:24.209878,confirmed,Hà Nội,822074,2,53,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102957,2026-03-15 16:04:24.209884,confirmed,Hà Nội,822074,12,55,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102958,2026-03-15 16:04:24.209890,confirmed,Hà Nội,679000,7,15,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102959,2026-03-15 16:04:24.209896,confirmed,Hà Nội,879000,22,31,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102960,2026-03-15 16:04:24.209903,confirmed,Hà Nội,869000,5,14,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102961,2026-03-15 16:04:24.209909,confirmed,Hà Nội,899000,19,63,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103112,2026-03-15 16:04:24.209917,confirmed,TP.HCM,1699000,10,43,True,False,Regular,Fashion,Shopee,S - BEST Express,Shopee
+SO15032026:1103110,2026-03-15 16:04:24.209923,confirmed,TP.HCM,2199000,9,54,True,True,Regular,Fashion,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1102970,2026-03-15 16:04:24.209930,confirmed,Hà Nội,828000,19,13,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102971,2026-03-15 16:04:24.209973,confirmed,Hà Nội,1303680,17,21,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102972,2026-03-15 16:04:24.209986,confirmed,Hà Nội,828000,7,47,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103113,2026-03-15 16:04:24.209992,confirmed,TP.HCM,798000,8,68,True,True,Regular,Beauty,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO15032026:1102973,2026-03-15 16:04:24.209998,confirmed,Hà Nội,1303680,19,70,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103381,2026-03-15 16:04:24.210004,confirmed,TP.HCM,1199000,21,17,True,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO15032026:1102974,2026-03-15 16:04:24.210011,confirmed,Hà Nội,2598999,19,66,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103115,2026-03-15 16:04:24.210017,confirmed,TP.HCM,729000,13,44,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO15032026:1102975,2026-03-15 16:04:24.210025,confirmed,Hà Nội,869000,21,46,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102981,2026-03-15 16:04:24.210031,confirmed,Hà Nội,652000,5,67,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102982,2026-03-15 16:04:24.210037,confirmed,Hà Nội,818000,8,49,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1102984,2026-03-15 16:04:24.210043,confirmed,Hà Nội,818000,11,59,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103137,2026-03-15 16:04:24.210049,confirmed,Hà Nội,869000,6,30,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103138,2026-03-15 16:04:24.210055,confirmed,Hà Nội,818000,7,14,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103139,2026-03-15 16:04:24.210062,confirmed,Hà Nội,818000,16,55,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103141,2026-03-15 16:04:24.210068,confirmed,Hà Nội,869000,8,29,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103140,2026-03-15 16:04:24.210076,confirmed,Hà Nội,818000,4,62,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103142,2026-03-15 16:04:24.210082,confirmed,Hà Nội,679000,17,13,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103143,2026-03-15 16:04:24.210088,confirmed,Hà Nội,818000,1,69,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103144,2026-03-15 16:04:24.210094,confirmed,Hà Nội,679000,12,12,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103146,2026-03-15 16:04:24.210101,confirmed,Hà Nội,828000,13,60,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103147,2026-03-15 16:04:24.210107,confirmed,Hà Nội,818000,21,46,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102830,2026-03-15 16:04:24.210113,confirmed,Hà Nội,818000,19,23,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102828,2026-03-15 16:04:24.210120,confirmed,Hà Nội,818000,6,71,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102796,2026-03-15 16:04:24.210126,confirmed,Khác,1999000,19,29,True,True,Regular,Beauty,Sunshine,VN Post,Facebook
+SO14032026:1102813,2026-03-15 16:04:24.210132,confirmed,TP.HCM,598000,23,55,True,False,Regular,Books,Shopee,S - BEST Express,Shopee
+SO14032026:1102795,2026-03-15 16:04:24.210138,confirmed,Khác,807000,12,37,True,True,Regular,Sports,Nhược Tuyên,VN Post,Facebook
+SO14032026:1102810,2026-03-15 16:04:24.210143,confirmed,Hà Nội,679000,5,29,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102804,2026-03-15 16:04:24.210149,confirmed,TP.HCM,3590000,20,43,True,True,Regular,Sports,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO14032026:1102811,2026-03-15 16:04:24.210157,confirmed,Hà Nội,899000,20,30,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102822,2026-03-15 16:04:24.210163,confirmed,Hà Nội,1050644,9,64,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102808,2026-03-15 16:04:24.210169,confirmed,Hà Nội,869000,7,69,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102816,2026-03-15 16:04:24.210176,confirmed,Hà Nội,818000,15,46,True,False,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102819,2026-03-15 16:04:24.210182,confirmed,Hà Nội,1728600,23,37,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102821,2026-03-15 16:04:24.210189,confirmed,Hà Nội,818000,6,44,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102820,2026-03-15 16:04:24.210195,confirmed,Hà Nội,679000,8,53,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103206,2026-03-15 16:04:24.210201,confirmed,Hà Nội,869000,22,64,True,False,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102786,2026-03-15 16:04:24.210208,confirmed,Hà Nội,850454,18,37,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102765,2026-03-15 16:04:24.210214,confirmed,Hà Nội,828000,11,57,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102790,2026-03-15 16:04:24.210220,confirmed,Hà Nội,1055040,14,35,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102749,2026-03-15 16:04:24.210226,confirmed,Khác,1889050,18,55,True,False,Regular,Fashion,An Lê,VN Post,Livestream
+SO14032026:1102791,2026-03-15 16:04:24.210232,confirmed,Hà Nội,869000,3,67,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102799,2026-03-15 16:04:24.210238,confirmed,TP.HCM,729000,13,53,True,False,Regular,Books,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO14032026:1102792,2026-03-15 16:04:24.210244,confirmed,Hà Nội,869000,16,15,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102794,2026-03-15 16:04:24.210250,confirmed,Hà Nội,1258000,4,38,False,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102770,2026-03-15 16:04:24.210256,confirmed,Hà Nội,799000,18,34,True,False,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102767,2026-03-15 16:04:24.210262,confirmed,Hà Nội,869000,13,66,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102760,2026-03-15 16:04:24.210269,confirmed,Hà Nội,869000,6,56,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102759,2026-03-15 16:04:24.210275,confirmed,Hà Nội,208000,23,32,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102761,2026-03-15 16:04:24.210281,confirmed,Hà Nội,2539000,20,63,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO15032026:1103124,2026-03-15 16:04:24.210289,confirmed,TP.HCM,929000,7,58,True,False,Regular,Sports,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO14032026:1102762,2026-03-15 16:04:24.210327,confirmed,Hà Nội,818000,7,49,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102773,2026-03-15 16:04:24.210336,confirmed,Hà Nội,679000,4,58,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102763,2026-03-15 16:04:24.210344,confirmed,Hà Nội,879000,14,64,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102764,2026-03-15 16:04:24.210350,confirmed,Hà Nội,818000,16,32,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102776,2026-03-15 16:04:24.210356,confirmed,Hà Nội,818000,11,39,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102782,2026-03-15 16:04:24.210362,confirmed,Hà Nội,679000,20,68,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102730,2026-03-15 16:04:24.210368,confirmed,TP.HCM,799000,21,13,True,False,VIP,Electronics,Trần Thị Thu Huyền,VN Post,MIA.vn website
+SO14032026:1102784,2026-03-15 16:04:24.210379,confirmed,Hà Nội,879000,17,28,False,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102778,2026-03-15 16:04:24.210386,confirmed,Hà Nội,1146244,2,44,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102769,2026-03-15 16:04:24.210392,confirmed,Hà Nội,828000,2,18,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102768,2026-03-15 16:04:24.210398,confirmed,Hà Nội,828000,9,26,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102772,2026-03-15 16:04:24.210404,confirmed,Hà Nội,1146244,1,27,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102771,2026-03-15 16:04:24.210410,confirmed,Hà Nội,1699000,20,45,False,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102774,2026-03-15 16:04:24.210416,confirmed,Hà Nội,1699000,4,60,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102775,2026-03-15 16:04:24.210423,confirmed,Hà Nội,869000,21,38,True,False,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102781,2026-03-15 16:04:24.210429,confirmed,Hà Nội,1050644,1,45,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102779,2026-03-15 16:04:24.210435,confirmed,Hà Nội,679000,10,30,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102783,2026-03-15 16:04:24.210441,confirmed,Hà Nội,278000,5,16,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102780,2026-03-15 16:04:24.210447,confirmed,Hà Nội,210000,11,28,True,True,New,Books,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102785,2026-03-15 16:04:24.210453,confirmed,Hà Nội,2599000,7,59,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102777,2026-03-15 16:04:24.210463,confirmed,Hà Nội,2599000,1,25,True,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102737,2026-03-15 16:04:24.210469,confirmed,Hà Nội,831534,13,13,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102739,2026-03-15 16:04:24.210476,confirmed,Hà Nội,679000,21,33,True,False,New,Electronics,TIktok,Tiktok - BeDelivery,Tiktok
+SO14032026:1102740,2026-03-15 16:04:24.210482,confirmed,Hà Nội,1055040,3,12,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102741,2026-03-15 16:04:24.210488,confirmed,Hà Nội,679000,10,26,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102744,2026-03-15 16:04:24.210494,confirmed,Hà Nội,822074,4,57,True,True,New,Home,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102734,2026-03-15 16:04:24.210500,confirmed,Hà Nội,1939000,12,29,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102735,2026-03-15 16:04:24.210506,confirmed,Hà Nội,822074,10,37,False,True,New,Beauty,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102725,2026-03-15 16:04:24.210512,confirmed,Hà Nội,679000,18,50,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102712,2026-03-15 16:04:24.210519,confirmed,Hà Nội,1449000,20,24,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102703,2026-03-15 16:04:24.210525,confirmed,Khác,849000,15,15,True,False,Regular,Home,Trần Thị Kim Loan,VN Post,Facebook
+SO14032026:1102713,2026-03-15 16:04:24.210531,confirmed,Hà Nội,797724,8,36,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102715,2026-03-15 16:04:24.210537,confirmed,Hà Nội,822074,16,44,True,True,New,Electronics,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102714,2026-03-15 16:04:24.210543,confirmed,Hà Nội,679000,20,70,True,True,New,Sports,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102698,2026-03-15 16:04:24.210549,confirmed,Khác,2299000,5,48,True,True,Regular,Fashion,Cẩm tú,VN Post,Facebook
+SO14032026:1102711,2026-03-15 16:04:24.210555,confirmed,TP.HCM,149000,18,27,True,True,Regular,Home,Shopee,S - Giao Hàng Nhanh,Shopee
+SO14032026:1102699,2026-03-15 16:04:24.210561,confirmed,TP.HCM,1499000,21,64,False,False,Regular,Sports,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO14032026:1102719,2026-03-15 16:04:24.210567,confirmed,Hà Nội,652000,18,33,True,False,New,Books,TIktok,Tiktok - BeDelivery,Tiktok
+SO14032026:1102700,2026-03-15 16:04:24.210575,confirmed,TP.HCM,2990000,22,57,False,True,Regular,Books,Shopee,S - SPX - Hàng Cồng Kềnh,Shopee
+SO14032026:1102720,2026-03-15 16:04:24.210582,confirmed,Hà Nội,679000,21,16,True,True,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102689,2026-03-15 16:04:24.210588,confirmed,TP.HCM,1199000,5,70,True,True,VIP,Electronics,Trần Thị Hải Huế,VN Post,MIA.vn website
+SO14032026:1102722,2026-03-15 16:04:24.210595,confirmed,Hà Nội,679000,12,35,True,False,New,Fashion,TIktok,Tiktok - J&T Express,Tiktok
+SO14032026:1102688,2026-03-15 16:04:24.210601,confirmed,TP.HCM,2099000,12,17,True,True,VIP,Beauty,Nguyễn Tuấn Anh,VN Post,MIA.vn website
+SO14032026:1102691,2026-03-15 16:04:24.210607,confirmed,TP.HCM,599000,4,45,True,True,Regular,Fashion,Shopee,S - SPX Instant,Shopee
+SO14032026:1102679,2026-03-15 16:04:24.210614,confirmed,Hà Nội,679000,21,64,True,True,New,Sports,TIktok,Tiktok - BeDelivery,Tiktok
+SO14032026:1102693,2026-03-15 16:04:24.210620,confirmed,TP.HCM,799000,9,16,True,True,Regular,Sports,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO14032026:1102690,2026-03-15 16:04:24.210626,confirmed,TP.HCM,430000,8,46,True,True,Regular,Fashion,Shopee,S - SPX Instant,Shopee
+SO14032026:1102645,2026-03-15 16:04:24.210633,confirmed,TP.HCM,1199000,10,46,True,True,VIP,Fashion,Anh Khoa,VN Post,MIA.vn website
+SO14032026:1102648,2026-03-15 16:04:24.210638,confirmed,Hà Nội,679000,10,36,True,True,New,Books,TIktok,Tiktok - BeDelivery,Tiktok
+SO14032026:1102644,2026-03-15 16:04:24.210645,confirmed,TP.HCM,2990000,13,68,False,True,VIP,Fashion,Đặng lan,VN Post,MIA.vn website
+SO14032026:1102641,2026-03-15 16:04:24.210679,confirmed,Khác,0,23,27,True,True,Regular,Sports,Nguyễn Thị Thanh Lan,VN Post,Đơn 0 đồng
+SO14032026:1102639,2026-03-15 16:04:24.210686,confirmed,TP.HCM,999000,20,64,True,True,VIP,Beauty,Lê Thị Ánh Hồng,VN Post,MIA.vn website
+SO14032026:1102678,2026-03-15 16:04:24.210692,confirmed,TP.HCM,4698000,2,63,True,False,Regular,Home,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO14032026:1102638,2026-03-15 16:04:24.210699,confirmed,TP.HCM,378000,3,23,True,False,VIP,Electronics,Tuyết như,VN Post,MIA.vn website
+SO14032026:1102637,2026-03-15 16:04:24.210704,confirmed,TP.HCM,1199000,13,41,False,False,VIP,Home,Phạm Nga Linh,VN Post,MIA.vn website
+SO14032026:1102636,2026-03-15 16:04:24.210710,confirmed,TP.HCM,999000,21,51,True,True,VIP,Sports,Ngọc Ánh,VN Post,MIA.vn website
+SO14032026:1102635,2026-03-15 16:04:24.210715,confirmed,TP.HCM,1899000,18,25,True,False,VIP,Fashion,Hoàng Vy,VN Post,MIA.vn website
+SO14032026:1102634,2026-03-15 16:04:24.210721,confirmed,TP.HCM,1299000,13,67,True,False,VIP,Books,Thu Nghĩa,VN Post,MIA.vn website
+SO14032026:1102633,2026-03-15 16:04:24.210729,confirmed,TP.HCM,209000,2,51,True,True,VIP,Fashion,Thuý Lê,VN Post,MIA.vn website
+SO14032026:1102670,2026-03-15 16:04:24.210735,confirmed,TP.HCM,129000,20,17,True,True,Regular,Home,Shopee,S - Giao Hàng Nhanh,Shopee
+SO14032026:1102646,2026-03-15 16:04:24.210741,confirmed,TP.HCM,3090000,20,17,True,True,Regular,Electronics,Shopee,S - VNP - Hàng Cồng Kềnh,Shopee
+SO14032026:1102663,2026-03-15 16:04:24.210747,confirmed,TP.HCM,109000,4,62,True,True,Regular,Electronics,Shopee,S - SPX Express,Shopee
+SO14032026:1102607,2026-03-15 16:04:24.210755,confirmed,TP.HCM,735000,18,38,True,False,Regular,Electronics,Shopee,S - SPX Express,Shopee
+SO14032026:1102604,2026-03-15 16:04:24.210762,confirmed,TP.HCM,879000,15,41,True,True,Regular,Books,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO14032026:1102611,2026-03-15 16:04:24.210768,confirmed,TP.HCM,1109000,22,60,True,True,Regular,Beauty,Shopee,S - GHN - Hàng Cồng Kềnh,Shopee
+SO14032026:1102541,2026-03-15 16:04:24.210774,confirmed,Hà Nội,964260,2,35,False,True,New,Fashion,TIktok,Tiktok - Vietnam Post,Tiktok
+SO14032026:1102534,2026-03-15 16:04:24.210780,confirmed,Hà Nội,679000,9,49,True,False,New,Home,TIktok,Tiktok - BeDelivery,Tiktok
+SO14032026:1102427,2026-03-15 16:04:24.210786,confirmed,TP.HCM,1199000,16,57,True,True,VIP,Electronics,Nhung,VN Post,MIA.vn website
+SO14032026:1102414,2026-03-15 16:04:24.210792,confirmed,TP.HCM,2152000,12,20,True,True,Regular,Books,Shopee,S - SPX Instant,Shopee
+SO13032026:1102113,2026-03-15 16:04:24.210798,confirmed,TP.HCM,1332240,20,39,True,False,VIP,Sports,Tuyết Nhung,VN Post,MIA.vn website
+SO13032026:1102082,2026-03-15 16:04:24.210804,confirmed,Khác,4272000,5,18,True,True,Regular,Books,Phương Thanh,Đơn vị khác,MIA RETAIL
+SO13032026:1101774,2026-03-15 16:04:24.210810,confirmed,Hà Nội,964260,7,40,True,False,New,Home,TIktok,Tiktok - Vietnam Post,Tiktok
+SO12032026:1101543,2026-03-15 16:04:24.210816,confirmed,Khác,28300000,5,27,True,True,Regular,Beauty,Công Ty Cổ Phần Oem,Đơn vị khác,B2B
+SO12032026:1101364,2026-03-15 16:04:24.210822,confirmed,Khác,0,15,68,True,True,Regular,Sports,Hữu Chất,Đơn vị khác,Đơn tặng KOC/KOL 0 đồng
+SO12032026:1101362,2026-03-15 16:04:24.210828,confirmed,TP.HCM,904000,6,45,True,True,VIP,Books,Nguyễn Chí Công,MIAship,MIA.vn website
+SO11032026:1100963,2026-03-15 16:04:24.210833,confirmed,Hà Nội,156969,10,64,True,True,New,Beauty,TIktok,Đơn vị khác,Tiktok
+SO10032026:1100761,2026-03-15 16:04:24.210839,confirmed,Khác,1881997,22,70,True,False,Regular,Fashion,Nguyễn Văn Nghĩa,VN Post,Facebook
+SO10032026:1100606,2026-03-15 16:04:24.210845,confirmed,Khác,80400000,4,28,True,True,Regular,Sports,CÔNG TY TNHH THƯƠNG MẠI - DỊCH VỤ DU LỊCH ĐỘI NGŨ VIỆT,Đơn vị khác,B2B
+SO07032026:1098637,2026-03-15 16:04:24.210852,confirmed,Khác,0,15,68,True,True,Regular,Books,Trần Nhân,Đơn vị khác,Đơn tặng KOC/KOL 0 đồng
+SO04032026:1096423,2026-03-15 16:04:24.210858,confirmed,TP.HCM,898000,4,53,True,True,Regular,Sports,Shopee,S - SPX Instant,Shopee

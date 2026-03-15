@@ -1,0 +1,96 @@
+{
+  "timestamp": "2026-03-15T19:17:54.870Z",
+  "logDir": "logs",
+  "files": [
+    {
+      "file": "ai-service.log",
+      "totalLines": 1,
+      "errors": [],
+      "warnings": [],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "infoCount": 0,
+      "patterns": {}
+    },
+    {
+      "file": "backend.log",
+      "totalLines": 496,
+      "errors": [
+        {
+          "line": 214,
+          "content": "❌ WebSocket client disconnected: 1773592375691-pqa3kwgqi (code: 1005, reason: No status received (connection lost/abnormal close))"
+        },
+        {
+          "line": 225,
+          "content": "❌ WebSocket client disconnected: 1773592386325-ib2z4028b (code: 1005, reason: No status received (connection lost/abnormal close))"
+        },
+        {
+          "line": 236,
+          "content": "❌ WebSocket client disconnected: 1773592405990-af1nrqugq (code: 1005, reason: No status received (connection lost/abnormal close))"
+        },
+        {
+          "line": 243,
+          "content": "❌ WebSocket client disconnected: 1773592410356-o2x876s54 (code: 1005, reason: No status received (connection lost/abnormal close))"
+        },
+        {
+          "line": 258,
+          "content": "❌ WebSocket client disconnected: 1773592453935-te1e133zm (code: 1005, reason: No status received (connection lost/abnormal close))"
+        },
+        {
+          "line": 425,
+          "content": "❌ WebSocket client disconnected: 1773593068883-v6qjj2oby (code: 1005, reason: No status received (connection lost/abnormal close))"
+        },
+        {
+          "line": 430,
+          "content": "❌ WebSocket client disconnected: 1773593075893-fahdjjenr (code: 1005, reason: No status received (connection lost/abnormal close))"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 4,
+          "content": "(node:84495) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+        },
+        {
+          "line": 5,
+          "content": "(Use `node --trace-deprecation ...` to show where the warning was created)"
+        }
+      ],
+      "info": [],
+      "timestamps": [],
+      "errorCount": 7,
+      "warningCount": 2,
+      "infoCount": 0,
+      "patterns": {
+        "api": 2,
+        "connection": 7
+      }
+    },
+    {
+      "file": "frontend.log",
+      "totalLines": 19,
+      "errors": [],
+      "warnings": [],
+      "info": [
+        {
+          "line": 1,
+          "content": " INFO  Accepting connections at http://localhost:3000"
+        }
+      ],
+      "timestamps": [],
+      "errorCount": 0,
+      "warningCount": 0,
+      "infoCount": 1,
+      "patterns": {
+        "connection": 1
+      }
+    }
+  ],
+  "summary": {
+    "totalFiles": 3,
+    "totalLines": 516,
+    "totalErrors": 7,
+    "totalWarnings": 2
+  }
+}

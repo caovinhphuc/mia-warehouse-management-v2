@@ -1,0 +1,25 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NODE_ENV = "production"
+  CI = "true"
+  # VITE_* vars: set in Netlify Dashboard > Site settings > Environment variables
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  # Static files (/assets/*) are served first; redirect applies only for non-file paths (SPA)
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache"

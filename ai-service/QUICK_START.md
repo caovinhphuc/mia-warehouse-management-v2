@@ -1,89 +1,60 @@
-# 🚀 AI Service - Quick Start Guide
+# AI Service Quick Start
 
-## ⚡ Khởi Động Nhanh
+## Runtime Chuẩn
 
-### **Bước 1: Cài Đặt Dependencies**
+- App mặc định: `ai_service.py`
+- Port mặc định: `8000`
+- Script nên dùng: `setup.sh`, `start_background.sh`, `stop_background.sh`
 
-```bash
-cd ai-service
-source venv/bin/activate  # Kích hoạt virtual environment
-pip install -r requirements.txt
-```
-
-Hoặc chạy setup script:
+## Khởi Động Nhanh
 
 ```bash
 cd ai-service
 ./setup.sh
-```
-
-### **Bước 2: Khởi Động Service**
-
-```bash
-cd ai-service
 ./start_background.sh
+curl http://localhost:8000/health
+
 ```
 
-Service sẽ chạy trên port **5000** (mặc định).
-
-### **Bước 3: Kiểm Tra**
+## Chạy Foreground
 
 ```bash
-# Health check
-curl http://localhost:5000/health
-
-# Xem logs
-tail -f logs/ai-service.log
+cd ai-service
+./run_ai_service.sh
 ```
 
-### **Bước 4: Dừng Service**
+## Dừng Service
 
 ```bash
 cd ai-service
 ./stop_background.sh
 ```
 
-## 🐛 Troubleshooting
-
-### **Lỗi: Port 5000 đã được sử dụng**
+## Log Và PID
 
 ```bash
-# Tìm process đang dùng port 5000
-lsof -ti:5000
-
-# Dừng process
-lsof -ti:5000 | xargs kill -9
-
-# Hoặc dùng script
-./stop_background.sh
+tail -f logs/ai-service.log
+tail -f logs/ai-service-error.log
+cat ai-service.pid
 ```
 
-### **Lỗi: ModuleNotFoundError: No module named 'fastapi'**
+## Đổi Port Khi Chạy Local
+
+Nếu backend local đang chiếm `8000`, chạy AI service ở port khác:
 
 ```bash
-# Kích hoạt virtual environment
-source venv/bin/activate
-
-# Cài đặt lại dependencies
-pip install -r requirements.txt
+cd ai-service
+PORT=8001 ./start_background.sh
+curl http://localhost:8001/health
 ```
 
-### **Lỗi: Virtual environment không tìm thấy**
+Sau đó cập nhật `AI_SERVICE_URL=http://localhost:8001` trong backend.
+
+## Legacy App
+
+`main_simple.py` vẫn còn để phục vụ luồng cũ. Chỉ dùng khi thật sự cần:
 
 ```bash
-# Tạo virtual environment mới
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+cd ai-service
+./run_main_simple.sh
 ```
-
-## 📝 Notes
-
-- Service chạy ở **background mode**
-- Logs được lưu trong `logs/` folder
-- PID được lưu trong `ai-service.pid`
-- Port có thể thay đổi bằng `PORT` env variable
-
----
-
-**✨ Ready to use!**

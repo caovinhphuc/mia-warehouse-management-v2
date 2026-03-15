@@ -48,7 +48,7 @@ const handleNetworkError = (error, operation) => {
       `1. Backend có đang chạy không? (${API_BASE_URL})\n` +
       `2. Kiểm tra kết nối mạng\n` +
       `3. Kiểm tra CORS settings`;
-    // eslint-disable-next-line no-console
+
     console.error(`Error ${operation}:`, friendlyMessage);
     return new Error(friendlyMessage);
   }

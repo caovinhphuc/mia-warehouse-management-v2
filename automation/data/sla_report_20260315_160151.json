@@ -1,0 +1,80 @@
+{
+  "analysis_time": "2026-03-15T16:01:51.456229",
+  "total_orders": 3,
+  "shopee": {
+    "total_orders": 1,
+    "after_cutoff": 1,
+    "need_confirm": 1,
+    "need_handover": 1,
+    "overdue_confirm": 1,
+    "overdue_handover": 1,
+    "sla_status": [
+      {
+        "order_id": "503313",
+        "platform": "shopee",
+        "created_time": "2026-03-15T06:01:51.456234",
+        "needs_confirm": true,
+        "needs_handover": true,
+        "confirm_overdue": true,
+        "handover_overdue": true,
+        "time_to_confirm": null,
+        "time_to_handover": null
+      }
+    ],
+    "cutoff_time": "2026-03-14T18:00:00",
+    "confirm_deadline": "2026-03-15T09:00:00",
+    "handover_deadline": "2026-03-15T12:00:00"
+  },
+  "tiktok": {
+    "total_orders": 1,
+    "after_cutoff": 1,
+    "need_handover": 1,
+    "overdue_handover": 0,
+    "sla_status": [
+      {
+        "order_id": "503314",
+        "platform": "tiktok",
+        "created_time": "2026-03-15T08:01:51.456240",
+        "needs_confirm": false,
+        "needs_handover": true,
+        "confirm_overdue": false,
+        "handover_overdue": false,
+        "time_to_confirm": null,
+        "time_to_handover": 28.96903993638889
+      }
+    ],
+    "cutoff_time": "2026-03-14T14:00:00",
+    "handover_deadline": "2026-03-16T21:00:00"
+  },
+  "other_platforms": {
+    "total_orders": 1,
+    "today_orders": 1,
+    "platforms": {
+      "other": {
+        "total_orders": 1,
+        "orders": [
+          {
+            "id": "503315",
+            "platform": "Other",
+            "created_datetime": "2026-03-15 14:01:51.456242",
+            "platform_clean": "other"
+          }
+        ]
+      }
+    }
+  },
+  "alerts": [
+    {
+      "type": "CRITICAL",
+      "platform": "Shopee",
+      "message": "🚨 1 đơn hàng QUÁ HẠN xác nhận (9h sáng)",
+      "count": 1
+    },
+    {
+      "type": "CRITICAL",
+      "platform": "Shopee",
+      "message": "🚨 1 đơn hàng QUÁ HẠN bàn giao (12h trước)",
+      "count": 1
+    }
+  ]
+}
