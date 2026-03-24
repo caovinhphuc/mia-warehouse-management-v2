@@ -105,7 +105,9 @@ const MFASetup = () => {
   };
 
   const otpAuthUrl = mfaSecret
-    ? `otpauth://totp/MIA.vn:${userProfile?.email || "user"}?secret=${mfaSecret.secret}&issuer=MIA.vn`
+    ? `otpauth://totp/MIA.vn:${userProfile?.email || "user"}?secret=${
+        mfaSecret.secret
+      }&issuer=MIA.vn`
     : "";
 
   if (loading && !mfaSecret) {

@@ -51,7 +51,9 @@ const execCommand = (command, options = {}) => {
     });
     return { success: true, output: result };
   } catch (error) {
-    return { success: false, error: error.message };
+    const stderr = error.stderr ? String(error.stderr) : "";
+    const msg = error.message || "";
+    return { success: false, error: [msg, stderr].filter(Boolean).join("\n") };
   }
 };
 
@@ -182,7 +184,6 @@ const buildProject = async () => {
 const deployToNetlify = async () => {
   log.step("Deploy lên Netlify...");
 
-  // Check if Netlify CLI is installed
   const netlifyCheck = execCommand("netlify --version");
   if (!netlifyCheck.success) {
     log.error(
@@ -191,10 +192,16 @@ const deployToNetlify = async () => {
     return false;
   }
 
-  // Deploy to Netlify
+  if (!fileExists("build") || !fileExists("build/index.html")) {
+    log.error("Thư mục build/ hoặc build/index.html không tồn tại. Chạy npm run build trước.");
+    return false;
+  }
+
   const deployResult = execCommand("netlify deploy --prod --dir=build");
   if (!deployResult.success) {
     log.error(`Deploy Netlify thất bại: ${deployResult.error}`);
+    log.info("Gợi ý: Chạy netlify login, sau đó netlify link (hoặc netlify init).");
+    log.info("Thử tay: netlify deploy --prod --dir=build");
     return false;
   }
 

@@ -328,8 +328,8 @@ const SmartAutomationDashboard = () => {
                       alert.severity === "high"
                         ? "red"
                         : alert.severity === "medium"
-                          ? "orange"
-                          : "blue"
+                        ? "orange"
+                        : "blue"
                     }
                   >
                     {alert.severity}
@@ -391,8 +391,8 @@ const SmartAutomationDashboard = () => {
                         categories?.priority === "high"
                           ? "red"
                           : categories?.priority === "medium"
-                            ? "orange"
-                            : "blue"
+                          ? "orange"
+                          : "blue"
                       }
                     >
                       {categories?.priority}

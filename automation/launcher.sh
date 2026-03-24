@@ -1,6 +1,15 @@
 #!/bin/bash
-# Thêm vào launcher.sh
+# Launcher - MIA Dynamic Dashboard
+# Fragment: option 12 - Mở MIA Dynamic Dashboard
 
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+case "${1:-12}" in
 12)
     echo -e "${BLUE}🌐 Mở MIA Dynamic Dashboard...${NC}"
     if [ -f "mia_dynamic_dashboard.html" ]; then
@@ -27,3 +36,9 @@
         echo -e "${RED}❌ File dashboard không tìm thấy!${NC}"
     fi
     ;;
+*)
+    echo "Usage: $0 [12]"
+    echo "  12 - Mở MIA Dynamic Dashboard"
+    exit 1
+    ;;
+esac

@@ -83,7 +83,9 @@ export const exportToExcel = async (data, filename = "export") => {
 
     let csvContent = "ID,Title,Type,Data Points\n";
     data.widgets.forEach((widget) => {
-      csvContent += `${widget.id},"${widget.title}",${widget.type},${widget.data?.length || 0}\n`;
+      csvContent += `${widget.id},"${widget.title}",${widget.type},${
+        widget.data?.length || 0
+      }\n`;
     });
 
     // Convert to Excel-like format
@@ -121,7 +123,9 @@ export const exportToCSV = async (data, filename = "export") => {
     csvContent += "Widgets\n";
     csvContent += "ID,Title,Type,Data Points\n";
     data.widgets.forEach((widget) => {
-      csvContent += `${widget.id},"${widget.title}",${widget.type},${widget.data?.length || 0}\n`;
+      csvContent += `${widget.id},"${widget.title}",${widget.type},${
+        widget.data?.length || 0
+      }\n`;
     });
 
     csvContent += "\n";

@@ -18,6 +18,9 @@ npm run dev:full              # Giống npm run dev
 # // Dự án: mia-warehouse-management-v2 — Backend Express
 npm run start:backend         # Chạy backend riêng (port 3001)
 npm run start:all             # Chạy tất cả services (scripts/start/all.sh)
+
+# Kiểm tra đăng nhập (backend health + auth/verify + auth/login)
+npm run check:login           # Chạy script kiểm tra; set CHECK_LOGIN_EMAIL + CHECK_LOGIN_PASSWORD trong .env để test login
 ```
 
 ## 🔨 Build
@@ -116,6 +119,7 @@ npm run health-check:frontend # Check frontend (curl localhost:3000)
 npm run monitor               # Dashboard health check tổng quan
 npm run monitor:services      # Real-time monitor (auto refresh 30s)
 npm run check:ports           # Kiểm tra ports đang dùng
+npm run check:login           # Kiểm tra đăng nhập (health + auth/verify + login)
 npm run check:deps            # npm outdated
 npm run check:security        # npm audit
 npm run cleanup:healthcheck   # Dọn artifacts từ health check

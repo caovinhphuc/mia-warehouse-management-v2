@@ -1,3 +1,4 @@
+# Python 3.11+ required (3.11 or 3.12 recommended for stable operation)
 fastapi>=0.115.0
 uvicorn[standard]>=0.32.0
 pydantic>=2.10.0
@@ -21,6 +22,10 @@ selenium>=4.15.0
 # ===== DOCS & MARKDOWN =====
 markdown==3.5.1  # Markdown processing
 
-# Flask API (api/api_server.py)
+# Flask API (api/auth_api_server.py, api/api_server.py)
 flask>=3.1.0
 flask-cors>=6.0.0
+
+# Google Sheets (api/google_sheets_config.py, api/auth_service.py)
+gspread>=6.0.0
+google-auth>=2.0.0

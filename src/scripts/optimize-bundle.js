@@ -130,7 +130,9 @@ function analyzeBundle(buildDir = "build") {
     const status = size > budget ? "❌" : "✅";
     const color = size > budget ? "red" : "green";
     log(
-      `${status} ${name.padEnd(10)}: ${formatBytes(size).padStart(10)} / ${formatBytes(budget).padStart(10)} (${percentage}%)`,
+      `${status} ${name.padEnd(10)}: ${formatBytes(size).padStart(
+        10
+      )} / ${formatBytes(budget).padStart(10)} (${percentage}%)`,
       color
     );
   }
@@ -151,7 +153,9 @@ function analyzeBundle(buildDir = "build") {
   largestFiles.forEach((file, index) => {
     const relativePath = path.relative(buildDir, file.path);
     log(
-      `  ${(index + 1).toString().padStart(2)}. ${relativePath.padEnd(50)} ${file.sizeFormatted.padStart(10)}`,
+      `  ${(index + 1).toString().padStart(2)}. ${relativePath.padEnd(
+        50
+      )} ${file.sizeFormatted.padStart(10)}`,
       "cyan"
     );
   });
@@ -281,15 +285,27 @@ function generateOptimizationReport(analysis) {
 
 | Type | Current | Budget | Status |
 |------|---------|--------|--------|
-| JavaScript | ${formatBytes(analysis.sizes.javascript)} | ${formatBytes(BUDGETS.javascript)} | ${analysis.sizes.javascript > BUDGETS.javascript ? "❌ OVER" : "✅ OK"} |
-| CSS | ${formatBytes(analysis.sizes.css)} | ${formatBytes(BUDGETS.css)} | ${analysis.sizes.css > BUDGETS.css ? "❌ OVER" : "✅ OK"} |
-| Images | ${formatBytes(analysis.sizes.images)} | ${formatBytes(BUDGETS.images)} | ${analysis.sizes.images > BUDGETS.images ? "❌ OVER" : "✅ OK"} |
-| Total | ${formatBytes(analysis.sizes.total)} | ${formatBytes(BUDGETS.total)} | ${analysis.sizes.total > BUDGETS.total ? "❌ OVER" : "✅ OK"} |
+| JavaScript | ${formatBytes(analysis.sizes.javascript)} | ${formatBytes(
+    BUDGETS.javascript
+  )} | ${analysis.sizes.javascript > BUDGETS.javascript ? "❌ OVER" : "✅ OK"} |
+| CSS | ${formatBytes(analysis.sizes.css)} | ${formatBytes(BUDGETS.css)} | ${
+    analysis.sizes.css > BUDGETS.css ? "❌ OVER" : "✅ OK"
+  } |
+| Images | ${formatBytes(analysis.sizes.images)} | ${formatBytes(
+    BUDGETS.images
+  )} | ${analysis.sizes.images > BUDGETS.images ? "❌ OVER" : "✅ OK"} |
+| Total | ${formatBytes(analysis.sizes.total)} | ${formatBytes(
+    BUDGETS.total
+  )} | ${analysis.sizes.total > BUDGETS.total ? "❌ OVER" : "✅ OK"} |
 
 ## 📁 Top Largest Files
 
 \`\`\`
-${analysis.largestFiles.map((f, i) => `${i + 1}. ${path.relative("build", f.path)} - ${f.sizeFormatted}`).join("\n")}
+${analysis.largestFiles
+  .map(
+    (f, i) => `${i + 1}. ${path.relative("build", f.path)} - ${f.sizeFormatted}`
+  )
+  .join("\n")}
 \`\`\`
 
 ## 💡 Recommendations
@@ -299,7 +315,9 @@ ${analysis.recommendations
     (rec, i) => `
 ### ${i + 1}. ${rec.issue} [${rec.priority}]
 
-${rec.solutions.map((sol) => `- ${sol.replace(/^[\p{So}\p{Sk}\s]+/u, "")}`).join("\n")}
+${rec.solutions
+  .map((sol) => `- ${sol.replace(/^[\p{So}\p{Sk}\s]+/u, "")}`)
+  .join("\n")}
 `
   )
   .join("\n")}

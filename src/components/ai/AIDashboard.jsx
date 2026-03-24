@@ -801,8 +801,8 @@ const AIDashboard = () => {
                         {rec.status === "implemented"
                           ? "✅ Đã triển khai"
                           : rec.status === "in-progress"
-                            ? "🔄 Đang triển khai"
-                            : "⏳ Chờ triển khai"}
+                          ? "🔄 Đang triển khai"
+                          : "⏳ Chờ triển khai"}
                       </span>
                     )}
                   </div>

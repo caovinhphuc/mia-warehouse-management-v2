@@ -182,8 +182,9 @@ const GoogleSheetsIntegration = () => {
       );
 
       // Reload metadata to show the new sheet
-      const metadata =
-        await googleSheetsApiService.getSheetMetadata(spreadsheetId);
+      const metadata = await googleSheetsApiService.getSheetMetadata(
+        spreadsheetId
+      );
       const spreadsheet = {
         id: spreadsheetId,
         title: metadata.title,

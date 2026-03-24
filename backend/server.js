@@ -78,11 +78,10 @@ const getAllowedOrigins = () => {
   if (allowed) {
     return allowed.split(",").map((o) => o.trim()).filter(Boolean);
   }
-  const single =
-    process.env.FRONTEND_URL ||
-    process.env.CORS_ORIGIN ||
-    "http://localhost:3000";
-  return [single];
+  const single = process.env.FRONTEND_URL || process.env.CORS_ORIGIN;
+  if (single) return [single];
+  // Default: CRA (3000) + Vite (5173)
+  return ["http://localhost:3000", "http://localhost:5173", "http://127.0.0.1:5173"];
 };
 const corsOrigins = getAllowedOrigins();
 app.use(

@@ -15,6 +15,27 @@ from google.auth.exceptions import RefreshError
 from google.oauth2.service_account import Credentials
 import pandas as pd
 
+# Đường dẫn gốc ai-service (parent của thư mục api/) — dùng để resolve config/ bất kể cwd
+_API_DIR = os.path.dirname(os.path.abspath(__file__))
+_AI_SERVICE_ROOT = os.path.dirname(_API_DIR)
+
+def _load_dotenv():
+    """Load .env từ thư mục ai-service để có GOOGLE_APPLICATION_CREDENTIALS khi chạy từ api/."""
+    try:
+        from dotenv import load_dotenv
+        env_path = os.path.join(_AI_SERVICE_ROOT, '.env')
+        if os.path.isfile(env_path):
+            load_dotenv(env_path)
+    except ImportError:
+        pass
+
+
+def _resolve_path(path: str) -> str:
+    """Resolve path relative to ai-service root nếu là relative path."""
+    if os.path.isabs(path):
+        return path
+    return os.path.join(_AI_SERVICE_ROOT, path)
+
 
 class GoogleSheetsConfigService:
     """Service quản lý cấu hình qua Google Sheets"""
@@ -28,8 +49,26 @@ class GoogleSheetsConfigService:
             credentials_path: Đường dẫn đến file credentials JSON
         """
         self.logger = logging.getLogger('GoogleSheetsConfig')
+        _load_dotenv()
         self.spreadsheet_id = spreadsheet_id or '17xjOqmZFMYT_Tt78_BARbwMYhDEyGcODNwxYbxNSWG8'
-        self.credentials_path = credentials_path or 'config/service_account.json'
+        # Credentials: env GOOGLE_APPLICATION_CREDENTIALS > GOOGLE_SERVICE_ACCOUNT_KEY_PATH > tham số > ai-service/config/
+        env_creds = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+        if not env_creds or not os.path.exists(env_creds):
+            key_path = os.environ.get('GOOGLE_SERVICE_ACCOUNT_KEY_PATH')
+            if key_path and os.path.exists(key_path):
+                env_creds = key_path
+            elif key_path:
+                env_creds = _resolve_path(key_path) if not os.path.isabs(key_path) else key_path
+            else:
+                env_creds = None
+        if env_creds and os.path.exists(env_creds):
+            self.credentials_path = env_creds
+        elif credentials_path:
+            self.credentials_path = _resolve_path(credentials_path)
+        else:
+            default1 = _resolve_path('config/service_account.json')
+            default2 = _resolve_path('config/google-credentials.json')
+            self.credentials_path = default1 if os.path.exists(default1) else default2
         self.client = None
         self.spreadsheet = None
 
@@ -40,56 +79,76 @@ class GoogleSheetsConfigService:
 
         self._init_client()
 
+    def _normalize_private_key(self, pk: str) -> str:
+        """Chuẩn hóa PEM: literal \\n -> newline, trim."""
+        if not pk:
+            return pk
+        return pk.strip().replace('\\n', '\n')
+
     def _init_client(self):
-        """Khởi tạo Google Sheets client"""
-        try:
-            # Kiểm tra credentials file
-            if not os.path.exists(self.credentials_path):
-                self.logger.warning(f"⚠️ Credentials file not found: {self.credentials_path}")
+        """Khởi tạo Google Sheets client (file JSON hoặc env GOOGLE_SERVICE_ACCOUNT_EMAIL + GOOGLE_PRIVATE_KEY)."""
+        scopes = [
+            'https://www.googleapis.com/auth/spreadsheets',
+            'https://www.googleapis.com/auth/drive.file'
+        ]
+
+        # Bước 1: Thử từ file
+        if self.credentials_path and os.path.exists(self.credentials_path):
+            self.logger.info(f"Using credentials file: {self.credentials_path}")
+            try:
+                with open(self.credentials_path, 'r', encoding='utf-8') as f:
+                    info = json.load(f)
+                if isinstance(info.get('private_key'), str):
+                    info['private_key'] = self._normalize_private_key(info['private_key'])
+                credentials = Credentials.from_service_account_info(info, scopes=scopes)
+                self.client = gspread.authorize(credentials)
+                self.spreadsheet = self.client.open_by_key(self.spreadsheet_id)
+                self.logger.info("✅ Google Sheets client initialized successfully (from file)")
+                return True
+            except Exception as e:
+                self.logger.warning(f"Init from file failed: {e}. Trying env vars...")
+
+        # Bước 2: Fallback từ env (client_email + private_key)
+        email = os.environ.get('GOOGLE_SERVICE_ACCOUNT_EMAIL')
+        pk = os.environ.get('GOOGLE_PRIVATE_KEY')
+        if email and pk:
+            try:
+                pk = self._normalize_private_key(pk)
+                info = {
+                    'type': 'service_account',
+                    'client_email': email,
+                    'private_key': pk,
+                    'token_uri': 'https://oauth2.googleapis.com/token',
+                }
+                credentials = Credentials.from_service_account_info(info, scopes=scopes)
+                self.client = gspread.authorize(credentials)
+                self.spreadsheet = self.client.open_by_key(self.spreadsheet_id)
+                self.logger.info("✅ Google Sheets client initialized successfully (from env)")
+                return True
+            except Exception as e:
+                self.logger.error(f"❌ Init from env failed: {e}")
                 return False
 
-            # Scopes cần thiết
-            scopes = [
-                'https://www.googleapis.com/auth/spreadsheets',
-                'https://www.googleapis.com/auth/drive.file'
-            ]
-
-            # Tạo credentials
-            credentials = Credentials.from_service_account_file(
-                self.credentials_path, scopes=scopes
-            )
-
-            # Khởi tạo client
-            self.client = gspread.authorize(credentials)
-
-            # Mở spreadsheet
-            self.spreadsheet = self.client.open_by_key(self.spreadsheet_id)
-
-            self.logger.info("✅ Google Sheets client initialized successfully")
-            return True
-
-        except FileNotFoundError:
-            self.logger.error(f"❌ Credentials file not found: {self.credentials_path}")
-            return False
-        except Exception as e:
-            self.logger.error(f"❌ Failed to initialize Google Sheets client: {e}")
-            return False
+        if not self.credentials_path or not os.path.exists(self.credentials_path):
+            self.logger.warning(f"⚠️ Credentials file not found: {self.credentials_path}. Set GOOGLE_APPLICATION_CREDENTIALS or GOOGLE_SERVICE_ACCOUNT_KEY_PATH to a valid JSON key file, or set GOOGLE_SERVICE_ACCOUNT_EMAIL + GOOGLE_PRIVATE_KEY.")
+        return False
 
     def get_config_merged(self, local_config_path: str) -> Dict[str, Any]:
         """
         Lấy config đã merge từ local file và Google Sheets
 
         Args:
-            local_config_path: Đường dẫn config local
+            local_config_path: Đường dẫn config local (relative to ai-service root hoặc absolute)
 
         Returns:
             Dict chứa config đã merge
         """
         try:
+            resolved_config_path = _resolve_path(local_config_path)
             # Load local config
             local_config = {}
-            if os.path.exists(local_config_path):
-                with open(local_config_path, 'r', encoding='utf-8') as f:
+            if os.path.exists(resolved_config_path):
+                with open(resolved_config_path, 'r', encoding='utf-8') as f:
                     local_config = json.load(f)
 
             # Get Google Sheets config
@@ -114,8 +173,8 @@ class GoogleSheetsConfigService:
         except Exception as e:
             self.logger.error(f"❌ Error merging config: {e}")
             # Fallback to local config
-            if os.path.exists(local_config_path):
-                with open(local_config_path, 'r', encoding='utf-8') as f:
+            if os.path.exists(resolved_config_path):
+                with open(resolved_config_path, 'r', encoding='utf-8') as f:
                     config = json.load(f)
                     config['_metadata'] = {
                         'config_source': 'local_file_fallback',
@@ -665,13 +724,14 @@ class GoogleSheetsConfigService:
             return False
 
     def backup_local_config_to_sheets(self, config_path: str = 'config/config.json') -> bool:
-        """Backup config local lên Google Sheets"""
+        """Backup config local lên Google Sheets (config_path relative to ai-service root hoặc absolute)"""
         try:
-            if not os.path.exists(config_path):
-                self.logger.warning(f"⚠️ Local config not found: {config_path}")
+            resolved = _resolve_path(config_path)
+            if not os.path.exists(resolved):
+                self.logger.warning(f"⚠️ Local config not found: {resolved}")
                 return False
 
-            with open(config_path, 'r', encoding='utf-8') as f:
+            with open(resolved, 'r', encoding='utf-8') as f:
                 local_config = json.load(f)
 
             # Flatten config để upload
@@ -686,6 +746,10 @@ class GoogleSheetsConfigService:
                         ])
 
             if not flattened:
+                return False
+
+            if not self.client or not self.spreadsheet:
+                self.logger.warning("⚠️ Google Sheets client not initialized, skip backup")
                 return False
 
             # Update Config sheet

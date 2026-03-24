@@ -87,7 +87,7 @@ echo -e " 📁 Location: $BACKUP_DIR/${BACKUP_NAME}.tar.gz"
 echo -e " 📏 Size: $BACKUP_SIZE"
 echo -e " 📅 Date: $(date)"
 echo ""
-Cleanup old backups (keep last 5)
+# Cleanup old backups (keep last 5)
 echo -e "${BLUE}🧹 Cleaning up old backups...${NC}"
 cd "$BACKUP_DIR"
 ls -t oneautomation_backup_.tar.gz | tail -n +6 | xargs -r rm --

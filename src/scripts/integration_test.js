@@ -111,7 +111,9 @@ async function testCrossServiceDataFlow() {
     const integrationWorking =
       aiStatus.status === "operational" && backendStatus.status === "OK";
     console.log(
-      `  ✅ Integration status: ${integrationWorking ? "Working" : "Issues detected"}`
+      `  ✅ Integration status: ${
+        integrationWorking ? "Working" : "Issues detected"
+      }`
     );
 
     return integrationWorking;

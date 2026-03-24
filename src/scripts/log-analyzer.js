@@ -190,7 +190,10 @@ function analyzeLogs(logDir = "logs", searchPattern = null) {
       log(`   Found ${results.length} matches:`, "green");
       results.slice(0, 20).forEach((result) => {
         log(
-          `   ${result.file}:${result.line} - ${result.content.substring(0, 80)}...`,
+          `   ${result.file}:${result.line} - ${result.content.substring(
+            0,
+            80
+          )}...`,
           "cyan"
         );
       });
@@ -226,7 +229,9 @@ function analyzeLogs(logDir = "logs", searchPattern = null) {
     },
   };
 
-  const reportFile = `log-analysis-${new Date().toISOString().split("T")[0]}.json`;
+  const reportFile = `log-analysis-${
+    new Date().toISOString().split("T")[0]
+  }.json`;
   fs.writeFileSync(reportFile, JSON.stringify(report, null, 2));
   log(`\n📄 Report saved to: ${reportFile}`, "cyan");
 }

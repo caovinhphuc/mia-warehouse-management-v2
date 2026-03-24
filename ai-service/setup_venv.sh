@@ -12,19 +12,33 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# Check for Python 3.11
-if command -v python3.11 &> /dev/null; then
-    PYTHON_CMD="python3.11"
-    echo -e "${GREEN}✓${NC} Found Python 3.11"
-elif command -v python3.12 &> /dev/null; then
-    PYTHON_CMD="python3.12"
-    echo -e "${YELLOW}!${NC} Using Python 3.12 (Python 3.11 recommended)"
-elif command -v python3.13 &> /dev/null; then
-    PYTHON_CMD="python3.13"
-    echo -e "${YELLOW}!${NC} Using Python 3.13 (Python 3.11 recommended)"
-else
-    echo -e "${YELLOW}⚠${NC} Python 3.11 not found. Please install Python 3.11:"
-    echo "   brew install python@3.11"
+# Yêu cầu: Python 3.11+ (khuyến nghị 3.11 hoặc 3.12 để vận hành ổn định)
+check_python_version() {
+    local py="$1"
+    local v=$($py -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")' 2>/dev/null)
+    if [ -z "$v" ]; then return 1; fi
+    local major=$($py -c 'import sys; print(sys.version_info.major)' 2>/dev/null)
+    local minor=$($py -c 'import sys; print(sys.version_info.minor)' 2>/dev/null)
+    [ "$major" -eq 3 ] && [ "$minor" -ge 11 ] && echo "$v" && return 0
+    return 1
+}
+
+PYTHON_CMD=""
+for candidate in python3.11 python3.12 python3.13 python3; do
+    if command -v "$candidate" &> /dev/null; then
+        ver=$(check_python_version "$candidate")
+        if [ -n "$ver" ]; then
+            PYTHON_CMD="$candidate"
+            echo -e "${GREEN}✓${NC} Using $candidate (Python $ver)"
+            break
+        fi
+    fi
+done
+
+if [ -z "$PYTHON_CMD" ]; then
+    echo -e "${YELLOW}⚠${NC} Python 3.11+ not found. Install for stable operation:"
+    echo "   macOS:  brew install python@3.11"
+    echo "   Ubuntu: sudo apt install python3.11 python3.11-venv"
     exit 1
 fi
 

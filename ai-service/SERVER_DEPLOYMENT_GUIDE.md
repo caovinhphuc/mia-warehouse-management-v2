@@ -51,10 +51,12 @@ docker run -d \
 # SSH vào server
 ssh user@your-server.com
 
-# Setup Python environment
+# Setup Python environment (Python 3.11+ required for stable operation)
 cd /opt/mia-ai-service
+# Use python3.11 if available: python3.11 -m venv venv
 python3 -m venv venv
 source venv/bin/activate
+pip install --upgrade pip
 pip install -r requirements.txt
 
 # Tạo systemd service file

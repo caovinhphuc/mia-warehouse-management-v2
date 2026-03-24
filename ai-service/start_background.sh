@@ -63,6 +63,16 @@ else
     echo -e "${YELLOW}⚠️  Virtual environment không tìm thấy. Sử dụng system Python.${NC}"
 fi
 
+# Check Python version (3.11+ recommended)
+PY_VER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null)
+if [ -n "$PY_VER" ]; then
+    PY_MINOR=$(python3 -c "import sys; print(sys.version_info.minor)" 2>/dev/null)
+    if [ -n "$PY_MINOR" ] && [ "$PY_MINOR" -lt 11 ]; then
+        echo -e "${YELLOW}⚠${NC} Python $PY_VER detected. Python 3.11+ recommended for stable operation."
+        echo -e "${BLUE}   Run ./setup_venv.sh with Python 3.11+ then start again.${NC}"
+    fi
+fi
+
 # Check dependencies
 echo -e "${BLUE}Đang kiểm tra dependencies...${NC}"
 if ! python3 -c "import fastapi" 2>/dev/null; then

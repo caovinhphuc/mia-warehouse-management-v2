@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-15T19:20:54.923Z",
+  "timestamp": "2026-03-24T03:20:26.176Z",
   "budget": {
     "javascript": 3145728,
     "css": 102400,
@@ -9,7 +9,7 @@
   },
   "sizes": {
     "javascript": {
-      "size": 2207883,
+      "size": 2209519,
       "budget": 3145728,
       "percentage": "70.2",
       "status": true
@@ -33,24 +33,24 @@
       "status": true
     },
     "total": {
-      "size": 13090664,
+      "size": 13099984,
       "budget": 20971520,
-      "percentage": "62.4",
+      "percentage": "62.5",
       "status": true
     }
   },
   "largestFiles": [
     {
-      "path": "assets/vendor-antd-m1fCbcGN.js",
-      "size": 1073192
+      "path": "assets/vendor-antd-BdyoW9tK.js",
+      "size": 1073188
     },
     {
-      "path": "assets/vendor-recharts-BF5rU-au.js",
+      "path": "assets/vendor-recharts-DG6nB_UP.js",
       "size": 334895
     },
     {
-      "path": "assets/vendor-BBZyFSju.js",
-      "size": 281854
+      "path": "assets/vendor-CeDyMPRi.js",
+      "size": 282991
     },
     {
       "path": "assets/vendor-react-CluYj9lr.js",
@@ -61,23 +61,23 @@
       "size": 40726
     },
     {
-      "path": "assets/vendor-socket-BPF2ajrA.js",
-      "size": 40025
+      "path": "assets/vendor-socket-CcgtWOqa.js",
+      "size": 40341
     },
     {
-      "path": "assets/main-HTyKp4S8.js",
+      "path": "assets/main-CdiKslMY.js",
       "size": 37554
     },
     {
-      "path": "assets/SecurityDashboard-CQhKpaE8.js",
+      "path": "assets/SecurityDashboard-8-xLDi5R.js",
       "size": 27281
     },
     {
-      "path": "assets/AIDashboard-DtkzmOTh.js",
+      "path": "assets/AIDashboard-CMnoPW-6.js",
       "size": 20863
     },
     {
-      "path": "assets/GoogleDriveIntegration-vTq9PYEp.js",
+      "path": "assets/GoogleDriveIntegration-DzNcGLIn.js",
       "size": 17543
     }
   ]

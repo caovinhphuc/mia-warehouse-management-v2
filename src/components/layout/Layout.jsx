@@ -241,8 +241,8 @@ const Layout = ({ children }) => {
                     {user.role === "admin"
                       ? "Quản trị viên"
                       : user.role === "manager"
-                        ? "Quản lý"
-                        : "Người dùng"}
+                      ? "Quản lý"
+                      : "Người dùng"}
                   </span>
                 </div>
               </div>
@@ -262,7 +262,9 @@ const Layout = ({ children }) => {
               icon="🔔"
               title="Thông báo"
               onClick={handleNotificationClick}
-              className={`notification-btn ${notificationCount > 0 ? "has-notifications" : ""}`}
+              className={`notification-btn ${
+                notificationCount > 0 ? "has-notifications" : ""
+              }`}
             />
             <ActionButton
               icon="⚙️"

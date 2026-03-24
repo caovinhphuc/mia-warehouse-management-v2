@@ -25,47 +25,51 @@ const ProtectedRoute = ({ children }) => {
       const storedSessionId = localStorage.getItem("sessionId");
 
       if (!token && !isAuthenticated) {
-        // Không có token và không authenticated
         setIsChecking(false);
         setIsValid(false);
         return;
       }
 
-      // Nếu có token nhưng chưa có trong Redux state, thử validate
+      // Có token nhưng Redux chưa có (vd: refresh page) → verify session rồi restore state
       if (token && !isAuthenticated) {
         try {
-          // Kiểm tra session với backend
           const API_BASE_URL =
             importMetaEnv.VITE_API_URL ||
             importMetaEnv.REACT_APP_API_URL ||
             "http://localhost:3001";
-
-          const token =
+          const currentToken =
             localStorage.getItem("authToken") || localStorage.getItem("token");
 
           const response = await fetch(`${API_BASE_URL}/api/auth/verify`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              ...(token && { Authorization: `Bearer ${token}` }),
+              ...(currentToken && { Authorization: `Bearer ${currentToken}` }),
             },
           });
 
           if (response.ok) {
             const data = await response.json();
             if (data.valid && data.success) {
-              // Session hợp lệ
               setIsValid(true);
+              // Restore Redux để đồng bộ state sau refresh
+              if (data.user) {
+                dispatch({
+                  type: "LOGIN_SUCCESS",
+                  payload: {
+                    user: data.user,
+                    sessionId: data.sessionId,
+                    serviceAccount: { email: null, projectId: null, isConfigured: false },
+                  },
+                });
+              }
             } else {
-              // Session không hợp lệ
               setIsValid(false);
-              // Clear invalid tokens
               localStorage.removeItem("authToken");
               localStorage.removeItem("token");
               localStorage.removeItem("sessionId");
             }
           } else {
-            // Session expired hoặc invalid (401)
             setIsValid(false);
             localStorage.removeItem("authToken");
             localStorage.removeItem("token");
@@ -195,14 +199,12 @@ const ProtectedRoute = ({ children }) => {
     return <Loading text="Đang kiểm tra phiên đăng nhập..." />;
   }
 
-  // Không hợp lệ hoặc không authenticated, redirect về login
-  if (!isValid || !isAuthenticated) {
-    // Clear tokens trước khi redirect
+  // Redirect khi session không hợp lệ (token hết hạn/invalid hoặc chưa đăng nhập)
+  // Cho phép vào khi isValid (đã verify token với backend thành công, kể cả sau refresh)
+  if (!isValid) {
     localStorage.removeItem("authToken");
     localStorage.removeItem("token");
     localStorage.removeItem("sessionId");
-
-    // Redirect về login với returnUrl để quay lại sau khi login
     const returnUrl = location.pathname !== "/login" ? location.pathname : "/";
     return (
       <Navigate

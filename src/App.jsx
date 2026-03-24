@@ -20,84 +20,71 @@ import { BRAND_CONFIG } from "./config/brand";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 // Enhanced lazy loading with preloading strategy
-const LiveDashboard = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "dashboard" */ "./components/Dashboard/LiveDashboard"
-    )
+const LiveDashboard = lazy(() =>
+  import(
+    /* webpackChunkName: "dashboard" */ "./components/Dashboard/LiveDashboard"
+  )
 );
-const AIDashboard = lazy(
-  () =>
-    import(/* webpackChunkName: "ai-dashboard" */ "./components/ai/AIDashboard")
+const AIDashboard = lazy(() =>
+  import(/* webpackChunkName: "ai-dashboard" */ "./components/ai/AIDashboard")
 );
-const GoogleSheetsIntegration = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "google-sheets" */ "./components/google/GoogleSheetsIntegration"
-    )
+const GoogleSheetsIntegration = lazy(() =>
+  import(
+    /* webpackChunkName: "google-sheets" */ "./components/google/GoogleSheetsIntegration"
+  )
 );
-const GoogleDriveIntegration = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "google-drive" */ "./components/google/GoogleDriveIntegration"
-    )
+const GoogleDriveIntegration = lazy(() =>
+  import(
+    /* webpackChunkName: "google-drive" */ "./components/google/GoogleDriveIntegration"
+  )
 );
-const GoogleAppsScriptIntegration = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "google-apps-script" */ "./components/google/GoogleAppsScriptIntegration"
-    )
+const GoogleAppsScriptIntegration = lazy(() =>
+  import(
+    /* webpackChunkName: "google-apps-script" */ "./components/google/GoogleAppsScriptIntegration"
+  )
 );
-const TelegramIntegration = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "telegram" */ "./components/telegram/TelegramIntegration"
-    )
+const TelegramIntegration = lazy(() =>
+  import(
+    /* webpackChunkName: "telegram" */ "./components/telegram/TelegramIntegration"
+  )
 );
-const AutomationDashboard = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "automation" */ "./components/automation/AutomationDashboard"
-    )
+const AutomationDashboard = lazy(() =>
+  import(
+    /* webpackChunkName: "automation" */ "./components/automation/AutomationDashboard"
+  )
 );
-const MIARetailDashboard = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "retail-dashboard" */ "./components/custom/MIARetailDashboard"
-    )
+const MIARetailDashboard = lazy(() =>
+  import(
+    /* webpackChunkName: "retail-dashboard" */ "./components/custom/MIARetailDashboard"
+  )
 );
-const AlertsManagement = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "alerts-management" */ "./components/alerts/AlertsManagement"
-    )
+const AlertsManagement = lazy(() =>
+  import(
+    /* webpackChunkName: "alerts-management" */ "./components/alerts/AlertsManagement"
+  )
 );
-const AdvancedAnalyticsDashboard = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "advanced-analytics" */ "./components/analytics/AdvancedAnalyticsDashboard"
-    )
+const AdvancedAnalyticsDashboard = lazy(() =>
+  import(
+    /* webpackChunkName: "advanced-analytics" */ "./components/analytics/AdvancedAnalyticsDashboard"
+  )
 );
-const SmartAutomationDashboard = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "smart-automation" */ "./components/smart-automation/SmartAutomationDashboard"
-    )
+const SmartAutomationDashboard = lazy(() =>
+  import(
+    /* webpackChunkName: "smart-automation" */ "./components/smart-automation/SmartAutomationDashboard"
+  )
 );
-const NLPDashboard = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "nlp-dashboard" */ "./components/nlp/NLPDashboard"
-    )
+const NLPDashboard = lazy(() =>
+  import(
+    /* webpackChunkName: "nlp-dashboard" */ "./components/nlp/NLPDashboard"
+  )
 );
-const SecurityDashboard = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "security-dashboard" */ "./components/security/SecurityDashboard"
-    )
+const SecurityDashboard = lazy(() =>
+  import(
+    /* webpackChunkName: "security-dashboard" */ "./components/security/SecurityDashboard"
+  )
 );
-const Login = lazy(
-  () => import(/* webpackChunkName: "login" */ "./components/auth/Login")
+const Login = lazy(() =>
+  import(/* webpackChunkName: "login" */ "./components/auth/Login")
 );
 
 // Preload critical components

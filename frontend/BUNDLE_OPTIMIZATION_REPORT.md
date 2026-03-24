@@ -1,6 +1,6 @@
 # 📊 Bundle Optimization Report
 
-**Generated:** 01:58:41 16/3/2026
+**Generated:** 04:54:57 19/3/2026
 
 ## 📦 Bundle Sizes
 
@@ -27,7 +27,7 @@
 11. workbox-8c29f6e4.js.map - 145.14 KB
 12. assets/vendor-react-D3b4F50h.js - 141.88 KB
 13. assets/vendor-router-A2_wK893.js.map - 137.47 KB
-14. assets/main-BSEpfhLC.js.map - 99.22 KB
+14. assets/main-C7_619xV.js.map - 99.22 KB
 15. assets/vendor-recharts-B997flZR.js.gz - 83.75 KB
 ```
 

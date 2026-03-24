@@ -136,7 +136,9 @@ const NLPChatInterface = ({ data = null, onQueryResult = null }) => {
             "value" // Default column
           );
           response.text = `Xu hướng: ${trendResult.trend || "unknown"}, `;
-          response.text += `Thay đổi: ${trendResult.change_percentage?.toFixed(1) || 0}%`;
+          response.text += `Thay đổi: ${
+            trendResult.change_percentage?.toFixed(1) || 0
+          }%`;
           response.data = trendResult;
         } catch (err) {
           response.text = "Không thể phân tích xu hướng. Vui lòng thử lại.";
@@ -220,7 +222,9 @@ const NLPChatInterface = ({ data = null, onQueryResult = null }) => {
             dataSource={messages}
             renderItem={(message) => (
               <List.Item
-                className={`message-item ${message.role === "user" ? "user-message" : "assistant-message"}`}
+                className={`message-item ${
+                  message.role === "user" ? "user-message" : "assistant-message"
+                }`}
               >
                 <Space align="start" style={{ width: "100%" }}>
                   <Avatar

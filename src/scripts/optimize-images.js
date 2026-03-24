@@ -175,7 +175,9 @@ function optimizeImages() {
       if (originalSize > 100 * 1024) {
         // Files larger than 100KB
         log(
-          `  ⚠️  ${relativePath}: ${formatBytes(originalSize)} (consider optimization)`,
+          `  ⚠️  ${relativePath}: ${formatBytes(
+            originalSize
+          )} (consider optimization)`,
           "yellow"
         );
       }

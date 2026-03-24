@@ -112,8 +112,8 @@ function runLighthouse(url = "http://localhost:3000") {
       performanceScore >= 90
         ? "green"
         : performanceScore >= 50
-          ? "yellow"
-          : "red";
+        ? "yellow"
+        : "red";
 
     log(`Performance Score: ${performanceScore}/100`, scoreColor);
     console.log("");
@@ -166,7 +166,9 @@ function runLighthouse(url = "http://localhost:3000") {
           ? formatBytes(opportunity.numericValue)
           : "";
         log(
-          `  • ${opportunity.title}${savings ? ` (Potential savings: ${savings})` : ""}`,
+          `  • ${opportunity.title}${
+            savings ? ` (Potential savings: ${savings})` : ""
+          }`,
           "yellow"
         );
       });

@@ -128,6 +128,10 @@ case $DEPLOY_METHOD in
             log_error "docker-compose hoặc 'docker compose' không tìm thấy"
             exit 1
         fi
+        # Gỡ container cũ trước để tránh conflict tên (mia-ai-service đã tồn tại)
+        log_info "Dừng và gỡ container cũ (nếu có)..."
+        $DOCKER_COMPOSE -f "$COMPOSE_FILE" down 2>/dev/null || true
+        docker rm -f mia-ai-service 2>/dev/null || true
         log_info "Deploying với Docker Compose..."
         if $DOCKER_COMPOSE -f "$COMPOSE_FILE" up -d --build; then
             log_success "Docker deployment thành công"

@@ -57,11 +57,10 @@ const TestGoogleSheets = () => (
 );
 
 // Original GoogleSheetsIntegration
-const GoogleSheetsIntegration = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "google-sheets" */ "./components/google/GoogleSheetsIntegration"
-    )
+const GoogleSheetsIntegration = lazy(() =>
+  import(
+    /* webpackChunkName: "google-sheets" */ "./components/google/GoogleSheetsIntegration"
+  )
 );
 
 // Home component

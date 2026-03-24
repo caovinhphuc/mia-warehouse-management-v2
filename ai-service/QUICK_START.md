@@ -1,5 +1,10 @@
 # AI Service Quick Start
 
+## Yêu cầu
+
+- **Python 3.11+** (khuyến nghị 3.11 hoặc 3.12). Cài: `brew install python@3.11` (macOS) hoặc `apt install python3.11 python3.11-venv` (Ubuntu).
+- Tạo venv đúng bản Python: `./setup_venv.sh` (ưu tiên hơn `./setup.sh` nếu có nhiều bản Python).
+
 ## Runtime Chuẩn
 
 - App mặc định: `ai_service.py`

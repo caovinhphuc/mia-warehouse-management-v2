@@ -85,7 +85,7 @@ class AuthenticationService:
             )
             # Add default data
             if default_data:
-                worksheet.update('A1', default_data)
+                worksheet.update(values=default_data, range_name='A1')
             self.logger.info(f"✅ Created worksheet '{worksheet_name}' with default data")
 
     def _hash_password(self, password: str) -> str:
@@ -219,13 +219,13 @@ class AuthenticationService:
                     row_num = i + 2  # +2 vì header ở row 1 và index bắt đầu từ 0
                     failed_attempts = int(record.get('Failed Attempts', 0)) + 1
 
-                    # Update failed attempts
-                    worksheet.update(f'J{row_num}:J{row_num}', [[str(failed_attempts)]])
+                    # Update failed attempts (gspread 6+: values first, range_name second)
+                    worksheet.update(values=[[str(failed_attempts)]], range_name=f'J{row_num}:J{row_num}')
 
                     # Lock account if too many attempts
                     if failed_attempts >= 5:
                         lock_until = (datetime.now() + timedelta(minutes=15)).strftime('%Y-%m-%d %H:%M:%S')
-                        worksheet.update(f'K{row_num}:K{row_num}', [[lock_until]])
+                        worksheet.update(values=[[lock_until]], range_name=f'K{row_num}:K{row_num}')
 
                     break
 
@@ -241,8 +241,8 @@ class AuthenticationService:
             for i, record in enumerate(records):
                 if record.get('User ID') == user_id:
                     row_num = i + 2
-                    # Fix: Reset failed attempts and locked until
-                    worksheet.update(f'J{row_num}:K{row_num}', [['0', '']])
+                    # Reset failed attempts and locked until (gspread 6+: values first)
+                    worksheet.update(values=[['0', '']], range_name=f'J{row_num}:K{row_num}')
                     break
 
         except Exception as e:
@@ -258,8 +258,7 @@ class AuthenticationService:
                 if record.get('User ID') == user_id:
                     row_num = i + 2
                     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                    # Fix: Use correct update format with list of lists
-                    worksheet.update(f'I{row_num}:I{row_num}', [[current_time]])
+                    worksheet.update(values=[[current_time]], range_name=f'I{row_num}:I{row_num}')
                     break
 
         except Exception as e:
@@ -360,8 +359,7 @@ class AuthenticationService:
             for i, record in enumerate(records):
                 if record.get('Session ID') == session_id:
                     row_num = i + 2
-                    # Fix: Use correct update format with list of lists
-                    worksheet.update(f'F{row_num}:F{row_num}', [['INACTIVE']])
+                    worksheet.update(values=[['INACTIVE']], range_name=f'F{row_num}:F{row_num}')
                     return True
 
             return False
@@ -405,21 +403,24 @@ class AuthenticationService:
 
 
 def main():
-    """Test authentication service"""
+    """
+    Test authentication service khi chạy: python auth_service.py
+    Luồng: đọc user từ Google Sheet 'Users' -> verify password hash -> cập nhật Failed Attempts/Last Login/Session.
+    """
     print("🔐 TESTING AUTHENTICATION SERVICE")
     print("=" * 50)
 
     # Initialize service
     auth_service = AuthenticationService()
 
-    # Test authentication
+    # Test authentication: (email, password, expect_success)
     test_cases = [
-        ("admin@mia.vn", "123456"),
-        ("admin@mia.vn", "wrong_password"),
-        ("nonexistent@mia.vn", "123456")
+        ("admin@mia.vn", "123456", True),
+        ("admin@mia.vn", "wrong_password", False),
+        ("nonexistent@mia.vn", "123456", False),
     ]
 
-    for email, password in test_cases:
+    for email, password, expect_ok in test_cases:
         print(f"\n🧪 Testing: {email} / {password}")
         success, result = auth_service.authenticate_user(
             email, password, "127.0.0.1", "Test User Agent"
@@ -429,7 +430,10 @@ def main():
             print(f"✅ SUCCESS: {result['user']['name']} ({result['user']['role']})")
             print(f"   Session: {result['session']['session_id'][:20]}...")
         else:
-            print(f"❌ FAILED: {result['error']}")
+            if expect_ok:
+                print(f"❌ FAILED (unexpected): {result['error']}")
+            else:
+                print(f"✅ Rejected as expected: {result['error']}")
 
     print("\n🎉 Authentication service test completed!")
 

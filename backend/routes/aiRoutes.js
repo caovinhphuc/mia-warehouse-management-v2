@@ -1,9 +1,34 @@
 /**
  * AI Routes - Backend API endpoints cho AI features
+ * Luồng: Frontend → Backend (3001) → [nếu có] AI Service (8000) → fallback logic in-memory
  */
 
 const express = require("express");
 const router = express.Router();
+
+const AI_SERVICE_URL = process.env.AI_SERVICE_URL || "http://localhost:8000";
+const AI_SERVICE_TIMEOUT_MS = Number(process.env.AI_SERVICE_TIMEOUT_MS) || 15000;
+
+/** Gọi AI Service (Python port 8000). Trả về data hoặc null nếu lỗi/timeout. */
+async function proxyToAiService(path, options = {}) {
+  const url = `${AI_SERVICE_URL.replace(/\/$/, "")}${path}`;
+  const timeoutMs = options.timeout || AI_SERVICE_TIMEOUT_MS;
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => reject(new Error("AI_SERVICE_TIMEOUT")), timeoutMs);
+  });
+  try {
+    const fetchPromise = fetch(url, {
+      method: options.method || "GET",
+      headers: { "Content-Type": "application/json", ...options.headers },
+      body: options.body ? JSON.stringify(options.body) : undefined,
+    });
+    const res = await Promise.race([fetchPromise, timeoutPromise]);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (_) {
+    return null;
+  }
+}
 
 // Simple in-memory cache
 const cache = new Map();
@@ -253,12 +278,11 @@ router.post("/analyze", async (req, res) => {
   }
 });
 
-// POST /api/ai/predict - Dự đoán tương lai
+// POST /api/ai/predict - Dự đoán tương lai (ưu tiên AI Service 8000, fallback in-memory)
 router.post("/predict", async (req, res) => {
   try {
     const { metrics, timeframe = "7d" } = req.body;
 
-    // Check cache
     const cacheKey = getCacheKey("predict", { metrics, timeframe });
     const cached = getCached(cacheKey);
     if (cached) {
@@ -270,11 +294,15 @@ router.post("/predict", async (req, res) => {
       });
     }
 
-    const predictions = aiAnalysisService.predict(metrics, timeframe);
+    const fromAiService = await proxyToAiService("/ai/predictions");
+    let predictions;
+    if (fromAiService && fromAiService.predictions) {
+      predictions = fromAiService.predictions;
+    } else {
+      predictions = aiAnalysisService.predict(metrics, timeframe);
+    }
 
-    // Set cache
     setCache(cacheKey, { predictions, timestamp: new Date().toISOString() });
-
     res.json({
       success: true,
       predictions,
@@ -290,12 +318,18 @@ router.post("/predict", async (req, res) => {
   }
 });
 
-// POST /api/ai/anomalies - Phát hiện anomalies
+// POST /api/ai/anomalies - Phát hiện anomalies (ưu tiên AI Service 8000, fallback in-memory)
 router.post("/anomalies", async (req, res) => {
   try {
     const { data } = req.body;
 
-    const anomalies = aiAnalysisService.detectAnomalies(data);
+    const fromAiService = await proxyToAiService("/ai/anomalies");
+    let anomalies;
+    if (fromAiService && Array.isArray(fromAiService.anomalies)) {
+      anomalies = fromAiService.anomalies;
+    } else {
+      anomalies = aiAnalysisService.detectAnomalies(data);
+    }
 
     res.json({
       success: true,
@@ -419,28 +453,34 @@ router.post("/analyze-drive", async (req, res) => {
   }
 });
 
-// POST /api/ai/optimize - Tối ưu hóa hệ thống
+// POST /api/ai/optimize - Tối ưu hóa hệ thống (ưu tiên AI Service 8000, fallback in-memory)
 router.post("/optimize", async (req, res) => {
   try {
     const { systemMetrics } = req.body;
 
-    const optimizations = [
-      {
-        area: "API Performance",
-        improvement: "25%",
-        impact: "high",
-      },
-      {
-        area: "Memory Usage",
-        improvement: "15%",
-        impact: "medium",
-      },
-    ];
+    const fromAiService = await proxyToAiService("/ai/optimization");
+    let optimizations;
+    let estimatedImpact = "30% performance improvement";
+    if (fromAiService && Array.isArray(fromAiService.optimizations)) {
+      optimizations = fromAiService.optimizations.map((o) => ({
+        area: o.action || o.area,
+        improvement: o.impact || "—",
+        impact: (o.priority || "medium").toLowerCase(),
+      }));
+      if (fromAiService.overall_score != null) {
+        estimatedImpact = `Overall score ${fromAiService.overall_score}; ${optimizations.length} suggestions`;
+      }
+    } else {
+      optimizations = [
+        { area: "API Performance", improvement: "25%", impact: "high" },
+        { area: "Memory Usage", improvement: "15%", impact: "medium" },
+      ];
+    }
 
     res.json({
       success: true,
       optimizations,
-      estimatedImpact: "30% performance improvement",
+      estimatedImpact,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {

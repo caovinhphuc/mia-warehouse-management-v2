@@ -172,3 +172,5 @@ automation/config/*service-account*.json
 .env
 .env.local
 .env.*.local
+venv.backup.*
+**/venv.backup.*

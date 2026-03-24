@@ -58,6 +58,31 @@
 
 ---
 
+## 🔄 Đúng logic tích hợp (sau khi deploy)
+
+Luồng hoạt động đúng:
+
+1. **AI Service (port 8000)** chạy trước — nhận request từ Backend, không nhận trực tiếp từ Frontend.
+2. **Frontend** gửi tín hiệu (phân tích, đăng nhập one.tga, AI chat, v.v.) → gọi **Backend (port 3001)**.
+3. **Backend**:
+   - Đăng nhập / One TGA: gọi `POST http://localhost:8000/api/auth/verify-one-tga` (đã có trong `authRoutes.js`).
+   - AI: gọi AI Service cho `/api/ai/predict`, `/api/ai/anomalies`, `/api/ai/optimize` (đã proxy trong `backend/routes/aiRoutes.js`). Nếu AI Service không chạy hoặc lỗi → Backend tự xử lý fallback (logic in-memory) để giảm loading và vẫn trả kết quả.
+4. **Kết quả**: Frontend nhận response từ Backend; Backend có thể đã lấy dữ liệu từ AI Service (one, automation, ML) hoặc từ fallback.
+
+**Điều kiện để “nghe tín hiệu frontend và kết nối backend/one/automation”:**
+
+- Backend phải chạy (`npm run start:backend`).
+- AI Service phải chạy (`cd ai-service && ./start_background.sh` hoặc `./deploy.sh background`).
+- Trong `.env` (root) hoặc `backend/.env`: `AI_SERVICE_URL=http://localhost:8000` (mặc định đã đúng).
+
+**Nếu hiện tại chưa kết nối:**
+
+- Kiểm tra AI Service: `curl http://localhost:8000/health`.
+- Kiểm tra Backend có gọi được AI Service không (xem log backend khi gọi đăng nhập one.tga hoặc trang AI Dashboard).
+- Đảm bảo start đủ 2 process: Backend (3001) và AI Service (8000).
+
+---
+
 ## 📝 Logs
 
 ### Log Files

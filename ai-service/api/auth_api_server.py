@@ -7,6 +7,7 @@ Flask API server để xử lý xác thực từ React frontend
 
 import json
 import logging
+import os
 from datetime import datetime
 
 from auth_service import AuthenticationService
@@ -269,10 +270,11 @@ def main():
     print("   GET  /api/auth/status   - Trạng thái service")
     print("   GET  /health           - Health check")
     print()
+    port = int(os.environ.get('PORT', 8001))
     print("🔧 Configuration:")
     print(f"   Debug: {app.debug}")
     print("   Host: 0.0.0.0")
-    print("   Port: 5001")  # Updated port number
+    print(f"   Port: {port} (set PORT=... to override)")
     print()
     print("📋 Google Sheets Integration:")
     if auth_service.sheets_service.client:
@@ -285,13 +287,8 @@ def main():
     print("   Press Ctrl+C to stop")
     print("=" * 60)
 
-    # Run Flask app
-    app.run(
-        host='0.0.0.0',
-        port=8001,  # Changed from 5000 to avoid AirPlay conflict
-        debug=False,  # Disable debug mode for stability
-        threaded=True
-    )
+    # Run Flask app (PORT từ env, mặc định 8001)
+    app.run(host='0.0.0.0', port=port, debug=False, threaded=True)
 
 if __name__ == '__main__':
     main()

@@ -86,7 +86,18 @@ if [[ "$DEPLOY_FRONTEND" == "true" ]]; then
       echo "❌ vercel CLI not found. Install: npm i -g vercel"
       exit 1
     fi
-    run_or_plan "Deploy Frontend -> Vercel" "cd '$ROOT_DIR/$FRONTEND_DIR' && vercel --prod"
+    echo "• Deploy Frontend -> Vercel"
+    if [[ "$PLAN_ONLY" == "true" ]]; then
+      echo "  PLAN: cd $FRONTEND_DIR && vercel --prod"
+    elif ! (cd "$ROOT_DIR/$FRONTEND_DIR" && vercel --prod); then
+      echo ""
+      echo "⚠️  Vercel CLI báo lỗi nhưng deploy có thể đã được tạo. Kiểm tra:"
+      echo "   - Mở link Inspect (trong log trên) để xem trạng thái build/deploy."
+      echo "   - Deploy thủ công: cd $FRONTEND_DIR && vercel --prod"
+      echo "   - Hoặc chạy với debug: cd $FRONTEND_DIR && vercel --prod --debug"
+      exit 1
+    fi
+    echo ""
   else
     echo "❌ Unsupported FRONTEND_PLATFORM: $FRONTEND_PLATFORM"
     exit 1

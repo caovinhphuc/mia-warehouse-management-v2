@@ -30,31 +30,31 @@ export const Reports = lazyLoad(() => import("./pages/Reports"));
 export const Settings = lazyLoad(() => import("./pages/Settings"));
 
 // Google Integration - Heavy component, load on-demand
-export const GoogleSheets = lazyLoad(
-  () => import("./components/google/GoogleSheets")
+export const GoogleSheets = lazyLoad(() =>
+  import("./components/google/GoogleSheets")
 );
 
-export const GoogleDrive = lazyLoad(
-  () => import("./components/google/GoogleDriveIntegration")
+export const GoogleDrive = lazyLoad(() =>
+  import("./components/google/GoogleDriveIntegration")
 );
 
 // Telegram Integration - Load when needed
-export const TelegramIntegration = lazyLoad(
-  () => import("./components/telegram/TelegramIntegration")
+export const TelegramIntegration = lazyLoad(() =>
+  import("./components/telegram/TelegramIntegration")
 );
 
 // Advanced Analytics - Large dependencies (recharts, etc)
-export const AdvancedAnalytics = lazyLoad(
-  () => import("./components/analytics/AdvancedAnalyticsDashboard")
+export const AdvancedAnalytics = lazyLoad(() =>
+  import("./components/analytics/AdvancedAnalyticsDashboard")
 );
 
 // NLP Features - Heavy AI/ML libraries
-export const NLPDashboard = lazyLoad(
-  () => import("./components/nlp/NLPDashboard")
+export const NLPDashboard = lazyLoad(() =>
+  import("./components/nlp/NLPDashboard")
 );
 
-export const SmartAutomation = lazyLoad(
-  () => import("./components/smart-automation/SmartAutomationDashboard")
+export const SmartAutomation = lazyLoad(() =>
+  import("./components/smart-automation/SmartAutomationDashboard")
 );
 
 // ============================================================================

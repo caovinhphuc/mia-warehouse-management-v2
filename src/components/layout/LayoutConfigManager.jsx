@@ -111,7 +111,9 @@ const LayoutConfigManager = ({ isOpen, onClose }) => {
                   {(filteredPages[cat] || []).map((page) => (
                     <div
                       key={page.path}
-                      className={`layout-config-page-item ${selectedPage === page.path ? "active" : ""}`}
+                      className={`layout-config-page-item ${
+                        selectedPage === page.path ? "active" : ""
+                      }`}
                       onClick={() => setSelectedPage(page.path)}
                     >
                       <span className="page-icon">{page.icon}</span>
@@ -170,7 +172,9 @@ const LayoutConfigManager = ({ isOpen, onClose }) => {
                   {widgets.map((w) => (
                     <div
                       key={w.id}
-                      className={`widget-card ${w.visible ? "visible" : "hidden"}`}
+                      className={`widget-card ${
+                        w.visible ? "visible" : "hidden"
+                      }`}
                     >
                       <div className="widget-info">
                         <span className="widget-icon">
@@ -209,7 +213,9 @@ const LayoutConfigManager = ({ isOpen, onClose }) => {
               <div
                 className="layout-preview-grid"
                 style={{
-                  gridTemplateColumns: `repeat(${viewMode === "mobile" ? 1 : viewMode === "tablet" ? 3 : 4}, 1fr)`,
+                  gridTemplateColumns: `repeat(${
+                    viewMode === "mobile" ? 1 : viewMode === "tablet" ? 3 : 4
+                  }, 1fr)`,
                 }}
               >
                 {widgets
@@ -219,7 +225,14 @@ const LayoutConfigManager = ({ isOpen, onClose }) => {
                       key={w.id}
                       className="layout-preview-cell"
                       style={{
-                        gridColumn: `span ${Math.min(w.width, viewMode === "mobile" ? 1 : viewMode === "tablet" ? 3 : 4)}`,
+                        gridColumn: `span ${Math.min(
+                          w.width,
+                          viewMode === "mobile"
+                            ? 1
+                            : viewMode === "tablet"
+                            ? 3
+                            : 4
+                        )}`,
                         gridRow: `span ${w.height}`,
                       }}
                     >

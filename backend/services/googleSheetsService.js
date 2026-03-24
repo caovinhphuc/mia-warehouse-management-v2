@@ -25,9 +25,13 @@ class GoogleSheetsService {
       // Resolve relative path từ project root (./backend/config/...)
       if (!path.isAbsolute(serviceAccountPath) && serviceAccountPath.startsWith("./")) {
         serviceAccountPath = path.join(projectRoot, serviceAccountPath.replace(/^\.\//, ""));
-      } else if (!path.isAbsolute(serviceAccountPath) && !fs.existsSync(serviceAccountPath)) {
+      } else       if (!path.isAbsolute(serviceAccountPath) && !fs.existsSync(serviceAccountPath)) {
         const altPath = path.join(__dirname, "..", "config", "service-account-key.json");
         if (fs.existsSync(altPath)) serviceAccountPath = altPath;
+      }
+      if (!fs.existsSync(serviceAccountPath)) {
+        const automationPath = path.join(projectRoot, "automation", "config", "google-credentials.json");
+        if (fs.existsSync(automationPath)) serviceAccountPath = automationPath;
       }
 
       let credentials;

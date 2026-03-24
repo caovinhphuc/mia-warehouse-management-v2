@@ -426,7 +426,11 @@ const MIARetailDashboard = () => {
               >
                 <Typography.Text>Customer Lifetime Value</Typography.Text>
                 <Tag color="cyan">
-                  {`${customerData?.customerLifetimeValue?.toLocaleString("vi-VN") || 0}₫`}
+                  {`${
+                    customerData?.customerLifetimeValue?.toLocaleString(
+                      "vi-VN"
+                    ) || 0
+                  }₫`}
                 </Tag>
               </div>
               <div

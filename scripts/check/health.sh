@@ -28,15 +28,17 @@ show_port_config
 # Check services
 log_info "Kiểm tra services..."
 
-# Check Frontend
+# Check Frontend (dev port 3000 hoặc production port 80 qua reverse proxy)
 if check_port $FRONTEND_PORT; then
     if curl -sf "http://localhost:$FRONTEND_PORT" >/dev/null 2>&1; then
         log_success "Frontend: ✅ Healthy (http://localhost:$FRONTEND_PORT)"
     else
         log_warning "Frontend: ⚠️ Port $FRONTEND_PORT được sử dụng nhưng không phản hồi"
     fi
+elif curl -sf "http://localhost:80/healthz" >/dev/null 2>&1 || curl -sf "http://localhost:80" >/dev/null 2>&1; then
+    log_success "Frontend: ✅ Healthy (production, http://localhost:80)"
 else
-    log_warning "Frontend: ❌ Not running (Port $FRONTEND_PORT)"
+    log_warning "Frontend: ❌ Not running (Port $FRONTEND_PORT; nếu dùng Docker production thì truy cập http://localhost:80)"
 fi
 
 # Check Backend
@@ -83,14 +85,30 @@ else
     log_info "Monitoring: ⚪ Not running (Port $MONITORING_PORT)"
 fi
 
-# Check Docker services
+# Check Docker services (ưu tiên production compose nếu có)
 ensure_docker_in_path
 DOCKER_COMPOSE=$(get_docker_compose_cmd)
-if command_exists docker && [ -n "$DOCKER_COMPOSE" ] && [ -f "docker-compose.yml" ]; then
+COMPOSE_FILE="docker-compose.yml"
+[ -f "docker-compose.production.yml" ] && COMPOSE_FILE="docker-compose.production.yml"
+if command_exists docker && [ -n "$DOCKER_COMPOSE" ] && [ -f "$COMPOSE_FILE" ]; then
     log_info "Kiểm tra Docker services..."
-    if $DOCKER_COMPOSE -f docker-compose.yml ps | grep -q "Up"; then
+    if $DOCKER_COMPOSE -f "$COMPOSE_FILE" ps 2>/dev/null | grep -q "Up"; then
         log_success "Docker services: ✅ Running"
-        $DOCKER_COMPOSE -f docker-compose.yml ps
+        echo ""
+        # Bảng dễ nhìn: Service | Status | Ports
+        printf "${CYAN}%-24s %-28s %s${NC}\n" "SERVICE" "STATUS" "PORTS"
+        printf "${PURPLE}────────────────────────────────────────────────────────────────────────────${NC}\n"
+        docker ps --filter "name=mia-" --format "{{.Names}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null | sort | while IFS=$'\t' read -r name status ports; do
+            # Rút gọn status: (healthy) -> ✅ | (health: starting) -> ⏳ | Up -> ✅
+            short_status="$status"
+            [[ "$status" == *"healthy"* ]] && short_status="✅ healthy"
+            [[ "$status" == *"starting"* ]] && short_status="⏳ starting"
+            [[ "$status" == *"Up"* && "$short_status" == "$status" ]] && short_status="✅ up"
+            # Ports: chỉ giữ phần host (vd 0.0.0.0:80->80)
+            short_ports="${ports%% *}"
+            printf "  %-22s %-26s %s\n" "$name" "$short_status" "$short_ports"
+        done
+        echo ""
     else
         log_warning "Docker services: ⚠️ Not running"
     fi

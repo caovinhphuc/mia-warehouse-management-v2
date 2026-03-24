@@ -81,7 +81,7 @@ const authenticate = async (req, res, next) => {
 };
 
 /**
- * Generate JWT token for user
+ * Generate JWT token for user (bao gồm sessionId để validate session khi dùng token)
  */
 const generateToken = (user) => {
   const payload = {
@@ -90,6 +90,7 @@ const generateToken = (user) => {
     role: user.role || "user",
     permissions: user.permissions || [],
   };
+  if (user.sessionId) payload.sessionId = user.sessionId;
 
   return jwt.sign(payload, JWT_SECRET, {
     expiresIn: JWT_EXPIRES_IN,

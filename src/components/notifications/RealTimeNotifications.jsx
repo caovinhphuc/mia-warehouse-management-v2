@@ -146,7 +146,9 @@ const RealTimeNotifications = ({ userId = null }) => {
           dataSource={notifications}
           renderItem={(notification, index) => (
             <List.Item
-              className={`notification-item ${!notification.read ? "unread" : ""}`}
+              className={`notification-item ${
+                !notification.read ? "unread" : ""
+              }`}
               actions={[
                 !notification.read && (
                   <Button

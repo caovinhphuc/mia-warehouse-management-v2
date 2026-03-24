@@ -2,6 +2,14 @@
 
 `ai-service` là Python subproject cung cấp FastAPI service cho xác thực `one.tga.com.vn` và các endpoint AI nội bộ.
 
+## Yêu cầu Python
+
+- **Python 3.11+** (khuyến nghị **3.11** hoặc **3.12** để vận hành ổn định).
+- Cài đặt nhanh:
+  - macOS: `brew install python@3.11`
+  - Ubuntu/Debian: `sudo apt install python3.11 python3.11-venv`
+- Tạo venv: `./setup_venv.sh` (tự chọn Python 3.11+ nếu có nhiều bản).
+
 ## Canonical Runtime
 
 - Entry point mặc định: `ai_service.py`

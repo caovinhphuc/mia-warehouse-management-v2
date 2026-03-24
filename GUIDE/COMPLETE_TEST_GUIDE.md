@@ -1,196 +1,391 @@
-# 🧪 Complete Test Guide - MIA.vn Warehouse Management
+# 🧪 Complete Test Guide - React OAS Integration v4.0
 
-> **Hướng dẫn testing ngắn gọn, đúng với dự án**
-> **Cập nhật**: 2026-03-14
+> **Hướng dẫn testing đầy đủ và chi tiết**
+> **Ngày cập nhật**: 2025-01-27
 
 ---
 
 ## 📋 TỔNG QUAN
 
-> Nguon tai lieu chinh: `GUIDE/TESTING.md`.
-> File nay la ban quick-reference cho thao tac hang ngay.
+Guide này cung cấp hướng dẫn đầy đủ về testing cho React OAS Integration v4.0, bao gồm:
 
-| Loại | Lệnh | Mô tả |
-| --- | --- | --- |
-| Frontend | `npm test` | Jest + coverage |
-| Unit | `npm run test:unit` | CI-friendly |
-| Integration | `npm run test:integration` | Google + Telegram + Email + health |
-| All | `npm run test:all` | Unit + integration |
-| E2E | `npm run test:e2e` | System E2E |
-| API | `npm run test:api` | Backend health |
-| Health | `npm run health-check` | System health |
+- ✅ Frontend Tests (Jest + React Testing Library)
+- ✅ Backend Tests (Python unittest)
+- ✅ Integration Tests (API, Services)
+- ✅ End-to-End Tests
+- ✅ Health Checks
+- ✅ Test Scripts Organization
 
 ---
 
 ## 🎯 QUICK START
 
-```bash
-# 1. Health check
-npm run health:full
+### Run All Tests
 
-# 2. Chạy tất cả test
-npm run test:all
+```bash
+# Complete test suite
+npm run test:complete
 
 # Hoặc từng loại
-npm run test:frontend   # Frontend (Jest)
-npm run test:api        # Backend API
-npm run test:integration # Services
-npm run test:e2e        # E2E
+npm run test:frontend    # Frontend tests
+npm run test:api        # API tests
+npm run test:integration # Integration tests
+```
+
+### Health Check First
+
+```bash
+# Check system health before testing
+npm run health:full
 ```
 
 ---
 
-## 📁 CẤU TRÚC TEST
+## 📁 TEST STRUCTURE
 
-### Frontend (src/)
+### Frontend Tests
 
-```text
+```
 src/
-├── App.test.js
-├── setupTests.js
-└── components/Common/__tests__/
-    └── ErrorBoundary.test.jsx
+├── App.test.js          # Component tests
+└── setupTests.js        # Jest configuration
 ```
 
-### Scripts (scripts/)
+### Integration Tests (scripts/tests/)
 
-```text
+```
+scripts/tests/
+├── complete_system_test.js      # Complete system test
+├── end_to_end_test.js           # E2E test
+├── integration_test.js          # Integration test
+├── advanced_integration_test.js # Advanced integration
+├── frontend_connection_test.js  # Frontend connection
+├── test_google_sheets.js        # Google Sheets test
+└── ws-test.js                   # WebSocket test
+```
+
+### Service Tests (scripts/)
+
+```
 scripts/
-├── testGoogleConnection.js   # npm run test:google
-├── testTelegramConnection.js # npm run test:telegram
-├── testEmailService.js       # npm run test:email
-├── health-check.js           # npm run health-check:js
-└── check/health.sh           # npm run health-check
+├── test-all.js                  # Test runner
+├── test-api-endpoints.js        # API endpoints
+├── test-automation-system.js    # Automation system
+├── test-websocket.js            # WebSocket
+├── testGoogleSheets.js          # Google Sheets
+├── testEmailService.js          # Email service
+└── testTelegramConnection.js    # Telegram bot
 ```
 
-### E2E (google-sheets-project)
+### Backend Tests (Python)
 
-```text
-google-sheets-project/scripts/tests/
-├── complete_system_test.js
-├── integration_test.js
-├── end_to_end_test.js
-└── ws-test.js
 ```
-
-### Python (automation/tests/)
-
-```text
-automation/tests/
-├── quick_test.py
-├── test_webdriver.py
-├── test_auth_system.py
-└── test_sheets_connection.py
+automation/one_automation_system/
+├── run_tests.py                 # Test runner
+├── quick_test.py                # Quick test
+├── test_webdriver.py            # WebDriver test
+└── test_*.py                    # Other tests
 ```
 
 ---
 
-## 🚀 LỆNH CHI TIẾT
+## 🚀 TEST COMMANDS
 
-### Frontend
+### Frontend Tests
 
 ```bash
-npm test                          # test-wrapper (coverage)
-npm run test:unit                 # Jest, non-interactive
-npm run test:frontend             # = test:unit
-npm run test:coverage             # Coverage report
-npm run test:watch                # Watch mode
-npm run test:unit -- --testPathPattern=App.test
+# Interactive watch mode
+npm test
+
+# With coverage
+npm run test:coverage
+
+# CI mode (non-interactive)
+npm run test:ci
+
+# Specific test file
+npm test -- App.test.js
 ```
 
-### Integration & E2E
+### Integration Tests
 
 ```bash
-npm run test:google       # Google API
-npm run test:telegram     # Telegram bot
-npm run test:email        # Email service
-npm run test:integration  # All 3 + health
-npm run test:all          # Unit + integration
-npm run test:e2e          # complete_system_test.js
-npm run test:api          # Backend /health
+# Complete system test
+node scripts/tests/complete_system_test.js
+
+# End-to-end test
+node scripts/tests/end_to_end_test.js
+
+# Integration test
+node scripts/tests/integration_test.js
+
+# Advanced integration
+node scripts/tests/advanced_integration_test.js
+
+# Frontend connection
+node scripts/tests/frontend_connection_test.js
+
+# Google Sheets
+node scripts/tests/test_google_sheets.js
+
+# WebSocket
+node scripts/tests/ws-test.js
 ```
 
-Note:
-
-- Neu `.env` chi co placeholder, live integration se skip co thong bao thay vi fail cung.
-- Muon test that, can thay bang credentials hop le cho Google, Telegram, Email.
-
-### Health
+### Service Tests
 
 ```bash
-npm run health-check      # Shell (ports, services, Docker)
-npm run health-check:js   # Node.js health
-npm run health:full       # = health-check
-npm run verify:setup      # = health-check:js
-npm run check:backend     # curl localhost:3001/health
-npm run check:ports       # Port config
+# All services
+npm run test:complete
+
+# Individual services
+npm run test:api            # API endpoints
+npm run test:automation     # Automation system
+npm run test:google-sheets  # Google Sheets
+npm run test:websocket      # WebSocket
 ```
 
-### Python
+### Backend Tests (Python)
 
 ```bash
-cd automation/tests
+# Run all tests
+cd automation/one_automation_system
+python run_tests.py
+
+# Quick test
 python quick_test.py
+
+# Specific tests
 python test_webdriver.py
 python test_auth_system.py
 ```
 
----
-
-## ⚙️ YÊU CẦU
-
-| Service    | Port |
-| ---------- | ---- |
-| Frontend   | 3000 |
-| Backend    | 3001 |
-| AI Service | 8000 |
+### Health Checks
 
 ```bash
-# Start services
-npm run start:frontend
-npm run start:backend
-# hoặc
-npm run start:all
+# Quick check
+npm run health:quick
+
+# Full check
+npm run health-check
+
+# Comprehensive check
+npm run health:full
 ```
 
 ---
 
-## 📊 COVERAGE
+## 📊 TEST COVERAGE
+
+### Frontend Coverage
 
 ```bash
+# Generate coverage report
 npm run test:coverage
+
+# View HTML report
 open coverage/lcov-report/index.html
+```
+
+### Coverage Thresholds
+
+Current settings (relaxed for initial setup):
+
+- Statements: 0%
+- Branches: 0%
+- Functions: 0%
+- Lines: 0%
+
+---
+
+## 🔍 TEST DETAILS
+
+### 1. Frontend Tests
+
+**Framework:** Jest + React Testing Library
+
+**Test Files:**
+
+- `src/App.test.js` - Main component tests
+
+**Running:**
+
+```bash
+npm test
+```
+
+### 2. Integration Tests
+
+**Location:** `scripts/tests/`
+
+**Test Suites:**
+
+- `complete_system_test.js` - Runs all test suites
+- `end_to_end_test.js` - End-to-end user workflows
+- `integration_test.js` - Service integration
+- `advanced_integration_test.js` - Advanced API tests
+- `frontend_connection_test.js` - Frontend connectivity
+- `test_google_sheets.js` - Google Sheets integration
+- `ws-test.js` - WebSocket connection
+
+**Running:**
+
+```bash
+# All tests
+node scripts/tests/complete_system_test.js
+
+# Individual
+node scripts/tests/end_to_end_test.js
+```
+
+### 3. API Tests
+
+**Script:** `scripts/test-api-endpoints.js`
+
+**Endpoints Tested:**
+
+- Backend: `/health`, `/api/status`, `/api/orders`, `/api/analytics`
+- AI Service: `/health`, `/api/predictions`, `/api/analytics`
+
+**Running:**
+
+```bash
+npm run test:api
+```
+
+### 4. Service Tests
+
+**Scripts:**
+
+- `testGoogleSheets.js` - Google Sheets API
+- `testEmailService.js` - Email service
+- `testTelegramConnection.js` - Telegram bot
+- `test-automation-system.js` - Automation system
+
+**Running:**
+
+```bash
+npm run test:google-sheets
+npm run test:automation
+```
+
+---
+
+## ⚙️ REQUIREMENTS
+
+### Before Running Tests
+
+1. **Services Running:**
+   - Frontend: `http://localhost:3000`
+   - Backend: `http://localhost:3001`
+   - AI Service: `http://localhost:8000`
+
+2. **Dependencies:**
+   - Node.js 18+
+   - npm 8+
+   - Python 3.9+
+
+3. **Environment:**
+   - `.env` file configured
+   - Google Sheets credentials
+   - API keys (if needed)
+
+---
+
+## 📝 TEST REPORTS
+
+### Report Locations
+
+- **Frontend Coverage:** `coverage/lcov-report/index.html`
+- **Integration Reports:** `reports/` directory
+- **Health Reports:** `reports/health/health-report-*.json`
+
+### Report Formats
+
+- **JSON:** Machine-readable test results
+- **HTML:** Human-readable coverage reports
+- **Console:** Real-time test output
+
+---
+
+## 🎯 TEST WORKFLOW
+
+### Recommended Workflow
+
+```bash
+# 1. Health check
+npm run health:full
+
+# 2. Start services
+./start.sh
+
+# 3. Run frontend tests
+npm test
+
+# 4. Run integration tests
+npm run test:complete
+
+# 5. Check coverage
+npm run test:coverage
 ```
 
 ---
 
 ## 🔧 TROUBLESHOOTING
 
+### Tests Not Running
+
 ```bash
-# Clear Jest cache
-npm run test:unit -- --clearCache
+# Clear cache
+rm -rf node_modules/.cache
+npm test -- --clearCache
 
-# Reinstall
-rm -rf node_modules package-lock.json && npm install
+# Reinstall dependencies
+rm -rf node_modules package-lock.json
+npm install
+```
 
+### Services Not Available
+
+```bash
+# Check services
+npm run health:full
+
+# Start services
+./start.sh
+```
+
+### Port Conflicts
+
+```bash
 # Check ports
 npm run check:ports
+
+# Kill processes
+npm run kill:port
 ```
 
 ---
 
-## 📚 XEM THÊM
+## 📚 RELATED DOCUMENTATION
 
-- `GUIDE/TESTING.md` - Huong dan testing chuan hoa (source of truth)
-- `scripts/check/health.sh` - Health check script
+- `GUIDE/TESTING.md` - Detailed testing guide
+- `TEST_SCRIPTS_GUIDE.md` - Test scripts reference
+- `HEALTH_CHECK_GUIDE.md` - Health check guide
+- `scripts/tests/README.md` - Test files guide
 
 ---
 
-## ✅ VERIFICATION (2026-03-14)
+## ✅ CHECKLIST
 
-- [x] test:unit, test:frontend, test:coverage
-- [x] test:google, test:telegram, test:email
-- [x] test:integration, test:all, test:e2e, test:api
-- [x] health-check, health:full, verify:setup
-- [x] automation/tests/ (Python)
-- [x] google-sheets-project/scripts/tests/ (E2E)
+- [x] Frontend tests configured
+- [x] Integration tests organized
+- [x] Test scripts documented
+- [x] Health checks implemented
+- [x] Test commands verified
+- [x] Coverage reports configured
+
+---
+
+**Status**: ✅ Complete
+**Last Updated**: 2025-01-27

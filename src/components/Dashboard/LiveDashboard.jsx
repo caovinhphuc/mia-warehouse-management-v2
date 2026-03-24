@@ -216,8 +216,8 @@ const LiveDashboard = () => {
                       metrics.cpu > 80
                         ? "#cf1322"
                         : metrics.cpu > 50
-                          ? "#faad14"
-                          : "#3f8600",
+                        ? "#faad14"
+                        : "#3f8600",
                   }}
                 />
                 <div className="metric-bar">
@@ -229,8 +229,8 @@ const LiveDashboard = () => {
                         metrics.cpu > 80
                           ? "#cf1322"
                           : metrics.cpu > 50
-                            ? "#faad14"
-                            : "#3f8600",
+                          ? "#faad14"
+                          : "#3f8600",
                     }}
                   />
                 </div>
@@ -251,8 +251,8 @@ const LiveDashboard = () => {
                       metrics.memory > 80
                         ? "#cf1322"
                         : metrics.memory > 50
-                          ? "#faad14"
-                          : "#3f8600",
+                        ? "#faad14"
+                        : "#3f8600",
                   }}
                 />
                 <div className="metric-bar">
@@ -264,8 +264,8 @@ const LiveDashboard = () => {
                         metrics.memory > 80
                           ? "#cf1322"
                           : metrics.memory > 50
-                            ? "#faad14"
-                            : "#3f8600",
+                          ? "#faad14"
+                          : "#3f8600",
                     }}
                   />
                 </div>
@@ -331,10 +331,10 @@ const LiveDashboard = () => {
                           status === "running"
                             ? "#1890ff"
                             : status === "success"
-                              ? "#52c41a"
-                              : status === "error"
-                                ? "#f5222d"
-                                : "#d9d9d9",
+                            ? "#52c41a"
+                            : status === "error"
+                            ? "#f5222d"
+                            : "#d9d9d9",
                       }}
                     >
                       <Space direction="vertical" style={{ width: "100%" }}>
@@ -371,19 +371,19 @@ const LiveDashboard = () => {
                               status === "running"
                                 ? "#1890ff"
                                 : status === "success"
-                                  ? "#52c41a"
-                                  : status === "error"
-                                    ? "#f5222d"
-                                    : undefined,
+                                ? "#52c41a"
+                                : status === "error"
+                                ? "#f5222d"
+                                : undefined,
                           }}
                         >
                           {status === "running"
                             ? "Đang chạy..."
                             : status === "success"
-                              ? "✅ Thành công"
-                              : status === "error"
-                                ? "❌ Lỗi"
-                                : "🚀 Lấy dữ liệu"}
+                            ? "✅ Thành công"
+                            : status === "error"
+                            ? "❌ Lỗi"
+                            : "🚀 Lấy dữ liệu"}
                         </Button>
                       </Space>
                     </Card>
@@ -448,8 +448,8 @@ const LiveDashboard = () => {
                               log.type === "success"
                                 ? "#52c41a"
                                 : log.type === "error"
-                                  ? "#f5222d"
-                                  : "#1890ff",
+                                ? "#f5222d"
+                                : "#1890ff",
                           }}
                         >
                           {log.message}

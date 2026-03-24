@@ -31,7 +31,9 @@ async function testAIServiceAPIs() {
     );
     const insights = JSON.parse(insightsData);
     console.log(
-      `  ✅ ML Insights: Confidence ${insights.confidence_score?.toFixed(2) || "N/A"}`
+      `  ✅ ML Insights: Confidence ${
+        insights.confidence_score?.toFixed(2) || "N/A"
+      }`
     );
     results.insights = true;
   } catch (error) {
@@ -55,7 +57,9 @@ async function testAIServiceAPIs() {
     );
     const predictions = JSON.parse(predictionData);
     console.log(
-      `  ✅ Predictions: ${Object.keys(predictions.predictions || {}).length} metrics`
+      `  ✅ Predictions: ${
+        Object.keys(predictions.predictions || {}).length
+      } metrics`
     );
     results.predictions = true;
   } catch (error) {
@@ -85,7 +89,9 @@ async function testAIServiceAPIs() {
     );
     const optimization = JSON.parse(optimizationData);
     console.log(
-      `  ✅ Optimization: Score ${optimization.current_performance_score || "N/A"}`
+      `  ✅ Optimization: Score ${
+        optimization.current_performance_score || "N/A"
+      }`
     );
     results.optimization = true;
   } catch (error) {
@@ -107,7 +113,9 @@ async function testBackendIntegration() {
     const healthData = await makeRequest("localhost", 3001, "/health");
     const health = JSON.parse(healthData);
     console.log(
-      `  ✅ Backend Health: ${health.status} (uptime: ${Math.round(health.uptime)}s)`
+      `  ✅ Backend Health: ${health.status} (uptime: ${Math.round(
+        health.uptime
+      )}s)`
     );
     results.health = true;
   } catch (error) {
@@ -144,7 +152,9 @@ async function testEndToEndFlow() {
     );
     const insights = JSON.parse(insightsResponse);
     console.log(
-      `  ✅ AI insights generated with confidence: ${insights.confidence_score?.toFixed(2) || "N/A"}`
+      `  ✅ AI insights generated with confidence: ${
+        insights.confidence_score?.toFixed(2) || "N/A"
+      }`
     );
 
     console.log("  🔮 Step 2: Request predictions...");
@@ -161,7 +171,9 @@ async function testEndToEndFlow() {
     );
     const predictions = JSON.parse(predictionResponse);
     console.log(
-      `  ✅ Predictions generated for ${Object.keys(predictions.predictions || {}).length} metrics`
+      `  ✅ Predictions generated for ${
+        Object.keys(predictions.predictions || {}).length
+      } metrics`
     );
 
     console.log("  ⚡ Step 3: Get optimization recommendations...");
@@ -184,7 +196,9 @@ async function testEndToEndFlow() {
     );
     const optimization = JSON.parse(optimizationResponse);
     console.log(
-      `  ✅ Optimization suggestions generated (Score: ${optimization.current_performance_score || "N/A"})`
+      `  ✅ Optimization suggestions generated (Score: ${
+        optimization.current_performance_score || "N/A"
+      })`
     );
 
     console.log("  📡 Step 4: Test real-time WebSocket communication...");
@@ -219,14 +233,18 @@ function testWebSocketFlow() {
 
     socket.on("dashboardData", (data) => {
       console.log(
-        `    📊 Dashboard data received: ${data.metrics?.activeUsers || "N/A"} active users`
+        `    📊 Dashboard data received: ${
+          data.metrics?.activeUsers || "N/A"
+        } active users`
       );
       steps++;
     });
 
     socket.on("dashboardUpdate", (data) => {
       console.log(
-        `    🔄 Real-time update: ${data.metrics?.activeUsers || "N/A"} users, ${data.metrics?.responseTime?.toFixed(0) || "N/A"}ms response`
+        `    🔄 Real-time update: ${
+          data.metrics?.activeUsers || "N/A"
+        } users, ${data.metrics?.responseTime?.toFixed(0) || "N/A"}ms response`
       );
       steps++;
 
@@ -270,7 +288,9 @@ async function testPerformanceLoad() {
 
     console.log(`  ✅ ${results.length} concurrent requests completed`);
     console.log(
-      `  ⏱️  Total time: ${totalTime}ms (avg: ${(totalTime / results.length).toFixed(1)}ms per request)`
+      `  ⏱️  Total time: ${totalTime}ms (avg: ${(
+        totalTime / results.length
+      ).toFixed(1)}ms per request)`
     );
 
     return totalTime < 5000; // Should complete within 5 seconds
